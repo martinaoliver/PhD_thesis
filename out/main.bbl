@@ -1,0 +1,94 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{nyt/global//global/global}
+  \entry{kosmrlj2020}{article}{}
+    \name{author}{1}{}{%
+      {{hash=KAP}{%
+         family={Košmrlj},
+         familyi={K\bibinitperiod},
+         given={Andrej\bibnamedelima (Princeton)},
+         giveni={A\bibinitperiod\bibinitdelim P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KAP1}
+    \strng{fullhash}{KAP1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2020}
+    \field{labeldatesource}{}
+    \field{sortinit}{K}
+    \field{sortinithash}{K}
+    \field{title}{Seminar 3: Multicellular Structure Formation in 3D, lecture
+  notes}
+    \field{journaltitle}{Physics of Life Online Summer School}
+    \field{year}{2020}
+  \endentry
+
+  \entry{Scholes2017}{misc}{}
+    \name{author}{2}{}{%
+      {{hash=SN}{%
+         family={Scholes},
+         familyi={S\bibinitperiod},
+         given={Natalie},
+         giveni={N\bibinitperiod},
+      }}%
+      {{hash=IM}{%
+         family={Isalan},
+         familyi={I\bibinitperiod},
+         given={Mark},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier Ltd}%
+    }
+    \strng{namehash}{SNIM1}
+    \strng{fullhash}{SNIM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{labelyear}{2017}
+    \field{labeldatesource}{}
+    \field{sortinit}{S}
+    \field{sortinithash}{S}
+    \field{abstract}{%
+    The spatial organisation of gene expression is essential to create
+  structure and function in multicellular organisms during developmental
+  processes. Such organisation occurs by the execution of algorithmic
+  functions, leading to patterns within a given domain, such as a tissue.
+  Engineering these processes has become increasingly important because
+  bioengineers are seeking to develop tissues ex vivo. Moreover, although there
+  are several theories on how pattern formation can occur in vivo, the
+  biological relevance and biotechnological potential of each of these remains
+  unclear. In this review, we will briefly explain four of the major theories
+  of pattern formation in the light of recent work. We will explore why
+  programming of such patterns is necessary, while discussing a three-step
+  framework for artificial engineering approaches.%
+    }
+    \verb{doi}
+    \verb 10.1016/j.cbpa.2017.04.008
+    \endverb
+    \field{pages}{1\bibrangedash 7}
+    \field{title}{A three-step framework for programming pattern formation}
+    \field{volume}{40}
+    \field{journaltitle}{Current Opinion in Chemical Biology}
+    \field{month}{10}
+    \field{year}{2017}
+  \endentry
+\enddatalist
+\endinput

@@ -1,0 +1,15 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{Declaration of Authorship}{i}{section*.1}%
+\contentsline {chapter}{Abstract}{ii}{section*.2}%
+\contentsline {chapter}{Acknowledgements}{iii}{section*.3}%
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.7}%
+\contentsline {section}{\numberline {1.1}Morphogenesis in nature. examples and function}{1}{section.8}%
+\contentsline {section}{\numberline {1.2}Patterning theories}{2}{section.9}%
+\contentsline {section}{\numberline {1.3}Robustness issues}{2}{section.10}%
+\contentsline {section}{\numberline {1.4}Realistic study of turing patterns to solve robustness: bigger networks, growth, boundaries, noise}{2}{section.11}%
+\contentsline {section}{\numberline {1.5} synthetic approaches (review)}{2}{section.12}%
+\contentsline {section}{\numberline {1.6}project overview}{2}{section.13}%
+\contentsline {chapter}{\numberline {2}Theoretical study of Turing patterns }{3}{chapter.14}%
+\contentsline {chapter}{\numberline {3}Gene circuit design and parametrisation}{4}{chapter.15}%
+\contentsline {chapter}{\numberline {4}Modelling patterning in colonies}{5}{chapter.16}%
+\contentsline {chapter}{Bibliography}{6}{appendix*.17}%

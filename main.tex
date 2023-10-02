@@ -19,11 +19,14 @@
 
 \usepackage{mathpazo}
 
-\usepackage[backend=bibtex,style=vancouver,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+\usepackage[backend=bibtex,style=authoryear-ibid,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+%\usepackage[style=authoryear-icomp, bibstyle=numeric, maxbibnames=9,maxcitenames=2,uniquelist=false,backend=biber]{biblatex}
 
-\addbibresource{interim.bib}
+\addbibresource{Mendeley.bib}
+\addbibresource{Manual.bib}
 
-    \usepackage[autostyle=true]{csquotes}
+\usepackage[autostyle=true]{csquotes}
+\usepackage{stmaryrd}
 
 \geometry{
     paper=a4paper,
@@ -35,19 +38,19 @@
 %showframe, % Uncomment to show how the type block is set on the page
 }
 
-\thesistitle{Exploring Trustless Licensing} % print with \ttitle
-\supervisor{Prof. William J. \textsc{Knottenbelt}} % print with \supname
+\thesistitle{Modelling pattern formation in synthetic biofilms} % print with \ttitle
+\supervisor{Prof. Robert G. Endres and Prof. Mark Isalan } % print with \supname
 \examiner{} % TODO print with \examname
-\degree{MEng Computing} % print with \degreename
-\author{Nicolás \textsc{D'Cotta}} % print with \authorname
+\degree{PhD} % print with \degreename
+\author{Martina Oliver Huidobro} % print with \authorname
 \addresses{} % print with \addressname
 
 \subject{Computer Science} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
 \keywords{} % TODO fill - print with \keywordnames
 \university{\href{https://www.imperial.ac.uk/}{Imperial College London}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
-\department{\href{https://www.imperial.ac.uk/computing}{Department of Computing}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
+\department{\href{https://www.imperial.ac.uk/computing}{Life Sciences Department}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
 \group{\href{https://researchgroup.university.com}{Research Group Name}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
-\faculty{\href{https://faculty.university.com}{Faculty of Engineering}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
+\faculty{\href{https://faculty.university.com}{Faculty of Natural Sciences}} % Your faculty's name and URL, this is used in the title page and abstract, print it elsewhere with \facname
 
 \AtBeginDocument{
     \hypersetup{pdftitle=\ttitle} % Set the PDF's title to your title
@@ -69,7 +72,7 @@
 
             \vspace*{.06\textheight}
             {\scshape\LARGE \univname\par}\vspace{1.5cm}
-            \textsc{\Large MEng Final Year Project}\\[0.5cm]
+            \textsc{\Large PhD thesis}\\[0.5cm]
 
             \HRule \\[0.4cm]
             {\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
@@ -85,7 +88,7 @@
             \begin{minipage}[t]{0.4\textwidth}
                 \begin{flushright}
                     \large
-                    \emph{Supervisor:} \\
+                    \emph{Supervisors:} \\
                     \href{https://www.doc.ic.ac.uk/~wjk/}{\supname}
                 \end{flushright}
             \end{minipage}\\[3cm]
@@ -151,10 +154,9 @@
 
 
     \include{chapters/introduction}
-    \include{chapters/background}
-    \include{chapters/timeline}
-    \include{chapters/evaluation}
-    \include{chapters/ethical}
+    \include{chapters/Chapter 1}
+    \include{chapters/Chapter 2}
+    \include{chapters/Chapter 3}
 
     \appendix
 
