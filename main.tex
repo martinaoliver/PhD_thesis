@@ -27,7 +27,10 @@ parskip, % Uncomment to add space between paragraphs
 
 \usepackage[autostyle=true]{csquotes}
 \usepackage{stmaryrd}
-\newcommand{\TODO}[0]{HELLO THIS IS TODO}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\newcommand{\TODO}[1]{\textcolor{red}{#1}}
+
 \geometry{
     paper=a4paper,
     inner=2.5cm,
@@ -111,13 +114,15 @@ parskip, % Uncomment to add space between paragraphs
     % TODO adapt to imperial
     \begin{declaration}
         \addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-        \noindent I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own. I confirm that:
+        \noindent I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own.
+        I confirm that:
 
         \begin{itemize}
             \item This work was done wholly or mainly while in candidature for a research degree at this University.
             \item Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
             \item Where I have consulted the published work of others, this is always clearly attributed.
-            \item Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
+            \item Where I have quoted from the work of others, the source is always given.
+            \item With the exception of such quotations, this thesis is entirely my own work.
             \item I have acknowledged all main sources of help.
             \item Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
         \end{itemize}
@@ -153,10 +158,10 @@ parskip, % Uncomment to add space between paragraphs
     \pagestyle{thesis} % Return the page headers back to the "thesis" style
 
 
-    \include{chapters/introduction}
-    \include{chapters/Chapter 1}
-    \include{chapters/Chapter 2}
-    \include{chapters/Chapter 3}
+    \include{chapters/Introduction/Introduction}
+    \include{chapters/Chapter 1/Chapter 1}
+    \include{chapters/Chapter 2/Chapter 2}
+    \include{chapters/Methods/Methods}
 
     \appendix
 

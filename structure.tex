@@ -20,18 +20,21 @@
 %----------------------------------------------------------------------------------------
 
 \usepackage{amsmath,amsfonts,stmaryrd,amssymb} % Math packages
+\usepackage{physics, derivative}
 
 \usepackage{enumerate} % Custom item numbers for enumerations
 
 \usepackage[ruled]{algorithm2e} % Algorithms
 
 \usepackage[framemethod=tikz]{mdframed} % Allows defining custom boxed/framed environments
-
 \usepackage{listings} % File listings, with syntax highlighting
 \lstset{
     basicstyle=\ttfamily, % Typeset listings in monospace font
 }
-
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{subfig}
+\usepackage{adjustbox}%for images
 %----------------------------------------------------------------------------------------
 %	DOCUMENT MARGINS
 %----------------------------------------------------------------------------------------
@@ -116,7 +119,7 @@
         \node[anchor=north west]
         at(P-|O){\ttfamily\mdfilename};
         %
-        \def\l{3em}
+        \newcommand{\l}{3em}
         \draw(O-|P)++(-\l,0)--++(\l,\l)--(P)--(P-|O)--(O)--cycle;
         \draw(O-|P)++(-\l,0)--++(0,\l)--++(\l,0);
     },
@@ -183,7 +186,7 @@
         \draw(P-|O)++(-0.5em,0)node(tmp1){};
         \draw(P-|O)++(0.5em,0)node(tmp2){};
         \fill[black,rotate around={45:(P-|O)}](tmp1)rectangle(tmp2);
-        \node at(P-|O){\color{white}\scriptsize\bf !};
+        \node at(P-|O)\color{white} \scriptsize \textbf{!};
         \draw[very thick](P-|O)++(0,-1em)--(O);%--(O-|P);
     }
 }
@@ -212,7 +215,7 @@
     nobreak,
     singleextra={%
         \fill[black](P-|O)circle[radius=0.4em];
-        \node at(P-|O){\color{white}\scriptsize\bf i};
+        \node at(P-|O)\color{white} \scriptsize \textbf{i};
         \draw[very thick](P-|O)++(0,-0.8em)--(O);%--(O-|P);
     }
 }
