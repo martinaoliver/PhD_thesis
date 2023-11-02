@@ -1,5 +1,12 @@
 \chapter{Methods}
 
+\subsection{Finding the steady states: Newton-Raphson method}
+
+\subsubsection{Newton-Raphson implementation}
+To obtain the roots of the system, the Newton-Raphson algorithm was implemented in python using a tolerance value of 0.0001 and a maximum of 15 iterations after which the algorithm stopped searching for a root. Because the system had the potential for multi-stability, several initial conditions need to be searched to obtain all steady states. In total 500 initial conditions were analysed by the Newton-Raphson to obtain all the roots of the system. The 500 conditions were chosen performing latin-hypercube sampling of a 6 dimensional space (6 species) from a uniform distribution with a range from $10^{-3}$ and $10^3$ . Approximately, the root finding for a single parameter set takes around 2 seconds.
+
+
+
 \subsection{Linear stability analysis}
 The following section describes how linear stability analysis is carried out for the equilibrium points in a reaction-diffusion system.
 The aim of this analysis is to find out if the steady state exhibits a Turing instability or also called a diffusion-driven instability.
@@ -225,3 +232,89 @@ In summary, to understand if perturbations around the steady state decay or grow
 \subsubsection{Linear stability analysis implementation}
 Linear stability analysis is carried out with and without diffusion for all steady states of the system found using Newton-Raphson. The analysis is done for all $k=\frac{n\pi}{L} \hspace{0.1cm}\forall \{n \in \mathbb{N} : n \leq 5000\} $, meaning 5000 k's are sampled using linear stability analysis. L is defined as 100mm.  Linear stability analysis for a single steady state takes approximately approximately 1 second.
 
+\subsection{Sampling method}
+If no parameters from a system are known, sampling of the whole parameter space must be done to understand the systems behaviour. Different methods exist for sampling parameter spaces. Several studies have shown that latin-hypercube sampling (LHS) has a higher efficiency than grid sampling or random sampling when searching through high dimensional spaces. The efficiency over grid sampling might be explained because not all dimensions of the model are important, meaning some parameters might be sloppy. Therefore not all parameters have to be explored thoroughly as done in grid sampling \parencite{iman1980latin, Bergstra2012}. The three sampling regimes are shown in Figure 20a.\\\\
+In LHS, a distribution and a number of desired samples is given as an input. The algorithm then divides the space sections according to the distribution given (e.g in a normal distribution, more sections will appear near the mean value).  Then, one sample is positioned randomly somewhere in each section. For a 2 dimensional parameter space, no samples can be in the same column or row. This is scaled up to high multidimensional spaces such as the 22 dimensional space of the model proposed. This scheme is shown in Figure 20b.
+%\begin{figure}[H]
+%    \includegraphics[width=1.1\textwidth]{Methods/sampling.png}
+%    \caption{\textbf{Sampling method for high dimensional spaces}. \textbf{(A)} Types of potential sampling methods. \textbf{(B)} Latin-Hypercube sampling with uniform distribution for a 2 dimensional parameter space. Space is separated in 5 sections for each parameter, leading to 5 samples (red dot). No sample is present in the same row or column. \textbf{(C)} Parameter distributions used for Latin-hypersube sampling. The 4 different types of parameters have different distributions depending on the ranges defined. All of them are uniform distributions in log-scale. }
+%\end{figure}
+The distribution given as an input to the LHS algorithm, will be the resulting distribution of your samples. For the purpose of this search, the distributions chosen are uniform distributions in a logarithmic scale (log-uniform distribution). The uniform distribution, although it does not describe many phenomena in biology, can be useful when no prior knowledge is known about the parameters \parencite{Frank2009TheNature}. The logarithmic component is used to make sure parameters from all scales are represented equally, instead of having a higher frequency of values from larger scales. Log-normal distributions are commonly used for modelling in biology, however due to the nonexistent prior knowledge on our parameter values, the log-uniform is used instead. The log-uniform distribution is defined within a certain range, which varies depending on the parameter type. The distributions for each parameter type are shown in Figure 20c. Overall, 1 million samples where produced using the LHS with a uniform distribution in log-scale. All parameters except the diffusion rates ($d$) and the cooperativity ($n$) where sampled using LHS and the distributions shown in Figure 20c.
+
+
+\subsection{Numerical solution by finite-difference methods}
+Obtaining a solution for a system of equations can become a complex problem if working with a system of 6 non-linear PDEs. Because an analytical expression for the solution is almost impossible to obtain, finite-difference methods are used for cases like this one. Finite-difference methods consists in discretising space and time to approximate the PDE system to a system of algebraic equations that can be easily solved by matrix algebra techniques \parencite{morton2005numerical}. By discretising time and space, the two independent variables can be expressed as:
+\begin{subequations}
+    \begin{equation}
+        t_{n} = n\Delta t, n=0,...,N-1
+    \end{equation}
+    \begin{equation}
+        x_{j} = j\Delta x, j=0,...,J-1
+    \end{equation}
+\end{subequations}
+While $\Delta t$ and $\Delta x$ are the time steps and the space steps respectively, N and J are the number of discrete time and space points in our grid. $\Delta t$ and $\Delta x$ can be defined as $ \Delta t = \frac{T}{N}$ and $   \Delta x= \frac{L}{J}$ respectively where T and L are the final time and space values in the grid. The aim is to derive a numerical solution that is approximates to the unknown analytical solution so $U(j\Delta x, n\Delta t)\approx u( j\Delta x, n\Delta t)$, where $U$ is the analytical solution and $u$ is the numerical solution. \\\\
+When working with a numerical solver, the solver can perturb the systems behaviour due to the effects of the time-step, the integration method or the computer arithmetic. When choosing a scheme to numerically solve a PDE, three different characteristics of the scheme need to be considered: Consistency, stability and convergence. Firstly, for a scheme to be consistent, the truncation error must be reduced as $\Delta t \rightarrow 0$ or/and if $\Delta x \rightarrow 0$. The truncation error is the resultant from using a simple approximation to represent an exact mathematical formula. Secondly, the numerical method is said to be stable if the error (truncation or round-off) is not magnified as the number of time steps tends to infinity. Finally, as the Lax equivalence theorem states, the scheme is said to be convergent if both consistency and stability. This means that at any fixed point, if  time and space discretisations tend to zero, the numerical solution will tend towards the exact solution. \parencite{smith1985numerical, ferzigerperic}.\\\\
+The methods chosen to solve this system of equations are Crank-Nicolson for 1 dimension in space and Alternating Direction Implicit Method for 2 dimensions. These methods are chosen because they are both unconditionally stable as shown by von Neumann stability analysis \parencite{strikwerda2004finite}. The unconditional stability is important to allow for larger $\Delta t$ and $\Delta x$, without getting an amplification of the error. Larger $\Delta t$ and $\Delta x$ will result in reduced computationally power. Although CN is less computationally expensive than ADI, it becomes extremely complex when scaled up to multiple dimensions. On the other hand, ADI has a simpler structure in 2 dimensions that can be solved easily using the tridiagonal matrix algorithm \parencite{Flaherty}. Hence, CN is used to obtain 1D space solutions while ADI is used for 2D.
+%\begin{figure}[H]
+%    \includegraphics[width=0.8\textwidth,center]{Methods/stencils.png}
+%    \caption{\textbf{Stencils for numerical solution}.  A stencil is a geometric representation with nodes and edges, that represents the points of interest for the numerical approximation. The points of interest, which are the ones present in the equations, are shown in green. j and n are the current space and time points. \textbf{(A)} Crank-Nicholson stencil used in 1D numerical simulations. The axis are time and space ($x$). \textbf{(B)} Alternating Direction Implicit method stencil used in 2D numerical simulations. The axis are time and 2 dimensional space ($x$,$y$).}
+%\end{figure}
+\subsubsection{Crank-Nicolson method}
+Consider a reaction diffusion system with one space dimension and boundary conditions
+\begin{equation}
+    \frac{\delta u}{\delta t} =  f(u) + D\pdv[2]{u}{x},   \quad \quad \quad \quad \quad \quad \pdv{u}{x}\biggr\rvert_{x=0,L}=0
+\end{equation}
+The spatial part of the equation can be approximated to
+\begin{equation}
+    \pdv[2]{u}{x} \biggr\rvert_{x=j\Delta x,t=n\Delta t} \approx \frac{1}{2\Delta x^{2}}\left( U^{n}_{j+1} -  2U^{n}_{j} + U^{n}_{j-1} + U^{n+1}_{j+1} - 2U^{n+1}_{j} + U^{n+1}_{j-1}\right),
+\end{equation}
+while the production function can be approximated to $f ( U^{n}_{j})$.  The approximations can be better visualised using the Crank-Nicolson stencil (See Figure 19a). Applying CN's stencil to the grid point (i,j), the reaction-diffusion system can be expressed as
+
+\begin{equation}
+    \frac{U^{n+1}_{j} - U^{n}_{j} }{\Delta t} = \frac{D}{2\Delta x^{2}}\left( U^{n}_{j+1} -  2U^{n}_{j} + U^{n}_{j-1} + U^{n+1}_{j+1} - 2U^{n+1}_{j} + U^{n+1}_{j-1}\right) +  f( U^{n}_{j})
+\end{equation}
+By reordering this approximation into a linear equation, the resulting problem is defined by a simple linear equation containing matrices A and B. Where $\textbf{U}^{n+1} = [U^{n}_{0}, ... , U^{n}_{J-1}]$, the simplified system can be expressed as:
+\begin{equation}
+    \textbf{U}^{n+1} = A^{-1}(B\textbf{U}^{n} + f^{n})
+\end{equation}
+This method simplifies the complex system into a linear system that can be solved numerically. The solution given will be a 1 dimensional in space solution of the reaction-diffusion system. Although the method is  unconditionally stable, the solution can contain oscillations if $ \frac{\Delta t}{\Delta x^{2}} >\frac{1}{2} $ \parencite{trefethen1996finite}. Therefore, the ratio will be kept below $\frac{1}{2}$ to avoid errors.
+
+\subsubsection{Alternating Direction Implicit method}
+As done in the CN scheme, a reaction diffusion system and its boundary conditions will be consider. However, in this case two spatial dimensions will be introduced.
+
+\begin{equation}
+    \frac{\delta u}{\delta t} =  f(u) + D\left(\pdv[2]{u}{x} + \pdv[2]{u}{y}\right) ,   \quad \quad \quad \quad \quad \quad \pdv{u}{x}\biggr\rvert_{x=0,L}=0 \quad \quad \pdv{u}{y}\biggr\rvert_{y=0,L}=0
+\end{equation}
+If the CN stencil is applied to this 2 dimensional spatial problem, the system would contain banded matrices in the right and left hand sides, that would be very expensive to invert. ADI offers an alternative in which tridiagonal matrices are inverted instead of banded matrices (less computational power required). The characteristic of ADI is the time step $\Delta t$ is split into two, and each half time step is computed. This means, to compute the change at each time step, first we compute $U^{n+1/2}_{i,j} $ and from there,    $U^{n+1}_{i,j} $ is calculated. This results in two different equations:
+\begin{subequations}
+    \begin{equation}
+        \begin{split}
+            \frac{U^{n+1/2}_{i,j} - U^{n}_{i,j} }{\Delta t/2} = \frac{D}{2\Delta x^{2}}\left( U^{n+1/2}_{i+1,j} -  2U^{n+1/2}_{i,j} + U^{n+1/2}_{i-1,j}\right)  \\+ \frac{D}{2\Delta y^{2}}\left( U^{n}_{i,j+1} -  2U^{n}_{i,j} + U^{n}_{i,j-1}\right)  + \Delta t f(U^{n}_{i,j})
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \frac{U^{n+1}_{i,j} - U^{n}_{i,j} }{\Delta t/2} = \frac{D}{2\Delta x^{2}}\left( U^{n+1/2}_{i+1,j} -  2U^{n+1/2}_{i,j} + U^{n+1/2}_{i-1,j}\right)  \\+ \frac{D}{2\Delta y^{2}}\left( U^{n+1}_{i,j+1} -  2U^{n+1}_{i,j} + U^{n+1}_{i,j-1}\right)  + \Delta t f(U^{n+1/2}_{i,j})
+        \end{split}
+    \end{equation}
+\end{subequations}
+In the first half time step (Equation 46a), the $x$ derivative is taken implicitly, and in the second half time step (Equation 46b), the $y$ derivative is taken implicitly. As done in CN, the approximation is reordered into a linear system. Two families of linear systems appear:
+\begin{subequations}
+    \begin{equation}
+        A\textbf{U}^{n+1/2}_{x,i} = \textbf{b}_{i} + \textbf{f}(\Delta t \textbf{U}^{n}_{x,i}), \quad i=0,...,I-1
+    \end{equation}
+    \begin{equation}
+        C\textbf{U}^{n+1}_{y,j} = \textbf{d}_{j} + \textbf{f}(\Delta t \textbf{U}^{n+1/2}_{y,j}), \quad j=0,...,J-1
+    \end{equation}
+\end{subequations}
+Again, this method also simplifies a complex system into a linear system that can be solved numerically, as in CN. However, this method allows for the introduction of a new spatial dimension and therefore produces a 2D spatial solution. The workings of this method can be better understood with the ADI stencil (See Figure 19b). ADI will be used to visualise patterns in 2D.
+\subsubsection{Analysis of numerical solution}
+Speed of pattern formation and pattern wavelength are identified by performing additional analysis on the 1D numerical data.  \\\\
+\textbf{Time for pattern formation}
+The development of the pattern follows a certain behaviour: The molecule concentrations are initially homogeneous; then a pattern gets formed progressively; and finally, the pattern is in its final state and the solution remains constant.  The time for pattern formation is measured by comparing the solution (one point in space) at every time point to the solution at the final time point. If the difference if smaller than a tolerance value of $10^{-4}$ that time point is taken as the convergence time point were the pattern has finished to  develop. \\\\
+\textbf{Wavelength prediction from numerical Solution}
+The findpeaks package is used from the \textit{scipy.signal} python library. All peaks in the final time point of the 1D simulation are found through the findpeaks package. The average distance between peaks is taken and that distance is averaged throughout the 6 species.
+
+\subsection{Cellular Automata modelling}
+
+\subsection{Machine learning inference of dose response curves}
