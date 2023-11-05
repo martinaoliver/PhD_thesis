@@ -21,17 +21,17 @@ Finally, we explore numerically how these patterns behave when realistic biologi
 
 \subsection{Infering wavelength and convergence time from dispersion relation}
 
-\begin{figure}[h] % h! is a placement specifier; it tries to place the image here.
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 1/dispersion_to_wavelength_convergence} % The name of your image file; assumes it's in the same directory as your .tex file
     \caption{A sample caption for the image.}
     \label{fig:dispersion_to_wavelength_convergence} % A label for referencing this figure later in the document
 \end{figure}
 
-
 \subsection{Dispersion to pattern}
 dispersion to pattern
-\begin{figure}[h] % h! is a placement specifier; it tries to place the image here.
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 1/dispersion_to_shape} % The name of your image file; assumes it's in the same directory as your .tex file
     \caption{A sample caption for the image.}
@@ -47,14 +47,47 @@ multistaabilityaa
 %todo make subfigures bigger
 %todo pass all images into pdf
 
-\begin{adjustbox}{width=1.4\textwidth,center}
-\begin{figure}
 
-    \caption{(a) blah (b) blah (c) blah (d) blah}
-    \label{fig:foobar}
-
+\begin{figure}[H]
+%    \begin{adjustbox}{width=1.2\textwidth,center}
+        \centering
+        \begin{subfigure}{.5\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{chapters/Chapter 1/multistability1}
+            \caption{First subfigure}
+        \end{subfigure}%
+        \begin{subfigure}{.5\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{chapters/Chapter 1/multistability1}
+            \caption{Second subfigure}
+        \end{subfigure}
+        \newline
+        \begin{subfigure}{.5\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{chapters/Chapter 1/multistability1}
+            \caption{Third subfigure}
+        \end{subfigure}%
+        \begin{subfigure}{.5\linewidth}
+            \centering
+            \includegraphics[width=\linewidth]{chapters/Chapter 1/multistability1}
+            \caption{Fourth subfigure}
+        \end{subfigure}
+        \caption{Overall caption for all subfigures}
+%    \end{adjustbox}
 \end{figure}
-\end{adjustbox}
+
+
+
+ß
+%
+%\begin{adjustbox}{width=1.4\textwidth,center}
+%\begin{figure}
+%
+%    \caption{(a) blah (b) blah (c) blah (d) blah}
+%    \label{fig:foobar}
+%
+%\end{figure}
+%\end{adjustbox}
 
 
 \subsection{Analytical to numerical: Other types of dispersion relation, and other types of patterns}
@@ -66,8 +99,3 @@ multistaabilityaa
 \subsection{No growth to open boundaries}
 \subsection{Open boundaries to growth}
 
-
-\section{methods}
-\subsection{lsa}
-
-%todo look at leyshon paper for lsa explanation

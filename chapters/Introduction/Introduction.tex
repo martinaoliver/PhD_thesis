@@ -21,24 +21,23 @@ Understanding the mechanism behind biological pattern formation is still a centr
 This evolution from simplicity to intricacy isn't merely aesthetic; it often plays a pivotal role in the functioning of multicellular beings.
 Delving deeper, these patterns can have strategic advantages.
 Fractal-shaped bacterial colonies, for instance, maximize nutrient absorption ~\parencite{Matsushita1990}.
-Furthermore, distinct colorations, such as the zebra's stripes or the mesmerizing eye-spots on butterfly wings ~\parencite{Blest}, serve to disorient predators—either by disrupting the prey's silhouette or suggesting the prey is part of a larger entity ~\parencite{Stevens2006}.
+Furthermore, distinct colorations, such as the zebra's stripes or the mesmerizing eye-spots on butterfly wings ~\parencite{Blest}, serve to disorient predators; either by disrupting the prey's silhouette or suggesting the prey is part of a larger entity ~\parencite{Stevens2006}.
 The spirals observed in phylotaxis offer plants a way to optimize sunlight capture, enhancing photosynthesis ~\parencite{Strauss2020}.
 
 The evolutionary advantage conveyed by this level of spatial organisation  hints towards genetic networks being potentially responsible for the patterning mechanism.
 A randomly found solution of evolution where a pattern occurs, could lead to the genetic networks driving these spatial arrangements to be evolutionary beneficial and therefore selected.
 Comprehending these networks and the dynamics that lead to these spatial designs is essential.
-This area of research not only tries to understand which genetic networks are behind patterning, but also seeks to uncover how on a molecular scale these mechanisms are reliable, accurate and robust to the noisy and exposed biological environment.
-Studying this goes beyond understanding of developmental biology and morphogenesis.
-It paves the way for pioneering work in biotechnological sectors, enabling the creation of intricately patterned tissues, efficient biofilms, or even organoids that hold potential in groundbreaking applications, such as tissue regeneration or organ implants ~\parencite{Scholes2017,Tan2018}.
+This area of research not only tries to understand which genetic networks and mechanisms are behind patterning, but also seeks to uncover how on a molecular scale these mechanisms are reliable, accurate and robust to the noisy and exposed biological environment.
+Additionally, Studying this goes beyond understanding of developmental biology and morphogenesis.
+It paves the way for pioneering work in biotechnological sectors, enabling the creation of intricately patterned tissues, efficient biofilms, or even organoids that hold potential in groundbreaking applications, such as tissue regeneration or organ implants ~\parencite{Scholes2017,Tan2018}. %todo comment on material deposition.
 
 
 
 \subsection{Patterning theories}
-Numerous mechanisms have been proposed in the literature to explain the formation of biological spatial patterns.
-Some of the most relevant ones can be categorized into mechanical instabilities and diffusion-based mechanisms~\parencite{kosmrlj2020_2}.
+Numerous mechanisms have been proposed in the literature to explain the formation in biological spatial systems.
+Some of the most relevant ones can be categorized into mechanical instabilities and diffusion-based mechanisms %~\parencite{kosmrlj2020_2}.
 The mechanical instabilities include phenomena such as differential adhesion, branching or wrinkling where physical forces are described in the model~\parencite{Scholes2017}.
 % TODO SEARCH OTHER INSTABILITIES %todo cite other mechanical instabilities papers
-
 On the other hand, gradient or diffusion based mechanisms rely on cells in the tissue responding to a molecule which is spatially heterogeneous and therefore exhibiting different phenotypes in different regions of the tissue (e.g.\ black vs white in zebra).
 
 
@@ -61,11 +60,11 @@ velocities across a tissue.
 Morphogens, which are small molecules that can travel across the tissue and activate or inhibit other molecules.
 If these morphogens are linked to growth hormones or skin pigments, biological patterns leading to a phenotype can arise.
 The resulting patterns, called Turing patterns, can have different shapes such as stripes, labyrinths, spots; which can be widely observed in natural systems.
-The concept of Turing patterns was first introduced from a mathematical perspective and was modelled using space and time dependent partial differential equations (PDE). In the case of Turing’s seminal paper, the set of PDEs describes a two node network ~\ref{fig:intro_to_turing_patterns}a which has activation and inhibition terms, degradation terms and diffusion terms ~\ref{fig:intro_to_turing_patterns}b.
-The key feature of this system is that it can exhibit diffusion driven instabilities: Initially, the tissue has an homogeneous concentration of morphogen under which no diffusion occurs, and under this circumstances the system is stable and converges into an equilibrium state.
+The concept of Turing patterns was first introduced from a mathematical perspective and was modelled using space and time dependent partial differential equations (PDE). In the case of Turing’s seminal paper, the set of PDEs describes a two node network (Fig.~\ref{fig:intro_to_turing_patterns}a) which has activation and inhibition terms, degradation terms and diffusion terms (Fig.~\ref{fig:intro_to_turing_patterns}b).
+The key feature of this system is that it can exhibit diffusion driven instabilities: Initially, the tissue has a homogeneous concentration of morphogen under which no diffusion occurs, and under these circumstances the system is stable and converges into an equilibrium state.
 When biological noise is introduced, the heterogeneity of the system leads to morphogen diffusion.
 Consequently, the diffusion leads to changes in the reaction rates and the system is pushed out of steady state leading to an unstable system.
-This unstable system converges into a stable stationary periodic pattern which is a Turing pattern ~\ref{fig:intro_to_turing_patterns}c.
+This unstable system converges into a stable stationary periodic pattern which is a Turing pattern (Fig.~\ref{fig:intro_to_turing_patterns}c).
 This whole phenomena called the diffusion driven instability is the essence of Alan Turing’s paper and one of the most used mechanisms to explain morphogenesis.
 
 \begin{figure}[h!]
@@ -82,9 +81,10 @@ Altough Turing’s work was of key importance in the field of developmental biol
 Firstly, the mathematical complexity behind it made it inaccessible for many scientists in the field.
 Furthermore, the network proposed, although it can generate patterns, is too simple to describe the complexity in biological systems and takes some unrealistic assumptions such as the presence of negative concentrations ~\parencite{Kondo2010a}.
 To solve these two issues, Gierer and Meindhardt proposed a generalised version of Turing’s diffusion-driven-instabilities ~\parencite{Gierer1972}.
-This alternative theory proposes that patterns can be obtained as long as short-range activation and long-range inhibition (SALI) is present, meaning we can go away from Turing’s equations and extend the theory to networks with different number of nodes, different network interactions and even different signal transduction ~\parencite{Murray1983, Rauch2004, Swindale1980}.
+This alternative theory proposes that patterns can be obtained as long as short-range activation and long-range inhibition (SALI) is present.
+This implies that we can go away from Turing’s equations and extend the theory to networks with different number of nodes, different network interactions and even different signal transduction mechanisms ~\parencite{Murray1983, Rauch2004, Swindale1980}.
 This step was necessary to be able to attribute patterning phenomena to more complex cellular and molecular interactions described by non-linear terms and larger networks with more nodes involved.
-Examples of the first systems developed with non-linear terms are the typical Gierer-Meindhard model ~\parencite{Gierer1972}, Schnakenberg model ~\parencite{Schnakenberg1979}, as well as the Thomas model %todo cite ~\parencite{thomas1976analysis}
+Examples of the first systems developed with non-linear terms are the typical Gierer-Meindhard model ~\parencite{Gierer1972}, Schnakenberg model ~\parencite{Schnakenberg1979}, as well as the Thomas model %~\parencite{thomas1976analysis}.
 This generalisation work, sheds some light into the logic behind patterning and allows to understand it intuitively:
 As an initially homogeneous system is perturbed by biological noise, local peaks of morphogen concentration form.
 These transient peaks lead to a local activation effect where the concentration of all reactants increases.

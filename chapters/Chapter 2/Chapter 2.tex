@@ -20,7 +20,7 @@ The dynamics of the protein (X) and diffuser (U) species of the gene circuit are
 \end{equation}
 \end{subequations}
 
-This results a PDE model with eight equations that correspond to the two diffusers (pC and OC14) and six protein species of the circuit: RpaI, CinI, TetR, LacI, cI* and cI. This PDE model is reduced to a 6-equation system by assuming quasi-steady state for the diffusers, with production and degradation kinetics much faster than those of proteins. Finally, the model is non-dimensionalised to enable its parametrisation using liquid culture dose response data.
+This results in a PDE model with eight equations that correspond to the two diffusers (pC and OC14) and six protein species of the circuit: RpaI, CinI, TetR, LacI, cI* and cI. This PDE model is reduced to a 6-equation system by assuming quasi-steady state for the diffusers, with production and degradation kinetics much faster than those of proteins. Finally, the model is non-dimensionalised to enable its parametrisation using liquid culture dose response data.
 In the subsections below, the different terms of Eq ~\eqref{eq:Generalised protein and diffuser pde} are discussed. Furthermore, the process of model reduction, non-dimensionalisation and fitting is also described.
 
 
@@ -31,7 +31,7 @@ The rate of protein production can be defined as
 \end{equation}
 where $\theta$ represents the fractional activation of the system. Full activation of protein production is denoted as $\theta=1$ while full inhibition is represented by $\theta=0$.
 $V_{\max}$ is the maximal rate of expression.
-$\theta$ can be represented by a Hill function to describe cooperative binding, derived using the law of mass action with all-or-none binding to multiple binding sites ~\parencite{Weiss1997}
+$\theta$ can be represented by a Hill function to describe cooperative binding, derived using the law of mass action with all-or-none binding to multiple binding sites ~\parencite{Weiss1997}.
 We further apply the quasi-steady state assumptions for activator and inhibitor binding to the promoter, as well as for the mRNA dynamics, as these timescales are much faster than protein production ~\parencite{Andersen1998, Bremer2008}.
 This leads to the following expression of $\theta$ for non-competitive activation (A) and inhibition (I)
 \begin{equation}\label{eq:\theta}
@@ -64,7 +64,7 @@ Only free, unbound TetR can bind TetO and inactivate the expression of cI*.
 The binding of aTc to TetR is modelled by a reversible equilibrium.
 The affinity of binding is given by the kon and $k_{off}$ rate constants.
 
-%\mathchardef\mhyphen="2D
+
 \begin{equation}
     naTc + TetR_{free} \xrightleftharpoons[k_{off}]{k_{on}} TetR \mhyphen naTc
 \end{equation}
@@ -161,24 +161,13 @@ This tuning equations link back to the circuit equations, as $[TetR_{free}]$ and
 %todo figure of inactivation and equations
 
 
+\section{Build equations for synthetic circuit}
+\section{Explore parameter space and optimise robustness}
+\section{Parametrise model to constrain}
 
-
-\begin{itemize}
-    \item Build equations for synthetic circuit
-    \item Explore parameter space and optimise robustness
-    \item Produce rings
-    \item Model rings and explore patterning potential
-    \item Parametrise model to constrain
-    \item Model with constrained parameters
-\end{itemize}
-
-\begin{itemize}
-    \item Build equations for synthetic circuit
-    \item Explore parameter space and optimise robustness
-    \item Parametrise model to constrain
-
-    \item Produce rings
-    \item Model rings (comment on noise) and explore patterning potential
-    \item Model shape
-    \item Model with constrained parameters
-\end{itemize}
+\section{Produce rings}
+\section{Modelling bacterial colonies}
+\subsection{openboundary circle shape growth noise}
+\section{Explore patterning potential}
+\subsection{general params}
+\subsection{parametrised params}
