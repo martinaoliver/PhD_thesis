@@ -18,23 +18,33 @@ parskip, % Uncomment to add space between paragraphs
 \usepackage[T1]{fontenc}
 
 \usepackage{mathpazo}
+%\usepackage[style=authoryear-icomp, bibstyle=numeric, maxbibnames=9,maxcitenames=2,uniquelist=false,backend=bibtex]{biblatex}
 
-\usepackage[backend=bibtex,style=authoryear-ibid,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+\usepackage[bibstyle=numeric,style=authoryear-icomp,maxbibnames=9,maxcitenames=2,uniquelist=false, backend=bibtex,]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+
+%
+%\usepackage[backend=bibtex,style=authoryear-ibid,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+
+
 %\usepackage[style=authoryear-icomp, bibstyle=numeric, maxbibnames=9,maxcitenames=2,uniquelist=false,backend=biber]{biblatex}
 
-\addbibresource{Mendeley.bib}
+\addbibresource{library.bib}
 \addbibresource{Manual.bib}
+\AtEveryBibitem{\clearfield{note}}
 
 
 \usepackage[autostyle=true]{csquotes}
 \usepackage{stmaryrd}
 \usepackage{physics, derivative}
-\usepackage{subcaption}
-\usepackage{subfig}
+
 \usepackage{adjustbox}%for images
 \usepackage{float}
 \usepackage{amsfonts}
+\usepackage{amssymb}
+
+
 \newcommand{\TODO}[1]{\textcolor{red}{#1}}
+\newcommand{\pdvn}[3]{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}
 
 \geometry{
     paper=a4paper,
@@ -67,6 +77,7 @@ parskip, % Uncomment to add space between paragraphs
 }
 
 \begin{document}
+
 
     \frontmatter
     \pagestyle{plain}
@@ -119,9 +130,9 @@ parskip, % Uncomment to add space between paragraphs
     % TODO adapt to imperial
     \begin{declaration}
         \addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
-        \noindent I, \authorname, declare that this thesis titled, \enquote{\ttitle} and the work presented in it are my own.
+        \noindent I, \authorname, declare that this thesis titled, \enquote{\ttitle}and the work presented in it are my own.
         I confirm that:
-
+a
         \begin{itemize}
             \item This work was done wholly or mainly while in candidature for a research degree at this University.
             \item Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
@@ -139,17 +150,21 @@ parskip, % Uncomment to add space between paragraphs
         \rule[0.5em]{25em}{0.5pt} % This prints a line to write the date
     \end{declaration}
 
+    %----------------------------------------------------------------------------------------
+%	Commands
+%----------------------------------------------------------------------------------------
+
 
     \begin{abstract}
         \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
         The Thesis Abstract is written here (and usually kept to just this page).
-        The page is kept centered vertically so can expand into the blank space above the title too\ldots
+        The page is kept centered vertically so can expand into the blank space above the title to\ldots
     \end{abstract}
 
 
     \begin{acknowledgements}
         \addchaptertocentry{\acknowledgementname} % TODO
-        The acknowledgments and the people to thank go here, don't forget to include your project advisor\ldots
+        The acknowledgements and the people to thank go here, don't forget to include your project advisor\ldots
     \end{acknowledgements}
 
 
@@ -172,6 +187,7 @@ parskip, % Uncomment to add space between paragraphs
     \appendix
 
     \printbibliography[heading=bibintoc]
+%raspopovic with capitaal letter ~\parencite{Raspopovic}
 
 \end{document}
 

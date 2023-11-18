@@ -1,173 +1,173 @@
-% Chapter Template
-
-\chapter{Gene circuit design and parametrisation}
-
-\section{Building model describing synthetic gene circuit}
-In this section, I present the model that describes the synthetic gene circuit engineered in ~\cite{Tica2020}.
-A PDE system is used to describe the reaction and diffusion terms, which describe change in concentrations of molecules in time and space.
-This model includes constant background production, activator/repressor-regulated production using Hill terms, and the effect of tuning molecules aTc and IPTG on the circuit and diffusion.
-The dynamics of the protein (X) and diffuser (U) species of the gene circuit are modeled as
-
-\begin{subequations}\label{eq:Generalised protein and diffuser pde}
-\begin{equation}
-    \pdv{[X]}{t}= b_{X}+V_{X}\cdot\frac{1}{1+\left(\frac{K{A}}{[A]}\right)^{n_{A}}}\cdot\frac{1}{1+\left(\frac{[I]}{K_{I}}\right)^{n_{I}}}-\mu_{X}\cdot[X]
-    \label{eq:Generalised protein}
-\end{equation}
-
-\begin{equation}
-    \pdv{[U]}{t} = k_{1}\cdot[A] - \mu_{U}\cdot[U] + D_{U}(\partial_{xx} + \partial_{yy})[U]
-    \label{eq:generalised diffuser}
-\end{equation}
-\end{subequations}
-
-This results in a PDE model with eight equations that correspond to the two diffusers (pC and OC14) and six protein species of the circuit: RpaI, CinI, TetR, LacI, cI* and cI. This PDE model is reduced to a 6-equation system by assuming quasi-steady state for the diffusers, with production and degradation kinetics much faster than those of proteins. Finally, the model is non-dimensionalised to enable its parametrisation using liquid culture dose response data.
-In the subsections below, the different terms of Eq ~\eqref{eq:Generalised protein and diffuser pde} are discussed. Furthermore, the process of model reduction, non-dimensionalisation and fitting is also described.
-
-
-\subsection{Protein equations and gene regulation}
-The rate of protein production can be defined as
-\begin{equation}
-    V = V_{max} \cdot \theta
-\end{equation}
-where $\theta$ represents the fractional activation of the system. Full activation of protein production is denoted as $\theta=1$ while full inhibition is represented by $\theta=0$.
-$V_{\max}$ is the maximal rate of expression.
-$\theta$ can be represented by a Hill function to describe cooperative binding, derived using the law of mass action with all-or-none binding to multiple binding sites ~\parencite{Weiss1997}.
-We further apply the quasi-steady state assumptions for activator and inhibitor binding to the promoter, as well as for the mRNA dynamics, as these timescales are much faster than protein production ~\parencite{Andersen1998, Bremer2008}.
-This leads to the following expression of $\theta$ for non-competitive activation (A) and inhibition (I)
-\begin{equation}\label{eq:\theta}
-    \theta  = \frac{1}{1+\left(\frac{K_{A}}{[A]}\right)^{n_{A}}} \cdot \frac{1}{1+\left(\frac{[I]}{K_{I}}\right)^{n_{I}}}
-\end{equation}
-This Hill function is used in the Eq ~\eqref{eq:Generalised protein} and describes promoter activity as a function of the two inputs [A] and [I], where $K_{A}$ and $K_{I}$ are half-activation/inhibition concentrations, $n_{A}$ and $n_{I}$ are the Hill coefficients.
-Additionally, most promoters are leaky, which we account for by introducing a small rate of background production $b_{X}$. $b_{X}$ corresponds to the first term in Eq ~\eqref{eq:Generalised protein}
-\subsection{Diffuser equations}
-Diffusers are synthesised by enzymes, and then bound to receptors to activate gene expression by binding to the promoter. %check if its true they bind to the promoter.
-The circuit receptors are expressed constructively from a low-copy pCC1 plasmid, and are therefore modelled with a constant concentration.
-Quasi-steady state was assumed for the very fast equilibrium that forms between the receptor and the diffusers. %The receptor-inducer and receptor-promoter binding equilibria were modelled with mass action kinetics.
-The enzymatic production of the diffusers was modelled with a simple linear production term dependent on synthesis enzyme concentration, and a rate constant.
-It was assumed that the precursor substrate concentration is in excess and does not influence the reaction rate.
-\subsection{Degradation}
-All the species of the circuit were modelled to undergo linear (first order) degradation
-\begin{equation}
-    -\mu_{P_{1}}[P_{1}]
-\end{equation}
-
-as seen in ~\eqref{eq:Generalised protein and diffuser pde}.
-The degradation rate parameters for the protein species are readily available in the literature
-%(Table S2). They are scale-free parameters that only depend on time, which makes them more translatable between different experimental contexts and units of measurement.
-
-\subsection{Tuning gene expression: aTc regulation of TetR and IPTG regulation of LacI }
-The circuit was designed so it can be tuned in a variety of ways.
-Experimentally, this tuning was used to achieve parameter combinations that are more favourable for patterning.
-The tuning can be performed with: aTc, IPTG and DAPG.
-aTc binds to TetR and inactivates it.
-Only free, unbound TetR can bind TetO and inactivate the expression of cI*.
-The binding of aTc to TetR is modelled by a reversible equilibrium.
-The affinity of binding is given by the kon and $k_{off}$ rate constants.
-
-
-\begin{equation}
-    naTc + TetR_{free} \xrightleftharpoons[k_{off}]{k_{on}} TetR \mhyphen naTc
-\end{equation}
-
-This equilibrium happens at much faster rates than the protein production and degradation reactions of the model.
-For this reason, quasi-steady state is assumed
-
-\begin{equation}
-    \pdv{TetR \mhyphen naTc}{t} = k_{on}[TetR_{free}][aTc]^n - k_{off}[TetR \mhyphen naTc] \approx 0
-\end{equation}
-
-By rearranging terms and using $K_{d} = k_{off}/k_{on}$, a simplified expression for $[TetR_{free}]$ is obtained, which is then used in the model
-
-\begin{equation}
-[TetR_{free}] = K_{D}\cdot \frac{[TetR \mhyphen naTc]}{[aTc]^n}
-\end{equation}
-
-However, because $[TetR-n_{aTc}]$ is unknown, the $[TetR_{total}]$ and $[TetR_{free}]$ are used instead
-\begin{equation}
-[TetR \mhyphen naTc] = [TetR_{total}] - [TetR_{free}]
-\end{equation}
-to obtain the following expression
-
-\begin{subequations}
-    \begin{equation}
-    [TetR_{free}] = K_{D} \cdot \frac{[TetR_{total}] - [TetR_{free}]}{[aTc]^n} \Longrightarrow
-    \end{equation}
-    \begin{equation}
-    [TetR_{free}] (1+\frac{K_{D}}{[aTc]^n}) = \frac{K_{D}\cdot [TetR_{total}]}{[aTc]^n}\Longrightarrow
-    \end{equation}
-    \begin{equation}
-    [TetR_{free}] = \frac{K_{D}\cdot[TetR_{total}]}{[aTc]^n+K_{D}} = \frac{[TetR_{total}]}{1+\frac{[aTc]^n}{K_{D}}}
-    \end{equation}
-\end{subequations}
-
-which says that the concentration of unbound TetR is given by ~$[aTc]$, ~$[TetR_{total}]$ and the equilibrium constant ~$K_{D}$.
-For non-cooperative systems where ~$n=1$, ~$K_{D}=[L_{half}]$.
-However, for cooperative systems where ~$n>1$, ~$[L_{half}] = \sqrt[n]{K_{D}}$.
-We define a new variable ~$K_{A} = \sqrt[n]{K_{D}} \leftrightarrow K_{D} = K^n_{A}$ that we use to replace ~$K_{D}$ in the following expression, where ~$K^n_{A} = K_{TetR \mhyphen naTc}{[aTc]^n}$.
-This was also done for other ~$K_{D}$ parameters of the model.
-\begin{equation}
-[TetR_{free}] =  \frac{[TetR_{total}]}{1+(\frac{[aTc]}{K_{TetR \mhyphen aTc}})^{n_{aTc}}}
-\end{equation}
-Parameter ~$K_{TetR \mhyphen aTc}$ is the binding affinity of aTc to TetR, whereas $n_{aTc}$ is the cooperativity of TetR and aTc binding.
-
-\para
-This expression for unbound TetR ($[TetR_{free}]$ ), can then be introduced into the production rate of cI*. cI* has an operator sequence downstream of the promoter, TetO. This TetO is bound by TetR to inhibit expression of the mRNA. We will model the production of cI* dependent of TetR binding, using an inverse-Hill term that describes repression by this binding.
-
-\begin{equation}
-    \pdv{[cI*]}{t} = V_{max}\cdot \left(1+\left(\frac{[TetR_{free}]}{K_{TetR \mhyphen TetO}}\right)^{n_{TetO}}\right)^{-1} = V_{max} \cdot \left(1+\left(\frac{TetR_{total}}{K_{TetR \mhyphen TetO}\cdot(1+(\frac{aTc}{K_{aTc}})^{n_{aTc}})}\right)^{n_{TetO}}\right)^{-1}
-\end{equation}
-For simplification, we can simplify the denominator so
-
-\begin{equation}
-    \pdv{[cI*]}{t} = V_{max}\cdot \left(1+\left(\frac{[TetR_{free}]}{K_{TetR \mhyphen TetO \mhyphen aTc }}\right)^{n_{TetO}}\right)^{-1}
-\end{equation}
-where,
-\begin{equation}
-    K_{TetR \mhyphen TetO \mhyphen aTc }=K_{TetR \mhyphen TetO}\cdot(1+(\frac{aTc}{K_{aTc}})^{n_{aTc}})
-\end{equation}
-
-\TODO{Explain different params here above}
-
-The parameter KTetR-TetO is the binding affinity of TetR to tetO, KtetR-aTc is the affinity of aTc to TetR, naTc is the Hill coefficient of aTc and TetR, whereas nda is the Hill coefficient of TetR to tetO.
-
-The same logic can be applied for the IPTG regulating LacI inhibition, where unbound LacI can be or $[LacI_{free}]$ can be expressed as
-\begin{equation}
-[LacI{free}] =  \frac{[LacI_{total}]}{1+(\frac{[IPTG]}{K_{LacI \mhyphen IPTG}})^{n_{IPTG}}}
-\end{equation}
-
-LacI free will be then able to bind to LacO and inhibit RpaI and tetR production in the following manner
-
-\begin{equation}
-    \pdv{[RpaI*]}{t} = V_{max}\cdot \left(1+\left(\frac{[LacI_{free}]}{K_{LacI \mhyphen LacO}}\right)^{n_{LacO}}\right)^{-1} = V_{max} \cdot \left(1+\left(\frac{LacI_{total}}{K_{LacI \mhyphen LacO}\cdot(1+(\frac{IPTG}{K_{IPTG}})^{n_{IPTG}})}\right)^{n_{LacO}}\right)^{-1}
-\end{equation}
-
-The denominator is simplified as
-
-\begin{equation}
-    \pdv{[RpaI*]}{t} = V_{max}\cdot \left(1+\left(\frac{[LacI_{free}]}{K_{LacI \mhyphen LacO \mhyphen IPTG}}\right)^{n_{LacO}}\right)^{-1}
-\end{equation}
-
-where,
-
-\begin{equation}
-    K_{LacI \mhyphen LacO \mhyphen IPTG}={K_{LacI \mhyphen LacO}\cdot(1+(\frac{IPTG}{K_{IPTG}})^{n_{IPTG}})}\right)
-\end{equation}
-
-
-This tuning equations link back to the circuit equations, as $[TetR_{free}]$ and $[LacI_{free}]$ are different examples of $[I]$ in the gene production equation (Eq ~\eqref{eq:\theta}). Therefore, if $[I]$ is replaced by either, this can be represented in the $K_{I}$ term in this equation resulting in
-
-
-
-%todo figure of inactivation and equations
-
-
-\section{Build equations for synthetic circuit}
-\section{Explore parameter space and optimise robustness}
-\section{Parametrise model to constrain}
-
-\section{Produce rings}
-\section{Modelling bacterial colonies}
-\subsection{openboundary circle shape growth noise}
-\section{Explore patterning potential}
-\subsection{general params}
-\subsection{parametrised params}
+%% Chapter Template
+%
+%\chapter{Gene circuit design and parametrisation}
+%
+%\section{Building model describing synthetic gene circuit}
+%In this section, I present the model that describes the synthetic gene circuit engineered in ~\cite{Tica2020}.
+%A PDE system is used to describe the reaction and diffusion terms, which describe change in concentrations of molecules in time and space.
+%This model includes constant background production, activator/repressor-regulated production using Hill terms, and the effect of tuning molecules aTc and IPTG on the circuit and diffusion.
+%The dynamics of the protein (X) and diffuser (U) species of the gene circuit are modeled as
+%
+%\begin{subequations}\label{eq:Generalised protein and diffuser pde}
+%\begin{equation}
+%    \pdv{[X]}{t}= b_{X}+V_{X}\cdot\frac{1}{1+\left(\frac{K{A}}{[A]}\right)^{n_{A}}}\cdot\frac{1}{1+\left(\frac{[I]}{K_{I}}\right)^{n_{I}}}-\mu_{X}\cdot[X]
+%    \label{eq:Generalised protein}
+%\end{equation}
+%
+%\begin{equation}
+%    \pdv{[U]}{t} = k_{1}\cdot[A] - \mu_{U}\cdot[U] + D_{U}(\partial_{xx} + \partial_{yy})[U]
+%    \label{eq:generalised diffuser}
+%\end{equation}
+%\end{subequations}
+%
+%This results in a PDE model with eight equations that correspond to the two diffusers (pC and OC14) and six protein species of the circuit: RpaI, CinI, TetR, LacI, cI* and cI. This PDE model is reduced to a 6-equation system by assuming quasi-steady state for the diffusers, with production and degradation kinetics much faster than those of proteins. Finally, the model is non-dimensionalised to enable its parametrisation using liquid culture dose response data.
+%In the subsections below, the different terms of Eq ~\eqref{eq:Generalised protein and diffuser pde} are discussed. Furthermore, the process of model reduction, non-dimensionalisation and fitting is also described.
+%
+%
+%\subsection{Protein equations and gene regulation}
+%The rate of protein production can be defined as
+%\begin{equation}
+%    V = V_{max} \cdot \theta
+%\end{equation}
+%where $\theta$ represents the fractional activation of the system. Full activation of protein production is denoted as $\theta=1$ while full inhibition is represented by $\theta=0$.
+%$V_{\max}$ is the maximal rate of expression.
+%$\theta$ can be represented by a Hill function to describe cooperative binding, derived using the law of mass action with all-or-none binding to multiple binding sites ~\parencite{Weiss1997}.
+%We further apply the quasi-steady state assumptions for activator and inhibitor binding to the promoter, as well as for the mRNA dynamics, as these timescales are much faster than protein production ~\parencite{Andersen1998, Bremer2008}.
+%This leads to the following expression of $\theta$ for non-competitive activation (A) and inhibition (I)
+%\begin{equation}\label{eq:\theta}
+%    \theta  = \frac{1}{1+\left(\frac{K_{A}}{[A]}\right)^{n_{A}}} \cdot \frac{1}{1+\left(\frac{[I]}{K_{I}}\right)^{n_{I}}}
+%\end{equation}
+%This Hill function is used in the Eq ~\eqref{eq:Generalised protein} and describes promoter activity as a function of the two inputs [A] and [I], where $K_{A}$ and $K_{I}$ are half-activation/inhibition concentrations, $n_{A}$ and $n_{I}$ are the Hill coefficients.
+%Additionally, most promoters are leaky, which we account for by introducing a small rate of background production $b_{X}$. $b_{X}$ corresponds to the first term in Eq ~\eqref{eq:Generalised protein}
+%\subsection{Diffuser equations}
+%Diffusers are synthesised by enzymes, and then bound to receptors to activate gene expression by binding to the promoter. %check if its true they bind to the promoter.
+%The circuit receptors are expressed constructively from a low-copy pCC1 plasmid, and are therefore modelled with a constant concentration.
+%Quasi-steady state was assumed for the very fast equilibrium that forms between the receptor and the diffusers. %The receptor-inducer and receptor-promoter binding equilibria were modelled with mass action kinetics.
+%The enzymatic production of the diffusers was modelled with a simple linear production term dependent on synthesis enzyme concentration, and a rate constant.
+%It was assumed that the precursor substrate concentration is in excess and does not influence the reaction rate.
+%\subsection{Degradation}
+%All the species of the circuit were modelled to undergo linear (first order) degradation
+%\begin{equation}
+%    -\mu_{P_{1}}[P_{1}]
+%\end{equation}
+%
+%as seen in ~\eqref{eq:Generalised protein and diffuser pde}.
+%The degradation rate parameters for the protein species are readily available in the literature
+%%(Table S2). They are scale-free parameters that only depend on time, which makes them more translatable between different experimental contexts and units of measurement.
+%
+%\subsection{Tuning gene expression: aTc regulation of TetR and IPTG regulation of LacI }
+%The circuit was designed so it can be tuned in a variety of ways.
+%Experimentally, this tuning was used to achieve parameter combinations that are more favourable for patterning.
+%The tuning can be performed with: aTc, IPTG and DAPG.
+%aTc binds to TetR and inactivates it.
+%Only free, unbound TetR can bind TetO and inactivate the expression of cI*.
+%The binding of aTc to TetR is modelled by a reversible equilibrium.
+%The affinity of binding is given by the kon and $k_{off}$ rate constants.
+%
+%
+%\begin{equation}
+%    naTc + TetR_{free} \xrightleftharpoons[k_{off}]{k_{on}} TetR \mhyphen naTc
+%\end{equation}
+%
+%This equilibrium happens at much faster rates than the protein production and degradation reactions of the model.
+%For this reason, quasi-steady state is assumed
+%
+%\begin{equation}
+%    \pdv{TetR \mhyphen naTc}{t} = k_{on}[TetR_{free}][aTc]^n - k_{off}[TetR \mhyphen naTc] \approx 0
+%\end{equation}
+%
+%By rearranging terms and using $K_{d} = k_{off}/k_{on}$, a simplified expression for $[TetR_{free}]$ is obtained, which is then used in the model
+%
+%\begin{equation}
+%[TetR_{free}] = K_{D}\cdot \frac{[TetR \mhyphen naTc]}{[aTc]^n}
+%\end{equation}
+%
+%However, because $[TetR-n_{aTc}]$ is unknown, the $[TetR_{total}]$ and $[TetR_{free}]$ are used instead
+%\begin{equation}
+%[TetR \mhyphen naTc] = [TetR_{total}] - [TetR_{free}]
+%\end{equation}
+%to obtain the following expression
+%
+%\begin{subequations}
+%    \begin{equation}
+%    [TetR_{free}] = K_{D} \cdot \frac{[TetR_{total}] - [TetR_{free}]}{[aTc]^n} \Longrightarrow
+%    \end{equation}
+%    \begin{equation}
+%    [TetR_{free}] (1+\frac{K_{D}}{[aTc]^n}) = \frac{K_{D}\cdot [TetR_{total}]}{[aTc]^n}\Longrightarrow
+%    \end{equation}
+%    \begin{equation}
+%    [TetR_{free}] = \frac{K_{D}\cdot[TetR_{total}]}{[aTc]^n+K_{D}} = \frac{[TetR_{total}]}{1+\frac{[aTc]^n}{K_{D}}}
+%    \end{equation}
+%\end{subequations}
+%
+%which says that the concentration of unbound TetR is given by ~$[aTc]$, ~$[TetR_{total}]$ and the equilibrium constant ~$K_{D}$.
+%For non-cooperative systems where ~$n=1$, ~$K_{D}=[L_{half}]$.
+%However, for cooperative systems where ~$n>1$, ~$[L_{half}] = \sqrt[n]{K_{D}}$.
+%We define a new variable ~$K_{A} = \sqrt[n]{K_{D}} \leftrightarrow K_{D} = K^n_{A}$ that we use to replace ~$K_{D}$ in the following expression, where ~$K^n_{A} = K_{TetR \mhyphen naTc}{[aTc]^n}$.
+%This was also done for other ~$K_{D}$ parameters of the model.
+%\begin{equation}
+%[TetR_{free}] =  \frac{[TetR_{total}]}{1+(\frac{[aTc]}{K_{TetR \mhyphen aTc}})^{n_{aTc}}}
+%\end{equation}
+%Parameter ~$K_{TetR \mhyphen aTc}$ is the binding affinity of aTc to TetR, whereas $n_{aTc}$ is the cooperativity of TetR and aTc binding.
+%
+%\para
+%This expression for unbound TetR ($[TetR_{free}]$ ), can then be introduced into the production rate of cI*. cI* has an operator sequence downstream of the promoter, TetO. This TetO is bound by TetR to inhibit expression of the mRNA. We will model the production of cI* dependent of TetR binding, using an inverse-Hill term that describes repression by this binding.
+%
+%\begin{equation}
+%    \pdv{[cI*]}{t} = V_{max}\cdot \left(1+\left(\frac{[TetR_{free}]}{K_{TetR \mhyphen TetO}}\right)^{n_{TetO}}\right)^{-1} = V_{max} \cdot \left(1+\left(\frac{TetR_{total}}{K_{TetR \mhyphen TetO}\cdot(1+(\frac{aTc}{K_{aTc}})^{n_{aTc}})}\right)^{n_{TetO}}\right)^{-1}
+%\end{equation}
+%For simplification, we can simplify the denominator so
+%
+%\begin{equation}
+%    \pdv{[cI*]}{t} = V_{max}\cdot \left(1+\left(\frac{[TetR_{free}]}{K_{TetR \mhyphen TetO \mhyphen aTc }}\right)^{n_{TetO}}\right)^{-1}
+%\end{equation}
+%where,
+%\begin{equation}
+%    K_{TetR \mhyphen TetO \mhyphen aTc }=K_{TetR \mhyphen TetO}\cdot(1+(\frac{aTc}{K_{aTc}})^{n_{aTc}})
+%\end{equation}
+%
+%\TODO{Explain different params here above}
+%
+%The parameter KTetR-TetO is the binding affinity of TetR to tetO, KtetR-aTc is the affinity of aTc to TetR, naTc is the Hill coefficient of aTc and TetR, whereas nda is the Hill coefficient of TetR to tetO.
+%
+%The same logic can be applied for the IPTG regulating LacI inhibition, where unbound LacI can be or $[LacI_{free}]$ can be expressed as
+%\begin{equation}
+%[LacI{free}] =  \frac{[LacI_{total}]}{1+(\frac{[IPTG]}{K_{LacI \mhyphen IPTG}})^{n_{IPTG}}}
+%\end{equation}
+%
+%LacI free will be then able to bind to LacO and inhibit RpaI and tetR production in the following manner
+%
+%\begin{equation}
+%    \pdv{[RpaI*]}{t} = V_{max}\cdot \left(1+\left(\frac{[LacI_{free}]}{K_{LacI \mhyphen LacO}}\right)^{n_{LacO}}\right)^{-1} = V_{max} \cdot \left(1+\left(\frac{LacI_{total}}{K_{LacI \mhyphen LacO}\cdot(1+(\frac{IPTG}{K_{IPTG}})^{n_{IPTG}})}\right)^{n_{LacO}}\right)^{-1}
+%\end{equation}
+%
+%The denominator is simplified as
+%
+%\begin{equation}
+%    \pdv{[RpaI*]}{t} = V_{max}\cdot \left(1+\left(\frac{[LacI_{free}]}{K_{LacI \mhyphen LacO \mhyphen IPTG}}\right)^{n_{LacO}}\right)^{-1}
+%\end{equation}
+%
+%where,
+%
+%\begin{equation}
+%    K_{LacI \mhyphen LacO \mhyphen IPTG}={K_{LacI \mhyphen LacO}\cdot(1+(\frac{IPTG}{K_{IPTG}})^{n_{IPTG}})}\right)
+%\end{equation}
+%
+%
+%This tuning equations link back to the circuit equations, as $[TetR_{free}]$ and $[LacI_{free}]$ are different examples of $[I]$ in the gene production equation (Eq ~\eqref{eq:\theta}). Therefore, if $[I]$ is replaced by either, this can be represented in the $K_{I}$ term in this equation resulting in
+%
+%
+%
+%%todo figure of inactivation and equations
+%
+%
+%\section{Build equations for synthetic circuit}
+%\section{Explore parameter space and optimise robustness}
+%\section{Parametrise model to constrain}
+%
+%\section{Produce rings}
+%\section{Modelling bacterial colonies}
+%\subsection{openboundary circle shape growth noise}
+%\section{Explore patterning potential}
+%\subsection{general params}
+%\subsection{parametrised params}
