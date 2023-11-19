@@ -5,8 +5,8 @@
 quick intro
 \section{Background on biological patterning}
 \subsection{Morphogenesis in nature, examples and function}
-Periodic spatial structures in biology result from the emergent phenomena where a tissue of cells gains heterogeneity and complexity in the spatial domain following certain regularity/frequency.
-These spatial structures can be widely observed in nature both in 2D such as the zebra's stripped skin or in 3D in the labyrinthian brain cortex.
+Periodic spatial structures in biology result from the emergent phenomena where a tissue of cells gains heterogeneity and complexity in the spatial domain following certain regularity.
+Spatial structures can be widely observed in nature both in two-dimensional (2D) such as the zebra's stripped skin or in 3-dimensions (3D) in the labyrinthian brain cortex.
 Many other examples of periodic patterning can be found in nature (See Figure ~\ref{fig:pattern_examples}).
 Understanding the mechanism behind biological pattern formation is still a central question which remains elusive in the fields of systems, developmental and synthetic biology.  %todo comment on other applications
 %they have also been used to gain insights into human settlement6 and to design water filters (Tan, Z., Chen, S., Peng, X., Zhang, L. & Gao, C. Science 360, 518–521 (2018).(Zincenko, A., Petrovskii, S., Volpert, V. & Banerjee, M. J. R. Soc. Interface 18, 20210034 (2021).). Experimentally, Turing patterns have been able to explain the spaced transverse ridges of the palate in mammals8. In 2021, researchers showed that a strained atomic bismuth monolayer on the surface of niobium diselenide displays Turing patterns9, an observation that may play a crucial part in the development of microdevices (Fuseya, Y. et al. Nat. Phys. 17, 1031–1036 (2021).).
@@ -28,7 +28,7 @@ The evolutionary advantage conveyed by this level of spatial organisation  hints
 A randomly found solution of evolution where a pattern occurs, could lead to the genetic networks driving these spatial arrangements to be evolutionary beneficial and therefore selected.
 Comprehending these networks and the dynamics that lead to these spatial designs is essential.
 This area of research not only tries to understand which genetic networks and mechanisms are behind patterning.
-I also seeks to uncover how on a molecular scale these mechanisms are reliable, accurate and robust to the noisy and exposed biological environment.
+It also seeks to uncover how on a molecular scale these mechanisms are reliable, accurate and robust to the noisy and exposed biological environment.
 Additionally, studying this goes beyond understanding of developmental biology and morphogenesis.
 It paves the way for pioneering work in biotechnological sectors, enabling the creation of intricately patterned tissues, efficient biofilms, or even organoids that hold potential in groundbreaking applications, such as tissue regeneration or organ implants ~\parencite{Scholes2017,Tan2018}. %todo comment on material deposition.
 
@@ -42,7 +42,7 @@ The mechanical instabilities include phenomena such as differential adhesion, br
 On the other hand, gradient or diffusion based mechanisms rely on cells in the tissue responding to a molecule which is spatially heterogeneous and therefore exhibiting different phenotypes in different regions of the tissue (e.g.\ black vs white in zebra).
 
 
-\section{Reaction-diffusion}
+\section{Reaction-diffusion systems}
 \subsection{Types of reaction diffusion: Wolpert vs Turing}
 Among these gradient-based mechanisms, notable examples include positional information, the clock-and-wavefront model, and Turing instabilities ~\parencite{Wolpert1969, Baker2006, Turing1952}.
 Both the positional information and clock-and-wavefront concepts are underpinned by an initial gradient of morphogens, interpreted by a genetic network to induce tissue patterns.
@@ -71,13 +71,13 @@ This whole phenomenon called the diffusion-driven instability is the essence of 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Introduction/intro_to_turing_patterns}
-    \caption[\textbf{Introduction to Turing's mechanism of pattern formation}]{\textbf{Introduction to Turing's mechanism}. \textbf{A)} 2 node network based on Turing's original paper. Slow diffusing activator in green and fast diffuser inhibitor in pink. \textbf{B)} Linear PDE equations for a 2-node Turing system. \textbf{C)} 2D simulation of equations in B) using ADI numerical solver (See Methods \ref{ADI}). \textbf{D)} }
+    \caption[\textbf{Introduction to Turing's mechanism of pattern formation}]{\textbf{Introduction to Turing's mechanism}. \textbf{(A)} 2 node network based on Turing's original paper. Slow diffusing activator in green and fast diffuser inhibitor in pink. \textbf{(B)} Linear PDE equations for a 2-node Turing system. \textbf{(C)} 2D simulation of equations in B) using ADI numerical solver (See Methods \ref{ADI}). \textbf{(D)} }
     \label{fig:intro_to_turing_patterns}
 \end{figure}
 %TODO rerun simulations  1D snapshots and video
 
 
-\subsection{Gierer Meindhardt}
+\subsection{Gierer-Meindhardt model}
 Altough Turing’s work was of key importance in the field of developmental biology, it was not well accepted by biologists due to different reasons.
 Firstly, the mathematical complexity behind it made it inaccessible for many scientists in the field.
 Furthermore, the network proposed, although it can generate patterns, is too simple to describe the complexity in biological systems and takes some unrealistic assumptions such as the presence of negative concentrations ~\parencite{Kondo2010a}.
@@ -119,7 +119,7 @@ The equations describing these reaction-diffusion systems are usually too comple
 For this reason, different methods must be used such as linear stability analysis (LSA) or numerical methods.
 LSA provides information on how the stability of the system evolves as we go from a system without diffusion to a system with diffusion ~\parencite{Glendinning1994}.
 For RD systems to produce Turing patterns, they must be stable without diffusion and become unstable as diffusion is turned on ~\parencite{J.DMurray2002}.
-This stability profile gives rise to the name “diffusion-driven instabilities” which is an alternative name to Turing patterns.
+This stability profile gives rise to the name “diffusion-driven instabilities” which is an alternative name for Turing patterns.
 Overall, this method can tell us whether a system is a pattern generator, the wavelength and the relative speed of pattern formation.
 Alternatively, numerical methods are used to calculate the concentration of species in the RD system at every time and space point ~\parencite{Ramos1983}.
 A visual solution is obtained which provides information on the shape, wavelength, evolution and amplitude of the pattern.
@@ -374,7 +374,7 @@ Secondly, it would allow us to inform the experimentalists on how to tune the sy
 
 
 
-\section{project overview}
+\section{Thesis overview}
 
 %TODO
 The aim of this thesis is to investigate Turing patterning in the context of synthetic biology and tissue engineering, using a modelling approach.

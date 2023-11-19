@@ -366,12 +366,16 @@ If $\sigma > 0$, perturbations grow around the steady state and the system is un
 In the contrary, if  $\sigma < 0$, the system is stable and perturbations decay around the steady state.
 More detail on linear stability analysis can be found in~\cite{J.DMurray2002} or ~\cite{Glendinning1994}.
 \subsubsection{Linear stability analysis implementation}
-Linear stability analysis is carried out with and without diffusion for all steady states of the system found using Newton-Raphson method (See appendix). %todo ref apendix
-The analysis is done for all $k=\frac{n\pi}{L} \hspace{0.1cm}\forall \{n \in \mathbb{N} : n \leq 5000\} $, meaning 5000 k's are sampled using linear stability analysis. L is defined as 100mm which is based on the maximum lenght of our experimental system. %todo mention chapter 2 and 3
+Linear stability analysis is carried out with and without diffusion for all steady states of the system found using Newton-Raphson method (See \ref{newton_raphson}).
+The analysis is done for all $k=\frac{n\pi}{L} \hspace{0.1cm}\forall \{n \in \mathbb{N} : n \leq 5000\} $, meaning 5000 k's are sampled using linear stability analysis.
+L is defined as 100mm which is based on the maximum lenght of our experimental system.
+This system is further described in %todo mention chapter 2 and 3
 Linear stability analysis for a single steady state takes approximately approximately 0.5s.
 
 \subsection{Model definition and dataset creation}
-The system studied in this chapter consists of a 2-node Turing topology system with non-linear hill terms. The activator U activates itself and V, while the inhibitor V inhibits the activator U as seen in Fig. \ref{fig:intro_to_turing_patterns}A. However, instead of using the linear terms used in the original Turing system Fig. \ref{fig:intro_to_turing_patterns}B ~\parencite{Turing1952}, we use Hill terms which represent genetic regulations.
+The system studied in this chapter consists of a 2-node Turing topology system with non-linear hill terms.
+The activator U activates itself and V, while the inhibitor V inhibits the activator U as seen in Fig. \ref{fig:intro_to_turing_patterns}A.
+However, instead of using the linear terms used in the original Turing system Fig. \ref{fig:intro_to_turing_patterns}B ~\parencite{Turing1952}, we use Hill terms which represent genetic regulations.
 
 \begin{subequations}
     \begin{equation}
@@ -385,7 +389,13 @@ The system studied in this chapter consists of a 2-node Turing topology system w
     \label{eq:turinghill}
 \end{subequations}
 
-Two distributions are generated. The parameters used are x. The distribution used are x. latin hypercube. database. numerical solver.
+To study this system, the parameter space is scanned using linear stability analysis and numerical methods.
+The parameter space is sampled using latin hypercube sampling (LHS) Fig. ~\ref{distributions}A drawn from loguniform distributions ~\ref{distributions}C.
+The LHS method has been shown to cover the parameter space more efficiently with less samples \parencite{Chrisman2014, Iman2014}. More information on sampling and distributions can be found in~\ref{sampling method}.
+%Different distributions has been sampled for each parameter using this latin hypercube sampling.
+%
+%, to ensure from various parameter distributions to cover a wide variety of dynamical behaviours. Latin
+%$V$ parameter is sampled using a The parameters used are x. The distribution used are x. latin hypercube. database. numerical solver.
 
 %TODO complete param definitions
 %variant0 (turinghill):
@@ -668,7 +678,7 @@ Therefore, while reaction-diffusion occurs in the tissue; only diffusion occurs 
 As with the non-growing Neumann boundary condition patterns in the previous section, we develop a classification system to quantify the different types of patterns obtained, and the transitions as growth is introduced.
 However, due to the absorbing boundary conditions and growth homogeneity and convergence we previously defined is in some cases physically impossible.
 For this reason, a new classification system is developed based on the number of peaks.
-Peaks are detected using the python $find_peaks$ algorithm with parameter
+Peaks are detected using the python $find\_peaks$ algorithm with parameter
 $prominence=0.05$.
 Again, this can be tweeked depending on the numerical outcome and misclassification might occur.
 
@@ -700,12 +710,40 @@ Using this classification method, x parameter sets where simulated and classifie
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=1\textwidth]{chapters/Chapter 1/peaks_classification} % The name of your image file; assumes it's in the same directory as your .tex file
+        \includegraphics[width=1\textwidth]{chapters/Chapter 1/nogrowth_openboundary} % The name of your image file; assumes it's in the same directory as your .tex file
     \end{adjustbox}
     \caption{Classification based on peaks for absorbing boundary conditions and growth}
-    \label{fig:peaks_classification} % A label for referencing this figure later in the document
+    \label{fig:nogrowth_openboundary} % A label for referencing this figure later in the document
 \end{figure}
 
 
 \subsection{Open boundaries to growth}
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 1/openboundary_edgegrowth2} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{Classification based on peaks for absorbing boundary conditions and growth}
+    \label{fig:openboundary_edgegrowth2} % A label for referencing this figure later in the document
+\end{figure}
+
+
+
+
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 1/3layer_sankey} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{Classification based on peaks for absorbing boundary conditions and growth}
+    \label{fig:3layer_sankey} % A label for referencing this figure later in the document
+\end{figure}
+
+
+
+
+
+
 

@@ -1,12 +1,45 @@
 \chapter{Methods}
-%
-%\subsection{Finding the steady states: Newton-Raphson method}
-%
-%\subsubsection{Newton-Raphson implementation}
-%To obtain the roots of the system, the Newton-Raphson algorithm was implemented in python using a tolerance value of 0.0001 and a maximum of 15 iterations after which the algorithm stopped searching for a root. Because the system had the potential for multi-stability, several initial conditions need to be searched to obtain all steady states. In total 500 initial conditions were analysed by the Newton-Raphson to obtain all the roots of the system. The 500 conditions were chosen performing latin-hypercube sampling of a 6 dimensional space (6 species) from a uniform distribution with a range from $10^{-3}$ and $10^3$ . Approximately, the root finding for a single parameter set takes around 2 seconds.
+
+\subsection{Finding the steady states: Newton-Raphson method}\label{newton_raphson}
+
+To obtain the roots of the system, the Newton-Raphson algorithm was implemented.
+The Newton-Raphson algorithm, also known as Newton's method, is a numerical technique for finding approximate roots of a real-valued function. It starts with an initial guess, which is then refined through iterations. In each iteration, the method uses the current approximation to find a better one, applying the formula
+\begin{equation}
+x_{n+1} = x_{n} - \frac{f(x_{n})}{f'(x_{n})}
+\end{equation}
+
+where $f(x)$ is the function and $f'(x)$ its derivative.
+
+This algorithm was implemented in python using a tolerance value of 0.000001 and a maximum of 15 iterations after which the algorithm stopped searching for a root.
+Because the system had the potential for multi-stability, several initial conditions need to be searched to obtain all steady states.
+In total 100 initial conditions were analysed by the Newton-Raphson to obtain all the roots of the system.
+The 100 conditions were chosen performing latin-hypercube sampling of a n dimensional space (n being the number of species), from a uniform distribution with a range from $10^{-3}$ and $10^3$ .
+%Approximately, the root finding for a single parameter set takes around 2 seconds.
+\subsection{Sampling method} \label{sampling method}
+If no parameters from a system are known, sampling of the whole parameter space must be done to understand the system's behaviour.
+Different methods exist for sampling parameter spaces.
+Several studies have shown that latin-hypercube sampling (LHS) has a higher efficiency than grid sampling or random sampling when searching through high dimensional spaces.
+The efficiency over grid sampling might be explained because not all dimensions of the model are important, meaning some parameters might be sloppy.
+Therefore, not all parameters have to be explored thoroughly as done in grid sampling \parencite{Iman2014, Bergstra2012}.
+The three sampling regimes are shown in Fig. ~\ref{distributions}A.
+
+In LHS, a distribution and a number of desired samples is given as an input.
+The algorithm then divides the space sections according to the distribution given (e.g in a normal distribution, more sections will appear near the mean value).
+Then, one sample is positioned randomly somewhere in each section.
+For a 2 dimensional parameter space, no samples can be in the same column or row.
+This can be scaled up to high multidimensional spaces. %TODO replace gaussian, gaussian, uniform. find original powerpoints
+The LHS scheme is shown in Fig. ~\ref{distributions}B.
+\begin{figure}[H]
+
+    \includegraphics[width=1\textwidth]{chapters/Methods/distributions}
+    \caption{\textbf{Sampling method for high dimensional spaces}. \textbf{(A)} Types of potential sampling methods. \textbf{(B)} Latin-Hypercube sampling with uniform distribution for a 2 dimensional parameter space. Space is separated in 5 sections for each parameter, leading to 5 samples (red dot). No sample is present in the same row or column. \textbf{(C)} Parameter distributions used for Latin-hypersube sampling. The 4 different types of parameters have different distributions depending on the ranges defined. All of them are uniform distributions in log-scale. }
+    \label{distributions}
+\end{figure}
+The distribution given as an input to the LHS algorithm, will be the resulting distribution of your samples. For the purpose of this search, the distributions chosen are uniform distributions in a logarithmic scale (log-uniform distribution). The uniform distribution, although it does not describe many phenomena in biology, can be useful when no prior knowledge is known about the parameters \parencite{Frank2009}. The logarithmic component is used to make sure parameters from all scales are represented equally, instead of having a higher frequency of values from larger scales. Log-normal distributions are commonly used for modelling in biology, however due to the nonexistent prior knowledge on our parameter values, the log-uniform is used instead. The log-uniform distribution is defined within a certain range, which varies depending on the parameter type. The distributions for each parameter type are shown in Figure 20c. Overall, 1 million samples where produced using the LHS with a uniform distribution in log-scale. All parameters except the diffusion rates ($d$) and the cooperativity ($n$) where sampled using LHS and the distributions shown in Figure 20c.
+
 
 %TODO add montecarlo + metropolis
-\subsubsection{Dispersion peak height optimisation: Adapted random walk Metropolis}
+\subsection{Dispersion peak height optimisation: Adapted random walk Metropolis}
 In this section, the optimization of the dispersion peak height using an adapted random walk-Metropolis (RWM) algorithm will be explained.
 The RWM algorithm is a common type of Markov Chain Monte Carlo (MCMC) method that uses a Metropolis Algorithm.
 The RWM algorithm is used for sampling a variable to understand its probability distribution, without getting stuck in local maxima.
@@ -16,7 +49,7 @@ However, in this case, the aim is not to fit a model to any data $D$, but to max
 Therefore, a variant of the RWM algorithm will be developed as shown in Fig. \ref{Simulated Annealing}.
 
 \begin{figure}[H]
-%    \centering
+    \centering
     \includegraphics[width=1\textwidth,center]{chapters/Methods/Simulated Annealing}
     \caption{\textbf{Adapted random walk-Metropolis algorithm workflow}.  }
     \label{Simulated Annealing}
@@ -38,14 +71,6 @@ This ensures that big decreases in the dispersion peak height ($r \ll 1$) are no
 Usually, the RWM uses a distribution $U(0,1)$ for this step.
 An optimization with this distribution was attempted, resulting in no significant improvement of the dispersion peak height.
 Therefore, the variant of the $N(1,0.001) $ was introduced to ensure a more strict regime is in place, hence reducing the number of accepted negative steps.
-\subsection{Sampling method}
-If no parameters from a system are known, sampling of the whole parameter space must be done to understand the systems behaviour. Different methods exist for sampling parameter spaces. Several studies have shown that latin-hypercube sampling (LHS) has a higher efficiency than grid sampling or random sampling when searching through high dimensional spaces. The efficiency over grid sampling might be explained because not all dimensions of the model are important, meaning some parameters might be sloppy. Therefore not all parameters have to be explored thoroughly as done in grid sampling \parencite{Iman2014, Bergstra2012}. The three sampling regimes are shown in Figure 20a.\\\\
-In LHS, a distribution and a number of desired samples is given as an input. The algorithm then divides the space sections according to the distribution given (e.g in a normal distribution, more sections will appear near the mean value).  Then, one sample is positioned randomly somewhere in each section. For a 2 dimensional parameter space, no samples can be in the same column or row. This is scaled up to high multidimensional spaces such as the 22 dimensional space of the model proposed. This scheme is shown in Figure 20b.
-%\begin{figure}[H]
-%    \includegraphics[width=1.1\textwidth]{Methods/sampling.png}
-%    \caption{\textbf{Sampling method for high dimensional spaces}. \textbf{(A)} Types of potential sampling methods. \textbf{(B)} Latin-Hypercube sampling with uniform distribution for a 2 dimensional parameter space. Space is separated in 5 sections for each parameter, leading to 5 samples (red dot). No sample is present in the same row or column. \textbf{(C)} Parameter distributions used for Latin-hypersube sampling. The 4 different types of parameters have different distributions depending on the ranges defined. All of them are uniform distributions in log-scale. }
-%\end{figure}
-The distribution given as an input to the LHS algorithm, will be the resulting distribution of your samples. For the purpose of this search, the distributions chosen are uniform distributions in a logarithmic scale (log-uniform distribution). The uniform distribution, although it does not describe many phenomena in biology, can be useful when no prior knowledge is known about the parameters \parencite{Frank2009}. The logarithmic component is used to make sure parameters from all scales are represented equally, instead of having a higher frequency of values from larger scales. Log-normal distributions are commonly used for modelling in biology, however due to the nonexistent prior knowledge on our parameter values, the log-uniform is used instead. The log-uniform distribution is defined within a certain range, which varies depending on the parameter type. The distributions for each parameter type are shown in Figure 20c. Overall, 1 million samples where produced using the LHS with a uniform distribution in log-scale. All parameters except the diffusion rates ($d$) and the cooperativity ($n$) where sampled using LHS and the distributions shown in Figure 20c.
 
 
 \subsection{Numerical solution by finite-difference methods}
