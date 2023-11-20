@@ -1,25 +1,29 @@
 % Chapter Template
 
 \chapter{Gene circuit design and parametrisation}
-There is interest to build turing patterns in gene circuits. Synthetic biology can be used for that. Models are needed 
+There is interest to build turing patterns in gene circuits. Synthetic biology can be used for that. Models are needed of synthetic biology circuits to understand dynamic behaviour, how to tune parameters for turing. These models can be parametrised to get them closer to synbio.
+
+In this chapter we (1) present the model, (2) we look at the parameter space and what fraction of it leads to turing / how to tune the circuit to get more turing (3) parametrise the model with experimental dose response curves after the informed decision using machine learning.
 \section{Building model describing synthetic gene circuit}
-In this section, I present the model that describes the synthetic gene circuit engineered in ~\cite{Tica2020}.
+In this section, I present the model that describes the synthetic gene circuit engineered in~\cite{Tica2020}.
+
+
 A PDE system is used to describe the reaction and diffusion terms, which describe change in concentrations of molecules in time and space.
 This model includes constant background production, activator/repressor-regulated production using Hill terms, and the effect of tuning molecules aTc and IPTG on the circuit and diffusion.
 The dynamics of the protein (X) and diffuser (U) species of the gene circuit are modeled as
-%
-%\begin{subequations}\label{eq:Generalised protein and diffuser pde}
-%\begin{equation}
-%    \pdv{[X]}{t}= b_{X}+V_{X}\cdot\frac{1}{1+\left(\frac{K{A}}{[A]}\right)^{n_{A}}}\cdot\frac{1}{1+\left(\frac{[I]}{K_{I}}\right)^{n_{I}}}-\mu_{X}\cdot[X]
-%    \label{eq:Generalised protein}
-%\end{equation}
-%
-%\begin{equation}
-%    \pdv{[U]}{t} = k_{1}\cdot[A] - \mu_{U}\cdot[U] + D_{U}(\partial_{xx} + \partial_{yy})[U]
-%    \label{eq:generalised diffuser}
-%\end{equation}
-%\end{subequations}
-%
+
+\begin{subequations}\label{eq:Generalised protein and diffuser pde}
+\begin{equation}
+    \pdv{[X]}{t}= b_{X}+V_{X}\cdot\frac{1}{1+\left(\frac{K{A}}{[A]}\right)^{n_{A}}}\cdot\frac{1}{1+\left(\frac{[I]}{K_{I}}\right)^{n_{I}}}-\mu_{X}\cdot[X]
+    \label{eq:Generalised protein}
+\end{equation}
+
+\begin{equation}
+    \pdv{[U]}{t} = k_{1}\cdot[A] - \mu_{U}\cdot[U] + D_{U}(\partial_{xx} + \partial_{yy})[U]
+    \label{eq:generalised diffuser}
+\end{equation}
+\end{subequations}
+
 %This results in a PDE model with eight equations that correspond to the two diffusers (pC and OC14) and six protein species of the circuit: RpaI, CinI, TetR, LacI, cI* and cI. This PDE model is reduced to a 6-equation system by assuming quasi-steady state for the diffusers, with production and degradation kinetics much faster than those of proteins. Finally, the model is non-dimensionalised to enable its parametrisation using liquid culture dose response data.
 %In the subsections below, the different terms of Eq ~\eqref{eq:Generalised protein and diffuser pde} are discussed. Furthermore, the process of model reduction, non-dimensionalisation and fitting is also described.
 %
@@ -56,7 +60,9 @@ The dynamics of the protein (X) and diffuser (U) species of the gene circuit are
 %%(Table S2). They are scale-free parameters that only depend on time, which makes them more translatable between different experimental contexts and units of measurement.
 %
 %\subsection{Tuning gene expression: aTc regulation of TetR and IPTG regulation of LacI }
-%The circuit was designed so it can be tuned in a variety of ways.
+%%TODO add image of tuning
+%
+%%The circuit was designed so it can be tuned in a variety of ways.
 %Experimentally, this tuning was used to achieve parameter combinations that are more favourable for patterning.
 %The tuning can be performed with: aTc, IPTG and DAPG.
 %aTc binds to TetR and inactivates it.
@@ -161,7 +167,6 @@ The dynamics of the protein (X) and diffuser (U) species of the gene circuit are
 %%todo figure of inactivation and equations
 %
 %
-%\section{Build equations for synthetic circuit}
 %\section{Explore parameter space and optimise robustness}
 %\section{Parametrise model to constrain}
 %
