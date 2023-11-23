@@ -521,9 +521,15 @@ In particular, I investigated whether this 6 node synthetic biology implementati
 Finally, I explored computationally how to tune the genetic circuit experimentally to maximise the probability of Turing pattern formation.
 
 A biologically realistic parameter space was defined as follows:
-A distribution for each parameter was generated, and the multi-dimensional parameter space was sampled using Latin Hypercube Sampling (See~\ref{sampling method}) \parencite{Iman2014, Bergstra2012}, which ,maximises the sampling efficiency with fewer samples.
-Depending on the certainty of the parameter, different distributions were defined as seen in Table%TODO ref table
-For certain parameters, For each parameter of the model, literature searches were carried out to define biologically realistic lower and upper bounds.
+A distribution for each parameter was generated, and the multi-dimensional parameter space was sampled using Latin Hypercube Sampling (See~\ref{sampling method})~\parencite{Iman2014, Bergstra2012}, which maximises the sampling efficiency with fewer samples.
+Depending on the uncertainty of the parameter, different distributions were defined as seen in Table~\ref{tab:param distributions}.
+ For each parameter of the model, literature searches were carried out to define biologically realistic lower and upper bounds.
+Diffusion rates where estimated in %TODO ref Tica diffusers,
+Diffuser production rate constants from~\cite{Schaefer1996, Pai2009}.
+Protein degradation rates from~\cite{Andersen1998}, while diffuser degradation from~\cite{Kaufmann2005}.
+Cooperativity values from~\cite{Babic2007}.
+
+%ref{andersen,
 
 
 
@@ -554,10 +560,10 @@ $\mu_{LVA}$ & Degradation rates of proteins with LVA tag (CinI, LacI, cI, cI*, T
 \hline
 $\mu_{ASV}$ & Degradation rates of proteins with LVA tag (RpaI $\rightarrow \mu_{A}$) & Fixed & 0.3\\
 \hline
-$n_{ub}, n_{vd}$ & Cooperativity of pC and $OC_{14}$ with receptors binding binding to $P_{rpa}$ and $P_{cin}$ promoters respectively & Fixed & 1,2\\
+$n_{ub}, n_{vd}$ & Cooperativity of pC and $OC_{14}$ with receptors binding binding to $P_{rpa}$ and $P_{cin}$ promoters respectively & Fixed & [1,2]\\
 \hline
-
-
+$n_{da}, n_{fe}, n_{ee}, n_{eb}, n_{ce}$ & Cooperativity of LacI, cI, cI*, cI*, TetR binding to lacO, cIO, $P_{cI*}$, cIO*, tetO operators and promoter respectively & Fixed & [2,5,4,4,3]\\
+\hline
 \end{tabular}
 \end{table}
 
