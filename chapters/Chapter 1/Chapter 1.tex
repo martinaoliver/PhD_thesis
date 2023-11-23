@@ -509,14 +509,14 @@ This is an example of a self-organising pattern where the classical Turing insta
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
-    \includegraphics[width=0.6\textwidth]{chapters/Chapter 1/lsa_numerical_confusion_literature} % The name of your image file; assumes it's in the same directory as your .tex file
+    \includegraphics[width=0.6\textwidth]{chapters/Chapter 1/lsa_vs_numerical_confusion_literature} % The name of your image file; assumes it's in the same directory as your .tex file
     \caption{A sample caption for the image.}
     \label{fig:lsa_numerical_confusion_literature} % A label for referencing this figure later in the document
 \end{figure}
 
 
 \subsection{Multistability in Turing}
-In this section, we demonstrate how linear-stability is not sufficient or neccesary to predict TPs with multi-stable systems.
+In this section, we demonstrate how linear-stability is not sufficient or necessary to predict TPs with multi-stable systems.
 The motivation behind this arises from the high degree of multistability exhibited by biological systems, where cell-fate decisions have to be taken within this landscape. %TODO ref scholes thesis (37–40). %todo what leads to multistability? high number of nodes, high cooperativity?
 Using the two-node non-linear Turing topology (Eq. \eqref{eq:turinghill}), multi-stable solutions were studied to understand how the patterning dynamics get affected when multiple steady state solutions are found.
 First, linear stability analysis is carried out on a particular parameter sets to find multiple steady states of different stability nature (e.g. Stable, Unstable, Turing I, Turing I Hopf).
@@ -639,7 +639,7 @@ The two types of classifications describe above are applied, and a new 5x4 confu
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
-    \includegraphics[width=1\textwidth]{chapters/Chapter 1/lsa_numerical_confusion} % The name of your image file; assumes it's in the same directory as your .tex file
+    \includegraphics[width=1\textwidth]{chapters/Chapter 1/lsa_vs_numerical_confusion_variant0-11-12} % The name of your image file; assumes it's in the same directory as your .tex file
     \caption{\textbf{Confusion matrix to relate Linear stability Analysis output and numerical pattern outcome}}
     \label{fig:lsa_numerical_confusion} % A label for referencing this figure later in the document
 \end{figure}
@@ -699,7 +699,9 @@ Patterns with 4 peaks could still be purely a boundary effect, but is less likel
 Finally, patterns with 5 peaks and above can be considered strong patterns and would be most similar to classical Turing patterns in non-growing no-flux boundary domains.
 
 
-Using this classification method, x parameter sets where simulated and classified with absorbing boundary conditions and growth
+Using this classification method, x parameter sets where simulated and classified with absorbing boundary conditions and growth.
+Again, all these parameter sets have only a single steady state to ensure patterning effects are due to boundaries and growth and not due to multistability.
+
 %TODO make image on classification
 %TODO add  2 confusion matrix
 
@@ -709,10 +711,20 @@ Using this classification method, x parameter sets where simulated and classifie
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=1\textwidth]{chapters/Chapter 1/nogrowth_openboundary} % The name of your image file; assumes it's in the same directory as your .tex file
+        \includegraphics[width=1\textwidth]{chapters/Chapter 1/nogrowth_openboundary_confusion_variant0-11-12} % The name of your image file; assumes it's in the same directory as your .tex file
     \end{adjustbox}
-    \caption{Classification based on peaks for absorbing boundary conditions and growth}
-    \label{fig:nogrowth_openboundary} % A label for referencing this figure later in the document
+    \caption{Effects of absorbing boundary conditions on patterning}
+    \label{fig:nogrowth_openboundary_confusion_variant0} % A label for referencing this figure later in the document
+\end{figure}
+
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 1/interesting_cases_openboundary} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{Interesting cases when boundary is added}
+    \label{fig:interesting_cases_openboundary} % A label for referencing this figure later in the document
 \end{figure}
 
 
@@ -721,12 +733,21 @@ Using this classification method, x parameter sets where simulated and classifie
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=1\textwidth]{chapters/Chapter 1/openboundary_edgegrowth2} % The name of your image file; assumes it's in the same directory as your .tex file
+        \includegraphics[width=1\textwidth]{chapters/Chapter 1/openboundary_edgegrowth2_confusion_variant0-11-12} % The name of your image file; assumes it's in the same directory as your .tex file
     \end{adjustbox}
     \caption{Classification based on peaks for absorbing boundary conditions and growth}
-    \label{fig:openboundary_edgegrowth2} % A label for referencing this figure later in the document
+    \label{fig:openboundary_edgegrowth2_confusion_variant0} % A label for referencing this figure later in the document
 \end{figure}
 
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 1/interesting_cases_edgegrowth2} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{Classification based on peaks for absorbing boundary conditions and growth}
+    \label{fig:interesting_cases_edgegrowth2} % A label for referencing this figure later in the document
+\end{figure}
 
 
 

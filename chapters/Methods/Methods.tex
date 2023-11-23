@@ -21,7 +21,7 @@ Different methods exist for sampling parameter spaces.
 Several studies have shown that latin-hypercube sampling (LHS) has a higher efficiency than grid sampling or random sampling when searching through high dimensional spaces.
 The efficiency over grid sampling might be explained because not all dimensions of the model are important, meaning some parameters might be sloppy.
 Therefore, not all parameters have to be explored thoroughly as done in grid sampling \parencite{Iman2014, Bergstra2012}.
-The three sampling regimes are shown in Fig. ~\ref{distributions}A.
+The three sampling regimes are shown in Fig.~\ref{distributions}A.
 
 In LHS, a distribution and a number of desired samples is given as an input.
 The algorithm then divides the space sections according to the distribution given (e.g in a normal distribution, more sections will appear near the mean value).
@@ -38,7 +38,6 @@ The LHS scheme is shown in Fig. ~\ref{distributions}B.
 The distribution given as an input to the LHS algorithm, will be the resulting distribution of your samples. For the purpose of this search, the distributions chosen are uniform distributions in a logarithmic scale (log-uniform distribution). The uniform distribution, although it does not describe many phenomena in biology, can be useful when no prior knowledge is known about the parameters \parencite{Frank2009}. The logarithmic component is used to make sure parameters from all scales are represented equally, instead of having a higher frequency of values from larger scales. Log-normal distributions are commonly used for modelling in biology, however due to the nonexistent prior knowledge on our parameter values, the log-uniform is used instead. The log-uniform distribution is defined within a certain range, which varies depending on the parameter type. The distributions for each parameter type are shown in Figure 20c. Overall, 1 million samples where produced using the LHS with a uniform distribution in log-scale. All parameters except the diffusion rates ($d$) and the cooperativity ($n$) where sampled using LHS and the distributions shown in Figure 20c.
 
 
-%TODO add montecarlo + metropolis
 \subsection{Dispersion peak height optimisation: Adapted random walk Metropolis}
 In this section, the optimization of the dispersion peak height using an adapted random walk-Metropolis (RWM) algorithm will be explained.
 The RWM algorithm is a common type of Markov Chain Monte Carlo (MCMC) method that uses a Metropolis Algorithm.
@@ -50,7 +49,7 @@ Therefore, a variant of the RWM algorithm will be developed as shown in Fig. \re
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth,center]{chapters/Methods/Simulated Annealing}
+    \includegraphics[width=1\textwidth]{chapters/Methods/Simulated Annealing}
     \caption{\textbf{Adapted random walk-Metropolis algorithm workflow}.  }
     \label{Simulated Annealing}
 \end{figure}

@@ -207,6 +207,8 @@
 \captionsetup{justification=centerlast,font=small,labelfont=sc,margin=5pt}
 %\captionsetup{width=.75\textwidth}
 
+\RequirePackage{mathtools} %required for  \xrightleftharpoons
+\mathchardef\mhyphen="2D % Define a "math hyphen"
 %----------------------------------------------------------------------------------------
 %	DEFINE CUSTOM THESIS INFORMATION COMMANDS
 %----------------------------------------------------------------------------------------
@@ -265,6 +267,7 @@
 }
 
 \raggedbottom
+
 
 %----------------------------------------------------------------------------------------
 %	PENALTIES
