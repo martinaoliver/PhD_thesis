@@ -245,7 +245,7 @@ The enzymatic production of the diffusers was modelled with a simple linear prod
 It is assumed that the precursor substrate concentration is in excess and does not influence the reaction rate.
 
 
-The diffusers are also modelled to undergo linear degradation, parameterised by $\mu_{U}$ and $\mu_{V}$ as seen in Eq.~\ref{linear degradation}. This degradation is a combination of a spontaneous hydrolysis in water, enzymatic AiiA-dependent degradation, and other cellular metabolic processes %~\parencite{Kaufmann2005},~\parencite{Wang2004},  \parencite{Momb2008}. %TODO add ref
+The diffusers are also modelled to undergo linear degradation, parameterised by $\mu_{U}$ and $\mu_{V}$ as seen in Eq.~\ref{linear degradation}. This degradation is a combination of a spontaneous hydrolysis in water, enzymatic AiiA-dependent degradation, and other cellular metabolic processes ~\parencite{Kaufmann2005},~\parencite{Wang2004},%~\parencite{Momb2008}. %TODO add ref REFS FAILING HERE
 
 Finally, the diffuser movement through space is modelled with simple diffusion terms and parameterised with diffusion coefficients $D_{U}$ and $D_{V}$.
 
@@ -339,11 +339,11 @@ This results in a 6 equation model with information on the 6 proteins in space a
 where $K_{da}$ and $K_{ce}$ are expressed in terms of the tuning molecules such as
 
 \begin{subequations}
-    \begin{equation}
+    \begin{equation}\label{kda_iptg}
         K_{da} = K_{lacI-lacO} \left( 1 + \frac{[IPTG]}{K_{lacI-IPTG}}\right)^{n_{IPTG}}
     \end{equation}
 
-    \begin{equation}
+    \begin{equation}\label{kce_atc}
         K_{ce} = K_{tetR-tetO} \left( 1 + \frac{[aTc]}{K_{tetR-aTc}}\right)^{n_{aTc}}
     \end{equation}
 \end{subequations}
@@ -533,10 +533,10 @@ A distribution for each parameter was generated, and the multi-dimensional param
 Depending on the uncertainty of the parameter, different distributions were used such as Loguniform, Gaussian and Fixed.
  For each parameter of the model, literature searches were carried out to define biologically realistic lower and upper bounds.
 Diffusion rates ($D$) where estimated in --- .%TODO ref Tica diffusers,
-Diffuser production rate constants ($k$) in~\cite{Schaefer1996, Pai2009}.
-Protein degradation rates in~\cite{Andersen1998}, while diffuser degradation in~\cite{Kaufmann2005}.
-Cooperativity values ($n$) in~\cite{Babic2007}.
-Other parameters that had not be clearly parametrised in the literature where defined with bounds such as maximum production rate ($V_{X}$), background production rate ($b_{X}$) and Dissociation constant ($K_{XY}$). Although we have less confidence on these last parameter estimations, bounds were still obtained from the literature ~\parencite{Scholes2019, Pusnik2019}.
+%Diffuser production rate constants ($k$) in~\cite{Schaefer1996, Pai2009}.
+%Protein degradation rates in~\cite{Andersen1998}, while diffuser degradation in~\cite{Kaufmann2005}.
+%Cooperativity values ($n$) in~\cite{Babic2007}. %TODO uncomment
+%Other parameters that had not be clearly parametrised in the literature where defined with bounds such as maximum production rate ($V_{X}$), background production rate ($b_{X}$) and Dissociation constant ($K_{XY}$). Although we have less confidence on these last parameter estimations, bounds were still obtained from the literature ~\parencite{Scholes2019, Pusnik2019}.
 The types of distributions used for sampling and the values used for each parameter are listed in Table~\ref{tab:param distributions}.
 To obtain dimensionless parameters from these, the bounds of the distributions are recalculated, and the distributions sampled between these new bounds as specified in the ‘Distribution’ column of Table~\ref{tab:param distributions}.
 The transformations required to get the dimensionless bounds or values can be found in Eq.~\ref{variable transformations} and Eq.~\ref{parameter transformations} or in Table~\ref{tab:Dimensionless_params}.
@@ -597,14 +597,14 @@ This way, we can then use the insights to maximise the chances of finding Turing
 The first approach consisted in investigating how a well-balanced circuit improves the probability of patterning.
 Once the components of the circuit are put together inside the cell, these components might not necessarily match well together.
 Gene circuits, as opposed to digital circuits, do not have binary inputs and outputs.
-Instead, continuous concentrations of species will regulate gene expression, leading to continuous concentrations of proteins as seen in the dose response curves of Fig.~\ref{fig:activation_inhibition}B-C.
-In that case, inducer A determines how much protein B is produced with a sigmoid relationship.
+Instead, continuous concentrations of species will regulate gene expression, leading to continuous concentrations of proteins as seen in the dose response curves of Fig.~\ref{fig:balancing}A.
+In that case, inducer A0 determines how much B0 is produced with a sigmoid relationship.
 The dose response function is modelled with Hill terms as seen in Eq.\ref{eq:theta}.
 A well-matched transfer-function occurs when the protein expression levels steaming from dose response 1 are compatible with the sensitivity of the regulatory components they act on on dose response 2.
 For example, a transfer function is not ‘matched’ when a very sensitive operator site is completely repressed even with background levels of transcription factor e.g., if these are sufficiently high because of a leaky promoter or strong RBS.
 In this case, an induction of the transcription factor above background would not result in further repression, leading to a loss of dynamic range.
 
-Mathematically, to ensure a transfer function XY is matched, the $K^*_{XY}$ of the dose response 2 producing Y needs to be within the dynamic range of the dose response 1 producing X as seen in Figure X.%TODO create figure
+Mathematically, to ensure a transfer function is matched, the $K^*_{XY}$ of the second dose response producing X needs to be within the dynamic range of the dose response 1 producing A1 as seen in Fig.~\ref{fig:balancing}A.
 The lower bound is the steady state $[X^*]_{ss0}$ when the gene is completely turned off, $\thetha=0$.
 The upper bound is the steady state $[X^*]_{ss1}$ when the gene is completely turned on, $\thetha=1$.
 The two bounds can be obtained by replacing $\theta$ by 0 or 1 and finding the steady state where the derivative is zero so
@@ -614,19 +614,21 @@ The two bounds can be obtained by replacing $\theta$ by 0 or 1 and finding the s
 
 
 %TODO create figure
-In the dimensionless model, both $[X^*]$ and  $K^*_{XY}$ are unitless (Table~\ref{tab:Dimensionless_params}) and can therefore be compared.
-The transfer-function of X to Y is said to be matched with a downstram component $K^*_{XY}$ if its between the upper and lower bounds as
+In the dimensionless model, both $[X^*]$ an $K^*_{XY}$ are unitless (Table~\ref{tab:Dimensionless_params}) and can therefore be compared.
+The transfer-function of A1 to X is said to be matched with a downstream component if $K^*_{XY}$ is between the upper and lower bounds as
 
 \begin{equation}
     1 \leq K^*_{XY} \leq (1+V^*_{X})
 \end{equation}
 
+In Fig.~\ref{fig:balancing}B, the green region correspond to those parameter ranges.
+Additionally, in Fig.~\ref{fig:balancing}C, the green curves correspond to dose response curves where the transfer function is matched.
 The closer $K^*_{XY}$ is to these upper and lower bounds, the less balanced the upstream component is with the downstream component.
 For example, with $K^*_{XY}$ smaller than 1, given that $[X^*]$ can never approach a value smaller than its basal level of 1 at steady state, $[X^*]$ would always be high enough to cause near maximal regulation of the downstream component.
 On the other hand, with $K^*_{XY}$ larger than $(1+V^*_{X})$, $[X^*]$ could never become high enough to cause near maximal regulation of the downstream component.
+Other two ranges are defined which are borderline matched and unmatched (Fig.~\ref{fig:balancing}B).
+As seen in Fig.~\ref{fig:balancing}C, borderline curves are almost not affected by the inducer and unmatched curves are not affected at all.
 
-Using the dimensionless six-squation system, we can easily understand whether a transfer-function is matched.
-One of the advantages of this system is that all the concentration variables $X^*$ of the dimensionless model are expressed as a fold change from the basal steady state [X]ss0, where [X]* = [X]/[X]ss, as in Eq. 19
 
 \begin{figure}[H]
     \centering
@@ -635,13 +637,70 @@ One of the advantages of this system is that all the concentration variables $X^
     \label{fig:balancing}
 \end{figure}
 
+
+The parameter space defined in the previous chapter is divided into these three categories (matched, borderline and unmatched).
+Linear stability analysis was carried out on the three categories to understand if matching transfer functions would increase volume of Turing parameter space.
+Just by matching the transfer functions, the robustness can be go up by 30 fold which is a significant increase (See Fig.~\ref{fig:balancing_robustness}]).
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/Chapter 2/balancing_robustness}
+    \caption[]{\textbf{} \TODO{Give more detail of this diagram}} %TODO give detail
+    \label{fig:balancing_robustness}
+\end{figure}
+
 Following these insights, the transfer functions of the circuit components were matched by tuning plasmid copy number, the strength of ribosome binding sites (RBSs), start codons and degradation tags. %TODO ref paper 40-42,
-Transfer function matching yielded a well-functioning circuit (Fig. 1b) with a better capacity to produce spatial patterns as seen. %TODO ref adaapted figure paper.
+Transfer function matching yielded a well-functioning circuit with a better capacity to produce spatial patterns as discovered in this modelling study.
+The matched dose response curves can be seen in the next section %TODO ref section on parametrisation TODO ref adaapted figure paper.
+
+
 
 \subsection{Increasing Turing's robustness by tuning individual parameters}
-\subsection{Steepness of dose responses}
-%
+Another way of increasing the Turing parameter space is to tune parameters independently.
+In this section we explore the distribution of obtained Turing parameter sets to understand how to tune each one to increase robustness of our system.
+Using the literature distribution defined above with only "matched" parameter sets, we perform linear stability analysis to find Turing parameter sets.
+In Fig.~\ref{fig:param_distributions_turing_vs_noturing}, we can observe how the Turing samples defer from the general sampling for each dimensionless parameter of the model.
 
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1.2\textwidth]{chapters/Chapter 2/param_distributions} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{ \textbf{Broad literature-based distributions for model parameters} Distributions for dimensionless parameters of model based on literature ranges. Blue distributions correspond to the sampled literature-informed distributions, where we made sure to only consider parameters where all the circuit transfer functions are ‘matched’. Red distributions correspond to Turing parameter sets found in the blue distributions using linear stability analysis. n is ignored because they are fixed. }. %TODO fact check}
+    \label{fig:param_distributions_turing_vs_noturing} % A label for referencing this figure later in the document
+\end{figure}
+
+Turing pattern systems appear to have a bias for certain parameters regions (Fig.~\ref{fig:param_distributions_turing_vs_noturing} Red) .
+This is very clear for diffusion, where Turing patterns usually appear in regions with Dr < 1. Dr is (Dv / Du) meaning OC14 should diffuse slower than pC. %TODO comment This is the case experimentally, where the DOC14/DpC ratio is approximately 0.25 in agar (1.4% w/V, 37 ºC) (Tica et al., unpublished observations).
+In terms of the tuning molecules (IPTG, ATC and DAPG) we study how to tune the gene circuit experimentally to increase Turing pattern probability.
+$K_{da}^*$  and $K_{ce}^*$ are dependent on IPTG and aTC respectively, through an increasing function, as seen in Eq.~\ref{kda_iptg} and Eq.~\ref{kce_atc}.
+Therefore, to understand the effects of these two exogenous tuning molecules we can look at their respective K parameters.
+$K_{da}^*$ Turing parameters have a similar distribution to the sampled distribution, implying that IPTG does not affect the robustness of the gene circuit to Turing pattern formation.
+On the other hand, the $K_{ce}^*$ Turing parameters are more skewed to higher values than in the sampled distribution, suggesting that ATC increases robustness for Turing pattern formation.
+This is further shown by a more extensive sampling of the same distribution with five different $K_{ce}^*$ values and measuring the Turing robustness in each (Fig.~\ref{fig:atc_robustness})
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=0.6\textwidth]{chapters/Chapter 2/atc_robustness} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{  }. %TODO fact check}
+    \label{fig:atc_robustness} % A label for referencing this figure later in the document
+\end{figure}
+
+Finally, DAPG increases diffusor degradation by increasing $\mu_u$ and $\mu_v$, however these parameters are hidden in the dimensionless model, where the diffusor equations were integrated into the protein equations.
+As seen in Eqs~\ref{six_eq_dimensionless}b,d,f; $\mu_u$ and $\mu_v$ have a positively linear relationship with $K_{ub}^*$ and $K_{vd}^*$, respectively.
+Both $K_{ub}^*$ and $K_{vd}^*$ have skewed distributions towards higher values compared to the sampled distribution (Fig.~\ref{fig:param_distributions_turing_vs_noturing}).
+This means that adding exogenous DAPG could also increase robustness of the circuit for pattern formation. %TODO comment Experimentally, no patterns were observed with a high DAPG concentration (Fig. S16), but patterns were consistently observed for high ATC concentration (Fig. 3).
+
+These results can help experimentalist to guide the tuning by increasing ATC and DAPG adding exogenous molecules.
+Decreasing $D_{r}$ is harder, as there is no current good method for controlling diffusion of quorum sensing molecules.
+A potential route is by decreasing the amount of receptors for the molecule we wish to slow down.
+This way, the molecules get trapped inside the cell as they are bound to the receptors.
+The effective diffusion therefore decays. %TODO find ref.
+
+Overall, with these model we manage to increase the robustness of Turing pattern formation by x. 
 \section{Parametrise model to constrain}
 %
 %\section{Produce rings}
