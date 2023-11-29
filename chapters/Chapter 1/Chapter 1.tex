@@ -22,7 +22,7 @@ Finally, we explore numerically how these patterns behave when realistic biologi
 The following section describes how linear stability analysis is carried out for the equilibrium points in a reaction-diffusion system.
 The aim of this analysis is to find out if the steady state exhibits a Turing instability or also called a diffusion-driven instability.
 When it does, the system is capable of forming spatial patterns.
-As the name describes, diffusion-driven instabilities arise in these systems when a homogeneous steady state is stable to small perturbations in the absence of diffusion, and becomes unstable in the presence of diffusion ~\parencite{Glendinning1994, J.DMurray2002}.
+As the name describes, diffusion-driven instabilities arise in these systems when a homogeneous steady state is stable to small perturbations in the absence of diffusion, and becomes unstable in the presence of diffusion~\parencite{Glendinning1994, J.DMurray2002}.
 To check for Turing instabilities, the stability of the equilibrium state will be studied with and without diffusion.
 The method of linear stability analysis will be explained for the two morphogen reaction-diffusion system, shown below:
 
@@ -86,7 +86,7 @@ This is done to have a simpler set of equations, that represent the system aroun
 
 
 %\begin{split}
-%    \pdv{[X(x,t)]}{x}) = \mathcal{F}^{-1}\left(\pdv{[X(k,t)]}{x}\right) = \pdv{}{x}\left[\frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk\right] =  \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)\frac{d}{dx}e^{ikx} dk\\\\ =\frac{1}{2\pi}\int_{-\infty}^{\infty} ik X(k,t)e^{ikx} dk = ik \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk = ik X(x,t)
+%    \pdv{[X(x,t)]}{x}) = \mathcal{F}^{-1}\left(\pdv{[X(k,t)]}{x}\right) = \frac{\partial}{\partial x}\left[\frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk\right] =  \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)\frac{d}{dx}e^{ikx} dk\\\\ =\frac{1}{2\pi}\int_{-\infty}^{\infty} ik X(k,t)e^{ikx} dk = ik \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk = ik X(x,t)
 %\end{split}
 
 
@@ -233,14 +233,14 @@ The second order partial derivative term will be reduced to an ODE simpler term 
 First, using the inverse Fourier transform (Eq. \eqref{eq:inverse fourier}), the first order partial derivative will be reduced to an ODE form:
 \begin{equation}
     \begin{split}
-        \pdv{[X(x,t)]}{x}) = \mathcal{F}^{-1}\left(\pdv{[X(k,t)]}{x}\right) = \pdv{}{x}\left[\frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk\right] =  \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)\frac{d}{dx}e^{ikx} dk\\\\ =\frac{1}{2\pi}\int_{-\infty}^{\infty} ik X(k,t)e^{ikx} dk = ik \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk = ik X(x,t)
+        \pdv{[X(x,t)]}{x}) = \mathcal{F}^{-1}\left(\pdv{[X(k,t)]}{x}\right) = \frac{\partial}{\partial x}\left[\frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk\right] =  \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)\frac{d}{dx}e^{ikx} dk\\\\ =\frac{1}{2\pi}\int_{-\infty}^{\infty} ik X(k,t)e^{ikx} dk = ik \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk = ik X(x,t)
     \end{split}
 \end{equation}
 giving $\pdv{[X(x,t)]}{x}) =  ik X(x,t)$.
 Using this expression, the inverse Fourier transform and the fact that $\pdvn{2}{X(x,t)}{x} =\left(\pdv{X(x,t)}{x}\right)^2$, the following expression is obtained:
 \begin{equation}
     \begin{split}
-        \pdvn{2}{[X(x,t)]}{x}) = \left(\pdv{X(x,t)}{x}\right)^2 = \mathcal{F}^{-1}\left[\pdv{[ikX(k,t)]}{x}\right] = \pdv{}{x}\left[\frac{1}{2\pi}\int_{-\infty}^{\infty} ikX(k,t)e^{ikx} dk\right] \\\\=  \frac{1}{2\pi}\int_{-\infty}^{\infty} ikX(k,t)\frac{d}{dx}e^{ikx} dk =\frac{1}{2\pi}\int_{-\infty}^{\infty} (ik)^2 X(k,t)e^{ikx} dk = -k^2 \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk = -k^2 X(x,t)
+        \pdvn{2}{[X(x,t)]}{x}) = \left(\pdv{X(x,t)}{x}\right)^2 = \mathcal{F}^{-1}\left[\pdv{[ikX(k,t)]}{x}\right] = \frac{\partial}{\partial x}\left[\frac{1}{2\pi}\int_{-\infty}^{\infty} ikX(k,t)e^{ikx} dk\right] \\\\=  \frac{1}{2\pi}\int_{-\infty}^{\infty} ikX(k,t)\frac{d}{dx}e^{ikx} dk =\frac{1}{2\pi}\int_{-\infty}^{\infty} (ik)^2 X(k,t)e^{ikx} dk = -k^2 \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk = -k^2 X(x,t)
     \end{split}
     \label{eq:fourier of our system}
 \end{equation}
@@ -283,7 +283,7 @@ For the two boundary conditions:
     \item If $ k=\frac{n\pi}{L}$, $\sin(kL) = \sin(n\pi) = 0$.
     Therefore, for $x=L$ , $\pdvn{2}{X(L,t)}{x}=0 \hspace{0.5cm} \forall n \in \{0, \mathbb{N}\} $
 \end{itemize}
-Following these calculations, the zero-flux boundary condition is applied if the following condition is met:  ~$k=\frac{n\pi}{L} \hspace{0.1cm}\forall n \in \{0, \mathbb{N}\} $
+Following these calculations, the zero-flux boundary condition is applied if the following condition is met: $k=\frac{n\pi}{L} \hspace{0.1cm}\forall n \in \{0, \mathbb{N}\} $
 
 \paragraph{Linear Stability Analysis of steady state with diffusion effects}
 Now that the PDE diffusion term has been reduced to an ODE term, and the zero-flux boundary conditions introduced, the stability of the steady state when introducing diffusion can be studied.
@@ -363,7 +363,7 @@ This characteristic polynomial is solved for a range of k's, being $k=\frac{n\pi
 The sign of $\sigma$ is studied for every k, resulting in the dispersion relation %todo cite figure dispersion.
 If $\sigma > 0$, perturbations grow around the steady state and the system is unstable.
 In the contrary, if  $\sigma < 0$, the system is stable and perturbations decay around the steady state.
-More detail on linear stability analysis can be found in~\cite{J.DMurray2002} or ~\cite{Glendinning1994}.
+More detail on linear stability analysis can be found in~\cite{J.DMurray2002} or~\cite{Glendinning1994}.
 \subsubsection{Linear stability analysis implementation}
 Linear stability analysis is carried out with and without diffusion for all steady states of the system found using Newton-Raphson method (See \ref{newton_raphson}).
 The analysis is done for all $k=\frac{n\pi}{L} \hspace{0.1cm}\forall \{n \in \mathbb{N} : n \leq 5000\} $, meaning 5000 k's are sampled using linear stability analysis.
@@ -374,7 +374,7 @@ Linear stability analysis for a single steady state takes approximately approxim
 \subsection{Model definition and dataset creation}
 The system studied in this chapter consists of a 2-node Turing topology system with non-linear hill terms.
 The activator U activates itself and V, while the inhibitor V inhibits the activator U as seen in Fig. \ref{fig:intro_to_turing_patterns}A.
-However, instead of using the linear terms used in the original Turing system Fig. \ref{fig:intro_to_turing_patterns}B ~\parencite{Turing1952}, we use Hill terms which represent genetic regulations.
+However, instead of using the linear terms used in the original Turing system Fig. \ref{fig:intro_to_turing_patterns}B~\parencite{Turing1952}, we use Hill terms which represent genetic regulations.
 
 \begin{subequations}
     \begin{equation}
@@ -389,7 +389,7 @@ However, instead of using the linear terms used in the original Turing system Fi
 \end{subequations}
 
 To study this system, the parameter space is scanned using linear stability analysis and numerical methods.
-The parameter space is sampled using latin hypercube sampling (LHS) Fig. ~\ref{distributions}A drawn from loguniform distributions ~\ref{distributions}C.
+The parameter space is sampled using latin hypercube sampling (LHS) Fig.~\ref{distributions}A drawn from loguniform distributions~\ref{distributions}C.
 The LHS method has been shown to cover the parameter space more efficiently with less samples \parencite{Chrisman2014, Iman2014}. More information on sampling and distributions can be found in~\ref{sampling method}.
 %Different distributions has been sampled for each parameter using this latin hypercube sampling.
 %
@@ -444,7 +444,7 @@ For $k \rightarrow \inf$, the system must be stable again and the eigenvalue neg
 \end{figure}
 An example of a classical turing instability with a positive dispersion peak is shown in Fig. \ref{fig:intro_to_turing_patterns}B, along with the corresponding stationary spatial pattern.
 Alternatively,  Fig. \ref{fig:turing_vs_noturing}A shows a spatially homogeneous solution which results from a stable system that does not exhibit a diffusion driven instability.
-These 1D numerical results were produced using the Crank-Nicholson numerical scheme described in ~\ref{cranknicolson}, which was I programmed from scratch in python. The boundary conditions used are Neumann boundary conditions where the derivative at the boundary is zero ($\pdv{U}{x}=0$) for both molecular species.
+These 1D numerical results were produced using the \acrfull{CN} numerical scheme described in~\ref{cranknicolson}, which was I programmed from scratch in python. The boundary conditions used are Neumann boundary conditions where the derivative at the boundary is zero ($\pdv{U}{x}=0$) for both molecular species.
 
 %todo add numbers to image
 %todo add k and sigma
@@ -454,7 +454,7 @@ These 1D numerical results were produced using the Crank-Nicholson numerical sch
 \subsection{Infering wavelength and convergence time from dispersion relation}
 
 Although the pattern cannot be observed using linear stability analysis, some information can be obtained from the dispersion relation.
-Using the circuit defined in Eq. ~\eqref{eq:turinghill}, we simulated 500 parameter sets with a Turing instabilities as the one seen in Fig. \ref{fig:turing_vs_noturing}B. Then, the convergence time and wavelength for these patterns was measured using the algorithm described in %todo ref methods.
+Using the circuit defined in Eq.~\eqref{eq:turinghill}, we simulated 500 parameter sets with a Turing instabilities as the one seen in Fig. \ref{fig:turing_vs_noturing}B. Then, the convergence time and wavelength for these patterns was measured using the algorithm described in %todo ref methods.
 A linear relationship was found between the wavelength in the numerical pattern and the wavelength inferred from the dominant mode of the dispersion relation as seen in Fig. \ref{fig:dispersion_to_wavelength_convergence}A. However, the slope of the regression fitted to the data is smaller than 1, meaning the patterns obtained have a larger wavelength than the predicted linear stability analysis wavelength.
 In terms of the convergence time, a non-linear correlation is observed between the highest eigenvalue $(\sigma)$ and the time for convergence.
 Although some values do not correlate, we can overall state that systems with high eigenvalues generally converge faster than those lower eigenvalues Fig. \ref{fig:dispersion_to_wavelength_convergence}B.
@@ -503,7 +503,7 @@ With this type of analysis, you have a binary output which determines whether a 
 However, the current assumptions in the TP literature, depicted by this confusion matrix shown in this figure, are a simplification of TPs prediction from linear stability analysis.
 This is because the results from linear stability analysis give insights only into the local dynamics around a steady state.
 Once the system moves away from the steady state and non-linearities are introduced, the system might behave differently and the local pattern dynamics might not be maintained.
-For example, patterning instabilities that are not predicted by linear stability analysis might arise due to a subcritical bifurcations ~\parencite{villar, champneys}.
+For example, patterning instabilities that are not predicted by linear stability analysis might arise due to a subcritical bifurcations~\parencite{villar, champneys}.
 This is an example of a self-organising pattern where the classical Turing instability conditions are not necessary.
 
 
@@ -541,7 +541,7 @@ The Unstable system, having a dispersion relation with a peak below zero, manage
 Then, we present a case where linear stability analysis cannot predict TP formation. Fig.~\ref{fig:multistability2} shows an ephemeral or transient pattern that occurs in the Unstable and Turing regimes.
 The TP initially develops in the vicinity of the Turing steady state.
 As the spatial heterogeneity is amplified and settles, it gets attracted by the stable steady state leading to the disruption of the pattern.
-This type of transient pattern behaviour has also been recently reported in ~\cite{Krause2023}.
+This type of transient pattern behaviour has also been recently reported in~\cite{Krause2023}.
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
@@ -572,21 +572,21 @@ Other types of dispersion relation beyond classical Turing instabilities can pro
 The aim of this section is to document what type of dispersion relations in mono-stable systems can be linked to what type of patterns to gain insights into predicting pattern formation from linear stability analysis.
 We will first present a classification for the different types of dispersion relation.
 Then we will show the classification for the different types of pattern outcomes.
-Finally, we will reconstruct the 2x2 confusion matrix (Fig. ~\ref{fig:lsa_numerical_confusion_literature}) currently used as an assumption in the literature for pattern formation to show a more complete understanding. The new confusion matrix will show more types of dispersion relation and more pattern outcomes with leading to a 5x4 confusion matrix.
+Finally, we will reconstruct the 2x2 confusion matrix (Fig.~\ref{fig:lsa_numerical_confusion_literature}) currently used as an assumption in the literature for pattern formation to show a more complete understanding. The new confusion matrix will show more types of dispersion relation and more pattern outcomes with leading to a 5x4 confusion matrix.
 
 First, we classify the outputs of dispersion relations from linear stability analysis into 5 types.
-Stable dispersion relations have all eigenvalues $\sigma$ below zero for any wavenumber $k$, meaning there is no instability (Fig ~\ref{fig:dispersions}A).
-Unstable dispersion relations have a positive eigenvalue at $k=0$ which eventually drops below zero as diffusion is introduced $k>0$ (Fig ~\ref{fig:dispersions}B).
+Stable dispersion relations have all eigenvalues $\sigma$ below zero for any wavenumber $k$, meaning there is no instability (Fig~\ref{fig:dispersions}A).
+Unstable dispersion relations have a positive eigenvalue at $k=0$ which eventually drops below zero as diffusion is introduced $k>0$ (Fig~\ref{fig:dispersions}B).
 As the unstable dispersion relation, the Hopf dispersion relation occurs when there is an instability without diffusion ($\sigma>0$ for $k=0$) which eventually drops below zero for positive wavenumbers.
-However, in the case of Hopf dispersion relation, when the eigenvalues cross the zero line, there is a pair of complex conjugate eigenvalues (Fig ~\ref{fig:dispersions}C).
-Turing I dispersion relations, as previously mentioned, are stable without diffusion and have an instability for a positive wavenumber and finally stable again for very large wavenumbers (Fig ~\ref{fig:dispersions}D).
+However, in the case of Hopf dispersion relation, when the eigenvalues cross the zero line, there is a pair of complex conjugate eigenvalues (Fig~\ref{fig:dispersions}C).
+Turing I dispersion relations, as previously mentioned, are stable without diffusion and have an instability for a positive wavenumber and finally stable again for very large wavenumbers (Fig~\ref{fig:dispersions}D).
 Finally, Turing I hopf dispersion relations, are a combination of Turing I and Hopf dispersion relations.
 As the Hopf bifurcation, they are unstable without diffusion.
 Then, the stability kicks in with a pair of complex conjugates as the eigenvalues cross the zero line.
-Finally, a Turing I type behaviour kicks in getting a peak above zero and decaying again for large wavenumbers (Fig ~\ref{fig:dispersions}E).
+Finally, a Turing I type behaviour kicks in getting a peak above zero and decaying again for large wavenumbers (Fig~\ref{fig:dispersions}E).
 Other types of dispersion relation exist which are not displayed here such as Turing II, where the eigenvalues do not become stable again for very large wavenumbers.
 Therefore, this system displays an instability at very large wavenumbers which result in infinitesimally small wavelength patterns.
-These are considered to produce homogeneous solutions, except in the case of space discretization where they can produce small wavelength patterns ~\parencite{Wang2022}.
+These are considered to produce homogeneous solutions, except in the case of space discretization where they can produce small wavelength patterns~\parencite{Wang2022}.
 %TODO More detail on this classification can be found in methods x
 
 
@@ -603,7 +603,7 @@ These are considered to produce homogeneous solutions, except in the case of spa
 \end{figure} %TODO add k and sigma to plots
 
 We then need to classify the different types of patterns outcomes into 4.
-We use a decision tree for the classification where the two layers are spatial homogeneity and convergence in time, as seen in Fig. ~\ref{fig:no growth classification}.
+We use a decision tree for the classification where the two layers are spatial homogeneity and convergence in time, as seen in Fig.~\ref{fig:no growth classification}.
 A pattern will be considered homogeneous if the final snapshot $U$ for any of the two molecular species fulfills the following condition
 \begin{equation}
     \frac{max(U) - min(U)}{max(U)} \leq 0.01
@@ -613,7 +613,7 @@ A pattern will be considered converged if the last 30 timepoints for any of the 
     \frac{max(U[-30:]) - min(U[-30:])}{max(U[-30:])} \leq 0.05
 \end{equation}
 The thresholds chosen were fine-tuned by testing them on the numerical patterns to obtain the best classification results.
-Using this two characteristics, homogeneity and convergence, we can obtain 4 classes of patterns: Homogeneous, Temporal Oscillators, Non-stationary Patterns and Stationary Patterns (See Fig. ~\ref{fig:no growth classification}).
+Using this two characteristics, homogeneity and convergence, we can obtain 4 classes of patterns: Homogeneous, Temporal Oscillators, Non-stationary Patterns and Stationary Patterns (See Fig.~\ref{fig:no growth classification}).
 Homogeneous patterns are homogeneous in space and converge in time.
 Temporal oscillators are homogeneous in space but do not converge, as they oscillate in time.
 Non-stationary patterns are not homogeneous in space and do not converge in time.
@@ -631,11 +631,11 @@ Finally, Stationary patterns are not homogeneous in pace but converge in time.
 \end{figure}
 
 
-High throughput studies like ~\cite{Scholes2019, Zheng2016, Marcon} only consider Turing I as patterning and the rest is discarded.
+High throughput studies like~\cite{Scholes2019, Zheng2016, Marcon} only consider Turing I as patterning and the rest is discarded.
 Here, we explore beyond turing I and stationary patterns to give a more complete view of the relationship between linear stability and spatio-temporal patterns.
 10000 parameter sets are analysed from the non-linear turing model (Eqs. \eqref{eq:turinghill}) to obtain dispersions relation numerical patterns.
 Multi-stable systems are not included in this analysis to understand the direct relationships between the dispersion relation and numerics.
-The two types of classifications describe above are applied, and a new 5x4 confusion matrix is generated (Fig. ~\ref{fig:lsa_numerical_confusion}).  %TODO check number of params
+The two types of classifications describe above are applied, and a new 5x4 confusion matrix is generated (Fig.~\ref{fig:lsa_numerical_confusion}).  %TODO check number of params
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
@@ -763,6 +763,8 @@ Again, all these parameter sets have only a single steady state to ensure patter
 \end{figure}
 
 
+
+%TODO summary chapter1
 
 
 

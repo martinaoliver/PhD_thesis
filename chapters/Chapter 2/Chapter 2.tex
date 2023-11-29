@@ -1,6 +1,6 @@
 % Chapter Template
 
-\chapter{Gene circuit design and parametrisation}
+\chapter{Gene circuit design and parametrisation} \label{chapter2}
 There is interest to build turing patterns in gene circuits. Synthetic biology can be used for that. Models are needed of synthetic biology circuits to understand dynamic behaviour, how to tune parameters for turing. These models can be parametrised to get them closer to synbio.
 
 In this chapter we (1) present the model, (2) we look at the parameter space and what fraction of it leads to turing / how to tune the circuit to get more turing (3) parametrise the model with experimental dose response curves after the informed decision using machine learning.
@@ -19,7 +19,7 @@ Additionally, extra detail is added on the tuning molecules and receptor cassete
 
 A PDE system is used to describe the reaction and diffusion terms, which describe change in concentrations of molecules in time and space.
 This model includes constant background production, activator/repressor-regulated production using Hill terms, and the effect of tuning molecules aTc and IPTG on the circuit and diffusion.
-The dynamics of the protein (X) and diffuser (U) species of the gene circuit are modeled as
+The dynamics of the protein (X) and diffuser (U) species of the gene circuit are modelled as
 
 \begin{subequations}\label{eq:Generalised protein and diffuser pde}
 \begin{equation}
@@ -206,19 +206,23 @@ All the species of the circuit, including proteins and diffusers, were modelled 
     \label{linear degradation}
 \end{equation}
 
+
 as seen in Eq.~\ref{eq:Generalised protein and diffuser pde}.
-The degradation rate parameters for the protein species and diffusers are readily available in the literature~\parencite{Andersen1998,Kaufmann2005} and can be found in Table~\ref{table:degradation table}.
-They are scale-free parameters that only depend on time, which makes them more translatable between different experimental contexts and units of measurement. %TODO issue with references here
+The degradation rate parameters for the protein species and diffusers are readily available in the literature~\parencite{Andersen1998, kaufmann2005revisiting} and can be found in Table~\ref{table:degradation table}.
+They are scale-free parameters that only depend on time, which makes them more translatable between different experimental contexts and units of measurement.
+
 
 
 \begin{table}[H]
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
-        Degradation tag & Species 2 & Rate $[h^{-1}]$ \\
+        \textbf{Degradation tag} & \textbf{Species 2} & \textbf{Rate $[h^{-1}]$} \\
         \hline
         LVA 1 & CinI, LacI, cI, cI*, TetR 1 & 1.14 \\
+        \hline
         ASV & RpaI, GFP, mCherry 3 & 0.30 \\
+        \hline
         Diffusers & pC, $OC_{14}$ & 0.0225 \\
         \hline
     \end{tabular}
@@ -239,14 +243,13 @@ Diffusers are synthesised by enzymes, and then bound to receptors to activate ge
 The circuit receptors are expressed constructively from a low-copy pCC1 plasmid, and are therefore modelled with a constant concentration.
 Quasi-steady state was assumed for the very fast equilibrium that forms between the receptor and the diffusers.
 The receptor-inducer and receptor-promoter binding equilibria were modelled with mass action kinetics.
-%TODO comment on concentrations of receptors
 
 The enzymatic production of the diffusers was modelled with a simple linear production term dependent on synthesis enzyme concentration ([A], [B]), and a rate constant ($K_{1}$ and $K_{2}$).
 It is assumed that the precursor substrate concentration is in excess and does not influence the reaction rate.
 
 
-The diffusers are also modelled to undergo linear degradation, parameterised by $\mu_{U}$ and $\mu_{V}$ as seen in Eq.~\ref{linear degradation}. This degradation is a combination of a spontaneous hydrolysis in water, enzymatic AiiA-dependent degradation, and other cellular metabolic processes ~\parencite{Kaufmann2005},~\parencite{Wang2004},%~\parencite{Momb2008}. %TODO add ref REFS FAILING HERE
-
+The diffusers are also modelled to undergo linear degradation, parameterised by $\mu_{U}$ and $\mu_{V}$ as seen in Eq.~\ref{linear degradation}.
+This degradation is a combination of a spontaneous hydrolysis in water, enzymatic AiiA-dependent degradation, and other cellular metabolic processes ~\parencite{kaufmann2005revisiting,Wang2004,Momb2008}. %TODO add ref REFS FAILING HERE
 Finally, the diffuser movement through space is modelled with simple diffusion terms and parameterised with diffusion coefficients $D_{U}$ and $D_{V}$.
 
 \begin{subequations}\label{diffuser}
@@ -267,12 +270,12 @@ This leads to an expression of diffuser concentration that is linearly correlate
 
 \begin{equation}
     \pdv{[U]}{t} = k_{1}\cdot[A] - \mu_{U}\cdot[U] = 0
-    \longrightarrow U = \frac{k_{1}}{ \mu_{U}}[A]
+    \longrightarrow U = \frac{k_{1}}{\mu_{U}}[A]
 \end{equation}
 
 \begin{equation}
     \pdv{[V]}{t} = k_{2}\cdot[B] - \mu_{V}\cdot[V] = 0
-    \longrightarrow V = \frac{k_{2}}{ \mu_{V}}[B]
+    \longrightarrow V = \frac{k_{2}}{\mu_{V}}[B]
 \end{equation}
 \end{subequations}
 
@@ -281,11 +284,11 @@ In this process, the diffusion of U and V is artificially assigned to A and B, s
 \begin{subequations}\label{[diffuser_artificial]}
 
 \begin{equation}
-    U = \frac{k_{1}}{ \mu_{U}}[A] \longrightarrow D_{U} (\partial_{xx} + \partial_{yy})[U] = D_{U}\frac{k_{1}}{ \mu_{U}}  (\partial_{xx} + \partial_{yy}) [A]\label{eq:equation2}
+    U = \frac{k_{1}}{\mu_{U}}[A] \longrightarrow D_{U} (\partial_{xx} + \partial_{yy})[U] = D_{U}\frac{k_{1}}{\mu_{U}}  (\partial_{xx} + \partial_{yy}) [A]\label{eq:equation2}
 \end{equation}
 
 \begin{equation}
-    V = \frac{k_{2}}{ \mu_{V}}[B] \longrightarrow D_{V} (\partial_{xx} + \partial_{yy})[V] =  D_{V}\frac{k_{2}}{ \mu_{V}}  (\partial_{xx} + \partial_{yy}) [B]\label{eq:equation}
+    V = \frac{k_{2}}{\mu_{V}}[B] \longrightarrow D_{V} (\partial_{xx} + \partial_{yy})[V] =  D_{V}\frac{k_{2}}{\mu_{V}}  (\partial_{xx} + \partial_{yy}) [B]\label{eq:equation}
 \end{equation}
 
 \end{subequations}
@@ -295,11 +298,11 @@ Therefore, instead of using eight equations for the six genes and two diffusers;
 U and V will be modelled within A and B in the Hill activation and diffusion terms
 
 \begin{equation}
-    \pdv{[A]}{t} = b_{A}+V_{A}\cdot \frac{1}{\left(1+\left(\frac{[I]}{K_{I}}\right)^{n_{I}}\right)}-\mu_{A}\cdot[A] + \frac{ k_{1}D_{U}}{ \mu_{U}}\cdot (\partial_{xx} + \partial_{yy})[A]
+    \pdv{[A]}{t} = b_{A}+V_{A}\cdot \frac{1}{\left(1+\left(\frac{[I]}{K_{I}}\right)^{n_{I}}\right)}-\mu_{A}\cdot[A] + \frac{k_{1}D_{U}}{\mu_{U}}\cdot (\partial_{xx} + \partial_{yy})[A]
 \end{equation}
 
 \begin{equation}
-    \pdv{[B]}{t} = b_{B}+V_{B}\cdot\frac{1}{1+\left(\frac{\mu_{u}K{ub}}{k_{1}[A]}\right)^{n_{ab}}}\cdot\frac{1}{1+\left(\frac{[I]}{K_{I}}\right)^{n_{I}}}-\mu_{B}\cdot[B] + \frac{ k_{2}D_{V}}{ \mu_{V}}\cdot (\partial_{xx} + \partial_{yy})[B]
+    \pdv{[B]}{t} = b_{B}+V_{B}\cdot\frac{1}{1+\left(\frac{\mu_{u}K{ub}}{k_{1}[A]}\right)^{n_{ab}}}\cdot\frac{1}{1+\left(\frac{[I]}{K_{I}}\right)^{n_{I}}}-\mu_{B}\cdot[B] + \frac{k_{2}D_{V}}{\mu_{V}}\cdot (\partial_{xx} + \partial_{yy})[B]
 \end{equation}
 
 Although these genes are not explicitly modelled, a linear relationship between downstream genes in the same operon
@@ -311,11 +314,11 @@ This results in a 6 equation model with information on the 6 proteins in space a
 \begin{subequations}\label{[6 equation proteins]}
 
 \begin{equation}
-    \pdv{[A]}{t} = b_{A}+V_{A}\cdot \frac{1}{\left(1+\left(\frac{[D]}{K_{da}}\right)^{n_{da}}\right)}-\mu_{A}\cdot[A] + \frac{ k_{1}D_{U}}{ \mu_{U}}\cdot (\partial_{xx} + \partial_{yy})[A]
+    \pdv{[A]}{t} = b_{A}+V_{A}\cdot \frac{1}{\left(1+\left(\frac{[D]}{K_{da}}\right)^{n_{da}}\right)}-\mu_{A}\cdot[A] + \frac{k_{1}D_{U}}{\mu_{U}}\cdot (\partial_{xx} + \partial_{yy})[A]
 \end{equation}
 
 \begin{equation}
-    \pdv{[B]}{t} = b_{B}+V_{B}\cdot\frac{1}{1+\left(\frac{\mu_{u}K{ub}}{k_{1}[A]}\right)^{n_{ab}}}\cdot\frac{1}{1+\left(\frac{[E]}{K_{eb}}\right)^{n_{eb}}}-\mu_{B}\cdot[B] + \frac{ k_{2}D_{V}}{ \mu_{V}}\cdot (\partial_{xx} + \partial_{yy})[B]
+    \pdv{[B]}{t} = b_{B}+V_{B}\cdot\frac{1}{1+\left(\frac{\mu_{u}K{ub}}{k_{1}[A]}\right)^{n_{ab}}}\cdot\frac{1}{1+\left(\frac{[E]}{K_{eb}}\right)^{n_{eb}}}-\mu_{B}\cdot[B] + \frac{k_{2}D_{V}}{\mu_{V}}\cdot (\partial_{xx} + \partial_{yy})[B]
 \end{equation}
 
 \begin{equation}
@@ -404,6 +407,7 @@ Description of the parameters used in the model can be found in Table~\ref{tab:M
 
     \end{tabular}
 \end{table}
+
 
 For $K_{XY}$ and $n_{XY}$, activators X will bind to a receptor molecule that binds the promoter sequence upstream of gene Y; while inhibitors X will bind to the operator sequence upstream of gene Y.
 
@@ -532,15 +536,15 @@ This multi-dimensional distribution enables a full understanding of the gene cir
 A distribution for each parameter was generated, and the multi-dimensional parameter space was sampled using Latin Hypercube Sampling (See~\ref{sampling method})~\parencite{Iman2014, Bergstra2012}, which maximises the sampling efficiency with fewer samples.
 Depending on the uncertainty of the parameter, different distributions were used such as Loguniform, Gaussian and Fixed.
  For each parameter of the model, literature searches were carried out to define biologically realistic lower and upper bounds.
-Diffusion rates ($D$) where estimated in --- .%TODO ref Tica diffusers,
-%Diffuser production rate constants ($k$) in~\cite{Schaefer1996, Pai2009}.
-%Protein degradation rates in~\cite{Andersen1998}, while diffuser degradation in~\cite{Kaufmann2005}.
-%Cooperativity values ($n$) in~\cite{Babic2007}. %TODO uncomment
-%Other parameters that had not be clearly parametrised in the literature where defined with bounds such as maximum production rate ($V_{X}$), background production rate ($b_{X}$) and Dissociation constant ($K_{XY}$). Although we have less confidence on these last parameter estimations, bounds were still obtained from the literature ~\parencite{Scholes2019, Pusnik2019}.
+Diffusion rates ($D$) where estimated in .%TODO ref Tica diffusers,
+Diffuser production rate constants ($k$) in~\cite{Schaefer1996, Pai2009}.
+Protein degradation rates in~\cite{Andersen1998}, while diffuser degradation in~\cite{kaufmann2005revisiting}.
+Cooperativity values ($n$) in~\cite{Babic2007}.
+Other parameters that had not be clearly parametrised in the literature where defined with bounds such as maximum production rate ($V_{X}$), background production rate ($b_{X}$) and Dissociation constant ($K_{XY}$). Although we have less confidence on these last parameter estimations, bounds were still obtained from the literature ~\parencite{Scholes2019, Pusnik2019}.
 The types of distributions used for sampling and the values used for each parameter are listed in Table~\ref{tab:param distributions}.
 To obtain dimensionless parameters from these, the bounds of the distributions are recalculated, and the distributions sampled between these new bounds as specified in the ‘Distribution’ column of Table~\ref{tab:param distributions}.
 The transformations required to get the dimensionless bounds or values can be found in Eq.~\ref{variable transformations} and Eq.~\ref{parameter transformations} or in Table~\ref{tab:Dimensionless_params}.
-For example, for V* (V/b), a loguniform distribution was sampled between new bounds [1, 1000].
+For example, for Dr* which is $(k_{2}D_{v}\mu_{u})/(k_{1}D_{u}\mu_{v})$, a loguniform distribution was sampled between new bounds [0.01, 100].
 \begin{table}[H]
     \caption{\textbf{Literature-derived parameter distributions.} The distributions used include Loguniform and Gaussian. Some parameters are fixed to single values and not sampled. These parameters are dimensional, so these distributions are then used in the dimensionless form of parameters shown in Eq.~\ref{variable transformations} and Eq.~\ref{parameter transformations}.}
 \label{tab:param distributions}
@@ -550,13 +554,13 @@ For example, for V* (V/b), a loguniform distribution was sampled between new bou
 \textbf{Parameter} & \textbf{Description} & \textbf{Distribution} & \textbf{Value}\\
 \hline
 
-$V_{X}$ & Induced max production rate of X & Loguniform &  1-100 \\
+$V_{X}$ & Induced max production rate of X & Loguniform &  10-1000 \\
 \hline
 $b_{X}$ & Background production rate of X & Loguniform & 0.1-1\\
 \hline
 $D_{U}, D_{V}$ & Diffusion rate of pC and $OC_{14}$ & Loguniform & 0.1-10\\
 \hline
-$K_{XY}$ & Dissociation constant of X binding to Y regulator DNA & Loguniform & 0.1-1000\\
+$K_{XY}$ & Dissociation constant of X binding to Y regulator DNA & Loguniform & 0.1-250\\
 \hline
 $K_{ee}$ & Dissociation constant of cI* binding its own promoter ($P_{cI*}$) & Fixed & 0.01\\
 \hline
@@ -587,10 +591,9 @@ By searching the parameter space defined above using linear stability analysis, 
 \end{figure}
 
 Although the robustness is limited (as described later), the synthetic gene circuit engineered by ~\cite{Tica2020} can indeed produce stationary periodic patterns resulting from Turing's mechanism.
-One of the aims of the
 %comment on robustness
 %define what turing robustness is
-\subsection{Increasing Turing's robustness by matching consequent dose response curves}
+\subsection{Increasing Turing's robustness by matching consequent dose response curves}\label{balancing}
 One of the aims of the model is to understand how to increase the robustness for Turing pattern formation \textit{in-silico} prior to the experimental work.
 This way, we can then use the insights to maximise the chances of finding Turing patterns \textit{in-vitro}.
 
@@ -605,11 +608,12 @@ For example, a transfer function is not ‘matched’ when a very sensitive oper
 In this case, an induction of the transcription factor above background would not result in further repression, leading to a loss of dynamic range.
 
 Mathematically, to ensure a transfer function is matched, the $K^*_{XY}$ of the second dose response producing X needs to be within the dynamic range of the dose response 1 producing A1 as seen in Fig.~\ref{fig:balancing}A.
-The lower bound is the steady state $[X^*]_{ss0}$ when the gene is completely turned off, $\thetha=0$.
-The upper bound is the steady state $[X^*]_{ss1}$ when the gene is completely turned on, $\thetha=1$.
+The lower bound is the steady state $[X^*]_{ss0}$ when the gene is completely turned off, $\theta=0$.
+The upper bound is the steady state $[X^*]_{ss1}$ when the gene is completely turned on, $\theta=1$.
 The two bounds can be obtained by replacing $\theta$ by 0 or 1 and finding the steady state where the derivative is zero so
 \begin{equation}
     [X^*]_{ss0}=1; \quad [X^*]_{ss1}=1+V^*_{max}
+    \label{1toVmax}
 \end{equation}
 
 
@@ -633,27 +637,26 @@ As seen in Fig.~\ref{fig:balancing}C, borderline curves are almost not affected 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 2/balancing}
-    \caption[]{\textbf{} \TODO{Give more detail of this diagram}} %TODO give detail
+    \caption[]{\textbf{a} \TODO{Give more detail of this diagram}} %TODO give detail
     \label{fig:balancing}
 \end{figure}
 
 
 The parameter space defined in the previous chapter is divided into these three categories (matched, borderline and unmatched).
 Linear stability analysis was carried out on the three categories to understand if matching transfer functions would increase volume of Turing parameter space.
-Just by matching the transfer functions, the robustness can be go up by 30 fold which is a significant increase (See Fig.~\ref{fig:balancing_robustness}]).
+Just by matching the transfer functions, the robustness can be go up by 30 fold which is a significant increase (See Fig.~\ref{fig:balancing_robustness}]) compared to non-balanced circuits.
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 2/balancing_robustness}
-    \caption[]{\textbf{} \TODO{Give more detail of this diagram}} %TODO give detail
+    \caption[]{\textbf{a} \TODO{Give more detail of this diagram}} %TODO give detail
     \label{fig:balancing_robustness}
 \end{figure}
 
-Following these insights, the transfer functions of the circuit components were matched by tuning plasmid copy number, the strength of ribosome binding sites (RBSs), start codons and degradation tags. %TODO ref paper 40-42,
+Following these insights, the transfer functions of the circuit components were matched by tuning plasmid copy number, the strength of ribosome binding sites (RBSs), start codons and degradation tags~\parencite{Andersen1998, Wang2011,Hecht2017}.
 Transfer function matching yielded a well-functioning circuit with a better capacity to produce spatial patterns as discovered in this modelling study.
-The matched dose response curves can be seen in the next section %TODO ref section on parametrisation TODO ref adaapted figure paper.
-
+The matched dose response curves can be seen in the next section in Fig.~\ref{fig:dose_response_experimental}.
 
 
 \subsection{Increasing Turing's robustness by tuning individual parameters}
@@ -667,7 +670,7 @@ In Fig.~\ref{fig:param_distributions_turing_vs_noturing}, we can observe how the
     \begin{adjustbox}{center}
         \includegraphics[width=1.2\textwidth]{chapters/Chapter 2/param_distributions} % The name of your image file; assumes it's in the same directory as your .tex file
     \end{adjustbox}
-    \caption{ \textbf{Broad literature-based distributions for model parameters} Distributions for dimensionless parameters of model based on literature ranges. Blue distributions correspond to the sampled literature-informed distributions, where we made sure to only consider parameters where all the circuit transfer functions are ‘matched’. Red distributions correspond to Turing parameter sets found in the blue distributions using linear stability analysis. n is ignored because they are fixed. }. %TODO fact check}
+    \caption{\textbf{Broad literature-based distributions for model parameters} Distributions for dimensionless parameters of model based on literature ranges. Blue distributions correspond to the sampled literature-informed distributions, where we made sure to only consider parameters where all the circuit transfer functions are ‘matched’. Red distributions correspond to Turing parameter sets found in the blue distributions using linear stability analysis. n is ignored because they are fixed. }. %TODO fact check}
     \label{fig:param_distributions_turing_vs_noturing} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -685,7 +688,7 @@ This is further shown by a more extensive sampling of the same distribution with
     \begin{adjustbox}{center}
         \includegraphics[width=0.6\textwidth]{chapters/Chapter 2/atc_robustness} % The name of your image file; assumes it's in the same directory as your .tex file
     \end{adjustbox}
-    \caption{  }. %TODO fact check}
+    \caption{fill}. %TODO fact check}
     \label{fig:atc_robustness} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -696,16 +699,233 @@ This means that adding exogenous DAPG could also increase robustness of the circ
 
 These results can help experimentalist to guide the tuning by increasing ATC and DAPG adding exogenous molecules.
 Decreasing $D_{r}$ is harder, as there is no current good method for controlling diffusion of quorum sensing molecules.
-A potential route is by decreasing the amount of receptors for the molecule we wish to slow down.
-This way, the molecules get trapped inside the cell as they are bound to the receptors.
-The effective diffusion therefore decays. %TODO find ref.
+A potential route of decreasing the diffusion rate of a quorum sensing molecule is through receptor sequestering: When the number of receptors is much larger than the number of quorum sensing ligands, there is an irreversible uptake of some molecules which has been linked to shorter range communication - i.e. slower diffusion constants~\parencite{vangestel}.
+Therefore, to decrease $D{r}$, we can slow down diffusion of $OC_{14}$ by increasing the expression of the CinR receptor which will bind to $OC_{14}$.
+This can be done by tweaking the RBS for higher expression.
+Overall, this model enabled us to get insights into how to tune the robustness for Turing pattern formation experimentally.
 
-Overall, with these model we manage to increase the robustness of Turing pattern formation by x. 
-\section{Parametrise model to constrain}
-%
-%\section{Produce rings}
-%\section{Modelling bacterial colonies}
-%\subsection{openboundary circle shape growth noise}
-%\section{Explore patterning potential}
-%\subsection{general params}
-%\subsection{parametrised params}
+Overall, in this section we have obtained insights into parameter tuning to understand how to optimise robustness for Turing pattern formation.
+Following guidance from the model, experimentalists went on to match transfer functions of the circuit components and add high levels of aTc.
+Before testing the circuit for patterning, experimentalists tested the behaviour of the circuit in liquid culture to make sure it behaved according to the design, and that the transfer-functions were matching.
+Because the full circuit contains many closed-feedback loops, full-circuit liquid culture results are hard to interpret.
+Hence, subcircuit controls with no closed feeback loops were investigated instead to test the circuit was well matched and behave as expected.
+The conditions tested where under high aTc.
+Some relevant subcircuits tested can be seen in Fig.~\ref{fig:dose_response_experimental} left.
+The three subcircuits show how the dose reponse curves are within the responsive ranges, meaning K and V parameters are within the "matched" region (Fig.~\ref{fig:dose_response_experimental} right).
+Subcircuit \#2 shows how the circuit is responsive to aTc and therefore it can be used for optimising Turing pattern robustness.
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/dose_response_experimental} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{\textbf{Dose response curves of subcircuits.} Circuit characterisation: liquid culture fluorescence 18 hours after induction of three subcircuits: subcircuit \#1 (Sub1), \#2 (Sub2) and \#3 (Sub3). GFP on left and mCherry on right axis (unit AU/A600, mean ± SEM, n = 3). The tested interactions are shown above the respective plots.}.
+    \label{fig:dose_response_experimental} % A label for referencing this figure later in the document
+    %TODO add details of each subcircuit from supplementary paper.
+\end{figure}
+\section{Constrained parametrised distributions: fitting to liquid culture data of gene subcircuits}
+The dose response curves obtained (Fig.~\ref{fig:dose_response_experimental} left) are not only useful to characterise the circuit, but also for parametrisation of the model.
+Using the dimensionless model, the fluorescence dose reponse curves \#1 and \#3 can be fitted to obtain values for $K_{XY}$ and $V_{X}$ using a multivariate analysis approach.
+This is possible because the non-dimensionalisation facilitates the comparison between the model and experimental dose-response curves with simple and intuitive methods.
+
+
+\subsection{Steady-state subcircuit equations for fitting.}
+As previously seen in Eq.\ref{1toVmax}, the non-dimensionalisation transforms the dose response range so it goes from 1 to $V_{X}+1$. This transformation can be seen in Fig.~\ref{fig:dose_response_transforms}, right.
+For the experimental data to match the model, it is divided by the smallest fluorescence value within each experiment and is expressed in relative fold-change units (Fig.~\ref{fig:dose_response_transforms}, left).
+Fold-change units can take values from 1 to $F_{max}/F_{min}$ (maximal and minimal fluorescence levels in the original, untransformed dataset, respectively).
+Because the dose-response curves of subcircuit \#1 and subcircuit \#3 are OC14-dependent, the experimental OC14 units (µM) are also non-dimensionalised using the transform
+\begin{equation}
+    [B*]=[OC_{14}] \cdot \frac{\mu_{b}\mu_{v}}{k_{2}b_{B}}
+    \label{Btransform}
+\end{equation}
+Now the dimensionless model dose-response curves and experimental dose-response curves are both expressed on relative scales and are compatible for fitting (Fig.~\ref{fig:dose_response_transforms}, bottom).
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=0.8\textwidth]{chapters/Chapter 2/dose_response_transforms}
+    \end{adjustbox}
+    \caption{\textbf{Experimental data and model transformation for parametrisation.} Experimental data is scaled by the smallest fluorescence value, so the minimum value is 1. The model is nondimensionalised as explained in the sections above so smallest value is 1 and biggest is $V_{X} +1$. In both cases, units are dimensionless, and the basal level is 1.}.
+    \label{fig:dose_response_transforms}
+\end{figure}
+
+
+The models for the subcircuits are derived from the main PDE system (Eqs.~\ref{six_eq_dimensionless}).
+Subcircuit \#1 only involves species [F] and [E] (cI and cI*), whereas subcircuit \#3 involves species [C], [D] and [E] (TetR, LacI and cI*). Detailed diagrams of these two subcircuits can be found in Fig.~\ref{fig:dose_response_experimental} left.
+All other species are set to zero.
+For the model parametrisation, based on the subcircuit designs (Fig.~\ref{fig:dose_response_experimental} left), we derive steady-state expressions for the dynamically regulated species so that
+\begin{equation}
+    \pdv{X}{t}=0; \quad X=X_{eq}
+\end{equation}
+
+For Subcircuit \#1 we obtain the following steady-state expressions:
+
+\begin{subequations}\label{Subcircuit 1 equations}
+\begin{equation}
+    F_1 = 1 + V_f \left( \frac{1}{1+ \left( \frac{\mu_v K_{vd}}{k_v [O_{C14}] } \right)^{n_{vd}}} \right)
+\end{equation}
+%\begin{equation}
+%    E_1 = 1 + V_e \left( 1+ \left( \frac{1 + V_f \left( \frac{1}{1+ \left( \frac{\mu_v K_{vd}}{k_v [O_{C14}] } \right)^{n_{vd}}} \right)}{K_{fe}} \right)^{n_{fe}} \right)^{-1}
+%\end{equation}
+\begin{equation}
+    E_1 = 1 + V_e \left( \frac{1}{1+ \left( \frac{F_1}{K_{fe}} \right)^{n_{fe}}} \right)
+\end{equation}
+\end{subequations}
+
+And for Subcircuit \#3 we obtain the following steady-state expressions:
+\begin{subequations}\label{Subcircuit 3 equations}
+\begin{equation}
+    D_3 = 1 + V_d \left( \frac{1}{1+ \left( \frac{\mu_v K_{vd}}{k_v [O_{C14}] } \right)^{n_{vd}}} \right)
+\end{equation}
+\begin{equation}
+    C_3 = 1 + V_c \left( \frac{1}{1+ \left( \frac{D_3}{K_{da}} \right)^{n_{da}}} \right)
+\end{equation}
+\begin{equation}
+    E_3 = 1 + V_e \left( \frac{1}{1+ \left( \frac{C_3}{K_{ce}} \right)^{n_{ce}}} \right)
+\end{equation}
+\end{subequations}
+
+\subsection{Fitting process and the resulting best fit distributions.}
+In addition to scaling and nondimensionalising, the lowest GFP data points were excluded, because fluorescence readings were insufficiently sensitive to measure concentration at these points %TODO ref figure fits(Fig. S20).
+The fits were constrained to the maximal fold-change of the regulation, and to the sensitivity of the regulation (location of half-maximal response).
+This improved the quality of the fit and allowed us to identify a broader range of suitable solutions.
+
+The two-equation systems Eqs.~\ref{Subcircuit 1 equations},\ref{Subcircuit 3 equations} are fitted independently to the experimental dataset with the python \textit{scipy.optimize.curve\_fit} package, which uses the Levenberg-Manquardt to minimise the sum of squared errors (SSE), given by
+\begin{equation}
+    SSE = \sum_{i=1}^{i} (y_{i}-f(x_{i}))^2
+\end{equation}
+
+where $y_i$ is the experimental data and $f(x_i)$ are the two systems of equations parameterised by $V^*_{C}$, $V^*_{D}$, $V^*_{E1}$, $V^*_{E3}$, $V^*_{F}$, $K^*_{vd}$, $V^*_{fe}$, $V^*_{da}$ and $V^*_{ce}$.
+The minimisation algorithm generates a vector of best fit parameters $k$
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{$V^*_{C}$} & \textbf{$V^*_{D}$} & \textbf{$V^*_{E1}$} & \textbf{$V^*_{E3}$} & \textbf{$V^*_{F}$} & \textbf{$K^*_{vd}$} & \textbf{$V^*_{fe}$} & \textbf{$V^*_{da}$} & \textbf{$V^*_{ce}$} \\
+        \hline
+        9.95 & 6.50 & 1.99 & 7.8 & 3.64 & 18.94 & 2.26 & 67.92 & 3.47 \\
+        \hline
+    \end{tabular}
+    \caption{aa}
+    \label{table:bestfit table}
+\end{table}
+
+
+Two best fit parameters are obtained for $V^*_{E}$ as this parameter is present in both subcircuit models.
+However, only $V^*_{E1}$ from subcircuit \#1 is considered.
+These parameters are used to generate the following dose-response curves (Fig.~\ref{fig:dose_responses_bestfit}).
+
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/dose_responses_bestfit} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{\textbf{Best fit for processed data set} Processed dataset is fitted using (A) Eq.~\ref{Subcircuit 1 equations} for subcircuit \#1 and (B) Eq.~\ref{Subcircuit 3 equations} for subcircuit \#3. }.
+    \label{fig:dose_responses_bestfit} % A label for referencing this figure later in the document
+        %TODO add details of each subcircuit from supplementary paper.
+\end{figure}
+
+
+The minimisation algorithm produces a covariance matrix $C_k$, which is the inverse of the Hessian matrix and represents the derivative of the loss function in the different parameter dimensions.
+In other words, this Hessian matrix represents how the loss increases or decreases when parameters are varied together
+
+\begin{equation}
+    H_{L_{k}} = \begin{bmatrix}
+                     \frac{\partial^2 L}{\partial k_1^2} & \frac{\partial^2 L}{\partial k_1 k_2} & \cdots & \frac{\partial^2 L}{\partial k_1 k_{n}} \\
+                     \frac{\partial^2 L}{\partial k_2 k_1} & \frac{\partial^2 L}{\partial k_2^2} & \cdots & \frac{\partial^2 L}{\partial k_2  k_{n}} \\
+                     \vdots & \vdots & \ddots & \vdots \\
+                     \frac{\partial^2 L}{\partial k_{n}k_1} & \frac{\partial^2 L}{\partial k_{n}  k_2} & \cdots & \frac{\partial^2 L}{\partial k_{n}^2}
+    \end{bmatrix}
+\end{equation}
+
+
+A multivariate Gaussian distribution is generated using $k$ and $C_{k}$
+\begin{equation}
+    X \approx N(k,C_k)
+\end{equation}
+
+with a probability density function $p(x;k,C_k )$
+
+\begin{equation}
+    p(x;k,C_k )= \frac{\exp\left(-\frac{1}{2} (x - k)^\top C_k^{-1} (x - k)\right)}{\sqrt{(2\pi)^k C_k}}
+\end{equation}
+
+The multivariate Gaussian distribution is the generalization of a normal distribution to higher dimensions.
+For example, for a 2-dimensional Gaussian distributions, when the covariance of two parameters X and Y is positive, the parameters are positively correlated (Fig.~\ref{fig:multivariate_gaussians}, right).
+This means that if the parameters are increased together, the behaviour of the system should change minimally (and the error to the data should not increase).
+On the other hand, a negative covariance leads to an inverse correlation of the parameters, meaning when one increases the other should decrease to ensure the error does not increase (Fig.~\ref{fig:multivariate_gaussians}, left). Finally, a covariance of zero means the X and Y parameters are completely independent, producing a circular distribution (Fig.~\ref{fig:multivariate_gaussians}, center).
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/multivariate_gaussians} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{\textbf{multivariate Gaussian distributions} X and Y parameter distributions with (left) negative covariance, (center) zero covariance and (right) positive covariance. The colour represents the distance to the mean, or in other words to the best fit parameter ($k$). Blue is the parameter ($k$) with minimal loss and yellow are neighbouring parameters with bigger loss. }.
+    \label{fig:multivariate_gaussians} % A label for referencing this figure later in the document
+        %TODO add details of each subcircuit from supplementary paper.
+\end{figure}
+
+The width of the multivariate Gaussian distributions can be increased by multiplying $C_k$ by a scalar factor $q$ where $q>1$.
+This process unconstrains the fits and allows more error with respect to the experimental data.
+To search for Turing patterns close to the fitted parameter combination $k$, the value of $q$ is progressively increased until a Turing parameter set is found through linear stability analysis.
+Through this process, the first 3 Turing parameter combinations are found with $q=10$.
+These are the closest Turing solutions to the best fit parameter combinations.
+The dose-response curves generated by the $q=10$ distribution are shown in Fig.~\ref{dose_response_multivariate_gaussian}.
+Within all the curves shown, 3 of them are generated by Turing parameter sets.
+The three Turing parameter sets are ensured to be ‘balanced’, where the input/output relationships of the components are matched (see Section~\ref{balancing}).
+The corresponding $q=10$ multivariate Gaussian parameter distributions are shown in Fig.~\ref{fig:multivariate_from_fit} in 2-parameter dimensions.
+1 dimensional distributions are of this multivariate are shown in Fig.~\ref{fig:1d_distributions}, where the distribution is grey, and Turing within the distribution is green.
+
+The distributions of the multivariate gaussian in 1Dand the Turing parameter sets are shown in Fig. S23.
+The corresponding $q=10$ multivariate Gaussian parameter distributions are shown in Fig.~\ref{fig:multivariate_from_fit}.
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/dose_response_multivariate_gaussian} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{Fitted $OC_14$ dose-response curves produced using multivariate analysis optimisation, for subcircuit \#1 (left) and subcircuit \#3 (right). Dots show experimental data, the thick line is generated from best fit parameters and the thin lines are derived from multivariate Gaussian distributions cantered around the best fit with $q=10$. This distribution has a probability density function $p(x;k,10\cdot C_{k})$ where $k$ is the best fit parameter vector and $C_{k}$ is the covariance matrix.}.
+    \label{fig:dose_response_multivariate_gaussian} % A label for referencing this figure later in the document
+\end{figure}
+
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/multivariate_from_fit} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{Multivariate Gaussian distributions for fitted parameters. Distributions resulting from fitting subcircuit \#1 and \#3, using $q=10$. Diagonals represent the univariate distributions. The non-diagonals represent the multivariate distributions of parameter pairs. Certain parameters show positive covariance (e.g. $V^*_c$ and$ K^*_{ce}$), some negative covariance (e.g. $K^*_{vd}$ and $K^*_{fe}$) and some no covariance meaning they are independent (e.g. $V^*_{d}$ and $K^*_{fe}$). }
+    \label{fig:multivariate_from_fit} % A label for referencing this figure later in the document
+\end{figure}
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/1d_distributions} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{\textbf{Constrained parametrised distributions for $V^*_X$ and $K^*_{XY}$ parameters in 1 dimension.} Distributions for dimensionless parameters of model based on fitting to liquid-culture experimental data. Grey distribution corresponds to parameters from fitting with $q=10$. Green vertical lines correspond to the 3 Turing parameter sets found in grey distribution using linear stability analysis }
+    \label{fig:1d_distributions} % A label for referencing this figure later in the document
+\end{figure}
+
+\subsection{Parameter exploration around fit: adding noise to the best fit Turing solutions}
+To further explore the parameter space found around the fitted Turing parameter sets, a small noise deviation is applied with relative uncertainty of 1\%.
+In other words, for each parameter $p$, a normal distribution is generated with mean $\mu=p$ and standard deviation $\sigma=p\cdot 0.01$.
+This small noise perturbation to all parameters, which generates similar steady-state dose response behaviour, allows us to further explore the Turing parameter space near the best fit to the liquid culture.
+For each value of uncertainty 2000 parameter combinations were analysed.
+The Turing patterning robustness with different amounts of noise is shown in Fig.~\ref{fig:robustness_noise}A, showing how robustness decreases as more noise is added.
+The different analytical solutions for a relative uncertainty of 1\% are shown in Fig.~\ref{fig:robustness_noise}B, where we observe not only Turing I solutions, but also Turing I Hopf and Hopf solutions.
+%TODO comment in next chapter on noise exploration
+
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/robustness_noise} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{\textbf{Search around fitted Turing parameter set.} (A) Turing robustness with different levels of noise. (b) Using 1\% noise (mean $\mu=p$ and standard deviation $\sigma=p\cdot 0.01$), frequency of different analytical solutions: Simple stable 64.8\%, Turing I oscillatory 33.5\%, Turing I Hopf 1.5\%, Hopf 0.25\%. (c) Numerical simulations in growing colonies of 1\% noise distribution.}
+    \label{fig:robustness_noise}
+\end{figure}
+
+
+%%TODO summary chapter2
+

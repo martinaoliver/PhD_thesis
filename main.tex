@@ -21,6 +21,7 @@ parskip, % Uncomment to add space between paragraphs
 %\usepackage[style=authoryear-icomp, bibstyle=numeric, maxbibnames=9,maxcitenames=2,uniquelist=false,backend=bibtex]{biblatex}
 
 \usepackage[bibstyle=numeric,style=authoryear-icomp,maxbibnames=9,maxcitenames=2,uniquelist=false, backend=bibtex,]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+%\usepackage[bibstyle=numeric,style=authoryear-icomp,maxbibnames=9,maxcitenames=2,uniquelist=false, backend=biber,]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 
 %
 %\usepackage[backend=bibtex,style=authoryear-ibid,natbib=true]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
@@ -33,6 +34,20 @@ parskip, % Uncomment to add space between paragraphs
 \AtEveryBibitem{\clearfield{note}}
 
 
+\usepackage[acronym]{glossaries}
+\makeglossaries
+\newacronym{TP}{TP}{Turing patterns}
+\newacronym{CN}{CN}{Crank-Nicolson}
+\newacronym{ADI}{ADI}{Alternating Direction Implicit Method}
+\newacronym{1D}{1D}{one-dimensional}
+\newacronym{2D}{2D}{two-dimensional}
+\newacronym{3D}{3D}{three-dimensional}
+
+
+
+
+
+
 \usepackage[autostyle=true]{csquotes}
 \usepackage{stmaryrd}
 \usepackage{physics, derivative}
@@ -41,6 +56,7 @@ parskip, % Uncomment to add space between paragraphs
 \usepackage{float}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+
 
 
 \newcommand{\TODO}[1]{\textcolor{red}{#1}}
@@ -58,13 +74,13 @@ parskip, % Uncomment to add space between paragraphs
 
 \thesistitle{Modelling pattern formation in synthetic biofilms} % print with \ttitle
 \supervisor{Prof. Robert G. Endres and Prof. Mark Isalan } % print with \supname
-\examiner{} % TODO print with \examname
+\examiner{aa} % TODO print with \examname
 \degree{PhD} % print with \degreename
 \author{Martina Oliver Huidobro} % print with \authorname
-\addresses{} % print with \addressname
+\addresses{a} % print with \addressname
 
 \subject{Computer Science} % Your subject area, this is not currently used anywhere in the template, print it elsewhere with \subjectname
-\keywords{} % TODO fill - print with \keywordnames
+\keywords{a} % TODO fill - print with \keywordnames
 \university{\href{https://www.imperial.ac.uk/}{Imperial College London}} % Your university's name and URL, this is used in the title page and abstract, print it elsewhere with \univname
 \department{\href{https://www.imperial.ac.uk/computing}{Life Sciences Department}} % Your department's name and URL, this is used in the title page and abstract, print it elsewhere with \deptname
 \group{\href{https://researchgroup.university.com}{Research Group Name}} % Your research group's name and URL, this is used in the title page, print it elsewhere with \groupname
@@ -173,10 +189,14 @@ parskip, % Uncomment to add space between paragraphs
     \listoftables
 
 
+
+
+
     \mainmatter % Begin numeric (1,2,3...) page numbering
 
     \pagestyle{thesis} % Return the page headers back to the "thesis" style
 
+    \clearpage
 
     \include{chapters/Introduction/Introduction}
     \include{chapters/Chapter 1/Chapter 1}
@@ -185,6 +205,7 @@ parskip, % Uncomment to add space between paragraphs
     \include{chapters/Methods/Methods}
 
     \appendix
+    \printglossary[type=\acronymtype]
 
     \printbibliography[heading=bibintoc]
 %raspopovic with capitaal letter ~\parencite{Raspopovic}

@@ -6,8 +6,8 @@ quick intro
 \section{Background on biological patterning}
 \subsection{Morphogenesis in nature, examples and function}
 Periodic spatial structures in biology result from the emergent phenomena where a tissue of cells gains heterogeneity and complexity in the spatial domain following certain regularity.
-Spatial structures can be widely observed in nature both in two-dimensional (2D) such as the zebra's stripped skin or in 3-dimensions (3D) in the labyrinthian brain cortex.
-Many other examples of periodic patterning can be found in nature (See Figure ~\ref{fig:pattern_examples}).
+Spatial structures can be widely observed in nature both in \acrfull{2D} such as the zebra's stripped skin or in \acrfull{3D} in the labyrinthian brain cortex.
+Many other examples of periodic patterning can be found in nature (See Figure~\ref{fig:pattern_examples}).
 Understanding the mechanism behind biological pattern formation is still a central question which remains elusive in the fields of systems, developmental and synthetic biology.  %todo comment on other applications
 %they have also been used to gain insights into human settlement6 and to design water filters (Tan, Z., Chen, S., Peng, X., Zhang, L. & Gao, C. Science 360, 518–521 (2018).(Zincenko, A., Petrovskii, S., Volpert, V. & Banerjee, M. J. R. Soc. Interface 18, 20210034 (2021).). Experimentally, Turing patterns have been able to explain the spaced transverse ridges of the palate in mammals8. In 2021, researchers showed that a strained atomic bismuth monolayer on the surface of niobium diselenide displays Turing patterns9, an observation that may play a crucial part in the development of microdevices (Fuseya, Y. et al. Nat. Phys. 17, 1031–1036 (2021).).
 
@@ -20,9 +20,9 @@ Understanding the mechanism behind biological pattern formation is still a centr
 %todo add all pattern images and the respective species if available
 This evolution from simplicity to intricacy isn't merely aesthetic; it often plays a pivotal role in the functioning of multicellular beings.
 Delving deeper, these patterns can have strategic advantages.
-Fractal-shaped bacterial colonies, for instance, maximise nutrient absorption ~\parencite{Matsushita1990}.
-Furthermore, distinct colorations, such as the zebra's stripes or the mesmerising eye-spots on butterfly wings ~\parencite{Blest}, serve to disorient predators; either by disrupting the prey's silhouette or suggesting the prey is part of a larger entity ~\parencite{Stevens2006}.
-The spirals observed in phylotaxis offer plants a way to optimise sunlight capture, enhancing photosynthesis ~\parencite{Strauss2020}.
+Fractal-shaped bacterial colonies, for instance, maximise nutrient absorption~\parencite{Matsushita1990}.
+Furthermore, distinct colorations, such as the zebra's stripes or the mesmerising eye-spots on butterfly wings~\parencite{Blest}, serve to disorient predators; either by disrupting the prey's silhouette or suggesting the prey is part of a larger entity~\parencite{Stevens2006}.
+The spirals observed in phylotaxis offer plants a way to optimise sunlight capture, enhancing photosynthesis~\parencite{Strauss2020}.
 
 The evolutionary advantage conveyed by this level of spatial organisation  hints towards genetic networks being potentially responsible for the patterning mechanism.
 A randomly found solution of evolution where a pattern occurs, could lead to the genetic networks driving these spatial arrangements to be evolutionary beneficial and therefore selected.
@@ -30,7 +30,7 @@ Comprehending these networks and the dynamics that lead to these spatial designs
 This area of research not only tries to understand which genetic networks and mechanisms are behind patterning.
 It also seeks to uncover how on a molecular scale these mechanisms are reliable, accurate and robust to the noisy and exposed biological environment.
 Additionally, studying this goes beyond understanding of developmental biology and morphogenesis.
-It paves the way for pioneering work in biotechnological sectors, enabling the creation of intricately patterned tissues, efficient biofilms, or even organoids that hold potential in groundbreaking applications, such as tissue regeneration or organ implants ~\parencite{Scholes2017,Tan2018}. %todo comment on material deposition.
+It paves the way for pioneering work in biotechnological sectors, enabling the creation of intricately patterned tissues, efficient biofilms, or even organoids that hold potential in groundbreaking applications, such as tissue regeneration or organ implants~\parencite{Scholes2017,Tan2018}. %todo comment on material deposition.
 
 
 
@@ -44,24 +44,24 @@ On the other hand, gradient or diffusion based mechanisms rely on cells in the t
 
 \section{Reaction-diffusion systems}
 \subsection{Types of reaction diffusion: Wolpert vs Turing}
-Among these gradient-based mechanisms, notable examples include positional information, the clock-and-wavefront model, and Turing instabilities ~\parencite{Wolpert1969, Baker2006, Turing1952}.
+Among these gradient-based mechanisms, notable examples include positional information, the clock-and-wavefront model, and Turing instabilities~\parencite{Wolpert1969, Baker2006, Turing1952}.
 Both the positional information and clock-and-wavefront concepts are underpinned by an initial gradient of morphogens, interpreted by a genetic network to induce tissue patterns.
-Sometimes, the origins of this gradient can be attributed to external factors such as ambient temperature, maternal impacts, or light exposure ~\parencite{Schier2009}.
+Sometimes, the origins of this gradient can be attributed to external factors such as ambient temperature, maternal impacts, or light exposure~\parencite{Schier2009}.
 However, in specific instances, the presence of an initial pre-pattern might be implausible, raising questions about how patterns spontaneously emerge from a prior uniform tissue.
-Addressing this conundrum, the Turing's model offers an alternative as it doesn't need a pre-existing gradient and is self-organising ~\parencite{Kondo2010a}. %comment on space scaling, repetitive patterns and wide variety of shapes. check if the others can do it... i think not easily.
+Addressing this conundrum, the Turing's model offers an alternative as it doesn't need a pre-existing gradient and is self-organising~\parencite{Kondo2010a}. %comment on space scaling, repetitive patterns and wide variety of shapes. check if the others can do it... i think not easily.
 Given its attributes, the reaction-diffusion model might provide a more complete answer to the question of patterning in biology/ more holistic perspective on the intricacies of morphogenesis.
 For this reason, Turing's mechanism for pattern formation will be the main focus of this work.
 Nevertheless, it's pivotal to recognize that these mechanisms aren't strictly independent of each other.
-The intricate nature of biological patterning might be best elucidated by an amalgamation of these theories, suggesting a blended framework may hold the answers ~\parencite{Green2015}. %todo discuss turings comment Turing himself recognized the biological unreality of this in stating that 'most of an organism, most of the time is developing from one pattern to another, rather than from homogeneity into a pattern' 1-34]
+The intricate nature of biological patterning might be best elucidated by an amalgamation of these theories, suggesting a blended framework may hold the answers~\parencite{Green2015}. %todo discuss turings comment Turing himself recognized the biological unreality of this in stating that 'most of an organism, most of the time is developing from one pattern to another, rather than from homogeneity into a pattern' 1-34]
 % TODO comment more on the fight between wolpert and turing and on the french flag model in general
 \subsection{Turing patterns}
-Reaction-diffusion systems were originally introduced in 1952 by Alan M. Turing in his paper “The chemical basis of morphogenesis” ~\parencite{Turing1952}.
+Reaction-diffusion systems were originally introduced in 1952 by Alan M. Turing in his paper “The chemical basis of morphogenesis”~\parencite{Turing1952}.
 In this article, he argues that pattern formation can be obtained when two morphogens interact with each other and diffuse at different
 velocities across a tissue.
 Morphogens, which are small molecules that can travel across the tissue and activate or inhibit other molecules.
 If these morphogens are linked to growth hormones or skin pigments, biological patterns leading to a phenotype can arise.
 The resulting patterns, called Turing patterns (TPs), can have different shapes such as stripes, labyrinths, spots; which can be widely observed in natural systems.
-The concept of Turing patterns was first introduced from a mathematical perspective and was modelled using space and time dependent partial differential equations (PDE). In the case of Turing’s seminal paper, the set of PDEs describes a two node network (Fig. ~\ref{fig:intro_to_turing_patterns}A) which has activation and inhibition terms, degradation terms and diffusion terms (Fig.~\ref{fig:intro_to_turing_patterns}B).
+The concept of Turing patterns was first introduced from a mathematical perspective and was modelled using space and time dependent partial differential equations (PDE). In the case of Turing’s seminal paper, the set of PDEs describes a two node network (Fig.~\ref{fig:intro_to_turing_patterns}A) which has activation and inhibition terms, degradation terms and diffusion terms (Fig.~\ref{fig:intro_to_turing_patterns}B).
 The key feature of this system is that it can exhibit diffusion driven instabilities: Initially, the tissue has a homogeneous concentration of morphogen under which no diffusion occurs, and under these circumstances the system is stable and converges into an equilibrium state.
 When biological noise is introduced, the heterogeneity of the system leads to morphogen diffusion.
 Consequently, the diffusion leads to changes in the reaction rates and the system is pushed out of steady state leading to an unstable system.
@@ -80,28 +80,28 @@ This whole phenomenon called the diffusion-driven instability is the essence of 
 \subsection{Gierer-Meindhardt model}
 Altough Turing’s work was of key importance in the field of developmental biology, it was not well accepted by biologists due to different reasons.
 Firstly, the mathematical complexity behind it made it inaccessible for many scientists in the field.
-Furthermore, the network proposed, although it can generate patterns, is too simple to describe the complexity in biological systems and takes some unrealistic assumptions such as the presence of negative concentrations ~\parencite{Kondo2010a}.
-To solve these two issues, Gierer and Meindhardt proposed a generalised version of Turing’s diffusion-driven-instabilities ~\parencite{Gierer1972}.
+Furthermore, the network proposed, although it can generate patterns, is too simple to describe the complexity in biological systems and takes some unrealistic assumptions such as the presence of negative concentrations~\parencite{Kondo2010a}.
+To solve these two issues, Gierer and Meindhardt proposed a generalised version of Turing’s diffusion-driven-instabilities~\parencite{Gierer1972}.
 This alternative theory proposes that patterns can be obtained as long as short-range activation and long-range inhibition (SALI) is present.
-This implies that we can go away from Turing’s equations and extend the theory to networks with different number of nodes, different network interactions and even different signal transduction mechanisms ~\parencite{Murray1983, Rauch2004, Swindale1980}.
+This implies that we can go away from Turing’s equations and extend the theory to networks with different number of nodes, different network interactions and even different signal transduction mechanisms~\parencite{Murray1983, Rauch2004, Swindale1980}.
 This step was necessary to be able to attribute patterning phenomena to more complex cellular and molecular interactions described by non-linear terms and larger networks with more nodes involved.
-Examples of the first systems developed with non-linear terms are the typical Gierer-Meindhard model ~\parencite{Gierer1972}, Schnakenberg model ~\parencite{Schnakenberg1979}, as well as the Thomas model %~\parencite{thomas1976analysis}.
+Examples of the first systems developed with non-linear terms are the typical Gierer-Meindhard model~\parencite{Gierer1972}, Schnakenberg model~\parencite{Schnakenberg1979}, as well as the Thomas model %~\parencite{thomas1976analysis}.
 This generalisation work, sheds some light into the logic behind patterning and allows to understand it intuitively:
 As an initially homogeneous system is perturbed by biological noise, local peaks of a morphogen concentration form.
 These transient peaks lead to a local activation effect where the concentration of all reactants increases.
 Due to the difference in diffusivity, the inhibitor reaches further away and long range inhibition is achieved.
-Ultimately, this system settles into a stationary pattern with activation peaks and inhibition troughs ~\parencite{Gierer1972}.
-This SALI mechanism proposed in this paper can be better understood in Figure ~\ref{fig:intro_to_turing_patterns}D.
+Ultimately, this system settles into a stationary pattern with activation peaks and inhibition troughs~\parencite{Gierer1972}.
+This SALI mechanism proposed in this paper can be better understood in Figure~\ref{fig:intro_to_turing_patterns}D.
 %todo maybe add more detail from detailed explanation: Imagine a system with two chemicals: an activator and an inhibitor. The activator stimulates its own production, that of the inhibitor, and the production of black pigment. The inhibitor, however, reduces the production of both activator and black pigment.This simple network leads to regular patterns when diffusion is introduced: these chemicals can spread, but they don't travel at the same speed. The activator moves slowly, affecting only nearby areas, while the inhibitor travels faster, reaching farther areas. As the activator starts working, a local region of black is produced. Some inhibitor is also produced, which travels faster than the activator, reaching further away and leading to inhibition and white in the areas surrounding the black. Once the inhibitor's effect diminishes in a distant region, the activator becomes dominant again, leading to another spot of pigment production. The repetition of this event across the tissue results in regular spots or stripes of pigment. These are the principles underpinning Alan Turing’s theory of pattern formation known as “Turing patterns”, which explain regular pattern formation in biology.
 
 \subsection{Turing patterns in nature}\label{Turing patterns in nature}
 Various links have been made between biological patterns found in nature and Turing patterning networks.
 As a basic example, seashell pigmentation and various types of fish skin have been replicated using simulations of Turing pattern systems.
-Additionally, perturbation experiments in zebrafish’s skin are consistent with simulations of RD equations where the pattern regenerates in the exact same way after being physically disrupted both \textit{in-vivo} and \textit{in-silico} ~\parencite{Kondo2010a}.
+Additionally, perturbation experiments in zebrafish’s skin are consistent with simulations of RD equations where the pattern regenerates in the exact same way after being physically disrupted both \textit{in-vivo} and \textit{in-silico}~\parencite{Kondo2010a}.
 Perturbation experiments are also carried out in the mammalian palatte, providing evidence of a Turing-type reaction-diffusion mechanism %todo cite palatte {economou}
 Finally, molecules involved in patterning and morphogenesis have been shown to be part of networks with SALI characteristics.
-For example, hair follicle development and fingerprint formation have been shown to rely on the same Turing reaction-diffusion network, based on signaling between EDAR, WNT, and antagonistic BMP pathways ~\parencite{Glover2023}
-Other examples of Turing SALI networks are Nodal \& Lefty in right left asymmetry ~\parencite{Nakamura2006}, Bmp \& Sox9 \& Wnt in limb digit development ~\parencite{Raspopovic1} and finally Wnt \& Dkk involved in lung branching ~\parencite{langhe2005_lung}.
+For example, hair follicle development and fingerprint formation have been shown to rely on the same Turing reaction-diffusion network, based on signaling between EDAR, WNT, and antagonistic BMP pathways~\parencite{Glover2023}
+Other examples of Turing SALI networks are Nodal \& Lefty in right left asymmetry~\parencite{Nakamura2006}, Bmp \& Sox9 \& Wnt in limb digit development~\parencite{Raspopovic1} and finally Wnt \& Dkk involved in lung branching~\parencite{langhe2005_lung}.
 All these examples of the relationship between biological patterns and RD systems, SALI networks and diffusion-driven instabilities strongly suggest that the Turing mechanism is linked to the self-assembling and self-regenerative patterns observed in nature.
 However, the arguments mentioned above make Turing’s mechanism purely a strong hypothesis of patterning and do not prove causation.
 
@@ -117,26 +117,26 @@ However, the arguments mentioned above make Turing’s mechanism purely a strong
 Turing patterns are commonly studied using mathematical tools to understand their features and behaviours.
 The equations describing these reaction-diffusion systems are usually too complex to solve analytically as they contain non-linearities and partial differential terms.
 For this reason, different methods must be used such as linear stability analysis (LSA) or numerical methods.
-LSA provides information on how the stability of the system evolves as we go from a system without diffusion to a system with diffusion ~\parencite{Glendinning1994}.
-For RD systems to produce Turing patterns, they must be stable without diffusion and become unstable as diffusion is turned on ~\parencite{J.DMurray2002}.
+LSA provides information on how the stability of the system evolves as we go from a system without diffusion to a system with diffusion~\parencite{Glendinning1994}.
+For RD systems to produce Turing patterns, they must be stable without diffusion and become unstable as diffusion is turned on~\parencite{J.DMurray2002}.
 This stability profile gives rise to the name “diffusion-driven instabilities” which is an alternative name for Turing patterns.
 Overall, this method can tell us whether a system is a pattern generator, the wavelength and the relative speed of pattern formation.
-Alternatively, numerical methods are used to calculate the concentration of species in the RD system at every time and space point ~\parencite{Ramos1983}.
+Alternatively, numerical methods are used to calculate the concentration of species in the RD system at every time and space point~\parencite{Ramos1983}.
 A visual solution is obtained which provides information on the shape, wavelength, evolution and amplitude of the pattern.
-While numerical methods provide more information than LSA, they are more computationally expensive and can lead to numerical errors ~\parencite{J.DMurray2002}.
+While numerical methods provide more information than LSA, they are more computationally expensive and can lead to numerical errors~\parencite{J.DMurray2002}.
 
-In terms of the computational power and time required, recently developed tools such as VisualPDE can make it easier and faster to explore and get intuition on the numerical solutions a system ~\parencite{Walker2023}.
+In terms of the computational power and time required, recently developed tools such as VisualPDE can make it easier and faster to explore and get intuition on the numerical solutions a system~\parencite{Walker2023}.
 Both have their advantages or disadvantages and must be used in combination for an optimal study of RD systems and patterning.
 \subsection{Fine-tuning problem}
 
 Using both linear stability analysis and numerical methods, Turing patterns were widely studied to understand whether they were a plausible explanation for pattern formation in biology.
 Although patterns were obtained analytically and numerically using models of the SALI networks mentioned above, the fine-tuning problem makes this mechanism questionable.
 The fine-tuning problem or robustness problems refers to the small fraction of the parameter space leading to Turing patterns and high sensitivity to parameter changes.
-This issue was widely explored in ~\cite{Scholes2019}, where the parameter space of all 2-node and 3-node networks were studied using LSA to check for Turing patterning.
+This issue was widely explored in~\cite{Scholes2019}, where the parameter space of all 2-node and 3-node networks were studied using LSA to check for Turing patterning.
 It was found that although 61\% of the networks can produce Turing patterns, only 0.1\% of the parameter space is within Turing space.
-Similar results were obtained in ~\cite{Zheng2016} and ~\cite{Marcon}.
+Similar results were obtained in~\cite{Zheng2016} and~\cite{Marcon}.
 To comment further into parameter tuning, original 2-node reaction diffusion systems require large differential diffusion rates between the two morphogens as explained previously for SALI mechanism to occur.
-This is sometimes biologically unlikely, as many of the morphogens have similar diffusion rates due to their similarities in molecular size ~\parencite{huidobro}.
+This is sometimes biologically unlikely, as many of the morphogens have similar diffusion rates due to their similarities in molecular size~\parencite{huidobro}.
 Finally, turing patterns can sometimes be sensitive to the initial conditions, leading to different patterns.
 This is problematic as developmental biology expects robust patterns as cells need to respond to specific queues.   %todo find ref for this.
 
@@ -160,39 +160,39 @@ Surprisingly, some of these realistic biological conditions increase robustness 
 
 \subsubsection{Large networks}
 Biological networks usually far from the idealised 2-node Turing networks. %todo quote average network size
-Recent studies ~\parencite{Zheng2016, Scholes2019, Marcon} have shown larger networks exhibit greater robustness to parameter variations.
-Specifically, it has been shown that adding an immobile substrate to a 2 node diffusible system relaxes differential diffusion constraints expected in the classic SALI topologies ~\parencite{korvasova2015}.
+Recent studies~\parencite{Zheng2016, Scholes2019, Marcon} have shown larger networks exhibit greater robustness to parameter variations.
+Specifically, it has been shown that adding an immobile substrate to a 2 node diffusible system relaxes differential diffusion constraints expected in the classic SALI topologies~\parencite{korvasova2015}.
 However, studying large networks is very computationally expensive because of various reasons including exponential increase in possible networks, increase in dimensions of the parameter space, increase in number of equations.
 This has resulted in limited studies addressing larger networks than 3.
 ~\cite{Smith2018a} tackles this challenge by simplifying big networks into smaller ones.
 The reduced model is not an accurate description of the original system.
 However it can predict whether a system will not show instabilities, ruling out many cases to study and reducing the computational cost of exploring larger networks.
 ~\cite{Haas2021} studies large networks with six diffusers using a random matrix approach and also shows that there is a relaxation in differential diffusion constraints.
-This linearised random matrix approach previously used in ecology ~\parencite{May1972} could be used to explore large networks with mostly non-diffusible components that resemble the scale of real biological networks. %todo cite may without caps
-%todo move somewhere else %Increase in robustness, and specifically decrease in differential diffusivity constraints is key to engineer biological pattern formation, as many available diffusers available in synthetic biology are predicted to diffuse at roughly equal speed due to their similarities in molecular weight ~\parencite{huidobro, Kondo2010a}
+This linearised random matrix approach previously used in ecology~\parencite{May1972} could be used to explore large networks with mostly non-diffusible components that resemble the scale of real biological networks. %todo cite may without caps
+%todo move somewhere else %Increase in robustness, and specifically decrease in differential diffusivity constraints is key to engineer biological pattern formation, as many available diffusers available in synthetic biology are predicted to diffuse at roughly equal speed due to their similarities in molecular weight~\parencite{huidobro, Kondo2010a}
 
 \subsubsection{High cooperativity}
-Gene networks are usually described using non-linear Hill functions as many transcription factors exhibit allosteric behaviours in DNA binding ~\parencite{Morgunova2017}.
-Greater cooperativity, reflected in steeper dose-response curves, can expand the Turing parameter space region and reduce the constraints imposed by differential diffusivity ~\parencite{Diambra2015a}.
+Gene networks are usually described using non-linear Hill functions as many transcription factors exhibit allosteric behaviours in DNA binding~\parencite{Morgunova2017}.
+Greater cooperativity, reflected in steeper dose-response curves, can expand the Turing parameter space region and reduce the constraints imposed by differential diffusivity~\parencite{Diambra2015a}.
 %\subsubsection{Robust topologies}
-%Studies have identified specific network topologies that exhibit enhanced robustness ~\parencite{Scholes2019}, which can be used when engineering patterns in synthetic biology. Nature probably converges into those topologies to maximise pattern formation robustness. The most robust topologies found in ~\cite{Scholes2019} are in line with the design principles found in other studies ~\parencite{Zheng2016} which show coherent activation and inhibition increases robustness.
+%Studies have identified specific network topologies that exhibit enhanced robustness~\parencite{Scholes2019}, which can be used when engineering patterns in synthetic biology. Nature probably converges into those topologies to maximise pattern formation robustness. The most robust topologies found in~\cite{Scholes2019} are in line with the design principles found in other studies~\parencite{Zheng2016} which show coherent activation and inhibition increases robustness.
 %
 %
-%\item robust topologies and motifs: most robust topologies found in ~\parencite{Scholes2019}. This topology is in line with design principles
-%found in other robustnes papaers try using as many AIJT topologies in the network as possible (coherent activation and inhibition) 2node core activation inhibition topology. ~\parencite{Zheng2016}. adding immobile node ~\parencite{Zheng2016,Diego2018} reduces need for differential diffusion.  %todo cite scholes most robust topology, msc thesis. %
+%\item robust topologies and motifs: most robust topologies found in~\parencite{Scholes2019}. This topology is in line with design principles
+%found in other robustnes papaers try using as many AIJT topologies in the network as possible (coherent activation and inhibition) 2node core activation inhibition topology.~\parencite{Zheng2016}. adding immobile node~\parencite{Zheng2016,Diego2018} reduces need for differential diffusion.  %todo cite scholes most robust topology, msc thesis. %
 
 
 \subsubsection{Discrete models}
 Using discrete models can also show an increase in robustness.
-Discretising concentration levels in ~\cite{Leyshon2021} which results in states rather than continuous kinetics, leads to some topologies being more robust to pattern formation. %todo justification of this discretisation.
-Additionally, discretising space to cell size can lead to pattern formation in certain systems that usually do not allow it such as single diffuser networks ~\parencite{Wang2022}.
+Discretising concentration levels in~\cite{Leyshon2021} which results in states rather than continuous kinetics, leads to some topologies being more robust to pattern formation. %todo justification of this discretisation.
+Additionally, discretising space to cell size can lead to pattern formation in certain systems that usually do not allow it such as single diffuser networks~\parencite{Wang2022}.
 
- % discrete models (discrete lattice gas cellular automaton (LGCA) framework.)concentration discreetenes: it conﬁnes the concentrations to a small number of discrete values (four in our case) and comprises discrete maps between these states rather than continuous kinetic parameters.Moreover, we found these ﬁve topologies to be more robust in the LGCA framework than they appear to be in the continuous case. ~\parencite{Leyshon2021}
+ % discrete models (discrete lattice gas cellular automaton (LGCA) framework.)concentration discreetenes: it conﬁnes the concentrations to a small number of discrete values (four in our case) and comprises discrete maps between these states rather than continuous kinetic parameters.Moreover, we found these ﬁve topologies to be more robust in the LGCA framework than they appear to be in the continuous case.~\parencite{Leyshon2021}
  \subsubsection{Growth}
 Fixed domains are often commonly assumed in developmental biology, as pattern forming processes (e.g reaction-diffusion of chemical species) occur at a much faster timescales than tissue growth. %todo add ref    %ref turing, ref 3 atlas papers
 However, models of pattern formation in growing domains have shown growth to be extremely important in the development and morphology of the pattern.
-Biological examples include angelﬁsh \textit{Pomacanthus imperator} where growth induces the addition of new stripes in a branching point, while a constant wavelength ~\parencite{Kondo1995}.
-In synthetic systems, the importance of growth can also be observed using a chemical reaction-diffusion system that grows over time ~\parencite{Konow2019}.
+Biological examples include angelﬁsh \textit{Pomacanthus imperator} where growth induces the addition of new stripes in a branching point, while a constant wavelength~\parencite{Kondo1995}.
+In synthetic systems, the importance of growth can also be observed using a chemical reaction-diffusion system that grows over time~\parencite{Konow2019}.
 Slow growth rates were likely to produce rings added on the inside of the disk as it grew (inner ring addition), while fast growth rates produced rings on the outside (outer ring addition).
 Intermediate growth rates formed labyrinthine structures.
 All these principles of pattern morphology and growth rate are verified in the model.
@@ -201,27 +201,27 @@ These biological examples of growing patterns highlight the importance of includ
 Considering the importance of growth in pattern morphology, it is key to consider how this growth might affect parametric robustness in Turing pattern formation.
 Interestingly, introducing slow isotropic growth allows certain network topologies to form Turing patterns, which would not without growth.
 An example of that is patterns in activator-activator networks, showing growth induced Turing instabilities.
-Additionally, short-range activation and long-range inhibition can also produce Turing patterning in growing domains ~\cite{gaffney2010}.
+Additionally, short-range activation and long-range inhibition can also produce Turing patterning in growing domains~\cite{gaffney2010}.
 Finally, increasing growth rates can increase the Turing parameter space under exponential growth in Turing patterning networks.
-However, the analytical analysis used in ~\cite{gaffney2010} only holds when assuming slow isotropic growth and will break under faster growth.
+However, the analytical analysis used in~\cite{gaffney2010} only holds when assuming slow isotropic growth and will break under faster growth.
 
 Under logistic and linear growth, the Turing parameter space also changes.
-However, the analysis used in ~\cite{gaffney2010} only holds when assuming slow isotropic growth and will break under faster growths.
-This analysis is revisited in ~\cite{Klika2017} where they manage to study faster isotropic growing domains.
-However, they observe that the conditions for Turing instabilities are more complex with higher growth rates and therefore more challenging to study than the ones in ~\cite{gaffney2010}.
+However, the analysis used in~\cite{gaffney2010} only holds when assuming slow isotropic growth and will break under faster growths.
+This analysis is revisited in~\cite{Klika2017} where they manage to study faster isotropic growing domains.
+However, they observe that the conditions for Turing instabilities are more complex with higher growth rates and therefore more challenging to study than the ones in~\cite{gaffney2010}.
 This complexity makes it difficult to carry out high throughput studies of robustness and Turing parameter space in growing domains.
-Finally, other types of growth such as anisotropic growth ~\parencite{Krause2019} are studied, but again they do not study parametric robustness in detail.
+Finally, other types of growth such as anisotropic growth~\parencite{Krause2019} are studied, but again they do not study parametric robustness in detail.
 
 \subsubsection{Boundary conditions}.
 Biological systems can exhibit a wide variety of boundary conditions depending on the context and environment.
-Additionally, these boundary conditions can also be replicated using techniques in synthetic biology ~\parencite{Krause2020, Sheth2012, Vahey2014}.
+Additionally, these boundary conditions can also be replicated using techniques in synthetic biology~\parencite{Krause2020, Sheth2012, Vahey2014}.
 Different theoretical studies explore a wide variety of boundary conditions for Turing systems.
-Initially, it was shown that non-homogeneous boundary conditions where the system is not insulated, are less sensitive to changes in the domain size, different initial conditions and perturbations in model parameters ~\parencite{Arcuri1986}.
-Then, mixed boundary conditions where different species are subject to different boundary definitions were also shown to increase parametric robustness ~\parencite{Maini1993, Maini1997, Krause2021}.
+Initially, it was shown that non-homogeneous boundary conditions where the system is not insulated, are less sensitive to changes in the domain size, different initial conditions and perturbations in model parameters~\parencite{Arcuri1986}.
+Then, mixed boundary conditions where different species are subject to different boundary definitions were also shown to increase parametric robustness~\parencite{Maini1993, Maini1997, Krause2021}.
 Studying these effects of these boundary conditions analytically is relatively complicated as you need to understand the bifurcation from which the Turing instability arises.
-For example, although a Turing bifurcation is canonically a pitchfork bifurcation under Neumann boundary conditions, the Turing bifurcation is canonically a transcritical bifurcation under Dirichlet boundary conditions ~\parencite{Woolley2022}. %todo look at this again
+For example, although a Turing bifurcation is canonically a pitchfork bifurcation under Neumann boundary conditions, the Turing bifurcation is canonically a transcritical bifurcation under Dirichlet boundary conditions~\parencite{Woolley2022}. %todo look at this again
 This shows how much effect the boundaries have on the Turing instability, meaning they need to be considered when studying such systems.
-An more applied biological example of how boundaries can affect pattern formation is seen in ~\parencite{Krause2020} where they study patterning synthetic biofilm in agar plates.
+An more applied biological example of how boundaries can affect pattern formation is seen in~\parencite{Krause2020} where they study patterning synthetic biofilm in agar plates.
 In this case, the agar absorbs the diffusers through the boundary, disrupting the pattern formed in the biofilm.
 This effect can be reduced by decreasing the thickness of the agar layer.
 Potentially, the pattern could also be maintained by reducing the permeability of the agar through the introduction of a filter paper or reduction of pore size.
@@ -232,7 +232,7 @@ Potentially, the pattern could also be maintained by reducing the permeability o
 %Indeed, the idea that biological systems exchange material with their immediate environment seems likely in many situations. Therefore no-flux boundary conditions might be irrealistic.
 %(point sources in butterfly wings %todo cite murray 1981)
 
-%    also boundary between two different types of cells may give rise to morphogen production at the boundary interface %todo ~\parencite{meinhardt1981}.
+%    also boundary between two different types of cells may give rise to morphogen production at the boundary interface %todo~\parencite{meinhardt1981}.
 
 
 
@@ -242,21 +242,21 @@ Potentially, the pattern could also be maintained by reducing the permeability o
 Biological systems are known for their inherent noise.
 In certain non-Turing parameter regimes, noise can drive diffusion-driven instabilities.
 If there is a stable mode with eigenvalues slightly below zero, noise can destabilise this mode leading to a noise-induced instability and therefore the emergence of a pattern.
-This might be a source of parametric robustness, producing patterns where deterministic systems do not predict one ~\parencite{Butler2009, Butler2011, Biancalani2010}.
+This might be a source of parametric robustness, producing patterns where deterministic systems do not predict one~\parencite{Butler2009, Butler2011, Biancalani2010}.
 Additionally, stochastic Turing patterns do not require large differential diffusivity between activator and inhibitor.
-However, these patterns are not as ordered as deterministic Turing patterns ~\parencite{Karig2018}.
+However, these patterns are not as ordered as deterministic Turing patterns~\parencite{Karig2018}.
 In terms of morphological robustness, deterministic Turing patterns were subjected to intrinsic noise using the same parameter region, and it was shown analytically that stochastically excited wave modes correspond exactly to their deterministic analogues, leading to a similar pattern.
-Additionally, since noise perturbs populations away from the steady state, patterns can form quicker in a stochastic system than its deterministic counterpart ~\parencite{Maini2012}
+Additionally, since noise perturbs populations away from the steady state, patterns can form quicker in a stochastic system than its deterministic counterpart~\parencite{Maini2012}
 
 
 \subsubsection{Delays} Having talked about realistic biological effects that contribute to pattern robustness, gene expression delays have been shown to do exactly the opposite.
 Transcription and translation are biochemical processes that can occur in the scales of minutes to hours (depending on the size of the genomic sequence).
 Therefore, from a gene being activated to the protein being active, there is a delay that is often not accounted for when modelling patterning.
-The pattern morphology has been shown to be extremely sensitive to delays including sensitivity to the initial conditions in the final pattern, dramatic changes in the patterning lag under different delays and even pattern loss when delays are introduced ~\parencite{Maini2012}.
+The pattern morphology has been shown to be extremely sensitive to delays including sensitivity to the initial conditions in the final pattern, dramatic changes in the patterning lag under different delays and even pattern loss when delays are introduced~\parencite{Maini2012}.
 
 
 Overall, it is important to understand how different phenomena can affect pattern formation and introduce in models the most relevant to the natural system or experimental system being studied.
-Furthermore, in some cases, these biological phenomena could increase robustness to pattern formation and explain the lack of robustness found in classical Turing pattern studies ~\parencite{Scholes2019}.
+Furthermore, in some cases, these biological phenomena could increase robustness to pattern formation and explain the lack of robustness found in classical Turing pattern studies~\parencite{Scholes2019}.
 %
 %\item turing instability can appear through a pitchfork bifurcation (subcritical ) ---> l (Leppänen 2004; Benson et al. 1998;Crampin 2000;Dutt 2010, 2012; Grindrod 1996; Nicolis 1995; Auchmuty and Nicolis 1975; Bozzini et al. 2015; Breña-Medina and Champneys 2014; Dalwadi and Pearce 2022).  transcritical bifurcation
 %Critically, the changes in bifurcation structure that are produced by altering the
@@ -268,14 +268,14 @@ Furthermore, in some cases, these biological phenomena could increase robustness
 
 
 
-\section{ Engineering reaction-diffusion patterns}
+\section{Engineering reaction-diffusion patterns}
 There are various reasons to justify the engineering of Turing patterns in biology.
 These justifications span from enhancing our fundamental understanding of how patterns develop in living organisms to the potential advancements these synthetic structures could contribute to biotechnology.
-To begin with, there is a wealth of biological patterning that is associated with Turing-like gene networks, as indicated by numerous studies referenced in ~\ref{Turing patterns in nature}.
+To begin with, there is a wealth of biological patterning that is associated with Turing-like gene networks, as indicated by numerous studies referenced in~\ref{Turing patterns in nature}.
 However, due to the tangled nature of biological systems, it is extremely hard to prove a Turing’s mechanism is actually behind those biological patterns.
 Building a synthetic pattern based on the principles of Turing's mechanism would prove this mechanism can indeed form patterns in biology.
 Furthermore, the integration of Turing patterns with real biological scenarios involving growth, stochasticity, or different boundary conditions could shift theoretical models towards more robust patterns that resemble more closely those found in nature.
-Finally, the synthetic patterns obtained would contribute to novel nanotechnologies, such as systems with patterned biomaterial deposition ~\parencite{Din2020, Cao2017}.
+Finally, the synthetic patterns obtained would contribute to novel nanotechnologies, such as systems with patterned biomaterial deposition~\parencite{Din2020, Cao2017}.
 For this reason, a bottom-up approach is required to build a system from first principles, which is tunable and insulated from the tangled genetic context, and which can be used to build tissues of interest.
 
 
@@ -285,46 +285,46 @@ For this reason, a bottom-up approach is required to build a system from first p
 Engineering Turing patterns in biology is a highly challenging endeavour that has required synthetic biology to gradually develop the appropriate tools.
 This has involved creating simpler biological patterns, as well as chemical Turing patterns to gain the necessary insights and tools for this complex task.
 In synthetic biology, a wide variety of pattern generators have been engineered ranging in different complexities and pattern outcomes.
-To systematically categorise these synthetic patterning systems, we can group them into four levels based on design characteristics ~\parencite{huidobro}:
+To systematically categorise these synthetic patterning systems, we can group them into four levels based on design characteristics~\parencite{huidobro}:
 
 Level 0 circuits lack synthetic signals that diffuse through normal Fickian diffusion, where the molar flux due to diffusion is proportional to the concentration gradient.
 Instead, spatial structures emerge from other processes like cellular growth nd gene expression freezing.
-Examples include synchronised oscillator circuits in bacterial colonies producing periodic concentric ring patterns without diffusing signals ~\parencite{Potvin-Trottier2016, Riglar2019} (See Fig. \ref{fig:engineered_patterns} Level 0).
+Examples include synchronised oscillator circuits in bacterial colonies producing periodic concentric ring patterns without diffusing signals~\parencite{Potvin-Trottier2016, Riglar2019} (See Fig. \ref{fig:engineered_patterns} Level 0).
 
 Level 1 circuits do rely on diffusible components; however, these are not dynamically regulated, meaning they are not produced by the circuit as it is in the case of Turing patterns.
-These diffusers only act as a pre-pattern which the system will interpret ~\parencite{Basu2005, Schaerli2014, Kong2017, Barbier2020, Grant2020}.
+These diffusers only act as a pre-pattern which the system will interpret~\parencite{Basu2005, Schaerli2014, Kong2017, Barbier2020, Grant2020}.
 Although stripes and sharp boundaries can be obtained, their periodicity is limited.
-Hierarchical patterning circumvents the periodicity issue by scaling level 1 systems ~\parencite{Boehm2018}.
+Hierarchical patterning circumvents the periodicity issue by scaling level 1 systems~\parencite{Boehm2018}.
 More diffusers are added so $(2n-1)$ spatial domains can be generated with n orthogonal diffusers.
-While hierarchical patterns can explain some developmental periodic patterns such as the neural tube in vertebrates ~\parencite{Briscoe2015}, it fails to capture the self-organising periodicity of Turing patterns observed in development such as digit patterning ~\parencite{Sheth2012,Raspopovic1} (See Fig. \ref{fig:engineered_patterns} Level 1).
+While hierarchical patterns can explain some developmental periodic patterns such as the neural tube in vertebrates~\parencite{Briscoe2015}, it fails to capture the self-organising periodicity of Turing patterns observed in development such as digit patterning~\parencite{Sheth2012,Raspopovic1} (See Fig. \ref{fig:engineered_patterns} Level 1).
 
 Level 2 circuits do incorporate dynamically regulated diffusers; however, only one diffuser is introduced.
 In contrast with level 1 systems, no pre-patterns are required to generate interesting behaviours.
-Starting from a spatially homogeneous regime, these systems can produce robust spatial oscillators such as ~\parencite{Danino2010} or simple single ring patterns ~\parencite{Cao2016, Payne2013} (See Fig. \ref{fig:engineered_patterns} Level 2).
+Starting from a spatially homogeneous regime, these systems can produce robust spatial oscillators such as~\parencite{Danino2010} or simple single ring patterns~\parencite{Cao2016, Payne2013} (See Fig. \ref{fig:engineered_patterns} Level 2).
 
 Finally, level 3 circuits use multiple dynamically regulated diffusible components (See Fig. \ref{fig:engineered_patterns} Level 3).
 Turing patterns are the most prominent example of Level 3 systems as they as formed by reaction-diffusion circuits of at least two diffusers.
 While numerous robust systems have been engineered in Level 0,1 and 2 circuits, Level 3 or Turing pattern engineering are still in its infancy.
-Stochastic Turing patterns were recently engineered in E. coli with a circuit implemented according to the self-activation and lateral inhibition topology, with two diffusible quorum-sensing signals ~\parencite{Karig2018}.
-Additionally, solitary patterns have also been engineered in a refactored Nodal–Lefty system in HEK cells ~\parencite{Sekine2018}.
-While easier to engineer due to their relaxed fine-tuning requirements, stochastic Turing patterns and solitary display more irregularity in their periodic spatial structure ~\parencite{Butler2011, Karig2018,Sekine2018}.
+Stochastic Turing patterns were recently engineered in E. coli with a circuit implemented according to the self-activation and lateral inhibition topology, with two diffusible quorum-sensing signals~\parencite{Karig2018}.
+Additionally, solitary patterns have also been engineered in a refactored Nodal–Lefty system in HEK cells~\parencite{Sekine2018}.
+While easier to engineer due to their relaxed fine-tuning requirements, stochastic Turing patterns and solitary display more irregularity in their periodic spatial structure~\parencite{Butler2011, Karig2018,Sekine2018}.
 
 While elusive in synthetic biology, regular-repeat Turing patterns have been engineered in chemical reaction systems.
-They were first observed in the 1990's in the chlorite-iodide malonic acid (CIMA) reaction  ~\parencite{Castets, Lengyel1992} and later in the thiourea-iodate-sulfite (TuIS) reaction ~\parencite{Horvath} (See Fig. \ref{fig:engineered_patterns} Level 3).
-Unlike biological systems, chemical reactions are reliably described by the simpler laws of mass action, and system parameters can often be identified ~\parencite{turanyi1994, kugler2009, Pusnik2019, Yeoh2019}.
-Furthermore, the tuning of these systems by changing initial concentration or temperature has more predictable effects on the system ~\parencite{Horvath, landeira2010, Asakura2011}.
-Lastly, chemical systems are isolated from external interacting components unlike biological systems where burden and cross-talk between the cellular chassis and synthetic parts is inevitable ~\parencite{Ceroni2015, Nielsen2016,Butzin2018, Du2020}.
+They were first observed in the 1990's in the chlorite-iodide malonic acid (CIMA) reaction~\parencite{Castets, Lengyel1992} and later in the thiourea-iodate-sulfite (TuIS) reaction~\parencite{Horvath} (See Fig. \ref{fig:engineered_patterns} Level 3).
+Unlike biological systems, chemical reactions are reliably described by the simpler laws of mass action, and system parameters can often be identified~\parencite{turanyi1994, kugler2009, Pusnik2019, Yeoh2019}.
+Furthermore, the tuning of these systems by changing initial concentration or temperature has more predictable effects on the system~\parencite{Horvath, landeira2010, Asakura2011}.
+Lastly, chemical systems are isolated from external interacting components unlike biological systems where burden and cross-talk between the cellular chassis and synthetic parts is inevitable~\parencite{Ceroni2015, Nielsen2016,Butzin2018, Du2020}.
 
 
 Although chemical systems have helped understand pattern formation and could prove key to tissue engineering applications, mechanisms in biology seem to go beyond chemical systems.
-Examples of patterns have been closely linked to gene expression patterns as shown in \textit{in-situ} hybridization studies ~\parencite{Jing2006}.
+Examples of patterns have been closely linked to gene expression patterns as shown in \textit{in-situ} hybridization studies~\parencite{Jing2006}.
 For this reason, it is key to explore this avenue and build genetically based reaction-diffusion systems that generate robust periodic patterns in biofilms.
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Introduction/SpatialComponentsFigure1_300dpi}
-    \caption[\textbf{Engineered spatial patterns in synthetic biology.}]{\textbf{Engineered spatial patterns in synthetic biology.} Four levels of regulatory complexity in engineered spatial patterning systems. Each level is divided into an example circuit, and the resulting pattern upon implementation. Diffusing components of the circuit are labelled with a “D”, non-diffusing nodes are unlabelled. The colour of each node corresponds to the colour of the reporter in the respective implementation. Level 0: synchronized repressilator circuit implemented in a growing bacterial colony \parencite{Potvin-Trottier2016}. The plot shows the circuit oscillations in single cells or stirred liquid culture. Level 1: incoherent feedforward circuit, where the diffusor-producing sender cells (cyan) are placed in the middle of a bacterial lawn ~\parencite{Basu2005}. The plot shows the concentration gradient of the diffusor away from the centre of the lawn. Level 2: self-activation and feedback inhibition circuit with one dynamically regulated diffusor creates spatial propagating waves and spatially synchronised oscillations (not shown) ~\parencite{Danino2010}. The plot shows the oscillations of the circuit in single cells, or in a cell population. Level 3: self-activation and lateral-inhibition circuit with two dynamically regulated diffusors creates stationary Turing patterns in the TuIS chemical system ~\parencite{Horvath}. The plot shows the localized, self-activating positive feedback of the slow-diffusing species D1 (blue curve) and the lateral inhibition of the fast-diffusing species D2 (yellow curve).} %TODO comment on adapted from literature
+    \caption[\textbf{Engineered spatial patterns in synthetic biology.}]{\textbf{Engineered spatial patterns in synthetic biology.} Four levels of regulatory complexity in engineered spatial patterning systems. Each level is divided into an example circuit, and the resulting pattern upon implementation. Diffusing components of the circuit are labelled with a “D”, non-diffusing nodes are unlabelled. The colour of each node corresponds to the colour of the reporter in the respective implementation. Level 0: synchronized repressilator circuit implemented in a growing bacterial colony \parencite{Potvin-Trottier2016}. The plot shows the circuit oscillations in single cells or stirred liquid culture. Level 1: incoherent feedforward circuit, where the diffusor-producing sender cells (cyan) are placed in the middle of a bacterial lawn~\parencite{Basu2005}. The plot shows the concentration gradient of the diffusor away from the centre of the lawn. Level 2: self-activation and feedback inhibition circuit with one dynamically regulated diffusor creates spatial propagating waves and spatially synchronised oscillations (not shown)~\parencite{Danino2010}. The plot shows the oscillations of the circuit in single cells, or in a cell population. Level 3: self-activation and lateral-inhibition circuit with two dynamically regulated diffusors creates stationary Turing patterns in the TuIS chemical system~\parencite{Horvath}. The plot shows the localized, self-activating positive feedback of the slow-diffusing species D1 (blue curve) and the lateral inhibition of the fast-diffusing species D2 (yellow curve).} %TODO comment on adapted from literature
     \label{fig:engineered_patterns}
 \end{figure}
 
@@ -342,13 +342,13 @@ Additionally, designing Turing circuits with the classical 2-node topology leads
 Finally, this fine-tuning issue is further amplified by the lack of orthogonal small-diffusible regulators to build a tunable synthetic pattering circuit.
 
 All these issues have been addressed by previous researchers in the Isalan Lab and myself to achieve the engineering of a synthetic Turing circuit in bacteria that can produce regular periodic stationary patterns.
-To address the fine-tuning problem and differential diffusivity constraints, ~\cite{Scholes2019} found that \("\)topology \(3954"\) (See Fig. \ref{fig:synthetic circuit} top-right) was amongst the most robust 3-node networks in terms of kinetic parameters.
+To address the fine-tuning problem and differential diffusivity constraints,~\cite{Scholes2019} found that \("\)topology \(3954"\) (See Fig. \ref{fig:synthetic circuit} top-right) was amongst the most robust 3-node networks in terms of kinetic parameters.
 Additionally, this topology allowed for equal diffusivity and even faster diffusing activators.
-The lack of robust biological parts was addressed in ~\cite{Meyer2019} and ~\cite{Du2020} where orthogonal diffusers where characterized, which allow the building of the \("\)topology \(3954"\) topology.
+The lack of robust biological parts was addressed in~\cite{Meyer2019} and~\cite{Du2020} where orthogonal diffusers where characterized, which allow the building of the \("\)topology \(3954"\) topology.
 These toolboxes are key to bridge the gap between abstract models and real-sender receiver circuits.
-Additionally, in ~\cite{huidobro} we compiled a list of small molecule regulators that can diffuse and form gene circuits in e.coli, as well as their respective promoters and synthesis enzymes.
-Finally, ~\cite{Tica2020} engineered the \("\)topology \(3954"\) using the components from ~\cite{Meyer2019} and ~\cite{Du2020} with the aim of exploring a robust Turing gene circuit for pattern formation (See Fig. \ref{fig:synthetic circuit} bottom).
-Due to the lack of specific biological parts such as an inhibitor quorum sensing molecule or a dual inhibitor/activator molecule, the biological implementation of 3954 resulted in a six molecular specie circuit instead of the original 3-node network. 
+Additionally, in~\cite{huidobro} we compiled a list of small molecule regulators that can diffuse and form gene circuits in e.coli, as well as their respective promoters and synthesis enzymes.
+Finally,~\cite{Tica2020} engineered the \("\)topology \(3954"\) using the components from~\cite{Meyer2019} and~\cite{Du2020} with the aim of exploring a robust Turing gene circuit for pattern formation (See Fig. \ref{fig:synthetic circuit} bottom).
+Due to the lack of specific biological parts such as an inhibitor quorum sensing molecule or a dual inhibitor/activator molecule, the biological implementation of 3954 resulted in a six molecular specie circuit instead of the original 3-node network.
 In this thesis, theoretical work based on this synthetic gene circuit was carried out to understand how to tune parameters experimentally and what spatial setup to use to allow pattern formation in bacterial biofilms.
 Additionally, once the setup is determined, to predict which patterns might appear and the relevant wavelengths to look for.
 Finally, once patterns appear in the biofilm, to characterise and understand the mechanisms behind these patterns.
@@ -384,7 +384,7 @@ Additionally, it also involves looking at which type of instabilities can produc
 Going from this more theoretical approach, I will then consider realistic biological phenomena in the context of pattern formation such as different boundary conditions and growth.
 Understanding how these phenomena affect pattern formation and its robustness, is key to understand which route to take when engineering pattern formation using synthetic gene circuits.
 The second part of the thesis will focus on building a predictive model that can inform the experimental work in order to build a successful Turing pattern generator using gene circuits.
-First, I will build a PDE system that describes the synthetic gene circuit engineered in ~\parencite{Tica2020}.
+First, I will build a PDE system that describes the synthetic gene circuit engineered in~\parencite{Tica2020}.
 Then, I will explore the parameter space of this system to understand which regions are more robust in terms of pattern formation and how we can experimentally tune the genetic circuit in order to obtain a robust pattern generator.
 Additionally, I will perform experiments where I grow small colonies with the synthetic gene network and image them using microscopy to observe fluorescence rings.
 This experiment is continued by Jure Tica, Tong Zhu, Georg Wachter in larger colonies to observe a wide variety of patterns, including different types of stripes, spots and wedges.
