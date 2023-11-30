@@ -44,8 +44,11 @@ parskip, % Uncomment to add space between paragraphs
 \newacronym{3D}{3D}{three-dimensional}
 
 
-
-
+\usepackage[onehalfspacing]{setspace}%spacing between lines
+%\usepackage[doublespacing]{setspace}
+\newcommand\wordcount{
+    \immediate\write18{texcount -sub=section \jobname.tex  | grep "Section" | sed -e 's/+.*//' | sed -n \thesection p > 'count.txt'}
+    (\input{count.txt}words)}
 
 
 \usepackage[autostyle=true]{csquotes}

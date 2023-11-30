@@ -1,22 +1,30 @@
 \chapter{Patterning in Synthetic Bacterial Colonies} \label{chapter3}
-In chapter one we learned that systems might be more robust for patterning than linear stability analysis predicts and that we should look for other solutions.
-We also learned that growth and boundaries might change the outcome too.
+%Chapter one describes how systems might be more robust for patterning than linear stability analysis predicts, and that we should look for other analytical solutions when considering patterning.
+%It also studied how growth and boundaries might change the patterning outcome.
+%
+%In chapter 2 the patterning capabilities of the gene circuit engineered in ~\cite{Tica2020} were studied.
+%It was shown that patterns can arise from this circuit.
+%Certain parameter regimes are more robust for patterning, such as matching transfer functions, adding aTc,DAPG or slowing $D_{V}$ diffusion.
+%Finally, in chapter 2 the circuit was parametrised using the model under liquid culture experiments which have followed the circuit tuning guidance to optimise Turing robustness.
+%%
+%Following chapter 2 insights, I carried out spatial experiments were carried out with the optimal tuning conditions.
+%In this chapter, chapter 1 and chapter 2 knowledge is combined and spatial experiments  based on our previous work.
 
-In chapter 2 we studied the patterning capabilities of this new gene circuit. we showed it could make patterns. We also identified certain parameter regimes which are more robust for patterning. For example, matching transfer functions or adding aTc,DAPG or slowing $D_{V}$ diffusion.
-Finally, in chapter 2 we parametrised the model under liquid culture experiments which have followed the circuit tuning guidance to optimise Turing robustness.
 
-Following chapter 2 insights, I carried out spatial experiments were carried out with the optimal tuning conditions.
-In this chapter, we combine both chapter 1 and 2 knowledge and apply those spatial experiments based on our previous work.
-The aim is to predict pattern formation under the chosen spatial setup which are growing colonies.
-Additionally, for the patterns obtain, the aim is to obtain mechanistic insights of what the patterns can do.
-This is done first with the general parameter distribution from the literature to explore the overall potential of the circuit in bacterial colonies.
-Then, is done in the parametrised distributions to get more specific insights into the mechanisms in the regions we find ourselves in and to have a more predictable model.
+In this chapter, the focus is on experiments and modelling of the gene circuit in a bacterial biofilm.
+In this thesis, initial experiments on small colonies are carried out where concentric rings appear. Following this, further experiments by Isalan Group are caried out to further explore these rings.
+Then, pattern forming biofilms are replicated using a model and mechanism is understood.
+%
+%The aim is to predict pattern formation under the chosen spatial setup which are growing colonies.
+%Additionally, for the patterns obtain, the aim is to obtain mechanistic insights of what the patterns can do.
+%This is done first with the general parameter distribution from the literature to explore the overall potential of the circuit in bacterial colonies.
+%Then, is done in the parametrised distributions to get more specific insights into the mechanisms in the regions we find ourselves in and to have a more predictable model.
 
 \section{Rings in small colonies with high aTc}
-In the previous chapter, we found certain conditions which could affect robustness for Turing pattern formation.
+In the previous chapter, certain conditions which could affect robustness for Turing pattern formation are found.
 As already shown, the circuit components were matched by Jure Tica and Tong Zhu (see Fig~\ref{fig:dose_response_experimental}) to improve robustness as seen in Fig.~\ref{fig:balancing_robustness}.
 In this section, I investigate the circuit in a biofilm using confocal microscopy under those optimal Turing conditions.
-More specifically, I look at how the biofilm fluourescent patterns change with different levels of aTc.
+More specifically, I look at how the biofilm fluorescent patterns change with different levels of aTc in small colonies
 
 MK01 \textit{E.coli} cells were transformed using electroporation (Section~\ref{electroporation}) with the full circuit.
 This involved the introduction of 4 plasmids with the three nodes and the regulator cassette as seen in Fig.~\ref{fig:synthetic circuit_chapter2} and Table~\ref{tab:plasmid table} into our \textit{E.coli} cells.
@@ -49,17 +57,81 @@ The final snapshot (64h) shows green, red, green, red progression steaming from 
     \label{atcwalk_timeseries_confocal}
 \end{figure}
 
-
-
+Following this work, Jure Tica, Tong Zhu and Georg Wachter continued studying this synthetic patterning system more in depth.
+Two routes were followed.
+The first one involved specific shaped domains achieved by imprinting the agar with bacteria using shaped objects. %TODO ref fig
+The aim was to understand how the pattern adapts under different shaped domains.
+The second route, and most explored, involved larger colonies to determine whether more repeats would form in a Turing-like behaviour.
+This was achieved by carefully diluting the sample and plating a single colony without any neighbours.
 
 \section{Modelling synthetic circuit in tissues}
+Most theoretical studies which involve Turing patterns, numerically simulate their system using square domains with no-flux or periodic boundary conditions.
+However, these numerical domains are often not biologically realistic.
+For exampled, the system we have developed experimentally involves more specific conditions including shaped domains, stochastic growth and absorbing boundary conditions.
+To have a predictable model of our experimental system, the numerical solver had to be adapted to include such domain characteristics.
 
-\subsection{shape}
-\subsection{cellular automata}
+\subsection{Alternating Direction Implicit Method with defined domains}\label{Alternating Direction Implicit Method with defined domains}
+All simulations in this chapter are performed in a \acrshort{2D} space to match the \acrshort{2D} focal plane captured by the confocal microscopy.
+For this purpose, the numerical solver schema  \acrfull{ADI} is used.
+This numerical solver produces a 2D space solution in time for the $n$ number of species of the model.
+This method is chosen over \acrshort{CN} used in the previous chapter, as it is more efficient to solve 2D problems due to the matrix diagonalisation (See Section~\ref{numerical_methods}). More specific details of ADI can be found in Section~\ref{ADI}.
+
+
+
+ADI is originally defined to solve square domains.
+To integrate our specific domains with the solver, a masking system is used where a "shape matrix" is passed containing the shape of the domain.
+The "shape matrix" has is a boolean matrix of $IxJ$ size which contains information on the location of the cells.
+1's determine cells, while 0's determine agar.
+When passing this matrix to the solver, the algorithm computes reaction and diffusion terms in 1 positions while it only computes diffusion in 0's.
+Fig.~\ref{mask}~right shows the "shape matrix" where 1's are white and 0's are black.
+Additionally, this figure shows what functions are computed in which regions.
+How the "shape matrix" is defined depends on the experimental setup.
+Using this masking method, we will obtain a solution for the $n$ number of species of our model, in time and in space, within the biofilm.
+
+\begin{figure}[H]
+    \centering
+
+    \includegraphics[width=0.7\textwidth]{chapters/Chapter 3/mask}
+    \caption{a}
+    \label{mask}
+\end{figure}
+
+\subsection{Static Shaped domains}
+Following the small rings produced in this thesis, Tong Zhu from the Isalan Lab started experimenting with non-circular domains.
+Specific shapes were obtained by imprinting the agar with bacteria using shaped objects.
+Fig.~\ref{shmoo}A shows the resulting biofilm after impregnating the agar with bacteria using the edge of a glass coverslip. %TODO ref figure
+In this thesis, the biofilm shape is replicated by using a "shape matrix" derived from the microscopy image Fig.~\ref{shmoo}B.
+This is done through image recognition on the microscopy snapshots to detect areas with cells (See Section~\ref{Tissue area recognition}).
+
+
+\begin{figure}[H]
+    \centering
+
+    \includegraphics[width=1\textwidth]{chapters/Chapter 3/shmoo}
+    \caption{}
+    \label{shmoo}
+\end{figure}
+Using the masking method with ADI explained in ~\ref{Alternating Direction Implicit Method with defined domains}, a numerical solution was computed within the defined biofilm.
+The PDE system used is the six-equation model (Eq.~\ref{[6 equation proteins]}), which describes synthetic circuit 3954, using a Turing parameter set found through linear stability analysis.
+The numerical solution is shown in Fig.~\ref{shmoo}C as a superposition of the red and green channel.
+Details on the plotting the numerical solution of the 6-equation as a red-green image like confocal microscopy can be found in Section~\ref{Plotting superposed numerical solution as confocal microscopy results}
+
+\subsection{Grocellular automata}
+Most of the work we carried out experimentally to explore the system was done in bacterial colonies.
+These colonies are radially growing biofilms with stochastic cell division.
+Therefore, the static image recognition method used above is not suitable as we do not have time-series confocal data for most samples to create a dynamic "shape matrix".
+To recreate the dynamic behaviour of the colony growing, a stochastic growth model was developed using a cellular automaton.
+A cellular automaton is a discrete model of computation constructed with a few basic rules ~\parencite{gardner1970mathematical}, which can accurately describe how the shape of the bacterial colony evolves over time.
+
+\subsection{boundaries of plates}
 \section{Explore patterning potential}
 \subsection{general params}
 \subsection{parametrised params}
-
+\section{Controls}
+%experimental node deletions
+%lsa and numerical controls prove no patterns
+%cold shock controls + %timeseries
+\section{Discussion}
 
 
 %\section{Modelling bacterial colonies}

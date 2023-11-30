@@ -72,7 +72,7 @@ An optimization with this distribution was attempted, resulting in no significan
 Therefore, the variant of the $N(1,0.001) $ was introduced to ensure a more strict regime is in place, hence reducing the number of accepted negative steps.
 
 
-\section{Numerical solution by finite-difference methods}
+\section{Numerical solution by finite-difference methods}\label{numerical_methods}
 Obtaining a solution for a system of equations can become a complex problem if working with a system of large system of non-linear PDEs.
 Because an analytical expression for the solution is almost impossible to obtain, finite-difference methods are used for cases like this one.
 Finite-difference methods consists in discretising space and time to approximate the PDE system to a system of algebraic equations that can be easily solved by matrix algebra techniques~\parencite{Morton1994}.
@@ -101,7 +101,7 @@ The methods chosen to solve this system of equations are \acrfull{CN} for 1 dime
 %    \includegraphics[width=0.8\textwidth,center]{Methods/stencils.png}
 %    \caption{\textbf{Stencils for numerical solution}.  A stencil is a geometric representation with nodes and edges, that represents the points of interest for the numerical approximation. The points of interest, which are the ones present in the equations, are shown in green. j and n are the current space and time points. \textbf{(A)} \acrlong{CN} stencil used in 1D numerical simulations. The axis are time and space ($x$). \textbf{(B)} \acrshort{ADI} stencil used in 2D numerical simulations. The axis are time and 2 dimensional space ($x$,$y$).}
 %\end{figure}
-\subsubsection{\acrlong{CN} method}\label{cranknicolson}
+\subsection{\acrlong{CN} method}\label{cranknicolson}
 Consider a reaction diffusion system with one space dimension and boundary conditions
 \begin{equation}
     \frac{\delta u}{\delta t} =  f(u) + D\pdvn{2}{u}{x},   \quad \quad \quad \quad \quad \quad \pdv{u}{x}\biggr\rvert_{x=0,L}=0
@@ -121,7 +121,7 @@ By reordering this approximation into a linear equation, the resulting problem i
 \end{equation}
 This method simplifies the complex system into a linear system that can be solved numerically. The solution given will be a 1 dimensional in space solution of the reaction-diffusion system. Although the method is  unconditionally stable, the solution can contain oscillations if $ \frac{\Delta t}{\Delta x^{2}} >\frac{1}{2} $ \parencite{trefethen1996finite}. Therefore, the ratio will be kept below $\frac{1}{2}$ to avoid errors.
 
-\subsubsection{Alternating Direction Implicit Method}\label{ADI}
+\subsection{Alternating Direction Implicit Method}\label{ADI}
 As done in the \acrshort{CN} scheme, a reaction diffusion system and its boundary conditions will be consider. However, in this case two spatial dimensions will be introduced.
 
 \begin{equation}
@@ -157,9 +157,44 @@ The development of the pattern follows a certain behaviour: The molecule concent
 \textbf{Wavelength prediction from numerical Solution}
 The findpeaks package is used from the \textit{scipy.signal} python library. All peaks in the final time point of the 1D simulation are found through the findpeaks package. The average distance between peaks is taken and that distance is averaged throughout the 6 species.
 
+
+\subsection{Tissue area recognition}\label{Tissue area recognition}
+From a confocal microscopy image, we want to obtain the shape of the biofilm.
+The image is opened and processed using the PIL package in python.
+After splitting the image into RGB, the blue channel is selected.
+Because the cells show red and green fluorescence, the blue channel is minimal in the tissue compared to the agar.
+A gaussian filter is used to smooth the image and get a continuous biofilm.
+Blue channel pixels with values above a threshold (20) are selected and fixed to 0 in the "shape matrix".
+The rest of the pixels are set to 1 which determine the area of the biofilm.
+
+\subsection{Plotting superposed numerical solution as confocal microscopy results}\label{Plotting superposed numerical solution as confocal microscopy results}
+To compare model and experiments, the six variable solution steaming from the six-equation model has to be translated into the red-green superposed images obtained from the confocal microscopy.
+The red and green channel are obtained from the solutions of species D (LacI) and E (cI*), which are assumed to have a linear relationship with GFP and mCherry respectively (Eq~\ref{linear_fluorescence}) through parameter $\alpha$.
+These two channels are transformed using minmax scaling to range from 0-255:
+
+\begin{equation}
+    X_{scaled} = \frac{x-x_{min}}{x_{max}-x_{min}} \cdot 255
+\end{equation}
+
+This way, we end up with a red and green channel ranging from 0-255 (Fig.~\ref{redgreesupersposed}A-B).
+This can be plotted as an RGB image where the blue channel is zero (Fig.~\ref{redgreesupersposed}C).
+This normalisation also occurs when adjusting the gain for each fluorophore during the confocal microscopy.
+Therefore, as long as the linear relationship between LacI and GFP fluorescence holds true (same for mCherry), the normalised superposition we use for plotting should also be correct.
+In some instances, this linear relationship is not correct.
+Therefore, future studies to characterise fluorescence output and protein concentrations are needed.
+
+
+\begin{figure}[H]
+
+    \includegraphics[width=1\textwidth]{chapters/Methods/redgreesupersposed}
+    \caption{fill}
+    \label{redgreesupersposed}
+\end{figure}
+
 %\subsection{Cellular Automata modelling}
-%
-%\subsection{Machine learning inference of dose response curves}
+
+
+
 \section{Experimental methods}
 \subsection{Transformation through electroporation}\label{electroporation}
 1 $\mu L$ of DNA containing the 4 plasmids was added to 25 $\mu L$ of electrocompetent MK01 \textit{E.coli} cells.
@@ -170,7 +205,7 @@ The cells were then electroporated at 100 $\Omega$, 25 $\mu F$, and 1.8 $kV$.
 Post-electroporation, the cells were immediately suspended in 500 $\mu L$ of SOC medium inside the cuvette.
 This suspension was then moved to an aeration tube and allowed to recover for 1h shaking at 37 $^{\circ} C$, 220rpm.
 Finally, 100$\mu l$ of the culture was plated and grown in LB agar plates with the necessary antibiotics and grown overnight at 37 $^{\circ} C$.
-%
+
 \begin{table}[H]
     \centering
     \begin{tabular}{llll}
@@ -211,3 +246,4 @@ More details of confocal imaging protocol including imaging parameters can be fo
 
 The opening and superposing of the confocal microscopy images is performed in Fiji (ImageJ v2.1.0).
 None of the images are subjected to post-processing by linear or non-linear colour map transformations.
+
