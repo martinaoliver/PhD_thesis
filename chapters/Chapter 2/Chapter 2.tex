@@ -531,7 +531,7 @@ In particular, I investigated whether this 6 node synthetic biology implementati
 Finally, I explored computationally how to tune the genetic circuit experimentally to maximise the probability of Turing pattern formation.
 Two approaches were taken which include investigating the effects of matching dose response curves to increase Turing robustness and understanding the effects of individual parameters on Turing robustness.
 
-\subsection{Definition of parameter space}
+\subsection{Definition of parameter space based on literature parametrisation}\label{Definition of parameter space based on literature parametrisation}
 The model is first studied by initialising the model parameters from distributions derived from the literature.
 This multi-dimensional distribution enables a full understanding of the gene circuit behaviour in all possible parameter regimes.
 A distribution for each parameter was generated, and the multi-dimensional parameter space was sampled using Latin Hypercube Sampling (See~\ref{sampling method})~\parencite{Iman2014, Bergstra2012}, which maximises the sampling efficiency with fewer samples.
@@ -542,13 +542,13 @@ Diffuser production rate constants ($k$) in~\cite{Schaefer1996, Pai2009}.
 Protein degradation rates in~\cite{Andersen1998}, while diffuser degradation in~\cite{kaufmann2005revisiting}.
 Cooperativity values ($n$) in~\cite{Babic2007}.
 Other parameters that had not be clearly parametrised in the literature where defined with bounds such as maximum production rate ($V_{X}$), background production rate ($b_{X}$) and Dissociation constant ($K_{XY}$). Although we have less confidence on these last parameter estimations, bounds were still obtained from the literature ~\parencite{Scholes2019, Pusnik2019}.
-The types of distributions used for sampling and the values used for each parameter are listed in Table~\ref{tab:param distributions}.
-To obtain dimensionless parameters from these, the bounds of the distributions are recalculated, and the distributions sampled between these new bounds as specified in the ‘Distribution’ column of Table~\ref{tab:param distributions}.
+The types of distributions used for sampling and the values used for each parameter are listed in Table~\ref{tab:literature param distributions}.
+To obtain dimensionless parameters from these, the bounds of the distributions are recalculated, and the distributions sampled between these new bounds as specified in the ‘Distribution’ column of Table~\ref{tab:literature param distributions}.
 The transformations required to get the dimensionless bounds or values can be found in Eq.~\ref{variable transformations} and Eq.~\ref{parameter transformations} or in Table~\ref{tab:Dimensionless_params}.
 For example, for Dr* which is $(k_{2}D_{v}\mu_{u})/(k_{1}D_{u}\mu_{v})$, a loguniform distribution was sampled between new bounds [0.01, 100].
 \begin{table}[H]
     \caption{\textbf{Literature-derived parameter distributions.} The distributions used include Loguniform and Gaussian. Some parameters are fixed to single values and not sampled. These parameters are dimensional, so these distributions are then used in the dimensionless form of parameters shown in Eq.~\ref{variable transformations} and Eq.~\ref{parameter transformations}.}
-\label{tab:param distributions}
+\label{tab:literature param distributions}
 \renewcommand{\arraystretch}{1.3} % Adjust vertical padding
 \begin{tabular}{|p{20mm}|p{57mm}|c|p{25mm}|}
 \hline

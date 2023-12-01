@@ -20,7 +20,7 @@ Then, pattern forming biofilms are replicated using a model and mechanism is und
 %This is done first with the general parameter distribution from the literature to explore the overall potential of the circuit in bacterial colonies.
 %Then, is done in the parametrised distributions to get more specific insights into the mechanisms in the regions we find ourselves in and to have a more predictable model.
 
-\section{Rings in small colonies with high aTc}
+\section{Experimental rings in small colonies with high aTc}\label{Rings in small colonies with high aTc}
 In the previous chapter, certain conditions which could affect robustness for Turing pattern formation are found.
 As already shown, the circuit components were matched by Jure Tica and Tong Zhu (see Fig~\ref{fig:dose_response_experimental}) to improve robustness as seen in Fig.~\ref{fig:balancing_robustness}.
 In this section, I investigate the circuit in a biofilm using confocal microscopy under those optimal Turing conditions.
@@ -59,12 +59,12 @@ The final snapshot (64h) shows green, red, green, red progression steaming from 
 
 Following this work, Jure Tica, Tong Zhu and Georg Wachter continued studying this synthetic patterning system more in depth.
 Two routes were followed.
-The first one involved specific shaped domains achieved by imprinting the agar with bacteria using shaped objects. %TODO ref fig
+The first one involved specific shaped domains achieved by imprinting the agar with bacteria using shaped objects (Fig.~\ref{shmoo}).
 The aim was to understand how the pattern adapts under different shaped domains.
 The second route, and most explored, involved larger colonies to determine whether more repeats would form in a Turing-like behaviour.
 This was achieved by carefully diluting the sample and plating a single colony without any neighbours.
 
-\section{Modelling synthetic circuit in tissues}
+\section{Modelling framework for synthetic circuit in bacterial tissues}
 Most theoretical studies which involve Turing patterns, numerically simulate their system using square domains with no-flux or periodic boundary conditions.
 However, these numerical domains are often not biologically realistic.
 For exampled, the system we have developed experimentally involves more specific conditions including shaped domains, stochastic growth and absorbing boundary conditions.
@@ -83,7 +83,7 @@ To integrate our specific domains with the solver, a masking system is used wher
 The "shape matrix" has is a boolean matrix of $IxJ$ size which contains information on the location of the cells.
 1's determine cells, while 0's determine agar.
 When passing this matrix to the solver, the algorithm computes reaction and diffusion terms in 1 positions while it only computes diffusion in 0's.
-Fig.~\ref{mask}~right shows the "shape matrix" where 1's are white and 0's are black.
+Fig.~\ref{mask}~right shows the "shape matrix" where 1's are black and 0's are white.
 Additionally, this figure shows what functions are computed in which regions.
 How the "shape matrix" is defined depends on the experimental setup.
 Using this masking method, we will obtain a solution for the $n$ number of species of our model, in time and in space, within the biofilm.
@@ -91,7 +91,7 @@ Using this masking method, we will obtain a solution for the $n$ number of speci
 \begin{figure}[H]
     \centering
 
-    \includegraphics[width=0.7\textwidth]{chapters/Chapter 3/mask}
+    \includegraphics[width=0.9\textwidth]{chapters/Chapter 3/mask}
     \caption{a}
     \label{mask}
 \end{figure}
@@ -116,18 +116,109 @@ The PDE system used is the six-equation model (Eq.~\ref{[6 equation proteins]}),
 The numerical solution is shown in Fig.~\ref{shmoo}C as a superposition of the red and green channel.
 Details on the plotting the numerical solution of the 6-equation as a red-green image like confocal microscopy can be found in Section~\ref{Plotting superposed numerical solution as confocal microscopy results}
 
-\subsection{Grocellular automata}
+\subsection{Growing colony with cellular automaton}
 Most of the work we carried out experimentally to explore the system was done in bacterial colonies.
 These colonies are radially growing biofilms with stochastic cell division.
 Therefore, the static image recognition method used above is not suitable as we do not have time-series confocal data for most samples to create a dynamic "shape matrix".
 To recreate the dynamic behaviour of the colony growing, a stochastic growth model was developed using a cellular automaton.
-A cellular automaton is a discrete model of computation constructed with a few basic rules ~\parencite{gardner1970mathematical}, which can accurately describe how the shape of the bacterial colony evolves over time.
 
-\subsection{boundaries of plates}
-\section{Explore patterning potential}
-\subsection{general params}
-\subsection{parametrised params}
-\section{Controls}
+A cellular automaton is a discrete model of computation constructed with a few basic rules ~\parencite{gardner1970mathematical}, which can accurately describe how the shape of the bacterial colony evolves over time.
+As the "shape matrix", the cellular automaton consists of a boolean 2-dimensional matrix, where grid-points can be in a cell (1) or agar (0) state.
+This boolean matrix evolves over time when the following three rules are applied: If an cell (1) grid-point has any agar (0) neighbours, it will divide into the neighbouring agar (0) gridpoint with a probability $p_{d}$.
+No cell death (1 to 0 transition) is permitted.
+Newborn cells inherit the full concentration of their mother cells.
+This last assumption is taken as mRNA transcript homeostasis ensures concentration of mRNAs is mantained at cell division and as cell size increases by scaling between transcription rates and cell size ~\parencite{berry2022mechanisms,volteras2023global}.
+Because we are modelling protein concentration, we can then assume that mRNA concentration is linearly correlated with protein concentration for synthetic genes like ours.
+If some dilution occurs, this can be accounted for in the degradation terms of the PDE model.
+
+To model a single colony, a 0's matrix is initialised with a 1 in the middle, describing the first cell as it occurs in single cell colonies.
+When the cellular automaton rules are applied to this initial matrix, a circular cell domain starts growing stochasticly, resembling a bacterial colony (See Fig.\ref{cas}A-B).
+The division process consists of a probabilistic process where division occurs or not based on a probability of division ($p_{d}$).
+The division process is iteratively applied to the matrix until the final time (T) is reached.
+The computation is applied every ‘m’ hours, so
+\begin{equation}
+        T = \sum_{n=1}^{T/m} m\cdot n
+\end{equation}
+
+e.g. if $m=0.2$ at $T=0.2, 0.4, 0.6 \ldots etc$ .
+The growth rate can be tuned by increasing the probability of division ($p_d$) or decreasing $m$, so it matches the experimental growth rates. Furthermore, different $p_d$’s can be applied to different regions of the matrix to achieve faster growing subregions within the colony (See Fig.~\ref{cas}C). Finally, to simulate two colonies, two 1’s are placed at a distance (See Fig.~\ref{cas}D).
+
+\begin{figure}[H]
+    \centering
+
+    \includegraphics[width=1\textwidth]{chapters/Chapter 3/cas}
+    \caption{}
+    \label{cas}
+\end{figure}
+
+The masks obtained can be used to compute the solution of the PDE in the biofilm.
+Taking an arbitrary parameter set, this method produces a numerical result similar to that of the colonies obtained in Section~\ref{Rings in small colonies with high aTc}.
+The comparison can be seen in Fig.~\ref{small colony experiment vs model} where the red edge with green center is reproduced.
+This pattern is commonly seen throughout, as it stems from the boundary effects at the edge of the colony which is capture by the masking method.
+At the edge of the colony, there is a depletion of diffusers as they leak out onto the agar.
+By looking at the circuit (Fig.~\ref{fig:synthetic circuit_chapter2}), we can observe that diffusors are direct GFP activators and mCherry inhibitors.
+Therefore, as they get depleted, red is produced and green decays. 
+\begin{figure}[H]
+    \centering
+
+    \includegraphics[width=0.6\textwidth]{chapters/Chapter 3/small colony experiment vs model}
+    \caption{}
+    \label{small colony experiment vs model}
+\end{figure}
+
+\section{Colony pattern dynamics in parameter space searches}
+
+The experimental work in this thesis produced the first rings observed in the system, where small colonies were used (Section~\ref{Rings in small colonies with high aTc}).
+Following this, experiments were carried out in larger colonies by Jure Tica, Tong Zhu and Georg Wachter from the Isalan Lab.
+From here onwards, experimental images were produced by them unless otherwise stated.
+A wide variety of patterns were produced by growing larger colonies.
+
+
+\subsection{Circuit exploration in literature-based distribution}
+In parallel to microscopy work, the model predicted a wide variety of patterns could be produced in different dynamical regimes, which matched the experimental variability.
+This was shown by exploring the parameter space of our circuit within literature-based ranges.
+The distribution used is described in Section~\ref{Definition of parameter space based on literature parametrisation} and more specifically Table~\ref{tab:literature param distributions}.
+In this exploration, first linear stability analysis was carried out and outputs were classified following linear stability classification in Fig.~\ref{fig:dispersions}.
+The frequencies in parameter space of the linear stability solutions are shown in Fig.~\ref{system_class_frequencies}.
+
+\begin{figure}[H]
+    \centering
+
+    \includegraphics[width=0.6\textwidth]{chapters/Chapter 3/system_class_frequencies}
+    \caption{}
+    \label{system_class_frequencies}
+\end{figure}
+
+Examples of different linear stability analysis outputs were solved numerically, masked by a growing colony obtained with the cellular automata algorithm.
+The different final pattern snapshots and time-series can be seen in Fig~\ref{system_class_simulations}.
+A wide variety of patterns and dynamics is observed.
+Hopf solutions produce oscillatory patterns, some ring-like and some spot-like.
+Finally, Stable, Unstable and Systems with no steady states produce more homogeneous type solutions, which may be stationary or oscillatory.
+It is important to add that Turing I Hopf solutions seem to produce patterns more robustly in this chapter than in chapter 1. %TODO add maye in discussion
+All of patterns shown are single steady state systems so we can understand the individual and isolated behaviour of that dynamical system.
+However some interesting multistable systems are present such as the Turing-Hopf-Unstable system shown in FigX.
+\begin{figure}[H]
+    \centering
+
+    \includegraphics[width=1\textwidth]{chapters/Chapter 3/system_class_simulations}
+    \caption{}
+    \label{system_class_simulations}
+\end{figure}
+
+
+
+
+\subsection{Circuit exploration in liquid-culture fits distribution}
+
+\section{Elucidating mechanisms through experiment controls}
+\subsection{Physical controls}
+\subsubsection{Size}
+\subsubsection{Boundary}
+\subsubsection{Temperature}
+
+\subsection{Genetic controls}
+\subsubsection{Experimental deletions}
+\subsubsection{Model deletions}
 %experimental node deletions
 %lsa and numerical controls prove no patterns
 %cold shock controls + %timeseries
