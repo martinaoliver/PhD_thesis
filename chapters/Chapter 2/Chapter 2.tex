@@ -724,7 +724,7 @@ Subcircuit \#2 shows how the circuit is responsive to aTc and therefore it can b
     \label{fig:dose_response_experimental} % A label for referencing this figure later in the document
     %TODO add details of each subcircuit from supplementary paper.
 \end{figure}
-\section{Constrained parametrised distributions: fitting to liquid culture data of gene subcircuits}
+\section{Constrained parametrised distributions: fitting to liquid culture data of gene subcircuits}\label{Constrained parametrised distributions: fitting to liquid culture data of gene subcircuits}
 The dose response curves obtained (Fig.~\ref{fig:dose_response_experimental} left) are not only useful to characterise the circuit, but also for parametrisation of the model.
 Using the dimensionless model, the fluorescence dose reponse curves \#1 and \#3 can be fitted to obtain values for $K_{XY}$ and $V_{X}$ using a multivariate analysis approach.
 This is possible because the non-dimensionalisation facilitates the comparison between the model and experimental dose-response curves with simple and intuitive methods.
@@ -785,7 +785,7 @@ And for Subcircuit \#3 we obtain the following steady-state expressions:
 \end{equation}
 \end{subequations}
 
-\subsection{Fitting process and the resulting best fit distributions.}
+\subsection{Fitting process and the resulting best fit distributions.} \label{Fitting process and the resulting best fit distributions.}
 In addition to scaling and nondimensionalising, the lowest GFP data points were excluded, because fluorescence readings were insufficiently sensitive to measure concentration at these points %TODO ref figure fits(Fig. S20).
 The fits were constrained to the maximal fold-change of the regulation, and to the sensitivity of the regulation (location of half-maximal response).
 This improved the quality of the fit and allowed us to identify a broader range of suitable solutions.
@@ -878,8 +878,9 @@ The three Turing parameter sets are ensured to be ‘balanced’, where the inpu
 The corresponding $q=10$ multivariate Gaussian parameter distributions are shown in Fig.~\ref{fig:multivariate_from_fit} in 2-parameter dimensions.
 1 dimensional distributions are of this multivariate are shown in Fig.~\ref{fig:1d_distributions}, where the distribution is grey, and Turing within the distribution is green.
 
-The distributions of the multivariate gaussian in 1Dand the Turing parameter sets are shown in Fig. S23.
+The distributions of the multivariate gaussian in 1D and the Turing parameter sets are shown in Fig.~\ref{fig:1d_distributions}.
 The corresponding $q=10$ multivariate Gaussian parameter distributions are shown in Fig.~\ref{fig:multivariate_from_fit}.
+%TODO comment on the imporance of these results: Turing parameter sets exist in the fit distribution
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
@@ -907,26 +908,6 @@ The corresponding $q=10$ multivariate Gaussian parameter distributions are shown
     \caption{\textbf{Constrained parametrised distributions for $V^*_X$ and $K^*_{XY}$ parameters in 1 dimension.} Distributions for dimensionless parameters of model based on fitting to liquid-culture experimental data. Grey distribution corresponds to parameters from fitting with $q=10$. Green vertical lines correspond to the 3 Turing parameter sets found in grey distribution using linear stability analysis }
     \label{fig:1d_distributions} % A label for referencing this figure later in the document
 \end{figure}
-
-\subsection{Parameter exploration around fit: adding noise to the best fit Turing solutions}
-To further explore the parameter space found around the fitted Turing parameter sets, a small noise deviation is applied with relative uncertainty of 1\%.
-In other words, for each parameter $p$, a normal distribution is generated with mean $\mu=p$ and standard deviation $\sigma=p\cdot 0.01$.
-This small noise perturbation to all parameters, which generates similar steady-state dose response behaviour, allows us to further explore the Turing parameter space near the best fit to the liquid culture.
-For each value of uncertainty 2000 parameter combinations were analysed.
-The Turing patterning robustness with different amounts of noise is shown in Fig.~\ref{fig:robustness_noise}A, showing how robustness decreases as more noise is added.
-The different analytical solutions for a relative uncertainty of 1\% are shown in Fig.~\ref{fig:robustness_noise}B, where we observe not only Turing I solutions, but also Turing I Hopf and Hopf solutions.
-%TODO comment in next chapter on noise exploration
-
-
-\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
-    \centering
-    \begin{adjustbox}{center}
-        \includegraphics[width=1\textwidth]{chapters/Chapter 2/robustness_noise} % The name of your image file; assumes it's in the same directory as your .tex file
-    \end{adjustbox}
-    \caption{\textbf{Search around fitted Turing parameter set.} (A) Turing robustness with different levels of noise. (b) Using 1\% noise (mean $\mu=p$ and standard deviation $\sigma=p\cdot 0.01$), frequency of different analytical solutions: Simple stable 64.8\%, Turing I oscillatory 33.5\%, Turing I Hopf 1.5\%, Hopf 0.25\%. (c) Numerical simulations in growing colonies of 1\% noise distribution.}
-    \label{fig:robustness_noise}
-\end{figure}
-
 
 %%TODO summary chapter2
 

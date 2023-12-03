@@ -57,7 +57,7 @@ The final snapshot (64h) shows green, red, green, red progression steaming from 
     \label{atcwalk_timeseries_confocal}
 \end{figure}
 
-Following this work, Jure Tica, Tong Zhu and Georg Wachter continued studying this synthetic patterning system more in depth.
+Following this work, we continued studying this synthetic patterning system more in depth.
 Two routes were followed.
 The first one involved specific shaped domains achieved by imprinting the agar with bacteria using shaped objects (Fig.~\ref{shmoo}).
 The aim was to understand how the pattern adapts under different shaped domains.
@@ -152,6 +152,7 @@ The growth rate can be tuned by increasing the probability of division ($p_d$) o
 \end{figure}
 
 The masks obtained can be used to compute the solution of the PDE in the biofilm.
+Unless otherwise stated, a reflective boundary condition (Neumann) is used at the edge of the square where the agar finishes.
 Taking an arbitrary parameter set, this method produces a numerical result similar to that of the colonies obtained in Section~\ref{Rings in small colonies with high aTc}.
 The comparison can be seen in Fig.~\ref{small colony experiment vs model} where the red edge with green center is reproduced.
 This pattern is commonly seen throughout, as it stems from the boundary effects at the edge of the colony which is capture by the masking method.
@@ -166,11 +167,29 @@ Therefore, as they get depleted, red is produced and green decays.
     \label{small colony experiment vs model}
 \end{figure}
 
+\subsection{Adapting time and space in the dimensionless model}
+When solving our system numerically, time and space are key parameters that define the bounds of our simulation.
+As seen in the previous chapter , time and space are dimensionless and dependent on the model’s parameters
+\begin{equation}\label{time_space_transform}
+    t = \frac{t*}{\mu _a}, \quad x = \sqrt{\frac{k_{1}D_{u}}{\mu_{a}\mu_{u}}}x^*
+\end{equation}
+
+In the parameter sampling used, $\mu_a = 0.3 \,h^{-1}, \,k_1 = 0.0183 \,h^{-1},\, \mu_u = 0.0225\, h^{-1}$ and $D_U$ is sampled from a range of $0.1-10 \,mm^2h^{-1}$.
+Using Eq.~\ref{time_space_transform}, time is transformed so that $t^*=3.3\cdot t$.
+Space is also transformed but is dependent on $D_U$, which is sampled from a range.
+Therefore, for $D_U = [0.1, 10] \,mm^2 h^{-1}$, $x^* =[1.92 - 0.192] \cdot x$.
+Using realistic exsperiment time and space, the following dimensionless values are obtained:
+For time $t=166\,h$, dimensionless time $t^*=50$.
+Dimensionless space  $x^*=16$ is taken so  $x = [8.32, 83.2] \,mm$, with $D_U = [0.1, 10]\, mm^2 h^{-1}$ respectively.
+These values of t and x lie within realistic physical parameters for our system.
+These transformations are dependent on parameters that may vary experimentally, and therefore some uncertainty must be allowed.
+The experimental values used here are an example on how to carry out the transformations, however all simulation parameters for space and time can be found on TableX and Table Y.
+%TODO add somewhere params of simulations in appendix to justify transfomations
 \section{Colony pattern dynamics in parameter space searches}
 
 The experimental work in this thesis produced the first rings observed in the system, where small colonies were used (Section~\ref{Rings in small colonies with high aTc}).
-Following this, experiments were carried out in larger colonies by Jure Tica, Tong Zhu and Georg Wachter from the Isalan Lab.
-From here onwards, experimental images were produced by them unless otherwise stated.
+Following this, experiments were carried out in larger colonies by Jure Tica, Tong Zhu and Georg Wachter and Dario Bazzoli from the Isalan Lab.
+From here onwards, all experimental results were produced by them unless otherwise stated.
 A wide variety of patterns were produced by growing larger colonies.
 
 
@@ -180,48 +199,212 @@ This was shown by exploring the parameter space of our circuit within literature
 The distribution used is described in Section~\ref{Definition of parameter space based on literature parametrisation} and more specifically Table~\ref{tab:literature param distributions}.
 In this exploration, first linear stability analysis was carried out and outputs were classified following linear stability classification in Fig.~\ref{fig:dispersions}.
 The frequencies in parameter space of the linear stability solutions are shown in Fig.~\ref{system_class_frequencies}.
-
 \begin{figure}[H]
     \centering
 
     \includegraphics[width=0.6\textwidth]{chapters/Chapter 3/system_class_frequencies}
-    \caption{}
+    \caption{The optimised parameters produce a wide variety of analytical solutions, expressed as percentages (Right). }
     \label{system_class_frequencies}
 \end{figure}
 
 Examples of different linear stability analysis outputs were solved numerically, masked by a growing colony obtained with the cellular automata algorithm.
 The different final pattern snapshots and time-series can be seen in Fig~\ref{system_class_simulations}.
-A wide variety of patterns and dynamics is observed.
-Hopf solutions produce oscillatory patterns, some ring-like and some spot-like.
-Finally, Stable, Unstable and Systems with no steady states produce more homogeneous type solutions, which may be stationary or oscillatory.
-It is important to add that Turing I Hopf solutions seem to produce patterns more robustly in this chapter than in chapter 1. %TODO add maye in discussion
+A wide variety of patterns and dynamics is observed including stationary rings, travelling waves, stationary and non-stationary spots, labyrinths and bistability wedges.
+This global model analysis, with biologically relevant parameters, showed that our circuit can produce a broad range of spatial patterns, together with spatially homogenous solutions.
+Overall, Turing I hopf and Turing I patterns are the most interesting heterogeneities due to their periodicity and stationarity.
+However, they are not very robust ($0.022\%$ and $0.0037\%$ respectively).
+On the other hand, Hopf solutions also produce interesting heterogeneities which are sometimes periodic, and seem to occur more robustly ($4\%$).
+It is important to add that Turing I Hopf solutions seem to produce patterns more robustly in this chapter than in chapter 1. %TODO add maybe in discussion
 All of patterns shown are single steady state systems so we can understand the individual and isolated behaviour of that dynamical system.
-However some interesting multistable systems are present such as the Turing-Hopf-Unstable system shown in FigX.
+However some interesting multistable systems are present such as the Turing-Hopf-Unstable system shown in Fig.~\ref{comparison_colonies_model_vs_experiment} Rings \#1.
 \begin{figure}[H]
     \centering
 
     \includegraphics[width=1\textwidth]{chapters/Chapter 3/system_class_simulations}
-    \caption{}
+    \caption{Simulations of the hybrid PDE-bacterial colony solver for all the types of analytical solutions of network #1754. Kymograph (left) showing the timeseries of the cross-section and the final snapshot of the simulation (right). Green and red channels are superposed. }
     \label{system_class_simulations}
 \end{figure}
 
 
+This wide variety of patterns was explored, and corresponding experimental solutions were found (See Fig.~\ref{comparison_colonies_model_vs_experiment}).
+As the model predicted, the system can experimentally produce rings, spots, wedges.
+However, although labyrinths commonly appear in the model, they have not been found \textit{in-vitro}.
+
+
+\begin{figure}[H]
+    \centering
+
+    \includegraphics[width=1\textwidth]{chapters/Chapter 3/comparison_colonies_model_vs_experiment}
+    \caption{Various spatial patterns are observed when the full circuit is tested in growing colonies in different experimental conditions (upper row). The white arrows show two wedges and a region of spot formation. Colony size and tuning conditions are listed in Table S1. Patterns are reproduced with the circuit model (bottom row); for parameters see Suppl. Info. 4. All images except Red Edge, Black Hole and Bullseye #1 can be attributed to Jure Tica, Tong Zhu and Georg Wachter. }
+    \label{comparison_colonies_model_vs_experiment}
+\end{figure} %TODO add params and columns to appendix
 
 
 \subsection{Circuit exploration in liquid-culture fits distribution}
+In the previous section, the model was explored using large literature-based distributions and was compared to experiments in a different range of tuning conditions.
+In this section we focus on a more constrained region of the parameter space obtained by fitting the model to liquid culture data (Section~\ref{Constrained parametrised distributions: fitting to liquid culture data of gene subcircuits}).
+The aim of this parametrisation is to explore a model which is better linked to the experimental system in terms of parameters and behaviour.
+More specifically, this constraining is carried out to prove that the obtained experimental patterns exist in this fitted parameter region, in particular the more Turing-like concentric rings (Fig.\ref{comparison_colonies_model_vs_experiment} Rings \#2).
+
+
+In Section~\ref{Fitting process and the resulting best fit distributions.}, the model was fitted to dose response curves of subcircuits under high aTc and matched transfer functions conditions.
+These are the same conditions where the Fig.\ref{comparison_colonies_model_vs_experiment} Rings \#2 appear.
+As previously explained and shown in Fig.~\ref{fig:1d_distributions}, linear stability analysis was carried out on the fitted multivariate gaussian distribution with $q=10$, and 3 Turing parameter sets were found.
+These are the closest 3 Turing parameter sets to the best fit solution.
+Those three parameter sets were simulated using a colony growth mask (See Fig.~\ref{best_fit_colony_turing}). %TODO (See params in appendix)
+Their dominant features, including a central circular green (Case #1) or red (Case #2) spot, surrounded by a ring of green fluorescence, and a wedge or labyrinthian like pattern.
+These are all observed within the experimental data. %TODO ref experimental figure.
+
+\begin{figure}[H]
+    \centering
+
+    \includegraphics[width=1\textwidth]{chapters/Chapter 3/best_fit_colony_turing}
+    \caption{ }
+    \label{best_fit_colony_turing}
+\end{figure} %TODO add params and columns to appendix
+
+Although Case #1 seems to have similar rings to the ones we are looking to replicate (seen in Fig.\ref{comparison_colonies_model_vs_experiment} Rings \#2), more rings would be needed to prove that the periodic ring like behaviour exists in the fit distribution.
+Three routes can be taken to further explore the patterns present in the fit distribution.
+The first one would be to tweak numerical parameters (e.g. space, time and growth rate) to obtain a different pattern.
+However, numerical parameters are harder to explore from a computational parallelisation point of view.
+The second one would be to sample more from the fit distribution to find more Turing parameters and simulate those.
+However, Turing parameters are not commonly found and therefore it is also a computationally expensive task to obtain few results.
+Finally, a third route exists which involves searching very closely around the vicinity of the already obtained parameter sets.
+This route is chosen as it is the most efficient way of obtaining many Turing parameter sets that still belong to the fit distribution.
+
+\subsection{Pattern exploration around the vicinity of Turing fit solutions}
+The parameter space found around the fitted Turing parameter sets is explored, while keeping to the fit distributions. To do this, a small noise deviation is applied to the parameters with relative uncertainty of 1\%.
+In other words, for each parameter $p$, a normal distribution is generated with mean $\mu=p$ and standard deviation $\sigma=p\cdot 0.01$.
+This small noise perturbation to all parameters, which generates similar steady-state dose response behaviour, allows us to further explore the Turing parameter space near the best fit to the liquid culture.
+For each value of uncertainty 2000 parameter combinations were analysed.
+The Turing patterning robustness with different amounts of noise is shown in Fig.~\ref{fig:turing_fit_noise_robustness}A, showing how robustness decreases as more noise in the parameters is added.
+This figure shows how the local parameter space around Turing conditions is highly enriched with patterns (e.g adding a relative uncertainty of 1\% around a Turing I solution produces 33\% Turing I solutions, whereas an uncertainty of 5\% produces 5\% Turing I solutions).
+The average relative uncertainty in the Vm and Km parameters between biological repeats in liquid culture data of Fig. 1b was 4.8\%. This indicates that if a patterning region was found, Turing patterns could be sufficiently common to be reproduced.%TODO maybe add in discussion
+The different analytical solutions for a relative uncertainty of 1\% are shown in Fig.~\ref{fig:turing_fit_noise_robustness}B, where we observe not only Turing I solutions, but also Turing I Hopf and Hopf solutions.
+For this relative uncertainty (1\%), numerical solutions are computed and shown in Fig.~\ref{fig:turing_fit_noise_robustness}C.
+Within the small vicinity of a ring-like Turing parameter set, we can find rings, spots and labyrinths.
+In particular, we can find solutions with multiple concentric rings such as the one marked with an arrow in Fig.~\ref{fig:turing_fit_noise_robustness}C Case\#4.
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 3/turing_fit_noise_robustness} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{\textbf{Search around fitted Turing parameter set.} (A) Turing robustness with different levels of noise. (b) Using 1\% noise (mean $\mu=p$ and standard deviation $\sigma=p\cdot 0.01$), frequency of different analytical solutions: Simple stable 64.8\%, Turing I oscillatory 33.5\%, Turing I Hopf 1.5\%, Hopf 0.25\%. (c) Numerical simulations in growing colonies of 1\% noise distribution. Arrow points to Case #4 which is a solution with multiple periodic rings}
+    \label{fig:turing_fit_noise_robustness}
+\end{figure}
+
+Time series of this particular Case \#4 Turing solution is explored and compared to different snapshots of the bacterial colony patterns.
+Outer ring addition dynamics of both the model colony and the experimental colony are shown in Fig.~\ref{fig:outer_ring_addition_modelvsexperiment}, where rings get added to the edge of the colony.
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 3/outer_ring_addition_modelvsexperiment} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{\textbf{Search around fitted Turing parameter set.} (A) Turing robustness with different levels of noise. (b) Using 1\% noise (mean $\mu=p$ and standard deviation $\sigma=p\cdot 0.01$), frequency of different analytical solutions: Simple stable 64.8\%, Turing I oscillatory 33.5\%, Turing I Hopf 1.5\%, Hopf 0.25\%. (c) Numerical simulations in growing colonies of 1\% noise distribution. Arrow points to Case #4 which is a solution with multiple periodic rings}
+    \label{fig:outer_ring_addition_modelvsexperiment}
+\end{figure}
+
+Other interesting solutions are found such as the colony induced Turing pattern (Fig~\ref{fig:turing_fit_noise_robustness}C Case #5).
+In Fig.~\ref{fig:colony_induced_turing} we see an example of an instability induced by stochasticity in cell division or growth: the dispersion relation doesn’t show any unstable modes; however, the simulation shows a clear periodic heterogeneity.
+The dominant mode of this dispersion relation (Fig.~\ref{fig:colony_induced_turing}A) has a wavenumber of 1.8, which corresponds to a wavelength of $2\pi/1.8=3.49$.
+This approximately corresponds to the wavelength of the produced pattern (Fig.~\ref{fig:colony_induced_turing}B), meaning this stable mode has been excited to unstable and resulted in a Turing pattern.
+
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 3/colony_induced_turing} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{\textbf{Colony induced instability.}  (a) Dispersion relation showing a stable system. The most dominant mode (wavenumber=1.8, wavelength=3.49). (b) Regular pattern in numerical solution of stable system with dominant mode just below zero.}
+    \label{fig:colony_induced_turing}
+\end{figure}
+%TODO discussion: histogram shows little robustness, but could be higher as stable systems sometimes display patterns in the vicinity of a turing as they are almost stable.
+
 
 \section{Elucidating mechanisms through experiment controls}
-\subsection{Physical controls}
-\subsubsection{Size}
-\subsubsection{Boundary}
-\subsubsection{Temperature}
+Although the patterns obtained experimentally might seem qualitatively similar to Turing solutions in bacterial colonies, further controls are needed to strenthen the hypothesis that these are Turing patterns.
+Such controls involve introducing a perturbation in the model, which leads to a change in pattern features; and obtaining the same change in pattern when producing such perturbation experimentally.
 
-\subsection{Genetic controls}
-\subsubsection{Experimental deletions}
-\subsubsection{Model deletions}
+Most of these perturbations except the deletions section will be applied to the Case #4 Turing condition shown in Fig~\ref{fig:outer_ring_addition_modelvsexperiment}, where multiple rings appear using parameters from the fit distribution.
+
+\subsection{Irregular growth}
+The first control involves studying the pattern under different sizes of biofilm.
+An interesting way to look at this problem is by understanding how the pattern changes within the same colony in smaller or larger areas.
+By tuning the growth rates of the cellular automata differently in different regions of the colony, we can obtain faster growing domains which will be larger than others (See Fig.~\ref{cas}C).
+This resembles the bacterial colonies produced which have faster growing edges.
+The model shows that larger domains will produce more rings than shorter domains (See Fig.~\ref{fig:irregular growth} right).
+This prediction is correct, as experimental data produces the same behaviour  (See Fig.~\ref{fig:irregular growth} left).
+Additionally, in both model and experiment, this irregular growth leads to discontinuity in the concentric rings.
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 3/irregular growth} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{\textbf{Effects of irregular growth in pattern.} }
+    \label{fig:irregular growth}
+\end{figure}
+
+\subsection{Boundary effects}
+The second control involves studying how boundary conditions might affect the resulting pattern.
+The boundary conditions at the edge of the colony are always assumed to be absorbing boundary conditions because the diffusers produced in the biofilm get absorbed by the empty agar because of diffusion.
+This boundary is indirectly encoded with the masking process (Fig.~\ref{mask}).
+However, the boundary at the edge of the simulation square or in other words, where the agar would finish, has to be defined in the ADI numerical solver.
+As in chapter X, the absorbing boundaries are introduced by using a Dirilichet boundary condition where the concentration at the boundary is zero $u=0$ as opposed to the previously used Neumann boundaries where the derivative at the boundary is zero.
+More details on the encoding of boundaries can be found in Section~\ref{numerical_methods}.
+Up to now, all simulations in this Chapter were computed using reflective boundary conditions at the edge of the square.
+Here, we introduce absorbing boundary conditions and see that this perturbation leads to fewer rings being produced.
+The hypothesis that absorbing boundary conditions make weaker patterns is then tested experimentally.
+Absorbing and Reflecting experimental boundaries can be introduced using different sizes of agar plates where the colony grows.
+A larger plate will resemble an absorbing boundary conditions as we assume diffusers build-up will be less prominent and there will always be a diffuser flux towards the edges of the plate.
+On the other hand, a small plate will lead to the quick accumulation of diffuser and therefore these will quickly be reflected as they reach the boundary. %TODO maybe explain better
+Experimental colonies behave according to model predictions, displaying fewer rings when grown in bigger plates.
+%For a small agar plate, we define reflecting boundaries while for a larger plate we assume absorbing boundary conditions.
+
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 3/boundary_conditions_colony} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{\textbf{Effects of boundaries.} The boundary condition affects the patterns. Multiple rings form when cells are grown in smaller wells (closed boundary), whereas fewer rings form when grown in larger dishes (open boundary). \TODO{change images with OG}s}
+    \label{fig:boundary_conditions_colony}
+\end{figure}
+
+\subsection{Node deletions}
+Another important perturbation is deleting nodes of the circuit to study how patterning is affected.
+Deletions of each node described in Fig.~\ref{fig:deletion_circuits} were studied using analytical and numerical methods, by re-sampling the parameter space with the literature-based distribution.
+The models were defined by taking the original six equation model and the following species: RpaI and TetR for Node A deletion, cinI for node B deletion and cI* for node C deletion (See Fig.~\ref{fig:deletion_circuits}).
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1.1\textwidth]{chapters/Chapter 3/deletion_circuits} % The name of your image file; assumes it's in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{}
+    \label{fig:deletion_circuits}
+\end{figure}
+
+No Turing I or Turing I Hopf instabilities were found when sampling these three circuits using linear stability analysis. %TODO mention how many.
+Fewer samples were simulated using numerical methods and no patterns were observed either. %TODO specify what is a pattern
+%TODO look into results in model
+
+
+
+
+
+
+
+
+A purely experimental control testing the circuit with node deletions was carried out by Jure Tica and Dario Bazzoli.
+To ensure the pattern
 %experimental node deletions
+
+\subsection{Model deletions}
 %lsa and numerical controls prove no patterns
+
+\subsection{Temperature variations}
 %cold shock controls + %timeseries
+
 \section{Discussion}
 
 

@@ -669,6 +669,7 @@ In particular, we will look at how adding an absorbing boundary condition and gr
 This particular direction was inspired in experiments described in the next sections where growing bacterial colonies are used as a platform to engineer Turing patterns using synthetic gene circuits.
 
 The absorbing boundaries are introduced by using a Dirilichet boundary condition where the concentration at the boundary is zero $u=0$ as opposed to the previously used Neumann boundaries where the derivative at the boundary is zero.
+More details on the encoding of boundaries can be found in Section~\ref{numerical_methods}.
 On the other hand, growth is introduced as isotropic linear growth, where cells are added to both boundaries with a linear growth rate.
 Growth of the tissue is encoded in a 1D binary vector, where cells are denoted as 1 and empty space as 0.
 The amount of 1's grows linearly, which represents the tissue expanding.
