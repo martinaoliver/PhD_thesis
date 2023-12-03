@@ -11,7 +11,7 @@ convergence time and even pattern shape from the dispersion relation.
 This is important to circumvent expensive numerical methods to estimate some information from the emergent pattern without computing it numerically.
 Then we explore how linear stability analysis might not always be a good predictor of pattern formation.
 For example, how multistability can break linear stability analysis predictions and how other types of dispersion relation profiles or instabilities which are not classical Turing can generate stationary spatial patterns or other types of temporal-spatial patterns.
-Finally, we explore numerically how these patterns behave when realistic biological systems from our experimental setup are introduced, including open boundaries or growth.
+Finally, we explore numerically how these patterns behave when realistic biological systems from our experimental setup are introduced, including absorbing boundaries or growth.
 
 
 
@@ -566,7 +566,7 @@ Other examples can also be found, for example, where the unstable system settles
 \end{figure}
 
 
-\subsection{Analytical to numerical: Other types of dispersion relation, and other types of patterns}
+\subsection{Analytical to numerical: Other types of dispersion relation, and other types of patterns} \label{nogrowth}
 Multi-stable systems are not the only case where the classical turing instability fails to predict pattern formation.
 Other types of dispersion relation beyond classical Turing instabilities can produce stationary patterns and non-stationary regular patterns that might be of interest in developmental biology.
 The aim of this section is to document what type of dispersion relations in mono-stable systems can be linked to what type of patterns to gain insights into predicting pattern formation from linear stability analysis.
@@ -668,7 +668,7 @@ Here, we look deeper into how other aspects linking the theory closer to the bio
 In particular, we will look at how adding an absorbing boundary condition and growth to the Turing problem might induce or break patterning.
 This particular direction was inspired in experiments described in the next sections where growing bacterial colonies are used as a platform to engineer Turing patterns using synthetic gene circuits.
 
-The absorbing boundaries are introduced by using a Dirilichet boundary condition where the concentration at the boundary is zero $u=0$ as opposed to the previously used Neumann boundaries where the derivative at the boundary is zero.
+The absorbing boundaries are introduced by using a Dirilichet boundary condition where the concentration at the boundary is zero $u=0$, as opposed to the previously used Neumann boundaries where the derivative at the boundary is zero.
 More details on the encoding of boundaries can be found in Section~\ref{numerical_methods}.
 On the other hand, growth is introduced as isotropic linear growth, where cells are added to both boundaries with a linear growth rate.
 Growth of the tissue is encoded in a 1D binary vector, where cells are denoted as 1 and empty space as 0.
@@ -679,8 +679,7 @@ Therefore, while reaction-diffusion occurs in the tissue; only diffusion occurs 
 As with the non-growing Neumann boundary condition patterns in the previous section, we develop a classification system to quantify the different types of patterns obtained, and the transitions as growth is introduced.
 However, due to the absorbing boundary conditions and growth homogeneity and convergence we previously defined is in some cases physically impossible.
 For this reason, a new classification system is developed based on the number of peaks.
-Peaks are detected using the python $find\_peaks$ algorithm with parameter
-$prominence=0.05$.
+Peaks are detected using the python $find\_peaks$ algorithm with parameter $prominence=0.05$.
 Again, this can be tweeked depending on the numerical outcome and misclassification might occur.
 
 
@@ -693,7 +692,7 @@ Again, this can be tweeked depending on the numerical outcome and misclassificat
     \label{fig:peaks_classification} % A label for referencing this figure later in the document
 \end{figure}
 
-The peak classification shown in \ref{fig:peaks_classification}, retrieves information on whether there is a pattern at all and whether this pattern is only a pattern at the boundary or is a periodic pattern due to other effects.
+The peak classification shown in~\ref{fig:peaks_classification}, retrieves information on whether there is a pattern at all and whether this pattern is only a pattern at the boundary or is a periodic pattern due to other effects.
 Patterns with one 1 peak will be considered homogeneous as they result from the morphogens being reduced at the boundary due to absorption.
 Patterns with 2 peaks are also considered not to be patterned states as the two peaks might arise at the boundary for one of the diffusers due to the depletion of the other.
 Patterns with 3 peaks start displaying a more significant pattern, although it is hard to prove periodicity from them and the number of peaks might not scale with tissue length.
@@ -701,14 +700,20 @@ Patterns with 4 peaks could still be purely a boundary effect, but is less likel
 Finally, patterns with 5 peaks and above can be considered strong patterns and would be most similar to classical Turing patterns in non-growing no-flux boundary domains.
 
 
-Using this classification method, x parameter sets where simulated and classified with absorbing boundary conditions and growth.
+Using this classification method, 9087 parameter sets where simulated and classified with absorbing boundary conditions and growth.
 Again, all these parameter sets have only a single steady state to ensure patterning effects are due to boundaries and growth and not due to multistability.
 
-%TODO make image on classification
-%TODO add  2 confusion matrix
 
-
-\subsection{No growth to open boundaries}
+\subsection{Reflecting boundaries to absorbing boundaries}
+When absorbing boundaries are added, periodic patterns might get created, disrupted or remain the same.
+The confusion matrix in Fig~\ref{fig:nogrowth_openboundary_confusion_variant0} tries to understand these transition by compare the classification outputs of reflecting boundaries versus absorbing boundaries.
+As previously explained, the classification in Section~\ref{nogrowth} could not be used for absorbing boundary conditions as these prevent the pattern from being completely homogeneous or stationary.
+Therefore, two types of classifications have to be compared for each type of boundary.
+Although the classification outputs cannot be directly compared, this confusion matrix is useful to identify interesting cases:
+If absorbing boundary conditions had no effect, we would expect "Homogeneous" and "Temporal oscillator" in the y axis to become "no pattern, homogeneous or boundary effect".
+Additionally, we would expect "Stationary patterns" to become "Strong patterns".
+Although this is commonly the cases as seen by the dark-green squares of Fig.~\ref{fig:nogrowth_openboundary_confusion_variant0}, showing boundaries do not often affect the pattern, some exceptions are present.
+These exceptions are further studied.
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
@@ -719,6 +724,14 @@ Again, all these parameter sets have only a single steady state to ensure patter
     \label{fig:nogrowth_openboundary_confusion_variant0} % A label for referencing this figure later in the document
 \end{figure}
 
+By studying this exceptions in this confusion matrix, we selected 4 interesting cases to display in this thesis, which helps us understand how absorbing boundary conditions might affect pattern formation.
+Firstly, an homogenous oscillator under reflective boundaries might become a travelling wave when an absorbing boundary condition is introduced (Fig.~\ref{fig:interesting_cases_openboundary}A).
+Absorbing boundary conditions can also help speed up dynamics of pattern formation as seen in Fig.~\ref{fig:interesting_cases_openboundary}B where the pattern arises 20 fold faster than with reflective boundaries.
+These type of boundaries can also help increase the dynamic range of the pattern as seen in Fig.~\ref{fig:interesting_cases_openboundary}C.
+However, this might be the same as effect as in Fig.~\ref{fig:interesting_cases_openboundary}C where the reflective boundaries end up forming a pattern with longer time scales.
+Finally, absorbing boundaries might also disrupt the pattern formation by reducing the pattern wavelength as seen in Fig.~\ref{fig:interesting_cases_openboundary}D.
+These results only correspond to a specific set of equations under a specific parameter distribution sampling.
+However, other effects might occur when using other systems.
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
@@ -731,6 +744,12 @@ Again, all these parameter sets have only a single steady state to ensure patter
 
 
 \subsection{Open boundaries to growth}
+The patterning of the system is also studied when growth is added.
+In this case, both non-growing and growing domains have absorbing boundary conditions so the same classification can be used.
+Confusion matrix shows the correlation between non-growing and growing systems for 9087 parameter sets.
+Overall, we can see a strong diagonal, more populated in the bottom of the diagonal (Fig.~\ref{fig:openboundary_edgegrowth2_confusion_variant0}). This suggests often, growth has no effects on pattern formation.
+When it does is more commonly detrimental effects that break patterning.
+Again, this result might be affected by the system of equations and the parameters used such as model parameters or numerical parameters (e.g. length of the system or growth rate). %TODO discussion different growth rates might lead to increase or decrease robustness and to inner and outer growth formation.
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
@@ -741,8 +760,12 @@ Again, all these parameter sets have only a single steady state to ensure patter
     \label{fig:openboundary_edgegrowth2_confusion_variant0} % A label for referencing this figure later in the document
 \end{figure}
 
-
+From the confusion matrix, we investigated further some of the non-diagonal examples where growth added robustness which are shown in Fig.~\ref{fig:interesting_cases_edgegrowth2}.
+ However, in this case the classification did not give good results as non-stationary patterns where the number of peaks changed over time were classified as strong or weak (Fig.~\ref{fig:interesting_cases_edgegrowth2}A-B).
+In some cases we could identify patterns where the number of peaks increased just by having growth (Fig.~\ref{fig:interesting_cases_edgegrowth2}C).
+Finally, we observe that in growing domains, we generally observe outer ring addition in for this system and growth rates.
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+
     \centering
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 1/interesting_cases_edgegrowth2} % The name of your image file; assumes it's in the same directory as your .tex file
@@ -751,6 +774,19 @@ Again, all these parameter sets have only a single steady state to ensure patter
     \label{fig:interesting_cases_edgegrowth2} % A label for referencing this figure later in the document
 \end{figure}
 
+Overall, there were two caveats in this part of the study. The first one is the classification was not adequate because:
+\begin{itemize}
+    \item we were comparing outputs from two classification methods
+    \item large wavelength patterns were classified as weak patterns because of the few peaks
+    \item non-stationary patterns did not have a regular number of peaks
+    \item some of the peaks were not detected because of the general thresholds used.
+
+\end{itemize}
+This could be improved by increasing the size of the field solved numerically, tuning the thresholds better, or developing a new classification method which is more general and encompasses the three types of simulations (non-growing reflective, non-growing absorbing and growing-absorbing).
+Another caveat was exploring such effects on a limited distribution of parameter sets (numerical and kinetic).
+Different parameters might have led to different behaviors as asorbing boundaries or growth might be benefitial in other parameter regimes.
+Overall, it is extremely complicated to get general insigths from numerical studies.
+%TODO comment on outer ring addition.
 
 
 
