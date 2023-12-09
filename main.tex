@@ -1,8 +1,8 @@
-\documentclass[
+\documentclass[twoside,
     11pt,
-    oneside, %  comment to switch to alternatig margins (for printed layout)
+%    oneside, %  comment to switch to alternatig margins (for printed layout)
     english,
-    singlespacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
+    onehalfspacing, % Single line spacing, alternatives: onehalfspacing or doublespacing
 %draft, % Uncomment to enable draft mode (no pictures, no links, overfull hboxes indicated)
 %nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
 %liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
@@ -12,7 +12,8 @@ parskip, % Uncomment to add space between paragraphs
 %    headsepline, % Uncomment to get a line under the header
 %chapterinoneline, % Uncomment to place the chapter title next to the number on one line
 %consistentlayout, % Uncomment to change the layout of the declaration, abstract and acknowledgements pages to match the default layout
-]{MastersDoctoralThesis}
+]{PhDDoctoralThesis}
+%\documentclass[twoside]{MastersDoctoralThesis}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -46,9 +47,7 @@ parskip, % Uncomment to add space between paragraphs
 
 \usepackage[onehalfspacing]{setspace}%spacing between lines
 %\usepackage[doublespacing]{setspace}
-\newcommand\wordcount{
-    \immediate\write18{texcount -sub=section \jobname.tex  | grep "Section" | sed -e 's/+.*//' | sed -n \thesection p > 'count.txt'}
-    (\input{count.txt}words)}
+
 
 
 \usepackage[autostyle=true]{csquotes}
@@ -59,8 +58,14 @@ parskip, % Uncomment to add space between paragraphs
 \usepackage{float}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-
-
+\usepackage[Sonny]{fncychap}
+%\usepackage[Bjornstrup]{fncychap}
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+%\fancyhf{}
+%\fancyhead[LE]{\leftmark} % Left-hand pages: Section
+%\fancyhead[RO]{\rightmark} % Right-hand pages: Chapter
+%\fancyfoot[LE,RO]{\thepage}
 
 \newcommand{\TODO}[1]{\textcolor{red}{#1}}
 \newcommand{\pdvn}[3]{\frac{\partial^{#1} {#2}}{\partial {#3}^{#1}}}
@@ -76,8 +81,8 @@ parskip, % Uncomment to add space between paragraphs
 }
 
 \thesistitle{Modelling pattern formation in synthetic biofilms} % print with \ttitle
-\supervisor{Prof. Robert G. Endres and Prof. Mark Isalan } % print with \supname
-\examiner{aa} % TODO print with \examname
+\supervisor{Prof. Robert G Endres and Prof. Mark Isalan } % print with \supname
+\examiner{Prof. Eamonn A Gaffney and Dr. Jose Jimenez Zarco} % TODO print with \examname
 \degree{PhD} % print with \degreename
 \author{Martina Oliver Huidobro} % print with \authorname
 \addresses{a} % print with \addressname

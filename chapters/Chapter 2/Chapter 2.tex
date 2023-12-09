@@ -1,24 +1,33 @@
 % Chapter Template
 
 \chapter{Gene circuit design and parametrisation} \label{chapter2}
-There is interest to build turing patterns in gene circuits. Synthetic biology can be used for that. Models are needed of synthetic biology circuits to understand dynamic behaviour, how to tune parameters for turing. These models can be parametrised to get them closer to synbio.
+Up to now, Turing circuits have only been engineered in chemical systems.
+Using synthetic biology, we aim to engineer Turing patterns in biological systems using gene circuits which have reaction-diffusion.
+A reaction diffusion synthetic gene circuit was built in~\cite{Tica2020} using gene regulatory functions and quorum sensing molecules.
+However, from having a RD circuit to obtaining Turing patterns there is a big step.
+Because of the complexity of this gene circuit, a model is needed to understand the dynamic behaviour and if the RD system can produce patterning.
+Additionally, because of the lack of parametric robustness of Turing systems, it is important to learn how to tune parameters to increase the probability of obtaining patterns.
 
-In this chapter we (1) present the model, (2) we look at the parameter space and what fraction of it leads to turing / how to tune the circuit to get more turing (3) parametrise the model with experimental dose response curves after the informed decision using machine learning.
+In this chapter we present a model which describes this gene circuit.
+Additionally, we explore the parameter space based on literature informed ranges to understand what fraction of it leads to turing and how to tune the circuit to get higher probability of patterning.
+Finally, to get a model which is more closely linked to our experimental system and yields more accurate predictions, we parametrise it using liquid culture data.
+
 \section{Building model describing synthetic gene circuit}
-In this section, I present the model that describes the synthetic gene circuit engineered in~\cite{Tica2020}.
-The circuit can be seen in Fig.~\ref{fig:synthetic circuit_chapter2}, which was already presented in the Introduction chapter but is repeated here to facilitate access to the reader.
-Additionally, extra detail is added on the tuning molecules and receptor cassetes needed for full functioning of the circuit.
+In this section, I present a model which describes the synthetic gene circuit engineered in~\cite{Tica2020}.
+The circuit can be seen in Fig.~\ref{fig:synthetic circuit_chapter2}, which was already presented in the Chapter~\ref{introduction} but is repeated here to facilitate access to the reader.
+Additionally, extra detail is added on the tuning molecules and receptor cassettes needed for full functioning of the circuit.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 2/synthetic circuit2}
-    \caption[\textbf{Synthetic biology implementation of 3954) topology.}]{\textbf{Synthetic biology implementation of 3954 topology.} \TODO{Give more detail of this diagram}} %TODO give detail. TODO ref Jure
+    \caption{\textbf{Synthetic biology implementation of \#1754 topology.} This synthetic circuit engineered by Jure Tica and Tong Zhu is a genetic abstraction of the \#1754 topology in \cite{Scholes2019}. The original topology (left, grey inset) has only three nodes, while the synthetic circuit (right) has 6 nodes. The 6 gene circuit architecture, shown in standard notation, can be clustered into the three original nodes as seen by the blue,green,red bubbles. Diffuser synthesis enzymes are in blue, non-diffusible transcription
+    factors in red, fluorescent proteins in white. Diffuser synthesis enzymes produce quorum sensing molecules $pC$ and $OC_{14}$. The circuit can be regulated by small molecules ATC, IPTG and DAPG shown in white bubbles. DAPG activates the control cassette produces regulated degradation of small quorum sensing molecules. The bottom cassette (orange), contains the neccesary regulators: RpaR is the pC receptor (Node A diffuser), CinR is the OC14 receptor (Node B diffuser), and PhlF is the DAPG receptor (used to tune inducible diffuser degradation). The other three receptors PcaU, NahR and VanR are for the protocatechuate, salicylate and vanillin inducers, which are not used in the present circuit, but were tested in other versions of the system. These three systems can be used to introduce additional regulatory components to the system. }
     \label{fig:synthetic circuit_chapter2}
 \end{figure}
 
 
-A PDE system is used to describe the reaction and diffusion terms, which describe change in concentrations of molecules in time and space.
-This model includes constant background production, activator/repressor-regulated production using Hill terms, and the effect of tuning molecules aTc and IPTG on the circuit and diffusion.
+A PDE system is used to describe the reaction and diffusion terms, which describes the change in concentrations of the six regulator genes and two diffuser molecules in time and space.
+This model includes constant background production, activator-repressor-regulated production using Hill terms, and the effect of tuning molecules aTc, IPTG and DAPG on the circuit and diffusion.
 The dynamics of the protein (X) and diffuser (U) species of the gene circuit are modelled as
 
 \begin{subequations}\label{eq:Generalised protein and diffuser pde}
@@ -33,7 +42,8 @@ The dynamics of the protein (X) and diffuser (U) species of the gene circuit are
 \end{equation}
 \end{subequations}
 
-This results in a PDE model with eight equations that correspond to the two diffusers (pC and OC14) and six protein species of the circuit: RpaI, CinI, TetR, LacI, cI* and cI. This PDE model is reduced to a 6-equation system by assuming quasi-steady state for the diffusers, with production and degradation kinetics much faster than those of proteins. Finally, the model is non-dimensionalised to enable its parametrisation using liquid culture dose response data.
+This results in a PDE model with eight equations that correspond to the two diffusers (pC and OC14) and six protein species of the circuit: RpaI, CinI, TetR, LacI, cI* and cI. This PDE model is reduced to a six-equation system by assuming quasi-steady state for the diffusers, with production and degradation kinetics much faster than those of proteins.
+Finally, the model is non-dimensionalised to enable its parametrisation using liquid culture dose response data.
 In the subsections below, the different terms of Eq.~\ref{eq:Generalised protein and diffuser pde} are discussed. Furthermore, the process of model reduction, non-dimensionalisation and fitting is also described.
 
 
@@ -45,7 +55,7 @@ The rate of protein production can be defined as
 \end{equation}
 where $\theta$ represents the fractional activation of the system. Full activation of protein production is denoted as $\theta=1$ while full inhibition is represented by $\theta=0$.
 $V_{\max}$ is the maximal rate of expression.
-$\theta$ can be represented by a Hill function to describe cooperative binding, derived using the law of mass action with all-or-none binding to multiple binding sites ~\parencite{Weiss1997}.
+$\theta$ can be represented by a Hill function and an inverse-Hill function to describe cooperative binding, derived using the law of mass action with all-or-none binding to multiple binding sites ~\parencite{Weiss1997}.
 We further apply the quasi-steady state assumptions for activator and inhibitor binding to the promoter, as well as for the mRNA dynamics, as these timescales are much faster than protein production ~\parencite{Andersen1998, Bremer2008}.
 This leads to the following expression of $\theta$ for non-competitive activation (A) and inhibition (I)
 \begin{equation}
@@ -60,7 +70,7 @@ Additionally, most promoters are leaky, which we account for by introducing a sm
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 2/activation_inhibition2} % The name of your image file; assumes it's in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Activation and Inhibition of gene expression.} Activator generally works by binding a receptor which then binds the promoter to activate gene expression. Inhibitor generally works by binding the operator and inhibiting gene expression. In the case of this model, activators are diffusers (pC, $OC_{14}$) with their respective receptors (RpaR, CinR) and inhibitors are proteins (RpaI, CinI, TetR, LacI, cI, cI*) }. %TODO fact check}
+    \caption{\textbf{Activation and Inhibition of gene expression.} \textbf{A)} Mechanisms of gene expression regulation: The activator molecule (yellow) binds a receptor (blue), and this complex binds the promoter to activate gene expression. The inhibitor (green) binds the operator and inhibits gene expression. In the case of this model, activators are diffusers (pC, $OC_{14}$) with their respective receptors (RpaR, CinR) and inhibitors are proteins (RpaI, CinI, TetR, LacI, cI, cI*). \textbf{B)} Expression of X dependent on activation by A modelled with a Hill function. \textbf{C)} Expression of X dependent on inhibition by I modelled with an inverse-Hill function. }
     \label{fig:activation_inhibition} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -68,16 +78,12 @@ A visual representation of the mechanisms of activation and inhibition modelled 
 Using Eq.~\ref{eq: vmax} and Eq.~\ref{eq:theta}, activator and inhibitor dose curves are can be generated (Fig.~\ref{fig:activation_inhibition}B-C).
 These dose response curves show the relationship between activator or inhibitor and rate of production of protein X.
 Steeper curves are generated with higher cooperativity constants, which are typical of cooperative systems where multiple ligands can bind simultaneously.
-These steep curves resemble more like electrical engineering circuits which uses step functions instead of dose response curves, meaning a specific inducer concentration will drive the system from 0 to $V_{max}$.
-Finally, the K parameter in Eq.~\ref{eq:theta} corresponds to the concentration of inducer required to reach production of X at  $1/2 V_{max}$.
+These steep curves resemble more like electrical engineering circuits which uses step functions instead of dose response curves, meaning a specific inducer concentration will drive the system from 0 to $V_{\max}$.
+Finally, the K parameter in Eq.~\ref{eq:theta} corresponds to the concentration of inducer required to reach production of X at  $1/2 V_{\max}$.
 
 
 \subsection{Tuning gene expression: aTc regulation of TetR and IPTG regulation of LacI }
-
-
-
-%The circuit was designed so it can be tuned in a variety of ways.
-Experimentally, the circuit was designed to be tuned n a variety of ways using aTc, IPTG and DAPG.
+Experimentally, the circuit was designed to be tuned in a variety of ways using aTc, IPTG and DAPG.
 This tuning was used to achieve parameter combinations that are more favourable for patterning.
 The following section introduces aTc and IPTG tuning into the model.
 
@@ -86,7 +92,7 @@ The following section introduces aTc and IPTG tuning into the model.
     \begin{adjustbox}{center}
         \includegraphics[width=0.7\textwidth]{chapters/Chapter 2/inducers} % The name of your image file; assumes it's in the same directory as your .tex file
     \end{adjustbox}
-    \caption{Inducer dependent repressions using aTc and IPTG for circuit tuning}
+    \caption{\textbf{aTc and IPTG dependent repressions.} \textbf{A)} TetR represses cI* by binding the TetO operator sequence. This repression can be inhibited by competitive binding of aTc to TetR. \textbf{B)} LacI repression of RpaI* is inhibited by IPTG through competitive binding to LacI. }
     \label{fig:inducers} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -165,8 +171,6 @@ where,
     K_{TetR \mhyphen TetO \mhyphen aTc }=K_{TetR \mhyphen TetO}\cdot(1+(\frac{aTc}{K_{TetR \mhyphen aTc}})^{n_{aTc}})
 \end{equation}
 
-%\TODO{Explain different params here above}
-
 The parameter $K_{TetR \mhyphen TetO \mhyphen aTc }$ is the binding affinity of TetR to TetO, $K_{TetR \mhyphen aTc}$ is the affinity of aTc to TetR, $n_{aTc}$ is the Hill coefficient of aTc and TetR, and $n_{TetO}$ is the Hill coefficient of TetR to TetO.
 Therefore, the higher the aTc, the higher the production of cI*.
 
@@ -200,7 +204,7 @@ The parameter $K_{LacI \mhyphen LacO \mhyphen IPTG}$ is the binding affinity of 
 
 
 \subsection{Degradation}
-All the species of the circuit, including proteins and diffusers, were modelled to undergo linear (first order) degradation
+All the species of the circuit, including proteins and diffusers, were modelled to undergo linear, or first order, degradation
 \begin{equation}
     -\mu_{P_{1}}[X]
     \label{linear degradation}
@@ -217,7 +221,7 @@ They are scale-free parameters that only depend on time, which makes them more t
     \centering
     \begin{tabular}{|c|c|c|}
         \hline
-        \textbf{Degradation tag} & \textbf{Species 2} & \textbf{Rate $[h^{-1}]$} \\
+        \textbf{Degradation tag} & \textbf{Molecule} & \textbf{Rate $[h^{-1}]$} \\
         \hline
         LVA 1 & CinI, LacI, cI, cI*, TetR 1 & 1.14 \\
         \hline
@@ -233,11 +237,6 @@ They are scale-free parameters that only depend on time, which makes them more t
 The proteins of the circuit were added short peptide sequences at their 3’ ends, known as degradation tags, that promote their breakdown by the cell’s proteolytic enzymes.
 The diffusors degradation could be further induced by adding exogenous DAPG to the system which induces degradation by AiiA lactonase.
 
-
-
-
-
-
 \subsection{Diffuser equations}
 Diffusers are synthesised by enzymes, and then bound to receptors to activate gene expression by binding to the promoter (See Fig.~\ref{fig:activation_inhibition}). %check if its true they bind to the promoter.
 The circuit receptors are expressed constructively from a low-copy pCC1 plasmid, and are therefore modelled with a constant concentration.
@@ -249,7 +248,7 @@ It is assumed that the precursor substrate concentration is in excess and does n
 
 
 The diffusers are also modelled to undergo linear degradation, parameterised by $\mu_{U}$ and $\mu_{V}$ as seen in Eq.~\ref{linear degradation}.
-This degradation is a combination of a spontaneous hydrolysis in water, enzymatic AiiA-dependent degradation, and other cellular metabolic processes ~\parencite{kaufmann2005revisiting,Wang2004,Momb2008}. %TODO add ref REFS FAILING HERE
+This degradation is a combination of a spontaneous hydrolysis in water, enzymatic AiiA-dependent degradation, and other cellular metabolic processes ~\parencite{kaufmann2005revisiting,Wang2004,Momb2008}.
 Finally, the diffuser movement through space is modelled with simple diffusion terms and parameterised with diffusion coefficients $D_{U}$ and $D_{V}$.
 
 \begin{subequations}\label{diffuser}
@@ -308,8 +307,8 @@ U and V will be modelled within A and B in the Hill activation and diffusion ter
 Although these genes are not explicitly modelled, a linear relationship between downstream genes in the same operon
 \subsection{Six-equation model}
 We combined all the terms described above including the basal production, activator or inhibitor regulated production, tuning molecules, linear degradation and implicit diffusers.
-All these terms are applied to the circuit shown in Fig %TODO ref figure.
-This results in a 6 equation model with information on the 6 proteins in space and time
+All these terms are applied to the circuit shown in Fig~\ref{fig:synthetic circuit_chapter2}.
+This results in a six equation model with information on the six proteins in space and time
 
 \begin{subequations}\label{[6 equation proteins]}
 
@@ -356,7 +355,7 @@ They can be thought of as protein concentrations, although they are also directl
 The units are nM.
 \begin{table}[H]
     \centering
-    \caption{Model variables}
+    \caption{\textbf{Model dependent variables.} The model dependent variables are the concentrations of the six regulatory proteins. The names of the molecule and the original node they belong to in the original \#1754 topology are also shown.}
     \label{tab:Model variables}
     \renewcommand{\arraystretch}{1.3} % Adjust vertical padding
     \begin{tabular}{|c|c|c|}
@@ -377,16 +376,16 @@ The units are nM.
         \hline
     \end{tabular}
 \end{table}
-Description of the parameters used in the model can be found in Table~\ref{tab:Model variables}.
+Description of the parameters used in the model can be found in Table~\ref{tab:model params}.
 
 \begin{table}[H]
     \centering
-    \caption{Model parameters}
-    \label{tab:variables}
+    \caption{\textbf{Model parameters, description and units}}
+    \label{tab:model params}
     \renewcommand{\arraystretch}{1.3} % Adjust vertical padding
     \begin{tabular}{|c|c|c|}
         \hline
-        \textbf{Parameter} & \textbf{Description} & Units\\
+        \textbf{Parameter} & \textbf{Description} & \textbf{Units}\\
         \hline
         $t$ & Time & t\\
         \hline
@@ -432,8 +431,7 @@ And the following transformations of the system parameters V, µ, K and D:
 
 It is important to note that time and degradation of all species is now relative to the degradation rates of A (RpaI) which is an estimated parameter from the literature (See Table~\ref{table:degradation table}).
 If this parameter changes over the course of the experiment, the effects should be absorbed by the dimensionless model.
-
-If those transformations are applied to the original six-equation model shown in Eqs.~\ref{[6 equation proteins]} the following dimensionless model is obtained
+If those transformations are applied to the original six-equation model shown in Eqs.~\ref{[6 equation proteins]}, the following dimensionless model is obtained
 
 \begin{subequations}\label{six_eq_dimensionless}
 
@@ -466,7 +464,7 @@ A summary of the model parameters including notation, original units and dimensi
 
 \begin{table}[H]
     \centering
-    \caption{Dimensionless model parameters}
+    \caption{\textbf{Dimensionless model parameters and unit transformations}}
     \label{tab:Dimensionless_params}
     \renewcommand{\arraystretch}{2.3} % Adjust vertical padding
     \begin{tabular}{|c|c|c|c|}
@@ -521,7 +519,7 @@ where $\alpha$ is the fractional translation between the two proteins in the sam
 
 
 Both the dimensional and the non-dimensional six equation models (Eqs.~\ref{[6 equation proteins]} and Eqs.~\ref{six_eq_dimensionless}) are close representation of the synthetic gene circuit engineered by~\cite{Tica2020} shown in Fig.~\ref{fig:synthetic circuit_chapter2}.
-The non-dimensional model (Eqs.~\ref{six_eq_dimensionless}) will be used to explore the potential of this gene circuit for pattern formation by studying GFP and mCherry distributions in an \textit{in-silico} tissue.
+The non-dimensional model (Eqs.~\ref{six_eq_dimensionless}) will be used to explore the potential of this gene circuit for pattern formation by studying GFP and mCherry distributions in an \textit{in-silico} model tissue.
 
 
 
@@ -537,17 +535,17 @@ This multi-dimensional distribution enables a full understanding of the gene cir
 A distribution for each parameter was generated, and the multi-dimensional parameter space was sampled using Latin Hypercube Sampling (See~\ref{sampling method})~\parencite{Iman2014, Bergstra2012}, which maximises the sampling efficiency with fewer samples.
 Depending on the uncertainty of the parameter, different distributions were used such as Loguniform, Gaussian and Fixed.
  For each parameter of the model, literature searches were carried out to define biologically realistic lower and upper bounds.
-Diffusion rates ($D$) where estimated in .%TODO ref Tica diffusers,
+Diffusion rates~($D$) where estimated in ~\cite{tica_diffusers}.
 Diffuser production rate constants ($k$) in~\cite{Schaefer1996, Pai2009}.
 Protein degradation rates in~\cite{Andersen1998}, while diffuser degradation in~\cite{kaufmann2005revisiting}.
 Cooperativity values ($n$) in~\cite{Babic2007}.
-Other parameters that had not be clearly parametrised in the literature where defined with bounds such as maximum production rate ($V_{X}$), background production rate ($b_{X}$) and Dissociation constant ($K_{XY}$). Although we have less confidence on these last parameter estimations, bounds were still obtained from the literature ~\parencite{Scholes2019, Pusnik2019}.
+Other parameters that had not been clearly parametrised in the literature where defined with bounds such as maximum production rate ($V_{X}$), background production rate ($b_{X}$) and Dissociation constant ($K_{XY}$). Although we have less confidence on these last parameter estimations, bounds were still obtained from the literature ~\parencite{Scholes2019, Pusnik2019}.
 The types of distributions used for sampling and the values used for each parameter are listed in Table~\ref{tab:literature param distributions}.
 To obtain dimensionless parameters from these, the bounds of the distributions are recalculated, and the distributions sampled between these new bounds as specified in the ‘Distribution’ column of Table~\ref{tab:literature param distributions}.
 The transformations required to get the dimensionless bounds or values can be found in Eq.~\ref{variable transformations} and Eq.~\ref{parameter transformations} or in Table~\ref{tab:Dimensionless_params}.
 For example, for Dr* which is $(k_{2}D_{v}\mu_{u})/(k_{1}D_{u}\mu_{v})$, a loguniform distribution was sampled between new bounds [0.01, 100].
 \begin{table}[H]
-    \caption{\textbf{Literature-derived parameter distributions.} The distributions used include Loguniform and Gaussian. Some parameters are fixed to single values and not sampled. These parameters are dimensional, so these distributions are then used in the dimensionless form of parameters shown in Eq.~\ref{variable transformations} and Eq.~\ref{parameter transformations}.}
+    \caption{\textbf{Literature-derived parameter distributions.} The distributions used include Loguniform and Gaussian. Some parameters are fixed to single values and not sampled. The parameters shown here are dimensional, so these distributions are then used in the dimensionless form of parameters shown in Eq.~\ref{variable transformations} and Eq.~\ref{parameter transformations}.}
 \label{tab:literature param distributions}
 \renewcommand{\arraystretch}{1.3} % Adjust vertical padding
 \begin{tabular}{|p{20mm}|p{57mm}|c|p{25mm}|}
@@ -582,31 +580,41 @@ $n_{da}$, $n_{fe}$, $n_{ee}$, $n_{eb}$, $n_{ce}$ & Cooperativity of LacI, cI, cI
 
 \subsection{Finding Turing in six-node Turing circuit and defining robustness}
 Linear stability analysis was used initially to understand whether the circuit built synthetically could produce Turing patterns.
-By searching the parameter space defined above using linear stability analysis, several diffusion driven instabilities were found. When simulated these gave rise to Turing patterns varying from labyrinths to spots as seen in Fig.~\ref{fig:square_turing}.
+By searching the parameter space defined above using linear stability analysis, several diffusion driven instabilities were found.
+When simulated these gave rise to Turing patterns varying from labyrinths to spots as seen in Fig.~\ref{fig:square_turing}.
+Although the robustness is limited (as described later), the synthetic gene circuit engineered by ~\cite{Tica2020} can indeed produce stationary periodic patterns resulting from Turing's mechanism.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 2/square_turing}
-    \caption[]{\textbf{Examples of Turing patterns in six-node circuit.} Non-growing square domains with reflecting boundary conditions were used to model the parameter sets exhibiting diffusion driven instablities} %TODO give detail
+    \caption{\textbf{Examples of Turing patterns in six-node circuit.} Three simulations of the six-equation model with Turing parameter sets. In each solution (A,B,C) there are six images which represent every dependent variable of the model. The solver used is the \acrfull{ADI} method with non-growing square domains and reflecting boundary conditions. Periodic patterns are observed. }
     \label{fig:square_turing}
 \end{figure}
 
-Although the robustness is limited (as described later), the synthetic gene circuit engineered by ~\cite{Tica2020} can indeed produce stationary periodic patterns resulting from Turing's mechanism.
-%comment on robustness
-%define what turing robustness is
 \subsection{Increasing Turing's robustness by matching consequent dose response curves}\label{balancing}
 One of the aims of the model is to understand how to increase the robustness for Turing pattern formation \textit{in-silico} prior to the experimental work.
 This way, we can then use the insights to maximise the chances of finding Turing patterns \textit{in-vitro}.
+In this thesis, we describe robustness as the volume of the parameter space leading to Turing I and Turing I Hopf patterns.
 
 The first approach consisted in investigating how a well-balanced circuit improves the probability of patterning.
 Once the components of the circuit are put together inside the cell, these components might not necessarily match well together.
 Gene circuits, as opposed to digital circuits, do not have binary inputs and outputs.
-Instead, continuous concentrations of species will regulate gene expression, leading to continuous concentrations of proteins as seen in the dose response curves of Fig.~\ref{fig:balancing}A.
-In that case, inducer A0 determines how much B0 is produced with a sigmoid relationship.
+Instead, gene expression is regulated continuously, where a continuous increase in inducer leads to a continuous change in protein concentration as seen in the dose response curves of Fig.~\ref{fig:balancing}A (left).
+In this case, inducer [A0*] determines how much [A1*] is produced with a sigmoidal relationship.
 The dose response function is modelled with Hill terms as seen in Eq.\ref{eq:theta}.
-A well-matched transfer-function occurs when the protein expression levels steaming from dose response 1 are compatible with the sensitivity of the regulatory components they act on on dose response 2.
-For example, a transfer function is not ‘matched’ when a very sensitive operator site is completely repressed even with background levels of transcription factor e.g., if these are sufficiently high because of a leaky promoter or strong RBS.
-In this case, an induction of the transcription factor above background would not result in further repression, leading to a loss of dynamic range.
+A well-matched transfer-function occurs when the protein expression levels steaming from dose response 1 (Fig.~\ref{fig:balancing}A (left)) are compatible with the sensitivity of the regulatory components they act on on dose response 2 (Fig.~\ref{fig:balancing}A (right)).
+For example, a transfer function is not ‘matched’ when a very sensitive promoter is completely turned on even with background levels of activator.
+This can occur experimentally if the background levels of activator are sufficiently high because of a leaky promoter or strong RBS.
+In this case, an induction of the activator above background would not result in further activation, leading to a loss of dynamic range (Fig.~\ref{fig:balancing}B (red)).
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/Chapter 2/balancing}
+    \caption[]{\textbf{a} \TODO{Give more detail of this diagram}} %TODO give detail
+    \label{fig:balancing}
+\end{figure}
+
 
 Mathematically, to ensure a transfer function is matched, the $K^*_{XY}$ of the second dose response producing X needs to be within the dynamic range of the dose response 1 producing A1 as seen in Fig.~\ref{fig:balancing}A.
 The lower bound is the steady state $[X^*]_{ss0}$ when the gene is completely turned off, $\theta=0$.
@@ -633,15 +641,6 @@ For example, with $K^*_{XY}$ smaller than 1, given that $[X^*]$ can never approa
 On the other hand, with $K^*_{XY}$ larger than $(1+V^*_{X})$, $[X^*]$ could never become high enough to cause near maximal regulation of the downstream component.
 Other two ranges are defined which are borderline matched and unmatched (Fig.~\ref{fig:balancing}B).
 As seen in Fig.~\ref{fig:balancing}C, borderline curves are almost not affected by the inducer and unmatched curves are not affected at all.
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{chapters/Chapter 2/balancing}
-    \caption[]{\textbf{a} \TODO{Give more detail of this diagram}} %TODO give detail
-    \label{fig:balancing}
-\end{figure}
-
 
 The parameter space defined in the previous chapter is divided into these three categories (matched, borderline and unmatched).
 Linear stability analysis was carried out on the three categories to understand if matching transfer functions would increase volume of Turing parameter space.
@@ -909,5 +908,11 @@ The corresponding $q=10$ multivariate Gaussian parameter distributions are shown
     \label{fig:1d_distributions} % A label for referencing this figure later in the document
 \end{figure}
 
+\section{Discussion}
+\begin{itemize}
+    \item Gene circuit can produce Turing patterns
+    \item Some parameter regions are more robust, which can be tuned experimentally
+    \item Model can be parametrised using liquid culture data
+\end{itemize}
 %%TODO summary chapter2
 

@@ -1,30 +1,34 @@
 % Chapter Template
 %TODO section paragraphs
-\chapter{Introduction}
+\chapter{Introduction}\label{introduction}
 
 quick intro
 \section{Background on biological patterning}
 \subsection{Morphogenesis in nature, examples and function}
-Periodic spatial structures in biology result from the emergent phenomena where a tissue of cells gains heterogeneity and complexity in the spatial domain following certain regularity. %TODO something wrong with fllowing regularity
-Spatial structures can be widely observed in nature both in \acrfull{2D} such as the zebra's stripped skin or in \acrfull{3D} in the labyrinthian brain cortex.
-Many other examples of periodic patterning can be found in nature (See Figure~\ref{fig:pattern_examples}).
-Understanding the mechanism behind biological pattern formation is still a central question which remains elusive in the fields of systems, developmental and synthetic biology. %TODO before talking about understanding, give applications of why we need to understand this in the first place? %todo comment on other applications
-%they have also been used to gain insights into human settlement6 and to design water filters (Tan, Z., Chen, S., Peng, X., Zhang, L. & Gao, C. Science 360, 518–521 (2018).(Zincenko, A., Petrovskii, S., Volpert, V. & Banerjee, M. J. R. Soc. Interface 18, 20210034 (2021).). Experimentally, Turing patterns have been able to explain the spaced transverse ridges of the palate in mammals8. In 2021, researchers showed that a strained atomic bismuth monolayer on the surface of niobium diselenide displays Turing patterns9, an observation that may play a crucial part in the development of microdevices (Fuseya, Y. et al. Nat. Phys. 17, 1031–1036 (2021).).
+Periodic spatial structures in biology result from emergent phenomena where a tissue of cells gains heterogeneity and complexity in the spatial domain producing regular patterns.
+Spatial structures can be widely observed in nature both in \acrfull{2D} space such as the zebra's striped skin or in \acrfull{3D} in the labyrinthian brain cortex.
+%Many other examples of periodic patterning can be found in nature (See Figure~\ref{fig:pattern_examples}).
+Fig.~\ref{fig:pattern_examples} shows a wide variety of spatially periodic patterns encountered during my PhD thesis, which reflect how common these fascinating patterns are in different organisms and natural environments.
+Although these patterns are extremely common, a mechanism to explain their robust self-assembling still remains elusive to the scientific community.
+Such interest stems both from a fundamental and an applied scientific point of view.
+Understanding pattern formation in biology is key to get a complete picture of how multicellular organisms grow from a single-cell to a structure of organised cells with more complex functions.
+In terms of applications, such understanding could enable tissue regeneration, and engineering of tissues or organoids.
+
+%TODO add later they have also been used to gain insights into human settlement6 and to design water filters (Tan, Z., Chen, S., Peng, X., Zhang, L. & Gao, C. Science 360, 518–521 (2018).(Zincenko, A., Petrovskii, S., Volpert, V. & Banerjee, M. J. R. Soc. Interface 18, 20210034 (2021).). Experimentally, Turing patterns have been able to explain the spaced transverse ridges of the palate in mammals8. In 2021, researchers showed that a strained atomic bismuth monolayer on the surface of niobium diselenide displays Turing patterns9, an observation that may play a crucial part in the development of microdevices (Fuseya, Y. et al. Nat. Phys. 17, 1031–1036 (2021).).
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Introduction/pattern_examples}
-    \caption[\textbf{Examples of Turing patterns in nature.} ]{\textbf{Examples of Turing patterns in nature.}}
+    \caption{\textbf{Examples of periodic patterns in biology.} Patterns observed during the course of the PhD studies including in molluscs, corals, mammals, plants, funghi, insects and fish. A wide variety of patterns including stripes, labyrinths and spots is displayed. Some organisms even display multiple patterns (e.g. pattern sourrounding fish eye shows labyrinths, spots and stripes (F, top row, blue)}
     \label{fig:pattern_examples}
 \end{figure}
-%todo add all pattern images and the respective species if available
 This evolution from simplicity to complexity often plays a pivotal role in the functioning of multicellular beings.
 More specifically, these patterns can have strategic advantages.
 Fractal-shaped bacterial colonies, for instance, maximise nutrient absorption~\parencite{Matsushita1990}.
 Furthermore, distinct colorations, such as the zebra's stripes or the mesmerising eye-spots on butterfly wings~\parencite{Blest}, serve to disorient predators; either by disrupting the prey's silhouette or suggesting the prey is part of a larger entity~\parencite{Stevens2006}.
 The spirals observed in phylotaxis offer plants a way to optimise sunlight capture, enhancing photosynthesis~\parencite{Strauss2020}.
 
-The evolutionary advantage conveyed by this level of spatial organisation  hints towards genetic networks being potentially responsible for the patterning mechanism. %TODO ref
+The evolutionary advantage conveyed by this level of spatial organisation hints towards genetic networks being potentially responsible for such patterning mechanisms~\parencite{caro2005adaptive}.
 A randomly found solution of evolution where a pattern occurs, could lead to the genetic networks driving these spatial arrangements to be evolutionary beneficial and therefore selected. %TODO what is a randomly found solution of evolution?
 Comprehending these networks and the dynamics that lead to these spatial designs is essential.
 This area of research not only tries to understand which genetic networks and mechanisms are behind patterning.
@@ -34,15 +38,61 @@ It paves the way for pioneering work in biotechnological sectors, enabling the c
 
 
 
+
+
+
+%%\begin{figure}[h!]
+%    \centering
+%    \includegraphics[width=1\textwidth]{chapters/Introduction/physical_based_mechanisms}
+%    \caption{}
+%    \label{fig:physical_based_mechanisms}
+%\end{figure}
+%
+%\begin{figure}[h!]
+%    \centering
+%    \includegraphics[width=1\textwidth]{chapters/Introduction/diffusion_based_mechanisms}
+%    \caption{}
+%    \label{fig:diffusion_based_mechanisms}
+%\end{figure}
+
+
+
+%%%%%%%%%% corrected up to here
 \subsection{Patterning theories}
-Numerous mechanisms have been proposed in the literature to explain the formation in biological spatial systems.
-Some of the most relevant ones can be categorized into mechanical instabilities and diffusion-based mechanisms %~\parencite{kosmrlj2020_2}.
-The mechanical instabilities include phenomena such as differential adhesion, branching or wrinkling where physical forces are described in the model~\parencite{Scholes2017}.
-% TODO SEARCH OTHER INSTABILITIES %todo cite other mechanical instabilities papers
-On the other hand, gradient or diffusion based mechanisms rely on cells in the tissue responding to a molecule which is spatially heterogeneous and therefore exhibiting different phenotypes in different regions of the tissue (e.g.\ black vs white in zebra).
+Numerous mechanisms have been proposed in the literature to explain pattern formation in biological systems.
+Some of the most relevant ones can be categorized into physical and diffusion-based mechanisms, as seen in Fig.~\ref{fig:mechanisms_patterning}~\parencite{hiscock2015mathematically, Scholes2017}.
+Physical-based methods involve models where physical forces play an important role.
+Some mechanisms in this category include phase separation, which can occur through differential cell adhesion, wrinkling, which can occur through mechanical instabilities, or branching (Fig.~\ref{fig:mechanisms_patterning}A).
+For example, forces and tissue mechanics are important for patterning villi in the gut, as seen in Fig.~\ref{fig:mechanisms_patterning}A (left)~\parencite{shyer2013villification}, while differential cell adhesion is key for the self-assembly of pancreatic islets~\parencite{jia2007tissue}.
+On the other hand, diffusion-based mechanisms rely on cells in the tissue responding to a molecule that is spatially heterogeneous and therefore exhibits different phenotypes in different regions of the tissue.
+Among these gradient-based mechanisms, notable examples include the Positional-Information model and the Turing model~\parencite{Wolpert1969, Turing1952}, as seen in Fig.~\ref{fig:mechanisms_patterning}B.
+The focus of this thesis is on diffusion-based mechanisms, and we will therefore explore these more in detail.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/Introduction/mechanisms_patterning}
+    \caption{\textbf{Patterning mechanisms in biology.} \textbf{A) Examples of Physical-based mechanisms.}
+    Phase separation can occur through different mechanisms including differential cell adhesion were different cell types bind to themselves. An example of this is the syntheticly engineered patterns with differential cell adhesion in~\cite{cachat20162}.
+    An example of mechanical instability is the winkling of villi in the gut, where growth can generate perpendicular forces that deform the tissue as seen in ~\cite{shyer2013villification}.
+    Finally, branching can occur through local cell division events which lead to tree-like structures in the lung~\parencite{metzger2008branching}.  \textbf{B) Examples of Diffusion-based mechanisms.}
+    Positional information occurs through the creation of a gradient of morphogen X, steaming from a source. This gradient is then interpreted by cells forming three different gene expression regimes and phenotypes (green, pink, blue).
+    Example shows an early drosophila embryo stained for DNA (blue), Hunchback protein (red), and Bicoid protein (green)~\parencite{gregor2007probing}.}
+    \label{fig:mechanisms_patterning}
+\end{figure}
+
+%TODO make physical image wider
+The Positional Information, or also called the French-Flag model, is underpinned by an initial gradient of morphogens, interpreted by a genetic network to induce tissue patterning.
+Sometimes, the origins of this gradient can be attributed to external factors such as ambient temperature, maternal impacts, or light exposure~\parencite{Schier2009}.
+A simple genetic network interpreting this gradient can partition the tissue in three regions where the first region (green) appears for concentrations of morphogen above Threshold 1, and the third region (blue) results for concentrations below Threshold 2 (Fig.~\ref{fig:mechanisms_patterning}B (left)).
+An example of Positional Information occurs in the drosophila embryo, where different gene expression domains are generated by the bicoid gradient.
+In this case, the mother acts as a source by providing bicoid mRNAs in the anterior of the fly, which diffuse towards the posterior, generating different gene expression profiles ~\parencite{grimm2010modelling}.
+
+A diffusion-based mechanism is the
 
 
-\section{Reaction-diffusion systems}
+
+%, the clock-and-wavefront model, and Turing instabilities~\parencite{Wolpert1969, Baker2006, Turing1952}.
+
 \subsection{Types of reaction diffusion: Wolpert vs Turing} %TODO wolpert vs turing?
 Among these gradient-based mechanisms, notable examples include positional information, the clock-and-wavefront model, and Turing instabilities~\parencite{Wolpert1969, Baker2006, Turing1952}.
 Both the positional information and clock-and-wavefront concepts are underpinned by an initial gradient of morphogens, interpreted by a genetic network to induce tissue patterns.
@@ -54,6 +104,9 @@ For this reason, Turing's mechanism for pattern formation will be the main focus
 Nevertheless, it's pivotal to recognize that these mechanisms aren't strictly independent of each other.
 The intricate nature of biological patterning might be best elucidated by an amalgamation of these theories, suggesting a blended framework may hold the answers~\parencite{Green2015}. %todo discuss turings comment Turing himself recognized the biological unreality of this in stating that 'most of an organism, most of the time is developing from one pattern to another, rather than from homogeneity into a pattern' 1-34]
 % TODO comment more on the fight between wolpert and turing and on the french flag model in general
+
+
+\section{Reaction-diffusion systems}
 \subsection{Turing patterns}
 Reaction-diffusion systems were originally introduced in 1952 by Alan M. Turing in his paper “The chemical basis of morphogenesis”~\parencite{Turing1952}.
 In this article, he argues that pattern formation can be obtained when two morphogens interact with each other and diffuse at different
@@ -188,7 +241,7 @@ Discretising concentration levels in~\cite{Leyshon2021} which results in states 
 Additionally, discretising space to cell size can lead to pattern formation in certain systems that usually do not allow it such as single diffuser networks~\parencite{Wang2022}.
 
  % discrete models (discrete lattice gas cellular automaton (LGCA) framework.)concentration discreetenes: it conﬁnes the concentrations to a small number of discrete values (four in our case) and comprises discrete maps between these states rather than continuous kinetic parameters.Moreover, we found these ﬁve topologies to be more robust in the LGCA framework than they appear to be in the continuous case.~\parencite{Leyshon2021}
- \subsubsection{Growth}
+ \subsubsection{Growth}\label{growth_intro}
 Fixed domains are often commonly assumed in developmental biology, as pattern forming processes (e.g reaction-diffusion of chemical species) occur at a much faster timescales than tissue growth. %todo add ref    %ref turing, ref 3 atlas papers
 However, models of pattern formation in growing domains have shown growth to be extremely important in the development and morphology of the pattern.
 Biological examples include angelﬁsh \textit{Pomacanthus imperator} where growth induces the addition of new stripes in a branching point, while a constant wavelength~\parencite{Kondo1995}.
@@ -212,7 +265,7 @@ However, they observe that the conditions for Turing instabilities are more comp
 This complexity makes it difficult to carry out high throughput studies of robustness and Turing parameter space in growing domains.
 Finally, other types of growth such as anisotropic growth~\parencite{Krause2019} are studied, but again they do not study parametric robustness in detail.
 
-\subsubsection{Boundary conditions}.
+\subsubsection{Boundary conditions}\label{boundary_conditions_intro}
 Biological systems can exhibit a wide variety of boundary conditions depending on the context and environment.
 Additionally, these boundary conditions can also be replicated using techniques in synthetic biology~\parencite{Krause2020, Sheth2012, Vahey2014}.
 Different theoretical studies explore a wide variety of boundary conditions for Turing systems.
