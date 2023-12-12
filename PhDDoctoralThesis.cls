@@ -203,7 +203,9 @@
 \RequirePackage{booktabs} % Required for better table rules
 
 \RequirePackage{caption}[list=false] % Required for customising the captions
-\captionsetup{justification=centerlast,font=small,labelfont=sc,margin=5pt}
+%\captionsetup{justification=centerlast,font=small,labelfont=sc,margin=5pt}
+\captionsetup{font=normalfont}
+
 %\captionsetup{width=.75\textwidth}
 
 \RequirePackage{mathtools} %required for  \xrightleftharpoons

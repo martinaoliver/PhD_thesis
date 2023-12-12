@@ -43,6 +43,14 @@ The logarithmic component is used to make sure parameters from all scales are re
 Log-normal distributions are commonly used for modelling in biology, however due to the nonexistent prior knowledge on our parameter values, the log-uniform is used instead.
 When we some level of certainty about a parameter, a gaussian distribution is used.
 Finally, if we are completely sure, a fixed distribution is used.
+\section{PostgreSql database}\label{PostgreSql database}
+%TODO add details of schema in methods
+\begin{figure}[H]
+
+    \includegraphics[width=1\textwidth]{chapters/Methods/psql_schema}
+    \caption{fill}
+    \label{psql_schema}
+\end{figure}
 
 \section{Wavelength and convergence time from numerical data}\label{Wavelength and convergence time from numerical data}
 The wavelength was obtained by computing the average distance between peaks in the solution.
@@ -148,7 +156,7 @@ By reordering this approximation into a linear equation, the resulting problem i
 \end{equation}
 This method simplifies the complex system into a linear system that can be solved numerically. The solution given will be a 1 dimensional in space solution of the reaction-diffusion system. Although the method is  unconditionally stable, the solution can contain oscillations if $ \frac{\Delta t}{\Delta x^{2}} >\frac{1}{2} $ \parencite{trefethen1996finite}. Therefore, the ratio will be kept below $\frac{1}{2}$ to avoid errors.
 
-\subsection{Introducing Dirilichet or absorbing boundary conditions}\label{dirilichet}
+\subsection{Introducing Dirilichet or absorbing boundary conditions}\label{methods_boundary_conditions}
 CN method can also have an implementation with Dirilichet boundary conditions, where
 \begin{equation}
     \frac{\delta u}{\delta t} =  f(u) + D\pdvn{2}{u}{x},   \quad \quad \quad \quad \quad \quad U\biggr\rvert_{x=0,L}=0
@@ -190,7 +198,7 @@ The development of the pattern follows a certain behaviour: The molecule concent
 \textbf{Wavelength prediction from numerical Solution}
 The findpeaks package is used from the \textit{scipy.signal} python library. All peaks in the final time point of the 1D simulation are found through the findpeaks package. The average distance between peaks is taken and that distance is averaged throughout the 6 species.
 
-
+\section{Image recognition and modelling for confocal microscopy data}
 \subsection{Tissue area recognition}\label{Tissue area recognition}
 From a confocal microscopy image, we want to obtain the shape of the biofilm.
 The image is opened and processed using the PIL package in python.

@@ -9,7 +9,7 @@ Because of the complexity of this gene circuit, a model is needed to understand 
 Additionally, because of the lack of parametric robustness of Turing systems, it is important to learn how to tune parameters to increase the probability of obtaining patterns.
 
 In this chapter we present a model which describes this gene circuit.
-Additionally, we explore the parameter space based on literature informed ranges to understand what fraction of it leads to turing and how to tune the circuit to get higher probability of patterning.
+Additionally, we explore the parameter space based on literature informed ranges to understand what fraction of it leads to Turing and how to tune the circuit to get higher probability of patterning.
 Finally, to get a model which is more closely linked to our experimental system and yields more accurate predictions, we parametrise it using liquid culture data.
 
 \section{Building model describing synthetic gene circuit}
@@ -20,7 +20,7 @@ Additionally, extra detail is added on the tuning molecules and receptor cassett
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 2/synthetic circuit2}
-    \caption{\textbf{Synthetic biology implementation of \#1754 topology.} This synthetic circuit engineered by Jure Tica and Tong Zhu is a genetic abstraction of the \#1754 topology in \cite{Scholes2019}. The original topology (left, grey inset) has only three nodes, while the synthetic circuit (right) has 6 nodes. The 6 gene circuit architecture, shown in standard notation, can be clustered into the three original nodes as seen by the blue,green,red bubbles. Diffuser synthesis enzymes are in blue, non-diffusible transcription
+    \caption{\textbf{Synthetic biology implementation of \#1754 topology.} This synthetic circuit engineered by Jure Tica and Tong Zhu is a genetic abstraction of the \#1754 topology in \cite{Scholes2019}. This circuit is transformed so every E.coli cell in the biofilm has a copy inside. The original topology (left, grey inset) has only three nodes, while the synthetic circuit (right) has 6 nodes. The 6 gene circuit architecture, shown in standard notation, can be clustered into the three original nodes as seen by the blue,green,red bubbles. Diffuser synthesis enzymes are in blue, non-diffusible transcription
     factors in red, fluorescent proteins in white. Diffuser synthesis enzymes produce quorum sensing molecules $pC$ and $OC_{14}$. The circuit can be regulated by small molecules ATC, IPTG and DAPG shown in white bubbles. DAPG activates the control cassette produces regulated degradation of small quorum sensing molecules. The bottom cassette (orange), contains the neccesary regulators: RpaR is the pC receptor (Node A diffuser), CinR is the OC14 receptor (Node B diffuser), and PhlF is the DAPG receptor (used to tune inducible diffuser degradation). The other three receptors PcaU, NahR and VanR are for the protocatechuate, salicylate and vanillin inducers, which are not used in the present circuit, but were tested in other versions of the system. These three systems can be used to introduce additional regulatory components to the system. }
     \label{fig:synthetic circuit_chapter2}
 \end{figure}
@@ -68,9 +68,9 @@ Additionally, most promoters are leaky, which we account for by introducing a sm
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=1\textwidth]{chapters/Chapter 2/activation_inhibition2} % The name of your image file; assumes it's in the same directory as your .tex file
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/activation_inhibition2} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Activation and Inhibition of gene expression.} \textbf{A)} Mechanisms of gene expression regulation: The activator molecule (yellow) binds a receptor (blue), and this complex binds the promoter to activate gene expression. The inhibitor (green) binds the operator and inhibits gene expression. In the case of this model, activators are diffusers (pC, $OC_{14}$) with their respective receptors (RpaR, CinR) and inhibitors are proteins (RpaI, CinI, TetR, LacI, cI, cI*). \textbf{B)} Expression of X dependent on activation by A modelled with a Hill function. \textbf{C)} Expression of X dependent on inhibition by I modelled with an inverse-Hill function. }
+    \caption{\textbf{Activation and Inhibition of gene expression.} \textbf{(A)} Mechanisms of gene expression regulation: The activator molecule (yellow) binds a receptor (blue), and this complex binds the promoter to activate gene expression. The inhibitor (green) binds the operator and inhibits gene expression. In the case of this model, activators are diffusers (pC, $OC_{14}$) with their respective receptors (RpaR, CinR) and inhibitors are proteins (RpaI, CinI, TetR, LacI, cI, cI*). \textbf{(B)} Expression of X dependent on activation by A modelled with a Hill function. \textbf{(C)} Expression of X dependent on inhibition by I modelled with an inverse-Hill function. }
     \label{fig:activation_inhibition} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -90,9 +90,9 @@ The following section introduces aTc and IPTG tuning into the model.
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=0.7\textwidth]{chapters/Chapter 2/inducers} % The name of your image file; assumes it's in the same directory as your .tex file
+        \includegraphics[width=0.7\textwidth]{chapters/Chapter 2/inducers} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{aTc and IPTG dependent repressions.} \textbf{A)} TetR represses cI* by binding the TetO operator sequence. This repression can be inhibited by competitive binding of aTc to TetR. \textbf{B)} LacI repression of RpaI* is inhibited by IPTG through competitive binding to LacI. }
+    \caption{\textbf{aTc and IPTG dependent repressions.} \textbf{(A)} TetR represses cI* by binding the TetO operator sequence. This repression can be inhibited by competitive binding of aTc to TetR. \textbf{(B)} LacI repression of RpaI* is inhibited by IPTG through competitive binding to LacI. }
     \label{fig:inducers} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -174,7 +174,7 @@ where,
 The parameter $K_{TetR \mhyphen TetO \mhyphen aTc }$ is the binding affinity of TetR to TetO, $K_{TetR \mhyphen aTc}$ is the affinity of aTc to TetR, $n_{aTc}$ is the Hill coefficient of aTc and TetR, and $n_{TetO}$ is the Hill coefficient of TetR to TetO.
 Therefore, the higher the aTc, the higher the production of cI*.
 
-The same logic can be applied for the IPTG regulating LacI inhibition (See Fig.~\ref{fig:inducers}B), where unbound LacI can be or $[LacI_{free}]$ can be expressed as
+The same logic can be applied for the IPTG regulating LacI inhibition (see Fig.~\ref{fig:inducers}B), where unbound LacI can be or $[LacI_{free}]$ can be expressed as
 \begin{equation}
 [LacI{free}] =  \frac{[LacI_{total}]}{1+(\frac{[IPTG]}{K_{LacI \mhyphen IPTG}})^{n_{IPTG}}}
 \end{equation}
@@ -238,7 +238,7 @@ The proteins of the circuit were added short peptide sequences at their 3’ end
 The diffusors degradation could be further induced by adding exogenous DAPG to the system which induces degradation by AiiA lactonase.
 
 \subsection{Diffuser equations}
-Diffusers are synthesised by enzymes, and then bound to receptors to activate gene expression by binding to the promoter (See Fig.~\ref{fig:activation_inhibition}). %check if its true they bind to the promoter.
+Diffusers are synthesised by enzymes, and then bound to receptors to activate gene expression by binding to the promoter (see Fig.~\ref{fig:activation_inhibition}). %check if its true they bind to the promoter.
 The circuit receptors are expressed constructively from a low-copy pCC1 plasmid, and are therefore modelled with a constant concentration.
 Quasi-steady state was assumed for the very fast equilibrium that forms between the receptor and the diffusers.
 The receptor-inducer and receptor-promoter binding equilibria were modelled with mass action kinetics.
@@ -429,7 +429,7 @@ And the following transformations of the system parameters V, µ, K and D:
     V_{x}^*=\frac{V_{x}}{b_{x}},  \mu_{x}^* = \frac{\mu_{x}}{\mu_{a}}, K^*_{yx} = \frac{\mu_{x}}{b_{x}}K ,D_{r} = \frac{k_{2}D_{v}\mu_{u}}{k_{1}D_{u}\mu_{v}}
 \end{equation}
 
-It is important to note that time and degradation of all species is now relative to the degradation rates of A (RpaI) which is an estimated parameter from the literature (See Table~\ref{table:degradation table}).
+It is important to note that time and degradation of all species is now relative to the degradation rates of A (RpaI) which is an estimated parameter from the literature (see Table~\ref{table:degradation table}).
 If this parameter changes over the course of the experiment, the effects should be absorbed by the dimensionless model.
 If those transformations are applied to the original six-equation model shown in Eqs.~\ref{[6 equation proteins]}, the following dimensionless model is obtained
 
@@ -532,7 +532,7 @@ Two approaches were taken which include investigating the effects of matching do
 \subsection{Definition of parameter space based on literature parametrisation}\label{Definition of parameter space based on literature parametrisation}
 The model is first studied by initialising the model parameters from distributions derived from the literature.
 This multi-dimensional distribution enables a full understanding of the gene circuit behaviour in all possible parameter regimes.
-A distribution for each parameter was generated, and the multi-dimensional parameter space was sampled using Latin Hypercube Sampling (See~\ref{sampling method})~\parencite{Iman2014, Bergstra2012}, which maximises the sampling efficiency with fewer samples.
+A distribution for each parameter was generated, and the multi-dimensional parameter space was sampled using Latin Hypercube Sampling (see~\ref{sampling method})~\parencite{Iman2014, Bergstra2012}, which maximises the sampling efficiency with fewer samples.
 Depending on the uncertainty of the parameter, different distributions were used such as Loguniform, Gaussian and Fixed.
  For each parameter of the model, literature searches were carried out to define biologically realistic lower and upper bounds.
 Diffusion rates~($D$) where estimated in ~\cite{tica_diffusers}.
@@ -644,7 +644,7 @@ As seen in Fig.~\ref{fig:balancing}C, borderline curves are almost not affected 
 
 The parameter space defined in the previous chapter is divided into these three categories (matched, borderline and unmatched).
 Linear stability analysis was carried out on the three categories to understand if matching transfer functions would increase volume of Turing parameter space.
-Just by matching the transfer functions, the robustness can be go up by 30 fold which is a significant increase (See Fig.~\ref{fig:balancing_robustness}]) compared to non-balanced circuits.
+Just by matching the transfer functions, the robustness can be go up by 30 fold which is a significant increase (see Fig.~\ref{fig:balancing_robustness}]) compared to non-balanced circuits.
 
 
 \begin{figure}[H]
@@ -668,7 +668,7 @@ In Fig.~\ref{fig:param_distributions_turing_vs_noturing}, we can observe how the
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=1.2\textwidth]{chapters/Chapter 2/param_distributions} % The name of your image file; assumes it's in the same directory as your .tex file
+        \includegraphics[width=1.2\textwidth]{chapters/Chapter 2/param_distributions} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
     \caption{\textbf{Broad literature-based distributions for model parameters} Distributions for dimensionless parameters of model based on literature ranges. Blue distributions correspond to the sampled literature-informed distributions, where we made sure to only consider parameters where all the circuit transfer functions are ‘matched’. Red distributions correspond to Turing parameter sets found in the blue distributions using linear stability analysis. n is ignored because they are fixed. }. %TODO fact check}
     \label{fig:param_distributions_turing_vs_noturing} % A label for referencing this figure later in the document
@@ -686,7 +686,7 @@ This is further shown by a more extensive sampling of the same distribution with
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=0.6\textwidth]{chapters/Chapter 2/atc_robustness} % The name of your image file; assumes it's in the same directory as your .tex file
+        \includegraphics[width=0.6\textwidth]{chapters/Chapter 2/atc_robustness} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
     \caption{fill}. %TODO fact check}
     \label{fig:atc_robustness} % A label for referencing this figure later in the document
@@ -717,7 +717,7 @@ Subcircuit \#2 shows how the circuit is responsive to aTc and therefore it can b
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=1\textwidth]{chapters/Chapter 2/dose_response_experimental} % The name of your image file; assumes it's in the same directory as your .tex file
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/dose_response_experimental} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
     \caption{\textbf{Dose response curves of subcircuits.} Circuit characterisation: liquid culture fluorescence 18 hours after induction of three subcircuits: subcircuit \#1 (Sub1), \#2 (Sub2) and \#3 (Sub3). GFP on left and mCherry on right axis (unit AU/A600, mean ± SEM, n = 3). The tested interactions are shown above the respective plots.}.
     \label{fig:dose_response_experimental} % A label for referencing this figure later in the document
@@ -819,7 +819,7 @@ These parameters are used to generate the following dose-response curves (Fig.~\
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=1\textwidth]{chapters/Chapter 2/dose_responses_bestfit} % The name of your image file; assumes it's in the same directory as your .tex file
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/dose_responses_bestfit} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
     \caption{\textbf{Best fit for processed data set} Processed dataset is fitted using (A) Eq.~\ref{Subcircuit 1 equations} for subcircuit \#1 and (B) Eq.~\ref{Subcircuit 3 equations} for subcircuit \#3. }.
     \label{fig:dose_responses_bestfit} % A label for referencing this figure later in the document
@@ -859,7 +859,7 @@ On the other hand, a negative covariance leads to an inverse correlation of the 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=1\textwidth]{chapters/Chapter 2/multivariate_gaussians} % The name of your image file; assumes it's in the same directory as your .tex file
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/multivariate_gaussians} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
     \caption{\textbf{multivariate Gaussian distributions} X and Y parameter distributions with (left) negative covariance, (center) zero covariance and (right) positive covariance. The colour represents the distance to the mean, or in other words to the best fit parameter ($k$). Blue is the parameter ($k$) with minimal loss and yellow are neighbouring parameters with bigger loss. }.
     \label{fig:multivariate_gaussians} % A label for referencing this figure later in the document
@@ -883,7 +883,7 @@ The corresponding $q=10$ multivariate Gaussian parameter distributions are shown
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=1\textwidth]{chapters/Chapter 2/dose_response_multivariate_gaussian} % The name of your image file; assumes it's in the same directory as your .tex file
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/dose_response_multivariate_gaussian} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
     \caption{Fitted $OC_14$ dose-response curves produced using multivariate analysis optimisation, for subcircuit \#1 (left) and subcircuit \#3 (right). Dots show experimental data, the thick line is generated from best fit parameters and the thin lines are derived from multivariate Gaussian distributions cantered around the best fit with $q=10$. This distribution has a probability density function $p(x;k,10\cdot C_{k})$ where $k$ is the best fit parameter vector and $C_{k}$ is the covariance matrix.}.
     \label{fig:dose_response_multivariate_gaussian} % A label for referencing this figure later in the document
@@ -893,7 +893,7 @@ The corresponding $q=10$ multivariate Gaussian parameter distributions are shown
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=1\textwidth]{chapters/Chapter 2/multivariate_from_fit} % The name of your image file; assumes it's in the same directory as your .tex file
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/multivariate_from_fit} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
     \caption{Multivariate Gaussian distributions for fitted parameters. Distributions resulting from fitting subcircuit \#1 and \#3, using $q=10$. Diagonals represent the univariate distributions. The non-diagonals represent the multivariate distributions of parameter pairs. Certain parameters show positive covariance (e.g. $V^*_c$ and$ K^*_{ce}$), some negative covariance (e.g. $K^*_{vd}$ and $K^*_{fe}$) and some no covariance meaning they are independent (e.g. $V^*_{d}$ and $K^*_{fe}$). }
     \label{fig:multivariate_from_fit} % A label for referencing this figure later in the document
@@ -902,7 +902,7 @@ The corresponding $q=10$ multivariate Gaussian parameter distributions are shown
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=1\textwidth]{chapters/Chapter 2/1d_distributions} % The name of your image file; assumes it's in the same directory as your .tex file
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/1d_distributions} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
     \caption{\textbf{Constrained parametrised distributions for $V^*_X$ and $K^*_{XY}$ parameters in 1 dimension.} Distributions for dimensionless parameters of model based on fitting to liquid-culture experimental data. Grey distribution corresponds to parameters from fitting with $q=10$. Green vertical lines correspond to the 3 Turing parameter sets found in grey distribution using linear stability analysis }
     \label{fig:1d_distributions} % A label for referencing this figure later in the document
