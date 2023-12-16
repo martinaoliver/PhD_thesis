@@ -52,12 +52,13 @@ The focus of this thesis is on diffusion-based mechanisms, and we will therefore
     \textbf{(C)} Branching can occur through local cell division events which lead to tree-like structures in the lung. Image from~\cite{metzger2008branching}.}
     \label{fig:physical_based_mechanisms}
 \end{figure}
+%TODO add externally controlled below PI and self-organised below Turing
 
-\begin{figure}[h!]
+\begin{figure}[h]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Introduction/diffusion_based_mechanisms}
     \caption{\textbf{Patterning mechanisms in biology.} \textbf{(A)} Positional information occurs with a gradient of morphogen X, steaming from a source. This gradient is then interpreted by cells forming three different gene expression regimes and phenotypes (green, pink, blue).
-    The example shows an early drosophila embryo stained for DNA (blue), Hunchback protein (red), and Bicoid protein (green) with three partitioned regions. Image from~\cite{gregor2007probing}. \textbf{(B)} The Turing mechanism involves a network with a slow diffusing activator (purple) and a fast diffusing inhibitor (yellow). When they interact, they form a periodic stationary pattern which can lead to spatial spots, stripes or labyrinths in biology as seen in the Ornate boxfish. Photo courtesy of the Birch Aquarium at the Scripps Institution of Oceanography. }
+    The example shows an early drosophila embryo stained for DNA (blue), Hunchback protein (red), and Bicoid protein (green) with three partitioned regions. Image from~\cite{gregor2007probing}. \textbf{(B)} The Turing mechanism involves a network with a slow diffusing activator (purple) and a fast diffusing inhibitor (yellow). When they interact, they form a periodic stationary pattern which can lead to spatial spots, stripes or labyrinths in biology as seen in the Ornate boxfish. Photo courtesy of the Birch Aquarium at the Scripps Institution of Oceanography.}
     \label{fig:diffusion_based_mechanisms}
 \end{figure}
 
@@ -91,7 +92,7 @@ It is important to mention that while Turing's results were calculated by hand, 
 These advances in computer technology along with progress in molecular biology allowed a better understanding of reaction-diffusion models which began to attract attention.
 
 Given its attributes, the reaction-diffusion model might provide a more complete answer to the question of patterning in biology and more holistic perspective on the intricacies of morphogenesis.
-For this reason, Turing's mechanism for pattern formation will be the main focus of this work.
+For this reason, Turing mechanism for pattern formation will be the main focus of this work.
 Nevertheless, it is pivotal to recognize that these mechanisms are not strictly independent of each other.
 The intricate nature of biological patterning might be best elucidated by an amalgamation of these theories, suggesting a blended framework may hold the answers~\parencite{Green2015}.
 %TODO if time, comment on clock and wavefront model Baker2006
@@ -117,7 +118,7 @@ This whole phenomenon, called the diffusion-driven instability, is the essence o
 \begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Introduction/intro_to_Turing_patterns}
-    \caption[\textbf{Introduction to Turing's mechanism of pattern formation}]{\textbf{Introduction to Turing's mechanism}. \textbf{(A)} two node network based on Turing's original paper. Slow diffusing activator in green and fast diffuser inhibitor in pink. \textbf{(B)} Linear PDE equations for a two-node Turing system. \textbf{(C)} 2D simulation of equations in (B). \textbf{(D)} Here we display the mechanism of pattern formation with an activator-inhibitor system for an in-phase pattern. The system starts with a homogeneous distribution of activator an inhibitor (Time 1). However, this apparent homogeneous distribution, exhibits molecular fluctuations where the activator prevails over the inhibitor (Time 2). In this point in space, activator (green) is auto-enhanced, amplyfing such perturbations. Since the activator also enhances the inhibitor (pink), its levels will also rise in this region (Time 3). Finally, the inhibitor diffuses further away than the activator leading to two outcomes. Neighbouring regions to the peak go through repression and therefore concentrations of both molecules drop. Additionally, due to its fast diffusion, levels of inhibitor in the peak are not high enough to repress the activator  (Time 4). This leads to an organised system of peaks and troughs of molecule concentration which dynamically settles into a stationary pattern.}
+    \caption{\textbf{Introduction to Turing mechanism of pattern formation}. \textbf{(A)} two node network based on Turing's original paper. Slow diffusing activator in green and fast diffusor inhibitor in pink. \textbf{(B)} Linear PDE equations for a two-node Turing system. \textbf{(C)} 2D simulation of equations in (B). \textbf{(D)} Here we display the mechanism of pattern formation with an activator-inhibitor system for an in-phase pattern. The system starts with a homogeneous distribution of activator an inhibitor (Time 1). However, this apparent homogeneous distribution, exhibits molecular fluctuations where the activator prevails over the inhibitor (Time 2). In this point in space, activator (green) is auto-enhanced, amplyfing such perturbations. Since the activator also enhances the inhibitor (pink), its levels will also rise in this region (Time 3). Finally, the inhibitor diffuses further away than the activator leading to two outcomes. Neighbouring regions to the peak go through repression and therefore concentrations of both molecules drop. Additionally, due to its fast diffusion, levels of inhibitor in the peak are not high enough to repress the activator  (Time 4). This leads to an organised system of peaks and troughs of molecule concentration which dynamically settles into a stationary pattern.}
     \label{fig:intro_to_Turing_patterns}
 \end{figure}
 %\frac{\partial A}{\partial t} = 5A - 6I + 1 - D_{A}\nabla^2 A
@@ -231,7 +232,7 @@ This has resulted in limited studies addressing networks larger than three.
 \cite{Smith2018a} tackles this challenge by simplifying big networks into smaller ones.
 The reduced model is not an accurate description of the original system.
 However, it can predict whether a system will not show instabilities, ruling out many cases to study and reducing the computational cost of exploring larger networks.
-\cite{Haas2021} studies large networks with six diffusers using a random matrix approach and also shows that there is a relaxation in differential diffusion constraints.
+\cite{Haas2021} studies large networks with six diffusors using a random matrix approach and also shows that there is a relaxation in differential diffusion constraints.
 This linearised random matrix approach, previously used in ecology~\parencite{May1972}, could be used to explore large networks with mostly non-diffusible components.
 Although this random matrix method produces a very idealised model, it would resemble the scale of real biological networks and give insights in this respect.
 
@@ -268,7 +269,7 @@ In a way, this makes sense as very steep curves resemble turn genetic circuits i
 %\subsubsection{Discrete models}
 %Using discrete models can also show an increase in robustness.
 %Discretising concentration levels in~\cite{Leyshon2021} which results in states rather than continuous kinetics, leads to some topologies being more robust to pattern formation. %todo justification of this discretisation.
-%Additionally, discretising space to cell size can lead to pattern formation in certain systems that usually do not allow it such as single diffuser networks~\parencite{Wang2022}.
+%Additionally, discretising space to cell size can lead to pattern formation in certain systems that usually do not allow it such as single diffusor networks~\parencite{Wang2022}.
 
  % discrete models (discrete lattice gas cellular automaton (LGCA) framework.)concentration discreetenes: it conﬁnes the concentrations to a small number of discrete values (four in our case) and comprises discrete maps between these states rather than continuous kinetic parameters.Moreover, we found these ﬁve topologies to be more robust in the LGCA framework than they appear to be in the continuous case.~\parencite{Leyshon2021}
  \subsubsection{Growth}\label{growth_intro}
@@ -346,7 +347,7 @@ For example, although a Turing bifurcation is canonically a pitchfork bifurcatio
 This shows how much effect the boundaries have on the Turing instability, meaning they need to be considered when studying such systems.
 
 A more applied biological example of how boundaries can affect pattern formation is seen in~\parencite{Krause2020} where they study patterning synthetic biofilm in agar plates.
-In this case, the agar absorbs the diffusers through the boundary, disrupting the pattern formed in the biofilm.
+In this case, the agar absorbs the diffusors through the boundary, disrupting the pattern formed in the biofilm.
 This effect can be reduced by decreasing the thickness of the agar layer.
 Potentially, the pattern could also be maintained by reducing the permeability of the agar through the introduction of a filter paper or reduction of pore size.
 
@@ -381,7 +382,7 @@ Additionally, by perturbing populations away from the steady state, patterns for
 Gene expression delays also affect robustness for Turing pattern formation.
 These delays stem from the lags of transcription, where mRNAs are produced from DNA reads; and translation, where proteins are synthesised from mRNA reads. These processes occur in the scales of minutes to hours, depending on the genomic size of the organism.
 From a gene being activated to the protein being active, there is a delay that is often not accounted for when modelling patterning.
-The pattern morphology has been shown to be extremely sensitive to delays including sensitivity to the initial conditions in the final pattern, dramatic changes in the patterning lag under different delays and even pattern loss when delays are introduced~\parencite{Maini2012}.
+The pattern morphology has been shown to be extremely sensitive to delays including sensitivity to the initial conditions in the final pattern, dramatic changes in the patterning lag under different delays and even pattern loss when delays are introduced~\parencite{Maini2012, buchler2005nonlinear}.
 
 
 Overall, it is important to understand how different phenomena can affect pattern formation and introduce in models the most relevant to the natural system or experimental system being studied.
@@ -426,17 +427,17 @@ Instead, spatial structures emerge from other processes like cellular growth and
 Examples include synchronised oscillator circuits in bacterial colonies producing periodic concentric ring patterns without diffusing signals~\parencite{Potvin-Trottier2016, Riglar2019} (See Fig.~\ref{fig:engineered_patterns} Level 0).
 
 Level 1 circuits do rely on diffusible components; however, these are not dynamically regulated, meaning they are not produced by the circuit as it is in the case of Turing patterns.
-These diffusers only act as a pre-pattern which the system will interpret~\parencite{Basu2005, Schaerli2014, Kong2017, Barbier2020, Grant2020}.
+These diffusors only act as a pre-pattern which the system will interpret~\parencite{Basu2005, Schaerli2014, Kong2017, Barbier2020, Grant2020}.
 Although stripes and sharp boundaries can be obtained, their periodicity is limited.
-Hierarchical patterning circumvents the periodicity issue by increasing the number of orthogonal diffusers used, which linearly increases the number of spatial domains~\parencite{Boehm2018}.
+Hierarchical patterning circumvents the periodicity issue by increasing the number of orthogonal diffusors used, which linearly increases the number of spatial domains~\parencite{Boehm2018}.
 While hierarchical patterns can explain some developmental periodic patterns such as the neural tube in vertebrates~\parencite{Briscoe2015}, it fails to capture the self-organising periodicity of Turing patterns observed in development such as digit patterning~\parencite{Sheth2012,Raspopovic1} (see Fig. \ref{fig:engineered_patterns} Level 1).
 
-Level 2 circuits do incorporate dynamically regulated diffusers; however, only one diffuser is introduced.
+Level 2 circuits do incorporate dynamically regulated diffusors; however, only one diffusor is introduced.
 In contrast with level 1 systems, no pre-patterns are required to generate interesting behaviours.
 Starting from a spatially homogeneous regime, these systems can produce robust spatial oscillators such as~\parencite{Danino2010} or simple single ring patterns~\parencite{Cao2016, Payne2013} (see Fig. \ref{fig:engineered_patterns} L evel 2).
 
 Finally, level 3 circuits use multiple dynamically regulated diffusible components (see Fig.\ref{fig:engineered_patterns} Level 3).
-Turing patterns are the most prominent example of Level 3 systems as they as formed by reaction-diffusion circuits of at least two diffusers.
+Turing patterns are the most prominent example of Level 3 systems as they as formed by reaction-diffusion circuits of at least two diffusors.
 While numerous robust systems have been engineered in Level 0,1 and 2 circuits, Level 3 or Turing pattern engineering are still in its infancy.
 Stochastic Turing patterns were recently engineered in E. coli with a circuit implemented according to the self-activation and lateral inhibition topology, with two diffusible quorum-sensing signals~\parencite{Karig2018}.
 Additionally, solitary patterns have also been engineered in a refactored Nodal–Lefty system in HEK cells~\parencite{Sekine2018}.
@@ -468,7 +469,7 @@ For this reason, it is key to explore this avenue and build genetically based re
 %Mechanisms underlying long- and short-range nodal
 %signaling in Zebraﬁsh. Mech. Dev. 123, 388–394.
 %(doi:10.1016/j.mod.2006.03.006)
-\subsection{Engineering Turing patterns in bacterial biofilms using exogenous circuit }
+\subsection{Engineering Turing patterns in bacterial biofilms using exogenous circuit}
 Even though they have been successfully engineered in chemical systems, the complexity of biology means that Turing patterns have never been engineered in a genetic context.
 This can be attributed to the robustness problem including high sensitivity of parameters and a small fraction of parameter space producing Turing solutions.
 Additionally, designing Turing circuits with the classical 2-node topology leads to constraints in differential diffusivity that hinder the engineering of Turing patterns.
@@ -486,7 +487,7 @@ This topology is shown in Fig.~\ref{fig:synthetic circuit} (grey inset)
 The lack of robust biological partly was addressed in~\cite{Meyer2019} and~\cite{Du2020} where orthogonal morphogens where characterized, which allow the building of the \#1754 topology.
 These orthogonal morphogens are small quorum-sensing molecules which can activate gene expression by binding a promoter with high specificity, to activate downstream gene expression.
 These toolboxes are key to bridge the gap between abstract models and real-sender receiver circuits.
-Additionally, in~\cite{huidobro} we compiled a list of small molecule regulators that can diffuse and form gene circuits in E.coli, as well as their respective promoters and synthesis enzymes.
+Additionally, in~\cite{huidobro} we compiled a list of small molecule regulators that can diffuse and form gene circuits in \textit{E.~coli}, as well as their respective promoters and synthesis enzymes.
 These could be investigated in the future to use as additional morphogens to build more complex systems with more diffusible molecules.
 
 Finally,~\cite{Tica2020} engineered the \#1754 topology using the components from~\cite{Meyer2019} and~\cite{Du2020}, with the aim of exploring a Turing gene circuit for pattern formation (see Fig.~\ref{fig:synthetic circuit} bottom).
@@ -495,8 +496,8 @@ Due to the lack of specific biological parts such as an inhibitor quorum sensing
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 2/synthetic circuit2}
-    \caption{\textbf{Synthetic biology implementation of \#1754 topology.} This synthetic circuit engineered by Jure Tica and Tong Zhu is a genetic abstraction of the \#1754 topology in \cite{Scholes2019}. This circuit is transformed so every E.coli cell in the biofilm has a copy inside. The original topology (left, grey inset) has only three nodes, while the synthetic circuit (right) has 6 nodes. The 6 gene circuit architecture, s hown in standard notation, can be clustered into the three original nodes as seen by the blue,green,red bubbles. Diffuser synthesis enzymes are in blue, non-diffusible transcription
-    factors in red, fluorescent proteins in white. Diffuser synthesis enzymes produce quorum sensing molecules $pC$ and $OC_{14}$. The circuit can be regulated by small molecules ATC, IPTG and DAPG shown in white bubbles. DAPG activates the control cassette produces regulated degradation of small quorum sensing molecules. The bottom cassette (orange), contains the neccesary regulators: RpaR is the pC receptor (Node A diffuser), CinR is the OC14 receptor (Node B diffuser), and PhlF is the DAPG receptor (used to tune inducible diffuser degradation). The other three receptors PcaU, NahR and VanR are for the protocatechuate, salicylate and vanillin inducers, which are not used in the present circuit, but were tested in other versions of the system. These three systems can be used to introduce additional regulatory components to the system. }
+    \caption{\textbf{Synthetic biology implementation of \#1754 topology.} This synthetic circuit engineered by Jure Tica and Tong Zhu is a genetic abstraction of the \#1754 topology in \cite{Scholes2019}. This circuit is transformed so every \textit{E.~coli} cell in the biofilm has a copy inside. The original topology (left, grey inset) has only three nodes, while the synthetic circuit (right) has 6 nodes. The 6 gene circuit architecture, s hown in standard notation, can be clustered into the three original nodes as seen by the blue,green,red bubbles. Diffusor synthesis enzymes are in blue, non-diffusible transcription
+    factors in red, fluorescent proteins in white. Diffusor synthesis enzymes produce quorum sensing molecules $pC$ and $OC_{14}$. The circuit can be regulated by small molecules ATC, IPTG and DAPG shown in white bubbles. DAPG activates the control cassette produces regulated degradation of small quorum sensing molecules. The bottom cassette (orange), contains the neccesary regulators: RpaR is the pC receptor (Node A diffusor), CinR is the OC14 receptor (Node B diffusor), and PhlF is the DAPG receptor (used to tune inducible diffusor degradation). The other three receptors PcaU, NahR and VanR are for the protocatechuate, salicylate and vanillin inducers, which are not used in the present circuit, but were tested in other versions of the system. These three systems can be used to introduce additional regulatory components to the system.}
     \label{fig:synthetic circuit}
 \end{figure}
 
@@ -516,7 +517,7 @@ Secondly, having a model would allow us to inform the experimentalists on how to
 
 \section{Thesis overview}
 
-%TODO
+%%TODO mention chapter 1 and chapter 2 are a paper
 
 This thesis explores Turing patterning within synthetic biology and tissue engineering, employing a modeling approach.
 The novelty of this thesis lies in its modeling aspects, although it also includes some experimental results.

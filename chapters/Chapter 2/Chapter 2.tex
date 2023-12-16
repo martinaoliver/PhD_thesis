@@ -28,34 +28,34 @@ Additionally, extra detail is added on the tuning molecules and receptor cassett
     \includegraphics[width=1\textwidth]{chapters/Chapter 2/synthetic circuit2}
     \caption{\textbf{Synthetic biology implementation of \#1754 topology.} This synthetic circuit
     engineered by Dr.~Jure Tica and Tong Zhu is a genetic abstraction of the \#1754 topology in \cite{Scholes2019}.
-    This circuit is transformed so every E.coli cell in the biofilm has a copy inside.
+    This circuit is transformed so every \textit{E.~coli} cell in the biofilm has a copy inside.
     The original topology (left, grey inset) has only three nodes, while the synthetic circuit (right) has six nodes.
     The six gene circuit architecture, shown in standard notation, can be clustered into the three original nodes
     as seen by the blue,green,red bubbles.
-    Diffuser synthesis enzymes, in blue, produce quorum sensing molecules $pC$ and $OC_{14}$.
+    Diffusor synthesis enzymes, in blue, produce quorum sensing molecules $pC$ and $OC_{14}$.
     Non-diffusible transcription
     factors (in red), also called repressor proteins, are lacI, cI, cI* and tetR .
     Fluorescent proteins GFP and mCherry are in white.
-    The circuit can be regulated by small molecules ATC, IPTG and DAPG shown in white bubbles.
+    The circuit can be regulated by small molecules aTc, IPTG and DAPG shown in white bubbles.
     DAPG activates the control cassette produces regulated degradation of small quorum sensing molecules.
     The bottom cassette (orange), contains the neccesary regulators:
-    rpaR is the pC receptor (Node A diffuser), cinR is the OC14 receptor (Node B diffuser),
-        and phlF is the DAPG receptor (used to tune inducible diffuser degradation).
+    rpaR is the pC receptor (Node A diffusor), cinR is the OC14 receptor (Node B diffusor),
+        and phlF is the DAPG receptor (used to tune inducible diffusor degradation).
     The other three receptors pcaU, nahR and vanR are for the protocatechuate, salicylate and vanillin inducers,
         which are not used in the present circuit, but were tested in other versions of the system.
-    These three systems can be used to introduce additional regulatory components to the system. }
+    These three systems can be used to introduce additional regulatory components to the system.}
     \label{fig:synthetic circuit_chapter2}
 \end{figure}
 %TODO update legend in introduction.
 
 A partial differential equation (PDE) system is used to describe the reaction and diffusion terms of this synthetic gene circuit (Fig.~\ref{fig:synthetic circuit_chapter2}).
 This system of equations describes the concentration of molecules which are the dependent variables, in time and space which are the independent variables.
-The molecules modelled are the six regulator genes and two diffuser molecules.
+The molecules modelled are the six regulator genes and two diffusor molecules.
 This model includes:
 \begin{itemize}
     \item Constant background production due to promoter leakiness
     \item Activator-repressor regulated gene expression using non-linear sigmoidal Hill terms
-    \item Linear degradation of proteins and diffuser molecules or morphogens
+    \item Linear degradation of proteins and diffusor molecules or morphogens
     \item Diffusion of morphogens in a 2D space
     \item Effect of tuning molecules aTc, IPTG and DAPG on the circuit and diffusion
     \end{itemize}
@@ -73,10 +73,10 @@ The dynamics of a generic protein (X) and generic morphogen  (U) of the gene cir
 \end{equation}
 \end{subequations}
 
-This results in a PDE model with eight equations that correspond to the two diffusers
+This results in a PDE model with eight equations that correspond to the two diffusors
 (pC and OC14) and six protein species of the circuit:
 RpaI, CinI, TetR, LacI, cI* and cI.
-This PDE model is reduced to a six-equation system by assuming quasi-steady state for the diffusers,
+This PDE model is reduced to a six-equation system by assuming quasi-steady state for the diffusors,
 with production and degradation kinetics much faster than those of proteins.
 Finally, the model is non-dimensionalised to enable its parametrisation using liquid culture dose response data.
 In the subsections below, the different terms of Eq.~\ref{eq:Generalised protein and diffuser pde} are discussed.
@@ -116,9 +116,9 @@ corresponds to the first term in Eq.~\ref{eq:Generalised protein}
     The activator molecule (yellow) binds a receptor (blue),
         and this complex binds the promoter to activate gene expression.
     The inhibitor (green) binds the operator and inhibits gene expression.
-    In the case of this model, activators are diffusers (pC, $OC_{14}$) with their respective receptors (RpaR, CinR) and inhibitors are proteins (RpaI, CinI, TetR, LacI, cI, cI*).
+    In the case of this model, activators are diffusors (pC, $OC_{14}$) with their respective receptors (RpaR, CinR) and inhibitors are proteins (RpaI, CinI, TetR, LacI, cI, cI*).
     \textbf{(B)} Expression of X dependent on activation by A modelled with a Hill function.
-    \textbf{(C)} Expression of X dependent on inhibition by I modelled with an inverse-Hill function. }
+    \textbf{(C)} Expression of X dependent on inhibition by I modelled with an inverse-Hill function.}
     \label{fig:activation_inhibition} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -137,7 +137,7 @@ the K parameter in Eq.~\ref{eq:theta} corresponds to the concentration of induce
 required to reach production of X at  $1/2 V_{\max}$.
 
 
-\subsection{Tuning gene expression: aTc regulation of TetR and IPTG regulation of LacI }
+\subsection{Tuning gene expression: aTc regulation of TetR and IPTG regulation of LacI}
 Experimentally, the circuit was designed to be tuned in a variety of ways using aTc, IPTG and DAPG.
 This tuning was used to achieve parameter combinations that are more favourable for patterning.
 The following section introduces aTc and IPTG tuning into the model.
@@ -150,7 +150,7 @@ The following section introduces aTc and IPTG tuning into the model.
     \caption{\textbf{aTc and IPTG dependent repressions.}
     \textbf{(A)} TetR represses cI* by binding the TetO operator sequence.
     This repression can be inhibited by competitive binding of aTc to TetR.
-    \textbf{(B)} LacI repression of RpaI* is inhibited by IPTG through competitive binding to LacI. }
+    \textbf{(B)} LacI repression of RpaI* is inhibited by IPTG through competitive binding to LacI.}
     \label{fig:inducers} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -206,7 +206,7 @@ However, for cooperative systems where ~$n>1$, ~$[L_{half}] = \sqrt[n]{K_{D}}$.
 We define a new variable ~$K_{A} = \sqrt[n]{K_{D}} \leftrightarrow K_{D} = K^n_{A}$
 that we use to replace ~$K_{D}$ in the following expression,
 where $K^n_{A} = K_{TetR \mhyphen naTc}{[aTc]^n}$.
-This was also done for other ~$K_{D}$ parameters of the model. 
+This was also done for other ~$K_{D}$ parameters of the model.
 \begin{equation}
 [TetR_{free}] =  \frac{[TetR_{total}]}{1+(\frac{[aTc]}{K_{TetR \mhyphen aTc}})^{n_{aTc}}}
 \end{equation}
@@ -232,13 +232,13 @@ We can simplify the denominator so
 where
 
 \begin{equation}
-    K_{TetR \mhyphen TetO \mhyphen aTc }=K_{TetR \mhyphen TetO}\cdot(1+(\frac{aTc}{K_{TetR \mhyphen aTc}})^{n_{aTc}})
+    K_{TetR \mhyphen TetO \mhyphen aTc}=K_{TetR \mhyphen TetO}\cdot(1+(\frac{aTc}{K_{TetR \mhyphen aTc}})^{n_{aTc}})
 \end{equation}
 
-The parameter $K_{TetR \mhyphen TetO \mhyphen aTc }$ is the dissociation constant of TetR to TetO, $K_{TetR \mhyphen aTc}$
+The parameter $K_{TetR \mhyphen TetO \mhyphen aTc}$ is the dissociation constant of TetR to TetO, $K_{TetR \mhyphen aTc}$
 is the affinity of aTc to TetR, $n_{aTc}$ is the Hill coefficient of aTc and TetR,
 and $n_{TetO}$ is the Hill coefficient of TetR to TetO.
-Therefore, the higher the aTc, the higher the production of cI*.
+Therefore, the higher the aTc, the higher the production of cI*, which is the transcription factor repressing node node B.
 
 The same logic can be applied for the IPTG regulating LacI inhibition (see Fig.~\ref{fig:inducers}B),
 where unbound LacI can be or $[LacI_{free}]$ can be expressed as
@@ -268,13 +268,13 @@ where,
 The parameter $K_{LacI \mhyphen LacO \mhyphen IPTG}$ is the dissociation constant of TetR to TetO, $K_{LacI \mhyphen IPTG}$
 is the affinity of IPTG to LacI, $n_{IPTG}$ is the Hill coefficient of IPTG and LacI,
 and $n_{LacO}$ is the Hill coefficient of LacI to LacO.
-Therefore, the higher the IPTG, the higher the production of RpaI.
+Therefore, the higher the IPTG, the higher the production of RpaI, which is the synthesis enzyme producing pC to activate node B.
 
 
 
 
 \subsection{Degradation}
-All the species of the circuit, including proteins and diffusers,
+All the species of the circuit, including proteins and diffusors,
 were modelled to undergo linear, or first order, degradation
 \begin{equation}
     -\mu_{P_{1}}[X]
@@ -283,7 +283,7 @@ were modelled to undergo linear, or first order, degradation
 
 
 as seen in Eq.~\ref{eq:Generalised protein and diffuser pde}.
-The degradation rate parameters for the protein species and diffusers are readily available in the literature~\parencite{Andersen1998, kaufmann2005revisiting}
+The degradation rate parameters for the protein species and diffusors are readily available in the literature~\parencite{Andersen1998, kaufmann2005revisiting}
 and can be found in Table~\ref{table:degradation table}.
 They are scale-free parameters that only depend on time,
 which makes them more translatable between different experimental contexts and units of measurement.
@@ -300,40 +300,40 @@ which makes them more translatable between different experimental contexts and u
         \hline
         ASV & RpaI, GFP, mCherry 3 & 0.30 \\
         \hline
-        Diffusers & pC, $OC_{14}$ & 0.0225 \\
+        diffusors & pC, $OC_{14}$ & 0.0225 \\
         \hline
     \end{tabular}
-    \caption{\textbf{Degradation Parameters.} Degradation coefficients of protein species with degradation tags LVA and ASV, and basal degradation of diffusers.}
+    \caption{\textbf{Degradation Parameters.} Degradation coefficients of protein species with degradation tags LVA and ASV, and basal degradation of diffusors.}
     \label{table:degradation table}
 \end{table}
 
-The proteins of the circuit were added short peptide sequences at their 3’ ends,
+The proteins of the circuit had short peptide sequences added at their 3’ ends,
 known as degradation tags, that promote their breakdown by the cell’s proteolytic enzymes.
-The diffusors degradation could be further induced
+The diffusor's degradation could be further induced
 by adding exogenous DAPG to the system which induces degradation by AiiA lactonase.
 
-\subsection{Diffuser equations}
+\subsection{Diffusor equations}
 Diffusors ($pC$ and $OC_{14}$) are synthesised by enzymes (rpaI and cinI), and then bound to receptors (rpaR and cinR) to activate gene expression by binding to the promoters (Prpa and Pcin)
  as seen Fig.~\ref{fig:activation_inhibition}.
 The circuit receptors are expressed constructively from a low-copy pCC1 plasmid,
 The circuit receptors are expressed constructively from a low-copy pCC1 plasmid,
 and are therefore modelled with a constant concentration.
-Quasi-steady state was assumed for the very fast equilibrium that forms between the receptor and the diffusers.
+Quasi-steady state was assumed for the very fast equilibrium that forms between the receptor and the diffusors.
 The receptor-inducer and receptor-promoter binding equilibria were modelled with mass action kinetics.
 
-The enzymatic production of the diffusers was modelled with a simple linear production term dependent on synthesis enzyme concentration
+The enzymatic production of the diffusors was modelled with a simple linear production term dependent on synthesis enzyme concentration
 ([A], [B]),
 and a rate constant
 ($K_{1}$ and $K_{2}$).
 It is assumed that the precursor substrate concentration is in excess and does not influence the reaction rate.
 
 
-The diffusers are also modelled to undergo linear degradation,
+The diffusors are also modelled to undergo linear degradation,
 parameterised by $\mu_{U}$ and $\mu_{V}$ as seen in Eq.~\ref{linear degradation}.
 This degradation is a combination of a spontaneous hydrolysis in water, enzymatic AiiA-dependent degradation,
 and other cellular metabolic processes ~\parencite{kaufmann2005revisiting,Wang2004,Momb2008}.
 Finally,
-the diffuser movement through space is modelled with simple diffusion terms and parameterised with diffusion coefficients $D_{U}$ and $D_{V}$.
+the diffusor movement through space is modelled with simple diffusion terms and parameterised with diffusion coefficients $D_{U}$ and $D_{V}$.
 
 \begin{subequations}\label{diffuser}
 \begin{equation}
@@ -344,11 +344,11 @@ the diffuser movement through space is modelled with simple diffusion terms and 
 \end{equation}
 \end{subequations}
 
-The time dynamics of diffuser synthesis is much faster than that of protein production.
-Therefore, the rate of change of diffuser is expected to be much higher than that of proteins.
-These rapid fluctuations of diffuser can be approximated to equilibrium by using the quasi-steady state approximation,
+The time dynamics of diffusor synthesis is much faster than that of protein production.
+Therefore, the rate of change of diffusor is expected to be much higher than that of proteins.
+These rapid fluctuations of diffusor can be approximated to equilibrium by using the quasi-steady state approximation,
 meaning the rate is set to zero.
-This leads to an expression of diffuser concentration
+This leads to an expression of diffusor concentration
 that is linearly correlated with their synthesis enzyme and rate constant,
 and inversely correlated with their degradation rate.
 
@@ -381,9 +381,9 @@ In this process, the diffusion of U and V is artificially assigned to A and B, s
 
 \end{subequations}
 
-These quasi-steady state expressions are used to model the diffusers implicitly within the gene equations.
-Therefore, instead of using eight equations for the six genes and two diffusers;
-we have six equations for the six genes with the two diffusers modelled implicitly.
+These quasi-steady state expressions are used to model the diffusors implicitly within the gene equations.
+Therefore, instead of using eight equations for the six genes and two diffusors;
+we have six equations for the six genes with the two diffusors modelled implicitly.
 U and V will be modelled within A and B in the Hill activation and diffusion terms
 
 \begin{equation}
@@ -398,9 +398,9 @@ Although these genes are not explicitly modelled, a linear relationship between 
 
 \subsection{Six-equation model}
 We combined all the terms described above including the basal production,
-activator or inhibitor regulated production, tuning molecules, linear degradation and implicit diffusers.
+activator or inhibitor regulated production, tuning molecules, linear degradation and implicit diffusors.
 All these terms are applied to the circuit shown in Fig~\ref{fig:synthetic circuit_chapter2}.
-This results in a six equation model with information on the six proteins in space and time
+This results in a six-equation model with information on the six proteins in space and time
 
 \begin{subequations}\label{[6 equation proteins]}
 
@@ -495,7 +495,7 @@ Description of the parameters used in the model can be found in Table~\ref{tab:m
         \hline
         $\mu_{X}$ & Degradation rate of X & 1/h\\
         \hline
-        $D_{X}$ & Diffusion rate of diffuser X & $mm^2/h$\\
+        $D_{X}$ & Diffusion rate of diffusor X & $mm^2/h$\\
         \hline
 
     \end{tabular}
@@ -597,7 +597,7 @@ original units and dimensionless units can be found in Table~\ref{tab:Dimensionl
         \hline
         $ t $ & Time & $h$ & $\mu_{a} \cdot t \quad \rightarrow \quad  h \cdot  h^{-1} =1$\\
         \hline
-        $ x$  & Space & $mm$ & $\sqrt{\frac{k_{1} D_{1}}{\mu_{a}\mu_{v}} }/x \rightarrow  \sqrt{\frac{h^{-1} mm^{2} h^{-1}}{h^{-1}h^{-1}}}/mm  = 1$ \\
+        $ x$  & Space & $mm$ & $\sqrt{\frac{k_{1} D_{1}}{\mu_{a}\mu_{v}}}/x \rightarrow  \sqrt{\frac{h^{-1} mm^{2} h^{-1}}{h^{-1}h^{-1}}}/mm  = 1$ \\
         \hline
     \end{tabular}
 \end{table}
@@ -625,7 +625,7 @@ lacI and cI* concentrations will be used instead when studying how the fluoresce
 where $\alpha$ is the fractional translation between the two proteins in the same operon.
 
 
-Both the dimensional and the non-dimensional six equation models
+Both the dimensional and the non-dimensional six-equation models
 (Eqs.~\ref{[6 equation proteins]} and Eqs.~\ref{six_eq_dimensionless})
 are close representation of the synthetic gene circuit engineered
 by~\cite{Tica2020} shown in Fig.~\ref{fig:synthetic circuit_chapter2}.
@@ -636,17 +636,16 @@ will be used to explore the potential of this gene circuit for pattern formation
 
 \section{Explore parameter space and optimise robustness}
 Prior to performing any experiments on the gene circuit,
-I explored the parameter space of our system
+the parameter space of our system was explored
 to understand which possible spatio-temporal dynamics could be generated by this circuit.
-In particular,
-I investigated
-whether this six node synthetic biology implementation of the original 3 node-network from~\cite{Scholes2019} could produce Turing patterns.
+In particular, it was studied
+whether this six node synthetic biology implementation of the original three node-network from~\cite{Scholes2019} (Fig.~\ref{fig:synthetic circuit_chapter2}) could produce Turing patterns.
 Finally,
 I explored computationally
 how to tune the genetic circuit experimentally to maximise the likelihood of Turing pattern formation.
 Two approaches were taken
 which include
-investigating the effects of matching dose response curves to increase Turing robustness
+investigating the effects of matching dose-response curves to increase Turing robustness
 and understanding the effects of individual parameters on Turing robustness.
 
 \subsection{Definition of parameter space based on literature parameters}\label{Definition of parameter space based on literature parametrisation}
@@ -660,11 +659,10 @@ Depending on the uncertainty of the parameter, different distributions were used
  For each parameter of the model,
 literature searches were carried out to define biologically realistic lower and upper bounds.
 Diffusion rates~($D$) where estimated in unpublished data~\parencite{tica_diffusers}.
-Diffuser production rate constants ($k$) in~\cite{Schaefer1996, Pai2009}.
-Protein degradation rates in~\cite{Andersen1998}, while diffuser degradation in~\cite{kaufmann2005revisiting}.
+Diffusor production rate constants ($k$) in~\cite{Schaefer1996, Pai2009}.
+Protein degradation rates in~\cite{Andersen1998}, while diffusor degradation in~\cite{kaufmann2005revisiting}.
 Cooperativity values ($n$) in~\cite{Babic2007}.
-Other parameters
-that had not been clearly parametrised in the literature where defined with bounds such as maximum production rate
+Other parameters that had not been clearly parametrised in the literature were defined with bounds such as maximum production rate
 ($V_{X}$),
 background production rate ($b_{X}$) and Dissociation constant
 ($K_{XY}$).
@@ -722,40 +720,42 @@ several diffusion driven instabilities were found.
 When simulated these gave rise to Turing patterns
 varying from labyrinths to spots as seen in Fig.~\ref{fig:square_turing}.
 Although the robustness is limited (as described later),
-the synthetic gene circuit engineered by ~\cite{Tica2020} can indeed produce stationary periodic patterns
-resulting from Turing's mechanism.
+the synthetic gene circuit engineered by~\cite{Tica2020} can indeed produce stationary periodic patterns
+resulting from a Turing mechanism.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 2/square_turing}
-    \caption{\textbf{Examples of Turing patterns in six-node circuit.} Three simulations of the six-equation model with Turing parameter sets.
+    \caption{\textbf{Examples of Turing patterns in six-node circuit.} Three simulations of the six-equation model with Turing I parameter sets.
     In each solution (A,B,C) there are six images which represent every dependent variable of the model.
     The solver used is the \acrfull{ADI} method with non-growing square domains and reflecting boundary conditions.
-    Periodic patterns are observed. }
+    Periodic patterns are observed.}
     \label{fig:square_turing}
 \end{figure}
 
-\subsection{Increasing Turing robustness by matching consequent dose response curves}\label{balancing}
+\subsection{Increasing Turing robustness by matching consequent dose-response curves}\label{balancing}
 One of the aims of the model is
 to understand
 how to increase the robustness for Turing pattern formation \textit{in-silico} prior to the experimental work.
 This way, we can then use the insights to maximise the chances of finding Turing patterns \textit{in-vitro}.
 In this thesis,
-we describe robustness as the volume of the parameter space leading to Turing I and Turing I Hopf patterns.
-
+we describe Turing robustness as the volume of the parameter space leading to Turing I and Turing I Hopf patterns.
+Turing I Hopf patterns are included in this definition as in the context of the six-equation model and the parameters used, they seem to always produce periodic stationary patterns.
+This can clearly be seen in the following chapter where we explore these solutions numerically (see Fig.~\ref{system_class_simulations}).
+%TODO check that turing I hopf inclusion is throughout the text.
 The first approach consisted in investigating how a well-balanced circuit improves the likelihood of patterning.
 Once the components of the circuit are put together inside the cell,
 these components might not necessarily match well together.
 Gene circuits, as opposed to digital circuits, do not have binary inputs and outputs.
 Instead, gene expression is regulated continuously,
 where a continuous increase in inducer leads to a continuous change in protein concentration
-as seen in the dose response curves of Fig.~\ref{fig:balancing}A
+as seen in the dose-response curves of Fig.~\ref{fig:balancing}A
 (left).
 In this case, inducer [A0*] determines how much [A1*] is produced with a sigmoidal relationship.
-The dose response function is modelled with Hill terms as seen in Eq.\ref{eq:theta}.
-A well-matched transfer-function occurs when the protein expression levels steaming from dose response 1
+The dose-response function is modelled with Hill terms as seen in Eq.\ref{eq:theta}.
+A well-matched transfer-function occurs when the protein expression levels steaming from dose-response 1
 (Fig.~\ref{fig:balancing}A (left))
-are compatible with the sensitivity of the regulatory components they act on on dose response 2
+are compatible with the sensitivity of the regulatory components they act on on dose-response 2
 (Fig.~\ref{fig:balancing}A (right)).
 For example, a transfer function is not ‘matched’
 when a very sensitive promoter is completely turned on even with background levels of activator.
@@ -768,14 +768,14 @@ leading to a loss of dynamic range (Fig.~\ref{fig:balancing}B (red)).
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 2/balancing}
-    \caption{\textbf{Balancing of dose response curves for an inducer dependent activation.} \textbf{(A)} The first dose response curve (left) describes the [A0*] dependent production of [A1*] which can vary from $1$ to $V_{\max}+1 $. [A1*], which is the output of the first dose response, serves as an input for the second dose response (right). The second dose response curve describes the [A1*] dependent production of [X*]. The transfer function of the two dose response curves is said to be balanced or matched if $K_{XY}$ is within the bounds [A1*]. \textbf{(B)} Diagram showing the values of parameter $K_{XY}$ from the second dose response which generate unmatched (red), bordeline matched (yellow), and matched (green) transfer functions. These parameters are with respect to $V_{\max}$ from the first dose response. \textbf{(C)} Dose response curves are generated with parameters from the three regions in (B). Matched dose response curves (green) are the most sensitive to inducer, showing the biggest dynamic range. }
+    \caption{\textbf{Balancing of dose-response curves for an inducer dependent activation.} \textbf{(A)} The first dose-response curve (left) describes the [A0*] dependent production of [A1*] which can vary from $1$ to $V_{\max}+1 $. [A1*], which is the output of the first dose-response, serves as an input for the second dose-response (right). The second dose-response curve describes the [A1*] dependent production of [X*]. The transfer function of the two dose-response curves is said to be balanced or matched if $K_{XY}$ is within the bounds [A1*]. \textbf{(B)} Diagram showing the values of parameter $K_{XY}$ from the second dose-response which generate unmatched (red), bordeline matched (yellow), and matched (green) transfer functions. These parameters are with respect to $V_{\max}$ from the first dose-response. \textbf{(C)} dose-response curves are generated with parameters from the three regions in (B). Matched dose-response curves (green) are the most sensitive to inducer, showing the biggest dynamic range.}
     \label{fig:balancing}
 \end{figure}
 
 
 Mathematically, to ensure a transfer function is matched,
-the $K^*_{XY}$ of the second dose response producing X needs
-to be within the dynamic range of the dose response 1 producing A1 as seen in Fig.~\ref{fig:balancing}A.
+the $K^*_{XY}$ of the second dose-response producing X needs
+to be within the dynamic range of the dose-response 1 producing A1 as seen in Fig.~\ref{fig:balancing}A.
 The lower bound is the steady state $[X^*]_{ss0}$ when the gene is completely turned off, $\theta=0$.
 The upper bound is the steady state $[X^*]_{ss1}$ when the gene is completely turned on, $\theta=1$.
 The two bounds can be obtained
@@ -798,7 +798,7 @@ to be matched with a downstream component if $K^*_{XY}$ is between the upper and
 
 In Fig.~\ref{fig:balancing}B, the green region correspond to those parameter ranges.
 Additionally, in Fig.~\ref{fig:balancing}C,
-the green curves correspond to dose response curves where the transfer function is matched.
+the green curves correspond to dose-response curves where the transfer function is matched.
 The closer $K^*_{XY}$ is to these upper and lower bounds,
 the less balanced the upstream component is with the downstream component.
 For example, with $K^*_{XY}$ smaller than 1,
@@ -815,14 +815,14 @@ The parameter space defined in the previous chapter is divided into these three 
 Linear stability analysis was carried out on the three categories
 to understand if matching transfer functions would increase volume of Turing parameter space.
 Just by matching the transfer functions,
-the robustness can be go up by 30 fold which is a significant increase
+the robustness can be go up by 20-fold which is a significant increase
 (see Fig.~\ref{fig:balancing_robustness}) compared to non-balanced circuits.
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 2/balancing_robustness}
-    \caption{\textbf{Turing I robustness as percentage of parameter space with respect to matching of dose response curves.}}
+    \caption{\textbf{Turing robustness as percentage of parameter space with respect to matching of dose-response curves.} Turing instabilities include Turing I and Turing I-Hopf. Robustness from matched to unmatched increases 20-fold.}
     \label{fig:balancing_robustness}
 \end{figure}
 
@@ -831,10 +831,10 @@ the strength of ribosome binding sites (RBSs),
 start codons and degradation tags~\parencite{Andersen1998, Wang2011,Hecht2017}.
 Transfer function matching yielded a well-functioning circuit with a better capacity to produce spatial patterns
 as discovered in this modelling study.
-The matched dose response curves can be seen in the next section in Fig.~\ref{fig:dose_response_experimental}.
+The matched dose-response curves can be seen in the next section in Fig.~\ref{fig:dose_response_experimental}.
 
 
-\subsection{Increasing Turing's robustness by tuning individual parameters}
+\subsection{Parameter fine-tuning of the gene circuit to increase the likelihood of Turing patterns}
 Another way of increasing the Turing parameter space is to tune parameters independently.
 In this section we explore the distribution of obtained Turing parameter sets
 to understand how to tune each one to increase robustness of our system.
@@ -851,21 +851,18 @@ we can observe how the Turing samples defer from the general sampling for each d
     \caption{\textbf{Broad literature-based distributions for model parameters} Distributions for dimensionless parameters of model based on literature ranges.
     Blue distributions correspond to the sampled literature-informed distributions,
     where we made sure to only consider parameters where all the circuit transfer functions are matched.
-    Red distributions correspond to Turing parameter sets found in the blue distributions using linear stability analysis.
-    n is ignored because they are fixed.}%TODO fact check}
+    Red distributions correspond to Turing instabilities found in the blue distributions using linear stability analysis. Turing instabilities include Turing I and Turing I-Hopf. n's are ignored because they are fixed.}
     \label{fig:param_distributions_turing_vs_noturing} % A label for referencing this figure later in the document
 \end{figure}
 
-Turing pattern systems appear to have a bias for certain parameters regions
-(Fig.~\ref{fig:param_distributions_turing_vs_noturing} red).
+Turing pattern systems appear to have a bias for certain regions of parameters (Fig.~\ref{fig:param_distributions_turing_vs_noturing} red).
 This is very clear for diffusion, where Turing patterns usually appear in regions with $D_r$ < 1.
 $D_r$ is ($D_V / D_U$) meaning $OC_{14}$ should diffuse slower than pC.
 Experimentally, the $D_{OC14}/D_{pC}$ ratio has been measured to show it is 0.25 (unpublished work,~\cite{tica_diffusers}).
 This means our experimental setup has a diffusion ratio which is favourable for Turing pattern formation.
 %where the DOC14/DpC ratio is approximately 0.25 in agar (1.4% w/V, 37 ºC) (Tica et al., unpublished observations).
 
-In terms of the tuning molecules (IPTG, ATC and DAPG)
-we studied how to tune the gene circuit experimentally to increase Turing pattern likelihood.
+Additionally, used the model to study how to fine-tune the circuit using the exogenous tuning molecules IPTG, aTc and DAPG to increase Turing pattern likelihood.
 $K_{da}^*$  and $K_{ce}^*$ are dependent on IPTG and aTC respectively, through an increasing function,
 as seen in Eq.~\ref{kda_iptg} and Eq.~\ref{kce_atc}.
 Therefore,
@@ -873,7 +870,7 @@ to understand the effects of these two exogenous tuning molecules we can look at
 $K_{da}^*$ Turing parameters have a similar distribution to the sampled distribution,
 implying that IPTG does not affect the robustness of the gene circuit to Turing pattern formation.
 On the other hand, the $K_{ce}^*$ Turing parameters are more skewed to higher values than in the sampled distribution,
-suggesting that ATC increases robustness for Turing pattern formation.
+suggesting that aTc increases robustness for Turing pattern formation.
 This is further shown by a more extensive sampling of the same distribution with five different $K_{ce}^*$ values
 and measuring the Turing robustness in each
 (Fig.~\ref{fig:atc_robustness})
@@ -883,7 +880,7 @@ and measuring the Turing robustness in each
     \begin{adjustbox}{center}
         \includegraphics[width=0.5\textwidth]{chapters/Chapter 2/atc_robustness} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{Turing I robustness as a function of aTc or $K_{ce}$}.
+    \caption{Turing I robustness as a function of aTc or $K_{ce}$. Highest turing robustness is 0.025 with a high $K_{ce}$ value of $10^2$. After this, robustness plateaus or decays slightly. }
     \label{fig:atc_robustness} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -895,20 +892,6 @@ and $\mu_v$ have a positively linear relationship with $K_{ub}^*$ and $K_{vd}^*$
 Both $K_{ub}^*$ and $K_{vd}^*$ have skewed distributions towards higher values compared to the sampled distribution
 (Fig.~\ref{fig:param_distributions_turing_vs_noturing}).
 This means that adding exogenous DAPG could also increase robustness of the circuit for pattern formation.
-%TODO comment Experimentally, no patterns were observed with a high DAPG concentration (Fig. S16),
-but patterns were consistently observed for high ATC concentration (Fig. 3).
-
-These results can help experimentalist to guide the tuning by increasing ATC and DAPG adding exogenous molecules.
-Decreasing $D_{r}$ is harder, as there is no current good method for controlling diffusion of quorum sensing molecules.
-A potential route of decreasing the diffusion rate of a quorum sensing molecule is through receptor sequestering:
-When the number of receptors is much larger than the number of quorum sensing ligands,
-there is an irreversible uptake of some molecules which has been linked to shorter range communication -
-i.e. slower diffusion constants~\parencite{vangestel}.
-Therefore, to decrease $D{r}$,
-we can slow down diffusion of $OC_{14}$ by increasing the expression of the CinR receptor which will bind to $OC_{14}$.
-This can be done by tweaking the RBS for higher expression.
-Overall,
-this model enabled us to get insights into how to tune the robustness for Turing pattern formation experimentally.
 
 In this section we have obtained insights into parameter tuning
 to understand how to optimise robustness for Turing pattern formation.
@@ -932,15 +915,15 @@ Subcircuit \#2 shows how the circuit is responsive to aTc which means aTc can be
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 2/dose_response_experimental} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Dose response curves of subcircuits.}
-    On the left, the three subcircuits Sub1, Sub2 and Sub3 are shown, which test interactions of the circuit. On the right, the dose response curves corresponding to each subcircuit produced by Dr.~Jure Tica and Dr.~Georg Wachter. Each curve shows liquid culture fluorescence in RFU units (y axis) 18 hours after induction with different levels of inducer (x axis).
-    GFP on left and mCherry on right axis (unit AU/A600, mean ± SEM, n = 3). We can see all dose response curves are matched as the in Sub1 and Sub3, red responds to the green and in Sub2 green responds to the red. }
+    \caption{\textbf{dose-response curves of subcircuits.}
+    On the left, the three subcircuits Sub1, Sub2 and Sub3 are shown, which test interactions of the circuit. On the right, the dose-response curves corresponding to each subcircuit produced by Dr.~Jure Tica and Dr.~Georg Wachter. Each curve shows liquid culture fluorescence in RFU units (y axis) 18 hours after induction with different levels of inducer (x axis).
+    GFP on left and mCherry on right axis (unit AU/A600, mean ± SEM, n = 3). We can see all dose-response curves are matched as the in Sub1 and Sub3, red responds to the green and in Sub2 green responds to the red.}
     \label{fig:dose_response_experimental} % A label for referencing this figure later in the document
     %TODO add details of each subcircuit from supplementary paper.
 \end{figure}
 \section{Constrained parametrised distributions:
 fitting to liquid culture data of gene subcircuits}\label{Constrained parametrised distributions: fitting to liquid culture data of gene subcircuits}
-The dose response curves obtained (Fig.~\ref{fig:dose_response_experimental} left)
+The dose-response curves obtained (Fig.~\ref{fig:dose_response_experimental} left)
 are not only useful to characterise the circuit,
 but also for parametrisation of the model.
 Using the dimensionless model,
@@ -951,7 +934,7 @@ This is possible because the non-dimensionalisation facilitates the comparison b
 
 \subsection{Steady-state subcircuit equations for fitting.}
 As previously seen in Eq.\ref{1toVmax},
-the non-dimensionalisation transforms the dose response range so it goes from 1 to $V_{X}+1$.
+the non-dimensionalisation transforms the dose-response range so it goes from 1 to $V_{X}+1$.
 This transformation can be seen in Fig.~\ref{fig:dose_response_transforms}, right.
 For the experimental data to match the model,
 it is divided by the smallest fluorescence value within each experiment and is expressed in relative fold-change units
@@ -992,10 +975,10 @@ For Subcircuit \#1 we obtain the following steady-state expressions:
 
 \begin{subequations}\label{Subcircuit 1 equations}
 \begin{equation}
-    F_1 = 1 + V_f \left( \frac{1}{1+ \left( \frac{\mu_v K_{vd}}{k_v [O_{C14}] } \right)^{n_{vd}}} \right)
+    F_1 = 1 + V_f \left( \frac{1}{1+ \left( \frac{\mu_v K_{vd}}{k_v [O_{C14}]} \right)^{n_{vd}}} \right)
 \end{equation}
 %\begin{equation}
-%    E_1 = 1 + V_e \left( 1+ \left( \frac{1 + V_f \left( \frac{1}{1+ \left( \frac{\mu_v K_{vd}}{k_v [O_{C14}] } \right)^{n_{vd}}} \right)}{K_{fe}} \right)^{n_{fe}} \right)^{-1}
+%    E_1 = 1 + V_e \left( 1+ \left( \frac{1 + V_f \left( \frac{1}{1+ \left( \frac{\mu_v K_{vd}}{k_v [O_{C14}]} \right)^{n_{vd}}} \right)}{K_{fe}} \right)^{n_{fe}} \right)^{-1}
 %\end{equation}
 \begin{equation}
     E_1 = 1 + V_e \left( \frac{1}{1+ \left( \frac{F_1}{K_{fe}} \right)^{n_{fe}}} \right)
@@ -1005,7 +988,7 @@ For Subcircuit \#1 we obtain the following steady-state expressions:
 And for Subcircuit \#3 we obtain the following steady-state expressions:
 \begin{subequations}\label{Subcircuit 3 equations}
 \begin{equation}
-    D_3 = 1 + V_d \left( \frac{1}{1+ \left( \frac{\mu_v K_{vd}}{k_v [O_{C14}] } \right)^{n_{vd}}} \right)
+    D_3 = 1 + V_d \left( \frac{1}{1+ \left( \frac{\mu_v K_{vd}}{k_v [O_{C14}]} \right)^{n_{vd}}} \right)
 \end{equation}
 \begin{equation}
     C_3 = 1 + V_c \left( \frac{1}{1+ \left( \frac{D_3}{K_{da}} \right)^{n_{da}}} \right)
@@ -1018,7 +1001,7 @@ And for Subcircuit \#3 we obtain the following steady-state expressions:
 \subsection{Fitting process and the resulting best fit distributions.} \label{Fitting process and the resulting best fit distributions.}
 In addition to scaling and nondimensionalising, the lowest GFP data points were excluded,
 because fluorescence readings were insufficiently sensitive
-to measure concentration at these points %TODO ref figure fits(Fig. S20).
+to measure concentration at these points (Fig.~\ref{fig:dose_response_experimental}).  %TODO ref figure fits(Fig. S20).
 The fits were constrained to the maximal fold-change of the regulation, and to the sensitivity of the regulation
 (location of half-maximal response).
 This improved the quality of the fit and allowed us to identify a broader range of suitable solutions.
@@ -1110,11 +1093,34 @@ producing a circular distribution (Fig.~\ref{fig:multivariate_gaussians}, center
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 2/multivariate_gaussians} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{multivariate Gaussian distributions} X and Y parameter distributions with (left) negative covariance, (center) zero covariance and (right) positive covariance.
+    \caption{\textbf{Multivariate Gaussian distributions.} X and Y parameter distributions with (left) negative covariance, (center) zero covariance and (right) positive covariance.
     The colour represents the distance to the mean, or in other words to the best fit parameter ($k$).
     Blue is the parameter ($k$) with minimal loss and yellow are neighbouring parameters with bigger loss.}
     \label{fig:multivariate_gaussians} % A label for referencing this figure later in the document
         %TODO add details of each subcircuit from supplementary paper.
+\end{figure}
+
+Positive, negative or no correlations were observed in the multivariate Gaussian distributions shown in Fig.~\ref{fig:multivariate_from_fit}.
+This figure shows how certain parameters have positive covariance such as $V^*_c$ and $K^*_{ce}$.
+A high $V^*_c$ indicates a strong production of TetR, while a high $K^*_{ce}$ indicates a higher concentration of TetR to have the same inhibition effects.
+Therefore, if both are increased together, the behaviour of the system should remain the same and the dose-response fit should be unaltered.
+Some parameters have a negative covariance such as $K^*_{vd}$ and $K^*_{fe}$.
+While a high $K^*_{vd}$ increases the production of cI, a low $K^*_{fe}$ decreases the amount of cI needed to have the same inhibition effects.
+Therefore if varied in opposite directions, the circuit behaviour remains unaltered.
+Others are independent like $V^*_{d}$ and $K^*_{f}$ which determine the production rates of the molecules which affect the circuit independently.
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \begin{adjustbox}{center}
+        \includegraphics[width=1\textwidth]{chapters/Chapter 2/multivariate_from_fit} % The name of your image file; assumes it is in the same directory as your .tex file
+    \end{adjustbox}
+    \caption{\textbf{Multivariate Gaussian distributions for fitted parameters.}
+    Distributions resulting from fitting subcircuit \#1 and \#3, using $q=10$.
+    This distribution has a probability density function $p(x;k,10\cdot C_{k})$
+        where $k$ is the best fit parameter vector and $C_{k}$ is the covariance matrix.
+    Diagonals represent the univariate distributions.
+    The non-diagonals represent the multivariate distributions of parameter pairs, where we can observe positive and negative correlations as well as independent pairs of parameters.}
+    \label{fig:multivariate_from_fit} % A label for referencing this figure later in the document
 \end{figure}
 
 The width of the multivariate Gaussian distributions can be increased by multiplying $C_k$ by a scalar factor $q$ where $q>1$.
@@ -1128,41 +1134,27 @@ generated by the $q=10$ distribution are shown in Fig.~\ref{fig:dose_response_mu
 Within all the curves shown, 3 of them are generated by Turing parameter sets.
 The three Turing parameter sets are ensured to be ‘balanced’,
 where the input/output relationships of the components are matched (see Section~\ref{balancing}).
-The corresponding $q=10$ multivariate Gaussian parameter distributions are shown in Fig.~\ref{fig:multivariate_from_fit} in 2-parameter dimensions.
-1 dimensional distributions are of this multivariate are shown in Fig.~\ref{fig:1d_distributions},
-where the distribution is grey, and Turing within the distribution is green.
 
-The distributions of the multivariate gaussian in 1D and the Turing parameter sets are shown in Fig.~\ref{fig:1d_distributions}.
-The corresponding $q=10$ multivariate Gaussian parameter distributions are shown in Fig.~\ref{fig:multivariate_from_fit}.
-%TODO comment on the imporance of these results: Turing parameter sets exist in the fit distribution
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 2/dose_response_multivariate_gaussian} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{Fitted $OC_14$ dose-response curves
-    produced using multivariate analysis optimisation, for subcircuit \#1 (left) and subcircuit \#3 (right).
+    \caption{\textbf{Fitted OC\subscript{14} dose-response curves
+    produced using the multivariate gaussian distributions.}
     Dots show experimental data,
         the thick line is generated from best fit parameters and the thin lines are derived from multivariate Gaussian distributions cantered around the best fit with $q=10$.
-    This distribution has a probability density function $p(x;k,10\cdot C_{k})$
-        where $k$ is the best fit parameter vector and $C_{k}$ is the covariance matrix.}.
+        The parameters used to generate these curves come from the multivariate analysis optimisation, for subcircuit \#1 (left) and subcircuit \#3 (right). The parameter distributions are shown in Fig.~\ref{fig:multivariate_from_fit}.}
     \label{fig:dose_response_multivariate_gaussian} % A label for referencing this figure later in the document
 \end{figure}
 
-
-\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
-    \centering
-    \begin{adjustbox}{center}
-        \includegraphics[width=1\textwidth]{chapters/Chapter 2/multivariate_from_fit} % The name of your image file; assumes it is in the same directory as your .tex file
-    \end{adjustbox}
-    \caption{Multivariate Gaussian distributions for fitted parameters.
-    Distributions resulting from fitting subcircuit \#1 and \#3, using $q=10$.
-    Diagonals represent the univariate distributions.
-    The non-diagonals represent the multivariate distributions of parameter pairs.
-    Certain parameters show positive covariance (e.g. $V^*_c$ and$ K^*_{ce}$), some negative covariance (e.g. $K^*_{vd}$ and $K^*_{fe}$) and some no covariance
-    meaning they are independent (e.g. $V^*_{d}$ and $K^*_{fe}$). }
-    \label{fig:multivariate_from_fit} % A label for referencing this figure later in the document
-\end{figure}
+The corresponding $q=10$ multivariate Gaussian parameter distributions are shown in Fig.~\ref{fig:multivariate_from_fit}.
+The distributions of the multivariate Gaussian in 1-parameter dimension and the Turing parameter sets are shown in Fig.~\ref{fig:1d_distributions}.
+This figure shows where the parameters of Turing solutions lie in comparison with the fitted distributions.
+Overall, only parameter $K^*_{da}$ is far off from the Turing solutions.
+Lower values of $K^*_{da}$ would be required increase the likelihood of finding Turing solutions.
+This K*da parameter, which is captured in Subcircuit \#3 (see Eq.~\ref{Subcircuit 3 equations}b), has the highest uncertainty be
+%TODO add starts to params
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
@@ -1170,11 +1162,12 @@ The corresponding $q=10$ multivariate Gaussian parameter distributions are shown
         \includegraphics[width=1\textwidth]{chapters/Chapter 2/1d_distributions} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
     \caption{\textbf{Constrained parametrised distributions for $V^*_X$ and $K^*_{XY}$ parameters in 1 dimension.}
-    Distributions for dimensionless parameters of model based on fitting to liquid-culture experimental data.
+    Distributions for dimensionless parameters based on fitting to liquid-culture experimental data.
     Grey distribution corresponds to parameters from fitting with $q=10$.
     Green vertical lines correspond to the 3 Turing parameter sets
-    found in grey distribution using linear stability analysis }
+    found in grey distribution using linear stability analysis. Parameters which generate non-matched dose-response curves are removed.}
     \label{fig:1d_distributions} % A label for referencing this figure later in the document
+        %TODO legend make opaque
 \end{figure}
 
 \section{Discussion}
@@ -1183,5 +1176,126 @@ The corresponding $q=10$ multivariate Gaussian parameter distributions are shown
     \item Some parameter regions are more robust, which can be tuned experimentally
     \item Model can be parametrised using liquid culture data
 \end{itemize}
-%%TODO summary chapter2
 
+
+\section{Discussion}
+A synthetic gene circuit was built with the aim of engineering periodic pattern formation in synthetic \textit{E.~coli} biofilms (Fig.~\ref{fig:synthetic circuit_chapter2}).
+This chapter describes the model built to understand the spatio-temporal dynamics of this synthetic gene circuit.
+The parameter space is explored to show the circuit can produce Turing patterns, and in certain regions the likelihood of finding these patterns is higher.
+Finally, the model is parametrised using liquid culture data to constraint the model parameters to experimentally realistic values.
+
+\subsection{Model of synthetic gene circuit \#1754}
+The model presented is a PDE system which describes the concentrations of the six proteins in space and time.
+This model gives us insights into how protein concentrations change over time and in space and whether any spatio-temporal patterns form.
+Because the experimental circuit is the largest RD gene circuit ever built, the model also results in a complex model with many variables and parameters.
+This results in computationally expensive numerical simulations and a high-dimensional parameter space with over 20 dimensions, which is complicated to sample.
+
+To simplify the model, many assumptions are taken.
+For example, quasi-steady states are assumed for mRNA production, protein-promoter binding, receptor-diffusor binding and diffusor synthesis.
+Although these processes exist in a quasi-steady state equilibrium, they might produce delays which are not taken into account in this model.
+Investigating these delays would be necessary in the future to understand whether they disrupt pattern formation as shown in~\cite{Maini2012}.
+Additionally, degradation is assumed to be linear, which might not be accurate in some cases.
+High levels of proteins, burden or age-dependent effects might collapse the degradation machinery~\parencite{kintaka2020genetic} leading to non-linear dynamics which are not currently captured.
+Additionally, diffusor precursors as well as diffusor receptors are assumed to be in excess to avoid extra equations and parameters.
+The parameters of the model are also assumed to be constant over time, which might not be realistic due to cell burden, nutrient depletion or other effects in the biofilm.
+Future work in this direction would involve exploring experimentally the relationship between these effects and the model parameters.
+An interesting example of this would be to define a time-dependent nutrient equation which kinetic parameters are dependent on.
+Finally, this model assumes fluorescent protein concentration is linearly correlated with fluorescence.
+Although this assumption is often correct~\parencite{soboleski2005green, csibra2022absolute}, several factors can disrupt the linearity.
+For example, low concentrations of fluorescent protein might not be detected by the instruments, leading to a non-linear relationship.
+pH and temperature can also affect fluorescent values~\parencite{ward1982spectral}.
+When using LacI and cI* to model GFP and RFP fluorescence respectively, we need to take into account these assumptions on linearity and understand when they might break.
+
+\subsection{Finding Turing instabilities and optimising Turing robustness}
+
+Regardless of all the assumptions, the model is extremely useful in giving us insights into the system.
+Firstly, the model parameter space was searched using LSA to find Turing I instabilities.
+Turing I-Hopf instabilities were also searched for, as they have been shown to produce stationary periodic patterns in many cases as seen in Section~\ref{nogrowth}.
+The model does produce Turing I and Turing I-Hopf instabilities, meaning periodic stationary patterns as the ones observed in Fig.~\ref{fig:square_turing} could occur experimentally.
+When the gene circuit was built inspired from the original \#1754 topology,
+more nodes and connections had to be implemented to replicate the original functions.
+Therefore, it was not sure if these changes would remove the capabilities of patterning.
+Proving the genetic implementation of this topology could produce patterning was necessary prior to searching for Turing patterns experimentally.
+
+The model also helped understand parameter regimes in which the gene circuit was more likely to produce Turing instabilities, including both Turing and Turing I-Hopf.
+By matching circuit components to have responsive dose response curves, the robustness could be increased 20 fold from 0.001\% to 0.19\% as seen in Fig.~\ref{fig:balancing_robustness}.
+This robustness could be further increased by tuning specific parameters such as decreasing the $D_{OC14}/D_{pC}$ ratio, increasing aTc or increasing DAPG.
+Different levels of aTc were explored in a system with matched dose response curves.
+It was seen that robustness could be increased from 0 to 0.025 by increasing $K_{ce}$, which is equivalent to adding exogenous aTc to the experiment.
+
+
+These results can help experimentalist to guide the fine-tuning of the circuit by matching dose response curves, or adding exogenous aTc and DAPG.
+Decreasing $D_{r}$ is harder, as there is no current good method for controlling diffusion of quorum sensing molecules.
+A potential route of decreasing the diffusion rate of a quorum sensing molecule is through receptor sequestering:
+When the number of receptors is much larger than the number of quorum sensing ligands,
+there is an irreversible uptake of some molecules which has been linked to shorter range communication (i.e. slower diffusion constants~\parencite{vangestel}).
+Therefore, to decrease $D{r}$,
+we can slow down diffusion of $OC_{14}$ by increasing the expression of the CinR receptor which will bind to $OC_{14}$.
+This can be done by tuning the RBS for higher expression.
+
+Overall, this model enabled us to design experimental strategies for tuning the robustness of the system so Turing patterns could be obtained experimentally.
+However, it is important to note that although they have been optimised, the robustness levels obtained are extremely low.
+Further investigation to understand how to further increase the percentage of Turing solutions in parameter space is needed.
+In this thesis, robustness optimisation was carried by tuning model parameters.
+However, it is worth investigating whether growth, boundary conditions or even a pre-pattern could increase the probability of obtaining Turing patterns with this circuit.
+
+
+
+\subsection{Model parametrisation}
+Working with large parameter spaces based on literature parameters is useful to understand the overall potential of the circuit architecture.
+However, once the system is fine-tuned by matching dose-response curves and adding exogenous aTc, it is important to constraint the parameter space to that of the fine-tune circuit, so more accurate results are produced.
+Additionally, because of the high dimensionality of the parameter space, it is useful to parametrise the model to obtain a smaller parameter space which is easier to sample.
+Dose-response curves from the fine-tuned circuit in liquid culture were produced which could be used for parametrisation.
+Parametrisation was possible because of the dimensionless model.
+This dimensionless model could produce dose-response curves such as the experimental ones by taking the steady states expressions under different inducer concentrations (Eqs~\ref{Subcircuit 1 equations},~\ref{Subcircuit 3 equations}).
+Relative fluorescent units from the experimental dose-response curves could be directly compared to dimensionless units of our dimensionless model as seen in Fig.~\ref{fig:dose_response_transforms}.
+From this comparison, we aimed to obtain a distribution of model parameters that fitted the experimental data with a certain level of uncertainty.
+
+A distribution is preferred over a single fit as biological systems exhibit noise and there is a certain level of uncertainty in the fixed parameters of the model.
+This distribution could be obtained by using a Bayesian approach or a multivariate Gaussian optimisation approach.
+In the Bayesian optimisation approach, a prior is given which is updated by sampling the parameter space to obtain a posterior distribution that fits the data.
+This Bayesian approach works well if prior knowledge needs to be incorporated into the model and if non-linear relationships between parameters are present.
+However, it is more computationally expensive.
+On the other hand, multivariate Gaussian optimisation is a much more computationally efficient algorithm based on a simple least squares minimisation to produce a mean value and a covariance matrix.
+This algorithm is less flexible in terms of the prior given and the relationships between parameters (i.e.~non-linearities are not captured).
+Additionally, the distribution is only centered around the best fit mean value, meaning the posterior might be limited.
+
+Using the multivariate Gaussian approach, a distribution of parameters was obtained
+which fitted the experimental dose response with a certain level of uncertainty.
+This allowed for a much more constrained parameter space which is easier to sample and gives more accurate results.
+Additionally, the fitting process allowed us to understand and verify correlations between parameters.
+All these correlations can be explained using the logic of the circuit architecture, which means the distributions are correct and the model accurately describes the dynamical behaviour of the circuit.
+Interestingly, Turing solutions were found within these distributions.
+Theoretically, these Turing solutions are the closest solutions in parameter space that fit the experimental data.
+Therefore, we should expect their dynamical behaviour to match the experiments more closely than any other Turing solution found in the literature-based parameter space.
+
+However, a high level of uncertainty ($q=10$) was needed to find such Turing solutions in the distribution.
+This lack of robustness in the fitted distribution can be attributed mainly to the $K^*_{da}$ parameter, which has a higher distribution than Turing solutions.
+This $K^*_{da}$, which is the $[LacI]$ needed for half repression of node A, is an uncertain parameter as no fluorescent reporters are linked to node A.
+Currently, the only data used is on node B, with a GFP reporter, and node
+C, with an mCherry reporter.
+Having dose-response curves which report on every gene of the circuit would get rid of issues on node A parametrisation, and potentially increase the Turing robustness in the fitted distribution.
+A potential route to improve this parametrisation technique would be to use RT-qPCR, which is a technique used for mRNA quantification.
+mRNA counts of every one of the six genes would be measured for different inducer concentrations, hence obtaining information on the currently 'hidden' nodes.
+Additionally, because fluorescence levels are sometimes not an accurate predictor of protein levels as previously discussed, using mRNA counts would improve issues such as the low fluorescent values not being detected.
+Overall, this parametrisation method goes beyond studying pattern formation, and could be useful to parametrise any genetic circuit model in synthetic biology.
+
+
+
+
+%TODO comment on the imporance of these results: Turing parameter sets exist in the fit distribution
+
+
+
+%- assumption fluorescence linear not true. loqw gfp fluorescence not detected, remove thersholds. curves not matching. fit constrained incorrectly.
+%TODO comment on -negative params removed.
+
+%TODO discuss calbiration of machines. method for synbio parametrisation which does not involve calibration of machines and is universal.
+
+
+
+
+
+%TODO comment robustness is lower than scholes but multidimensional spaces are hard to compare
+
+%fluorescent proteins are linearly correlated with transcription factors in the same operon, and concentration of fluorescence

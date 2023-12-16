@@ -373,6 +373,7 @@ If the Jacobian J of this system is
             \pdv{f_{I}}{A} &
             \pdv{f_{I}}{I} - D_{I}k^2
     \end{bmatrix}
+    \label{jacobian_diffusion}
 \end{equation}
 
 these pair of equations can again be treated as an eigenvalue-eigenvector problem written in the following way:
@@ -481,7 +482,7 @@ The relationship between wavenumber $(k)$ and wavelength $(\lambda)$ is
     \caption{\textbf{The dispersion relation of reaction-diffusion systems.} \textbf{(A)} Dispersion relation of a system without Turing instability (left). Eigenvalues are computed for every wavenumber k. The dominant mode is stable, having an eigenvalue below zero. Numerical solution of system for molecule A without Turing instability (right), shows homogeneity in space (x-axis) and time (y-axis).  \textbf{(B)} Dispersion relation of a system with Turing instability (left). The dominant mode is unstable, having an eigenvalue above zero. Numerical solution of system for molecule A (right), shows a periodic in space (x-axis) which is stationary in time (y-axis). Colorbar reflects molecular species concentration.}
     \label{fig:turing_vs_noturing} % A label for referencing this figure later in the document
 \end{figure}
-An example of a classical Turing instability with a positive dispersion peak is shown in Fig.~\ref{fig:intro_to_turing_patterns}B, along with the corresponding stationary spatial pattern.
+An example of a classical Turing instability with a positive dispersion peak is shown in Fig.~\ref{fig:intro_to_Turing_patterns}B, along with the corresponding stationary spatial pattern.
 Alternatively, Fig.~\ref{fig:turing_vs_noturing}A shows a spatially homogeneous solution which results from a stable system that does not exhibit a diffusion driven instability.
 These 1D numerical results were produced using the \acrfull{CN} numerical scheme described in~\ref{cranknicolson}, programmed using \textit{numpy} in Python from first math principles.
 The boundary conditions used here are Neumann boundary conditions where the derivative at the boundary is zero ($\pdv{U}{x}=0$) for both molecular species, A and I.
@@ -553,7 +554,7 @@ This is an example of a self-organising pattern where the classical Turing insta
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \includegraphics[width=0.6\textwidth]{chapters/Chapter 1/lsa_vs_numerical_confusion_literature} % The name of your image file; assumes it is in the same directory as your .tex file
-    \caption{\textbf{Binary confusion matrix linking linear stability analysis and patterning.} }
+    \caption{\textbf{Binary confusion matrix linking linear stability analysis and patterning.}}
     \label{fig:lsa_numerical_confusion_literature} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -580,10 +581,11 @@ This trajectory is depicted in the phase diagram (Fig.~\ref{fig:multistability1}
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 1/multistability1} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Stationary Patterns in multistability.} \textbf{(A)} Phase diagram illustrating three distinct steady states where the derivative is zero: stable, unstable, and Turing. These steady states are represented within a parameter space defined by two axes: concentrations of A and I. The vector field, indicated by light green arrows, shows the direction of the derivatives of the system at various points in the parameter space. A trajectory is also shown (dark green arrow), demonstrating how the unstable state may evolve over time into the Turing state. \textbf{(B)} Numerical solutions of the three steady states, where unstable state unexpectedly produces a Turing-like stationary pattern. \textbf{(C)} Dispersion relation showing each type of states.}
+    \caption{\textbf{Stationary Patterns in multistability.} \textbf{(A)} No diffusion phase diagram illustrating three distinct steady states where the derivative is zero: stable, unstable, and stable (Turing). These steady states are represented within a parameter space defined by two axes: concentrations of A and I. The vector field, indicated by light green arrows, shows the direction of the derivatives of the system at various points in the parameter space. A hand-drawn trajectory is also shown (dark green arrow), demonstrating how the unstable state may evolve over time into the Turing state. \textbf{(B)} Numerical solutions of the three steady states, where unstable state unexpectedly produces a Turing-like stationary pattern. \textbf{(C)} Dispersion relation showing each type of states.}
     \label{fig:multistability1} % A label for referencing this figure later in the document
 \end{figure}
-
+%TODO add stable(Turing) to text and images
+%TODO clarify phase diagram is without diffusion
 Then, we present a case where LSA incorrectly predicts stationary pattern formation.
 Fig.~\ref{fig:multistability2} shows an ephemeral or transient pattern that occurs in the unstable and Turing regimes.
 The TP initially develops in the vicinity of the Turing steady state.
@@ -595,7 +597,7 @@ This type of transient pattern behaviour has also been recently reported in~\cit
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 1/multistability2} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Ephemeral patterns in multistability}\textbf{(A)}Phase diagram with stable, unstable and Turing states. The trajectory (dark green arrow) shows unstable state evolving into Turing, and Turing evolving into stable. \textbf{(B)} Numerical solutions. Unstable and Turing produce temporary periodic stationary patterns, that then dissapear and become spatially homogeneous solutions. \textbf{(C)} Dispersion relation showing each type of state.}
+    \caption{\textbf{Ephemeral patterns in multistability.} \textbf{(A)} No diffusion phase diagram with stable, unstable and Turing states. The hand-drawn trajectory (dark green arrow) shows unstable state evolving into stable (Turing), and stable (Turing) evolving into stable. \textbf{(B)} Numerical solutions. Unstable and Turing produce temporary periodic stationary patterns, that then dissapear and become spatially homogeneous solutions. \textbf{(C)} Dispersion relation showing each type of state.}
     \label{fig:multistability2} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -610,7 +612,7 @@ Interesting interactions similarly occur with multistability involving Turing I-
     \begin{adjustbox}{center}
     \includegraphics[width=1.2\textwidth]{chapters/Chapter 1/multistability_leftover} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Other types of multistability dynamics.} \textbf{(A)} Unstable sourrounded by Turing robustly converges into Turing. \textbf{(B)} Unstable produces pattern, while Turing loses pattern. \textbf{(C)}Multistability disrupts all patterns. \textbf{(D)} Turing I-Hopf attracts unstable and generates pattern}
+    \caption{\textbf{Other types of multistability dynamics.} \textbf{(A)} Unstable sourrounded by Turing robustly converges into Turing. \textbf{(B)} Unstable produces pattern, while Turing loses pattern. \textbf{(C)} Multistability disrupts all patterns. \textbf{(D)} Turing I-Hopf attracts unstable and generates pattern}
     \label{fig:multistability_leftover} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -642,7 +644,8 @@ Finally, a Turing I type behaviour arises getting a peak above zero and decaying
 Other types of dispersion relation exist which are not displayed here such as Turing II, where the eigenvalues do not become stable again for very large wavenumbers.
 Therefore, this system displays an instability at very large wavenumbers which result in infinitesimally small wavelength patterns.
 These are considered to produce homogeneous solutions, except in the case of space discretization where they can produce small wavelength patterns~\parencite{Wang2022}.
-
+However, Turing II solutions are not possible in systems such as this one where all nodes are diffusing.
+This is because for $k \rightarrow \inf$, all eigenvalues $\sigma$ must be negative (see Eq.~\ref{jacobian_diffusion}).
 %TODO . They also identify examples of non-stationary spatial patterns, when the eigenvalue corresponding to a critical wave number has non-zero imaginary part.Deutsch, A., Dormann, S., et al., 2005. Cellular automaton modeling of biological pattern formation. Springer.
 
 %TODO look at pitchfork and transcritical
@@ -696,7 +699,7 @@ The two types of classifications described above are applied, and a new 5x4 conf
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 1/lsa_vs_numerical_confusion_variant0-11-12} % The name of your image file; assumes it is in the same directory as your .tex file
-    \caption{\textbf{Confusion matrix linking LSA output (rows) and numerical pattern outcome (columns).} Numbers show the percentage of solutions across the LSA output rows. }
+    \caption{\textbf{Confusion matrix linking LSA output (rows) and numerical pattern outcome (columns).} Numbers show the percentage of solutions across the LSA output rows.}
     \label{fig:lsa_numerical_confusion} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -767,8 +770,8 @@ The peak classification shown in Fig.~\ref{fig:peaks_classification}, retrieves 
 The 5 different types of patterns are:
 \begin{itemize}
     \item Patterns with one peak will be considered homogeneous as they result from the morphogens being reduced at the boundary due to absorption (Fig.~\ref{fig:peaks_classification} no pattern, homogeneous).
-    \item Patterns with two peaks are also considered not to be patterned states as the two peaks might arise at the boundary for one of the diffusers due to the depletion of the other (Fig.~\ref{fig:peaks_classification} no pattern, boundary effect).
-    \item Patterns with three peaks start displaying a pattern more similar to Turing's repeats, although we cannot prove the number of peaks would scale with tissue length as Turing patterns do (Fig.~\ref{fig:peaks_classification} weak pattern).
+    \item Patterns with two peaks are also considered not to be patterned states as the two peaks might arise at the boundary for one of the diffusors due to the depletion of the other (Fig.~\ref{fig:peaks_classification} no pattern, boundary effect).
+    \item Patterns with three peaks start displaying a pattern more similar to Turing repeats, although we cannot prove the number of peaks would scale with tissue length as Turing patterns do (Fig.~\ref{fig:peaks_classification} weak pattern).
     \item Patterns with four peaks could still be purely a boundary effect, but is less likely as the number of repeats points towards tissue scaling being possible (Fig.~\ref{fig:peaks_classification} intermediate pattern).
     \item Finally, patterns with five peaks and above can be considered strong patterns and would be most similar to classical Turing patterns in non-growing no-flux boundary domains (Fig.~\ref{fig:peaks_classification} strong pattern).
 \end{itemize}
@@ -792,7 +795,7 @@ However, some exceptions are present which are further studied in Fig.~\ref{fig:
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 1/nogrowth_openboundary_confusion_variant0-11-12} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Confusion matrix linking system outcome with reflective boundary and absorbing boundary.} Numbers show the percentage of solutions across the rows with reflective boundary output. }
+    \caption{\textbf{Confusion matrix linking system outcome with reflective boundary and absorbing boundary.} Numbers show the percentage of solutions across the rows with reflective boundary output.}
     \caption{Effects of absorbing boundary conditions on patterning}
     \label{fig:nogrowth_openboundary_confusion_variant0} % A label for referencing this figure later in the document
 \end{figure}
@@ -859,7 +862,7 @@ However some flows go downwards, meaning absorbing boundaries and growth might c
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 1/3layer_sankey} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Sankey Diagram showing flow of pattern outcomes}. The 3 layer sankey shows the flows of patterns when going from reflective boundary conditions (left) to absorbing boundary conditions (center) to growth. Two color codes, pinks and blues, are used for the two types of classifications (Homogeneity-convergence decision tree and number of peaks) }
+    \caption{\textbf{Sankey Diagram showing flow of pattern outcomes}. The 3 layer sankey shows the flows of patterns when going from reflective boundary conditions (left) to absorbing boundary conditions (center) to growth. Two color codes, pinks and blues, are used for the two types of classifications (Homogeneity-convergence decision tree and number of peaks)}
     \label{fig:3layer_sankey} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -929,7 +932,7 @@ Additionally, they are often based on complex analytical methods, yielding resul
 For this reason, we performed a high-throughput numerical study to understand the effects that the type of growth and boundaries of our system has on patterning.
 Our bacterial colonies grow in a linearly manner ~\cite{Tica2023}, where growth occurs mainly at the edges.
 For this reason we generated this type of linear edge growth.
-In terms of boundaries, empty agar absorbs the diffusers at the edge so we introduced absorbing boundary conditions.
+In terms of boundaries, empty agar absorbs the diffusors at the edge so we introduced absorbing boundary conditions.
 However, the numerical parameters (length, growth rate, time) were not specifically those of our system as they had to be fined tuned to attain convergence, display enough peaks, and be computationally feasible.
 Future work can focus on matching the numerical parameters to be more similar to our experimental system.
 

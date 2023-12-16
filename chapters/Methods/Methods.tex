@@ -9,15 +9,15 @@ x_{n+1} = x_{n} - \frac{f(x_{n})}{f'(x_{n})}
 
 where $f(x)$ is the function and $f'(x)$ its derivative.
 
-This algorithm was implemented in python using a tolerance value of 0.000001 and a maximum of 15 iterations after which the algorithm stopped searching for a root.
+This algorithm was implemented in Python using a tolerance value of $10^{-6}$ and a maximum of 15 iterations after which the algorithm stopped searching for a root.
 Because the system had the potential for multi-stability, several initial conditions need to be searched to obtain all steady states.
 In total 100 initial conditions were analysed by the Newton-Raphson to obtain all the roots of the system.
-The 100 conditions were chosen performing latin-hypercube sampling of a n dimensional space (n being the number of species), from a uniform distribution with a range from $10^{-3}$ and $10^3$ .
+The 100 conditions were chosen performing Latin-hypercube sampling of a $n$ dimensional space ($n$ being the number of species), from a uniform distribution with a range from $10^{-3}$ and $10^3$ .
 %Approximately, the root finding for a single parameter set takes around 2 seconds.
 \section{Sampling method}\label{sampling method}
 If no parameters from a system are known, sampling of the whole parameter space must be done to understand the system's behaviour.
 Different methods exist for sampling parameter spaces.
-Several studies have shown that latin-hypercube sampling (LHS) has a higher efficiency than grid sampling or random sampling when searching through high dimensional spaces.
+Several studies have shown that Latin-hypercube sampling (LHS) has a higher efficiency than grid sampling or random sampling when searching through high dimensional spaces.
 The efficiency over grid sampling might be explained because not all dimensions of the model are important, meaning some parameters might be sloppy.
 Therefore, not all parameters have to be explored thoroughly as done in grid sampling~\parencite{Iman2014, Bergstra2012}.
 The three sampling regimes are shown in Fig.~\ref{fig:distributions}A.
@@ -32,7 +32,7 @@ The LHS scheme is shown in Fig.~\ref{fig:distributions}B.
 \begin{figure}[H]
 
     \includegraphics[width=1\textwidth]{chapters/Methods/distributions}
-    \caption{\textbf{Sampling method for high dimensional spaces}. \textbf{(A)} Types of potential sampling methods. \textbf{(B)} Latin-Hypercube sampling with uniform distribution for a 2 dimensional parameter space. Space is separated in 5 sections for each parameter, leading to 5 samples (red dot). No sample is present in the same row or column. \textbf{(C)} Parameter distributions used for Latin-hypersube sampling. The 4 different types of parameters have different distributions depending on the ranges defined. All of them are uniform distributions in log-scale. }
+    \caption{\textbf{Sampling method for high dimensional spaces}. \textbf{(A)} Types of potential sampling methods. \textbf{(B)} Latin-Hypercube sampling with uniform distribution for a 2 dimensional parameter space. Space is separated in 5 sections for each parameter, leading to 5 samples (red dot). No sample is present in the same row or column. \textbf{(C)} Parameter distributions used for Latin-hypersube sampling. The 4 different types of parameters have different distributions depending on the ranges defined. All of them are uniform distributions in log-scale.}
     \label{fig:distributions}
 \end{figure}
 The distribution given as an input to the LHS algorithm, will be the resulting distribution of your samples.
@@ -41,7 +41,7 @@ Amongst those, we commonly use the uniform distributions in a logarithmic scale 
 The uniform distribution, although it does not describe many phenomena in biology, can be useful when no prior knowledge is known about the parameters~\parencite{Frank2009}.
 The logarithmic component is used to make sure parameters from all scales are represented equally, instead of having a higher frequency of values from larger scales.
 Log-normal distributions are commonly used for modelling in biology, however due to the nonexistent prior knowledge on our parameter values, the log-uniform is used instead.
-When we some level of certainty about a parameter, a gaussian distribution is used.
+When we some level of certainty about a parameter, a Gaussian distribution is used.
 Finally, if we are completely sure, a fixed distribution is used.
 \section{PostgreSql database}\label{PostgreSql database}
 %TODO add details of schema in methods
@@ -56,7 +56,7 @@ Finally, if we are completely sure, a fixed distribution is used.
 The wavelength was obtained by computing the average distance between peaks in the solution.
 A wavelength is found for every species of the model, which in case of Chapter~\ref{Chapter 1} is 2 species.
 Then the average between the various wavelengths (which are expected to be similar) is computed.
-The average is found using the \textit{findpeaks} package in python with all the default parameters and a prominence of 0.5.
+The average is found using the \textit{findpeaks} package in Python with all the default parameters and a prominence of 0.5.
 
 The convergence time is obtained by testing when in time the pattern stops being converged starting from the end.
 A pattern will be considered converged if the last 30 timepoints for any of the two molecular species fulfills the following condition
@@ -67,7 +67,7 @@ A pattern will be considered converged if the last 30 timepoints for any of the 
 \section{Dispersion peak height optimisation: Adapted random walk Metropolis}\label{dispersion_peak_optimisation}
 In this section, the optimisation of the dispersion peak height using an adapted random walk-Metropolis (RWM) algorithm will be explained.
 The RWM algorithm is a common type of Markov Chain Monte Carlo (MCMC) method that uses a Metropolis Algorithm.
-The RWM algorithm is used for sampling a variable to understand its probability distribution, without getting stuck in local maxima.
+The RWM algorithm sampled from the posterior distribution, without getting stuck in local maxima.
 This algorithm is used in a Bayesian context when trying to fit a model with parameters $\theta$ to data $D$.
 A probability distribution is obtained, which suggest what parameters $\theta$ are better to represent the data $D$.
 However, in this case, the aim is not to fit a model to any data $D$, but to maximise the dispersion peak height.
@@ -145,10 +145,11 @@ The spatial part of the equation can be approximated to
 \begin{equation}
     \pdvn{2}{u}{x} \biggr\rvert_{x=j\Delta x,t=n\Delta t} \approx \frac{1}{2\Delta x^{2}}\left( U^{n}_{j+1} -  2U^{n}_{j} + U^{n}_{j-1} + U^{n+1}_{j+1} - 2U^{n+1}_{j} + U^{n+1}_{j-1}\right),
 \end{equation}
-while the production function can be approximated to $f ( U^{n}_{j})$.  The approximations can be better visualised using the \acrshort{CN} stencil (See Fig.\ref{fig:stencils}a). Applying \acrshort{CN} stencil to the grid point (i,j), the reaction-diffusion system can be expressed as
+while the production function can be approximated to $f ( U^{n}_{j})$.  The approximations can be better visualised using the \acrshort{CN} stencil (See Fig.\ref{fig:stencils}a).
+Applying \acrshort{CN} stencil to the grid point (i,j), the reaction-diffusion system can be expressed as
 
 \begin{equation}
-    \frac{U^{n+1}_{j} - U^{n}_{j} }{\Delta t} = \frac{D}{2\Delta x^{2}}\left( U^{n}_{j+1} -  2U^{n}_{j} + U^{n}_{j-1} + U^{n+1}_{j+1} - 2U^{n+1}_{j} + U^{n+1}_{j-1}\right) +  f( U^{n}_{j})
+    \frac{U^{n+1}_{j} - U^{n}_{j}}{\Delta t} = \frac{D}{2\Delta x^{2}}\left( U^{n}_{j+1} -  2U^{n}_{j} + U^{n}_{j-1} + U^{n+1}_{j+1} - 2U^{n+1}_{j} + U^{n+1}_{j-1}\right) +  f( U^{n}_{j})
 \end{equation}
 By reordering this approximation into a linear equation, the resulting problem is defined by a simple linear equation containing matrices A and B. Where $\textbf{U}^{n+1} = [U^{n}_{0}, \ldots , U^{n}_{J-1}]$, the simplified system can be expressed as:
 \begin{equation}
@@ -172,12 +173,12 @@ If the CN stencil is applied to this 2 dimensional spatial problem, the system w
 \begin{subequations}
     \begin{equation}
         \begin{split}
-            \frac{U^{n+1/2}_{i,j} - U^{n}_{i,j} }{\Delta t/2} = \frac{D}{2\Delta x^{2}}\left( U^{n+1/2}_{i+1,j} -  2U^{n+1/2}_{i,j} + U^{n+1/2}_{i-1,j}\right)  \\+ \frac{D}{2\Delta y^{2}}\left( U^{n}_{i,j+1} -  2U^{n}_{i,j} + U^{n}_{i,j-1}\right)  + \Delta t f(U^{n}_{i,j})
+            \frac{U^{n+1/2}_{i,j} - U^{n}_{i,j}}{\Delta t/2} = \frac{D}{2\Delta x^{2}}\left( U^{n+1/2}_{i+1,j} -  2U^{n+1/2}_{i,j} + U^{n+1/2}_{i-1,j}\right)  \\+ \frac{D}{2\Delta y^{2}}\left( U^{n}_{i,j+1} -  2U^{n}_{i,j} + U^{n}_{i,j-1}\right)  + \Delta t f(U^{n}_{i,j})
         \end{split}
     \end{equation}
     \begin{equation}
         \begin{split}
-            \frac{U^{n+1}_{i,j} - U^{n}_{i,j} }{\Delta t/2} = \frac{D}{2\Delta x^{2}}\left( U^{n+1/2}_{i+1,j} -  2U^{n+1/2}_{i,j} + U^{n+1/2}_{i-1,j}\right)  \\+ \frac{D}{2\Delta y^{2}}\left( U^{n+1}_{i,j+1} -  2U^{n+1}_{i,j} + U^{n+1}_{i,j-1}\right)  + \Delta t f(U^{n+1/2}_{i,j})
+            \frac{U^{n+1}_{i,j} - U^{n}_{i,j}}{\Delta t/2} = \frac{D}{2\Delta x^{2}}\left( U^{n+1/2}_{i+1,j} -  2U^{n+1/2}_{i,j} + U^{n+1/2}_{i-1,j}\right)  \\+ \frac{D}{2\Delta y^{2}}\left( U^{n+1}_{i,j+1} -  2U^{n+1}_{i,j} + U^{n+1}_{i,j-1}\right)  + \Delta t f(U^{n+1/2}_{i,j})
         \end{split}
     \end{equation}
 \end{subequations}
@@ -196,15 +197,15 @@ Speed of pattern formation and pattern wavelength are identified by performing a
 \textbf{Time for pattern formation}
 The development of the pattern follows a certain behaviour: The molecule concentrations are initially homogeneous; then a pattern gets formed progressively; and finally, the pattern is in its final state and the solution remains constant.  The time for pattern formation is measured by comparing the solution (one point in space) at every time point to the solution at the final time point. If the difference if smaller than a tolerance value of $10^{-4}$ that time point is taken as the convergence time point were the pattern has finished to  develop. \\\\
 \textbf{Wavelength prediction from numerical Solution}
-The findpeaks package is used from the \textit{scipy.signal} python library. All peaks in the final time point of the 1D simulation are found through the findpeaks package. The average distance between peaks is taken and that distance is averaged throughout the 6 species.
+The findpeaks package is used from the \textit{scipy.signal} Python library. All peaks in the final time point of the 1D simulation are found through the findpeaks package. The average distance between peaks is taken and that distance is averaged throughout the 6 species.
 
 \section{Image recognition and modelling for confocal microscopy data}
 \subsection{Tissue area recognition}\label{Tissue area recognition}
 From a confocal microscopy image, we want to obtain the shape of the biofilm.
-The image is opened and processed using the PIL package in python.
+The image is opened and processed using the PIL package in Python.
 After splitting the image into RGB, the blue channel is selected.
 Because the cells show red and green fluorescence, the blue channel is minimal in the tissue compared to the agar.
-A gaussian filter is used to smooth the image and get a continuous biofilm.
+A Gaussian filter is used to smooth the image and get a continuous biofilm.
 Blue channel pixels with values above a threshold (20) are selected and fixed to 0 in the "shape matrix".
 The rest of the pixels are set to 1 which determine the area of the biofilm.
 
@@ -238,7 +239,7 @@ Therefore, future studies to characterise fluorescence output and protein concen
 
 \section{Experimental methods}
 \subsection{Transformation through electroporation}\label{electroporation}
-1 $\mu L$ of DNA containing the 4 plasmids was added to 25 $\mu L$ of electrocompetent MK01 \textit{E.coli} cells.
+1 $\mu L$ of DNA containing the 4 plasmids was added to 25 $\mu L$ of electrocompetent MK01 \textit{E. coli} cells.
 These 4 plasmids make of the full gene circuit seen in Fig.~\ref{fig:synthetic circuit_chapter2}.
 Details of these plasmids are in~\ref{tab:plasmid table}.
 This mixture was placed on ice for a minute before being transferred to an electroporation cuvette.
