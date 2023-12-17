@@ -238,8 +238,33 @@ The first requirement for a Turing instability is that the system without diffus
 
 \subsubsection{Stability of steady state with diffusion}
 Once the stability of the steady state has been analysed in the absence of diffusion, the effect of diffusion on the same system will be studied.
-The diffusion will be introduced through the partial derivative term $D_{X}\nabla^2 X$.%TODO check nabla
-\paragraph{Reduction of PDE term to ODE through Fourier transformations}
+The diffusion will be introduced through the partial derivative term $D_{X}\nabla^2 X$.
+
+
+
+
+%\paragraph{Definition of finite system and no-flux boundary conditions}
+%A function X(x), which represents concentration of molecule X in space x, is defined in a finite-domain [0,L] with no-flux boundary conditions.
+%No-flux boundary conditions imply that the derivative of the function at the boundaries is zero:
+%
+%\begin{equation}
+%    \frac{\partial A}{\partial x}\Bigg|_{x=0} = \frac{\partial X}{\partial x}\Bigg|_{x=L} = 0
+%\end{equation}
+%
+%
+%A general Fourier series representation of X(x) under these conditions can be:
+%
+%\begin{equation}
+%    X(x) = \sum_{n=0}^{\infty} \left( A_n \cos\left(\frac{n \pi x}{L}\right) + B_n \sin\left(\frac{n \pi x}{L}\right) \right)
+%\end{equation}
+%
+%However, because the derivative at the boundary is zero, the cosine series is used instead.
+%This is because the derivative of $\cos(0)$ or $\cos(n\pi])$ is zero.
+%
+
+
+
+\paragraph{Reduction of PDE term to ODE through Fourier transformations in infinite domain}
 The second order partial derivative term will be reduced to an ODE simpler term through Fourier transforms.
 Given infinite x-domain, the following Fourier transform definitions are used:
 \begin{subequations}

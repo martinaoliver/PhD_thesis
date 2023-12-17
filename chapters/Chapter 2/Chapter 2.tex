@@ -1137,17 +1137,15 @@ where the input/output relationships of the components are matched (see Section~
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
-    \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 2/dose_response_multivariate_gaussian} % The name of your image file; assumes it is in the same directory as your .tex file
-    \end{adjustbox}
-    \caption{\textbf{Fitted OC\subscript{14} dose-response curves
+    \caption{\textbf{Fitted OC14 dose-response curves
     produced using the multivariate gaussian distributions.}
     Dots show experimental data,
         the thick line is generated from best fit parameters and the thin lines are derived from multivariate Gaussian distributions cantered around the best fit with $q=10$.
-        The parameters used to generate these curves come from the multivariate analysis optimisation, for subcircuit \#1 (left) and subcircuit \#3 (right). The parameter distributions are shown in Fig.~\ref{fig:multivariate_from_fit}.}
+        The parameters used to generate these curves come from the multivariate analysis optimisation, for subcircuit 1 (left) and subcircuit 3 (right). The parameter distributions are shown in Fig.~\ref{fig:multivariate_from_fit.}}
     \label{fig:dose_response_multivariate_gaussian} % A label for referencing this figure later in the document
 \end{figure}
-
+%TODO add The parameter distributions are shown in Fig.~\ref{fig:multivariate_from_fit.}
 The corresponding $q=10$ multivariate Gaussian parameter distributions are shown in Fig.~\ref{fig:multivariate_from_fit}.
 The distributions of the multivariate Gaussian in 1-parameter dimension and the Turing parameter sets are shown in Fig.~\ref{fig:1d_distributions}.
 This figure shows where the parameters of Turing solutions lie in comparison with the fitted distributions.
@@ -1249,7 +1247,14 @@ Dose-response curves from the fine-tuned circuit in liquid culture were produced
 Parametrisation was possible because of the dimensionless model.
 This dimensionless model could produce dose-response curves such as the experimental ones by taking the steady states expressions under different inducer concentrations (Eqs~\ref{Subcircuit 1 equations},~\ref{Subcircuit 3 equations}).
 Relative fluorescent units from the experimental dose-response curves could be directly compared to dimensionless units of our dimensionless model as seen in Fig.~\ref{fig:dose_response_transforms}.
-From this comparison, we aimed to obtain a distribution of model parameters that fitted the experimental data with a certain level of uncertainty.
+
+It is important to note that the experimental data used for parametrisation represents te behavior of cells in liquid culture.
+Parameters might vary slightly for cells growing in colonies on agar surfaces, specially as they become old.
+Dose response curves in agar could be produced in the future.
+This would allow us not only to understand parameters of cells growing in agar dishes, but also have different fits for old cells in the middle and new cells at the edge of the colony.
+
+
+By fitting the dose response models to the experimental liquid culture data, we aimed to obtain a distribution of model parameters that replicated the experimental data with a certain level of uncertainty.
 
 A distribution is preferred over a single fit as biological systems exhibit noise and there is a certain level of uncertainty in the fixed parameters of the model.
 This distribution could be obtained by using a Bayesian approach or a multivariate Gaussian optimisation approach.
@@ -1279,8 +1284,6 @@ A potential route to improve this parametrisation technique would be to use RT-q
 mRNA counts of every one of the six genes would be measured for different inducer concentrations, hence obtaining information on the currently 'hidden' nodes.
 Additionally, because fluorescence levels are sometimes not an accurate predictor of protein levels as previously discussed, using mRNA counts would improve issues such as the low fluorescent values not being detected.
 Overall, this parametrisation method goes beyond studying pattern formation, and could be useful to parametrise any genetic circuit model in synthetic biology.
-
-
 
 
 %TODO comment on the imporance of these results: Turing parameter sets exist in the fit distribution

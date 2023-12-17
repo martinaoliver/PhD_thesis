@@ -165,10 +165,8 @@ The masks obtained can be used to compute the solution of the PDE in the biofilm
 Unless otherwise stated, a reflective boundary condition (Neumann) is used at the edge of the square where the agar finishes.
 Taking an arbitrary parameter set, this method produces a numerical result similar to that of the colonies obtained in Section~\ref{Rings in small colonies with high aTc}.
 The comparison can be seen in Fig.~\ref{small colony experiment vs model} where the red edge with green center is reproduced.
-This pattern is commonly seen throughout, as it stems from the boundary effects at the edge of the colony which is capture by the masking method.
-At the edge of the colony, there is a depletion of diffusors as they leak out onto the agar.
-By looking at the circuit (Fig.~\ref{fig:synthetic circuit_chapter2}), we can observe that diffusors are direct GFP activators and mCherry inhibitors.
-Therefore, as they get depleted, red is produced and green decays.
+This pattern, which is commonly seen throughout, most likely stems from the boundary effects at the edge of the colony which is capture by the masking method.
+
 \begin{figure}[H]
     \centering
 
@@ -189,16 +187,20 @@ The diffusion rate $D_U$ is the only one not fixed and it ranges from $0.1-10 \,
 Using Eq.~\ref{time_space_transform}, time is transformed so that $t^*=3.3\cdot t$.
 Space is also transformed but is dependent on $D_U$, which is sampled from a range.
 Therefore, for $D_U = [0.1, 10] \,mm^2 h^{-1}$, $x^* =[1.92 - 0.192] \cdot x$.
-Using realistic exsperiment time and space, the following dimensionless values are obtained:
+Using realistic experiment time and space, the following dimensionless values are obtained:
 For time $t=166\,h$, dimensionless time $t^*=50$.
 Dimensionless space  $x^*=16$ is taken so  $x = [8.32, 83.2] \,mm$, with $D_U = [0.1, 10]\, mm^2 h^{-1}$ respectively.
 These values of t and x lie within realistic physical parameters for our system.
-These transformations are dependent on parameters that may vary experimentally, and therefore some uncertainty must be allowed.
+These transformations are dependent on parameters that may var  y experimentally, and therefore some uncertainty must be allowed.
 The experimental values used here are an example on how to carry out the transformations, however all simulation parameters for space and time can be found on TableX and Table Y.
 %TODO add somewhere params of simulations in appendix to justify transfomations
-%TODO comment on resolution of pixel with respect to E.coli size.
 %TODO add growth curves in appendix to justify linear growth
 
+The space resolution taken is $dx^*=0.1$.
+If transformed to non-dimensional units, this would be $dx =[0.052-0.520] mm = [52-520] \mu m$.
+This means that the biological size of every pixel of the simulation varies from $52\mu m$ to $5200\mu m$ depending on the $D_{U}$ chosen.
+Because the model is dimensionless, the spatial resolution is lower if a higher diffusion constant for U is used.
+If we assume an \textit{E.~coli} cell has a size of around $~1\mu m$~\parencite{shiomi2009genetic}, in every pixel there are around 52 to 5200 \textit{E.~coli} cells.
 \section{Colony pattern dynamics in parameter space searches}
 
 The experimental work in this thesis produced the first rings observed in the system, where small colonies were used (Section~\ref{Rings in small colonies with high aTc}).
@@ -236,7 +238,7 @@ However some interesting multistable systems are present such as the Turing-Hopf
     \centering
 
     \includegraphics[width=1\textwidth]{chapters/Chapter 3/system_class_simulations}
-    \caption{\textbf{Simulations of the hybrid PDE-bacterial colony solver for different types of dispersion relations}. Kymograph on the left shows the timeseries of the a cross-section. Plot on the right shows the final snapshot of the simulation. In both, the green and red channels are superposed. Turing I Hopf and Turing I solutions show stationary periodic patterns including outer ring addition. Hopf solutions show oscillatory solutions including inner ring addition.}
+    \caption{\textbf{Simulations of the hybrid PDE-bacterial colony solver for different types of dispersion relations}. Kymograph on the left shows the timeseries of the a cross-section. Plot on the right shows the final snapshot of the simulation. In both, the green and red channels are superposed. Turing I Hopf and Turing I solutions show stationary periodic patterns including outer ring addition. Hopf solutions show oscillatory solutions including interior ring growth.}
     \label{system_class_simulations}
 \end{figure}
 
@@ -292,10 +294,11 @@ This route is chosen as it is the most efficient way of obtaining many Turing pa
 The parameter space found around the fitted Turing parameter sets is explored, while keeping to the fit distributions. To do this, a small noise deviation is applied to the parameters with relative uncertainty of 1\%.
 In other words, for each parameter $p$, a normal distribution is generated with mean $\mu=p$ and standard deviation $\sigma=p\cdot 0.01$.
 This small noise perturbation to all parameters, which generates similar steady-state dose-response behaviour, allows us to further explore the Turing parameter space near the best fit to the liquid culture.
+
 For each value of uncertainty, $2\cdot10^3$ parameter combinations were analysed.
 The Turing patterning robustness with different amounts of noise is shown in Fig.~\ref{fig:turing_fit_noise_robustness}A, showing how robustness decreases as more noise in the parameters is added.
 This figure shows how the local parameter space around Turing conditions is highly enriched with patterns (e.g adding a relative uncertainty of 1\% around a Turing I solution produces 33\% Turing I solutions, whereas an uncertainty of 5\% produces 5\% Turing I solutions).
-The average relative uncertainty in the Vm and Km parameters between biological repeats in liquid culture data of Fig. 1b was 4.8\%. This indicates that if a patterning region was found, Turing patterns could be sufficiently common to be reproduced.%TODO maybe add in discussion
+The average relative uncertainty in the Vm and Km parameters between biological repeats in liquid culture data of Fig. 1b was 4.8\%. This indicates that if a patterning region was found, Turing patterns could be sufficiently common to be reproduced. %TODO maybe add in discussion
 The different analytical solutions for a relative uncertainty of 1\% are shown in Fig.~\ref{fig:turing_fit_noise_robustness}B, where we observe not only Turing I solutions, but also Turing I Hopf and Hopf solutions.
 For this relative uncertainty (1\%), numerical solutions are computed and shown in Fig.~\ref{fig:turing_fit_noise_robustness}C.
 Within the small vicinity of a ring-like Turing parameter set, we can find rings, spots and labyrinths.
@@ -309,10 +312,14 @@ In particular, we can find solutions with multiple concentric rings such as the 
     \caption{\textbf{Search around fitted Turing parameter set.} \textbf{(A)} Turing robustness with different levels of relative uncertainty. \textbf{(B)} Using 1\% relative uncertainty (mean $\mu=p$ and standard deviation $\sigma=p\cdot 0.01$), frequency of different analytical solutions: Simple stable 64.8\%, Turing I oscillatory 33.5\%, Turing I Hopf 1.5\%, Hopf 0.25\%. \textbf{(C)} Numerical simulations in growing colonies of 1\% noise distribution. Arrow points to Case \#4 which is a solution with multiple periodic rings}
     \label{fig:turing_fit_noise_robustness}
     %TODO add \#case 5 to figure as square
+    %TODO make y axis of turing % same in all thesis. also for B is not turing percentage is just %
 \end{figure}
 
 Time series of this particular Case \#4 Turing solution is explored and compared to different snapshots of the bacterial colony patterns.
 Outer ring addition dynamics of both the model colony and the experimental colony are shown in Fig.~\ref{fig:outer_ring_addition_modelvsexperiment}, where rings get added to the edge of the colony.
+One aspect to highlight is the diffusion ratio $Dr$ of this solution.
+Assuming that the enzymatic production and degradation rates of the two diffusers pC and OHC14 are equal (k1 = k2, µU = µV), a Dr of 0.15 is very close to an experimentally measured Dr of 0.25~\cite{tica_diffusers}.
+
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
@@ -368,7 +375,7 @@ The second control involves studying how boundary conditions might affect the re
 The boundary conditions at the edge of the colony are always assumed to be absorbing boundary conditions because the diffusors produced in the biofilm get absorbed by the empty agar because of diffusion.
 This boundary is indirectly encoded with the masking process (Fig.~\ref{mask}).
 However, the boundary at the edge of the simulation square or in other words, where the agar would finish, has to be defined in the ADI numerical solver.
-As in chapter X, the absorbing boundaries are introduced by using a Dirilichet boundary condition where the concentration at the boundary is zero $u=0$ as opposed to the previously used Neumann boundaries where the derivative at the boundary is zero.
+As in Chapter~\ref{Chapter 1}, the absorbing boundaries are introduced by using a Dirilichet boundary condition where the concentration at the boundary is zero $u=0$ as opposed to the previously used Neumann boundaries where the derivative at the boundary is zero.
 More details on the encoding of boundaries can be found in Section~\ref{numerical_methods}.
 Up to now, all simulations in this Chapter were computed using reflective boundary conditions at the edge of the square.
 Here, we introduce absorbing boundary conditions and see that this perturbation leads to fewer rings being produced.
@@ -412,17 +419,17 @@ Therefore, the model predicts no patterns should arise from the node deletion va
 These variants were then built experimentally and tested by the
 Isalan group.
 Deletions for node A and node B involve removing the plasmid encoding for that node as in the model.
-Deletion for node B involved deleting cinI which is the enzyme producing $OC_{14}$, therefore disconnecting node B from the circuit.
+Deletion for node B involved deleting cinI which is the enzyme producing $OC_{14}$, therefore disconnecting node B from the circuit (Fig.~\ref{fig:deletion_circuits}).
 In this variant, node C is deleted too as its only feedback on the circuit is on cinI.
-Thin green stripes in the GFP channel, similar to those of the full circuit in Fig.~\ref{fig:outer_ring_addition_modelvsexperiment} , were observed with the three controls after imaging the circuit daily.
-Interestingly, the stripes consistently coincided with the outline of the colony at the previous timepoint (Fig.~\ref{fig:experimental_node_dele}).
+Thin green stripes in the GFP channel, similar to those of the full circuit in Fig.~\ref{fig:outer_ring_addition_modelvsexperiment} , were observed with the three controls after imaging the circuit daily (see Fig.~\ref{fig:experimental_node_dele}).
+
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=1.1\textwidth]{chapters/Chapter 3/experimental_node_dele} % The name of your image file; assumes it is in the same directory as your .tex file
+        \includegraphics[width=1\textwidth]{chapters/Chapter 3/experimental_node_dele} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{Control experiments testing circuit deletions. All images are taken 4 days after plating, and only the GFP channel is shown. Controls are node A deletion, node C deletion and cinI-nodeC deletion.}
+    \caption{Control experiments testing circuit deletions. All images are taken 4 days after plating, and only the GFP channel is shown. Imaging has been made during the 4 days as shown on the top schematic where white circles represent days in which imaging occured. Controls are \textbf{(A)} node A deletion, \textbf{(B)} node B deletion and \textbf{(C)} node C deletion. Images taken by Dr.~Jure Tica}
     \label{fig:experimental_node_dele}
 \end{figure}
 
@@ -434,30 +441,29 @@ A potential explanation for the rings is that stripe formation was induced by th
 This hypothesis was not tested with the model because of lack of time.
 However, it was explored experimentally by Dr.~Jure Tica and Dr.~Dario Bazzoli and will be shown here for story completeness.
 
-Different imaging frequencies were used to understand how the pattern is affected by the imaging procedure.
-First, they imaged the colony every day for 5 days and 4 rings appeared.
-Then, they only imaged on day 1 and day 4 after plating and this lead to 3 rings (see Fig.~\ref{fig:cold_shock_experiments}left).
-Finally, imaging was only done on day 4 and no rings appeared as seen in Fig.~\ref{fig:cold_shock_experiments}center, right.
-Overall, imaging everyday is not required for periodic patterning.
-However, it is required to image in day 1 to get periodic stripes.
+Instead of imaging periodically, the colonies with the full circuit were subjected to cold shocks by putting the plate in room temperature for an hour from the $37^{\circ}$ degree incubator.
+First, they cold-shocked the colony every day for five days and four rings appeared on the 5th day imaging (see Fig.~\ref{fig:cold_shock_experiments}A).
+Then, they only cold-shocked on day one and imaged on day four after plating and this showed three rings (see Fig.~\ref{fig:cold_shock_experiments}B).
+Finally, no cold shocks were applied until imaging on day four and no rings appeared as seen in Fig.~\ref{fig:cold_shock_experiments}C.
+This proved that periodic cold shocking is not required for periodic patterning, however a first cold shock in day one is required to get periodic stripes.
 
 
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \begin{adjustbox}{center}
-        \includegraphics[width=1.1\textwidth]{chapters/Chapter 3/cold_shock_experiments} % The name of your image file; assumes it is in the same directory as your .tex file
+        \includegraphics[width=1\textwidth]{chapters/Chapter 3/cold_shock_experiments} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{The bottom row shows the effects of cold shock, where the first colony is exposed to cold shock 1 day after plating, whereas the other two colonies are not. In the first colony the first stripe is a result of the cold shock, whereas the other stripes form at a constant temperature of 37 °C. \TODO{modify label, modify image}}
+    \caption{\textbf{Full circuit experiments under variation of cold shocks.} Green channel of circuit \#1754 exposed to different cold shocks. Cold shocks involve taking the plate out of the incubator for 1h at room temperature. This simulates the cold shock applied to the colony when imaging it in the confocal microscope. Top diagrams show when the cold shocks were applied (white circles), and when they were not (black circles) \textbf{(A)} A cold shock is applied every day for five days, and image is taken on the 5th day. Four rings appear. \textbf{(B)} A cold shock is applied on day one and day four, and image is taken in day four, showing three stripes.  \textbf{(B)} Cold shock is applied only on the 4th day when it is imaged: no rings appear. Images taken by Dr.~Jure Tica}
     \label{fig:cold_shock_experiments}
 \end{figure}
 
-To avoid the cold shock effect caused by the imaging procedure, we sought to keep the cells at a constant temperature while imaging.
-Colonies were grown for a day and then transferred to the microscope.
+To further prove that no periodic cold shocks were needed for periodic patterning, we sought to obtain a time-series of the colony while keeping the cells at a constant temperature.
+Colonies were grown for a day and then transferred to the microscope, where the first and only cold shock occurred.
 The cells were kept at 37°C with a stage-top incubator, and images were taken every hour.
 Consistent with the cold shock hypothesis, the first stripe formed soon after the start of the imaging.
 Surprisingly, additional stripes formed on the edge of the colony, in parts of the colony with the most prominent outgrowth (Fig.~\ref{fig:microscopy_timeseries}).
-Both the timelapse (Fig.~\ref{fig:microscopy_timeseries}) and day1-day4 imaging (Fig.~\ref{fig:cold_shock_experiments}center) show stripes without everyday imaging.
+Both the timelapse (Fig.~\ref{fig:microscopy_timeseries}) and day1-day4 imaging (Fig.~\ref{fig:cold_shock_experiments}B) show stripes without everyday imaging.
 This suggests that after the first stripe is seeded additional stripes can form in a circuit-dependent, reaction-diffusion process.
 
 
@@ -466,7 +472,7 @@ This suggests that after the first stripe is seeded additional stripes can form 
     \begin{adjustbox}{center}
         \includegraphics[width=1.1\textwidth]{chapters/Chapter 3/microscopy_timeseries} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{GFP fluorescence was imaged over 60 hours at constant temperature 37 °C. Imaging began after the colony had grown for 24 hours. \textbf{(A)} The image of the final timepoint shows three stripes in the top right corner of the colony where growth is most prominent (3), only a single stripe forms at the bottom where there is less growth (1). \textbf{(B)} Plot of the fluorescence along the white slanted line in the micrograph with moving average smoothing. \textbf{(C)} The spatiotemporal profile of GFP evolution shows that the stripes form at the edge of the colony. After an initial burst of fluorescence, the signal decreases over time.}
+    \caption{GFP fluorescence was imaged over 60 hours at constant temperature 37 °C. Imaging began after the colony had grown for 24 hours, meaning a single cold shock was applied at 24h. \textbf{(A)} The image of the final timepoint shows three stripes in the top right corner of the colony where growth is most prominent (3), only a single stripe forms at the bottom where there is less growth (1). \textbf{(B)} Plot of the fluorescence along the white slanted line in the micrograph with moving average smoothing. \textbf{(C)} The spatiotemporal profile of GFP evolution shows that the stripes form at the edge of the colony. After an initial burst of fluorescence, the signal decreases over time. Images taken by Dr.~Jure Tica}
     \label{fig:microscopy_timeseries}
 \end{figure}
 
@@ -489,8 +495,8 @@ These were produced in small colonies with high aTc conditions.
 In Chapter~\ref{chapter2}, the model predicted the likelihood of Turing instabilities was higher with high aTc concentrations.
 Although it is unclear if the colonies obtained display Turing patterns, aTc did indeed lead to spatial heterogeneities, therefore making the model's predictions useful in experimental design.
 
-The spatial heterogeneities displayed inner ring addition dynamics, where rings get deposited from the inside of the colony and then get stretched out (see Fig.~\ref{atcwalk_timeseries_confocal} B).
-This behaviour looks similar to the inner ring addition obtained in Hopf instabilities in Fig.~\ref{system_class_simulations} Hopf, top row.
+The spatial heterogeneities displayed  interior ring growth dynamics, where rings get deposited from the inside of the colony and then get stretched out (see Fig.~\ref{atcwalk_timeseries_confocal} B).
+This behaviour looks similar to the interior ring growth obtained in Hopf instabilities in Fig.~\ref{system_class_simulations} Hopf, top row.
 Unlike Turing solutions (Turing I-Hopf and Turing I) where stationary rings get added to the outside, Hopf solutions show oscillating centers that form into rings in the next step, as in the colonies obtained.
 The most likely mechanism behind these specific colonies is therefore probably an Hopf oscillator in a growing colony.
 This is also supported by the high probability (4\%) for Hopf solutions in the fine-tuned parameter space (see Fig.~\ref{system_class_frequencies}).
@@ -500,20 +506,95 @@ Following the experimental work produced in this thesis, experimental collaborat
 A PDE-masking algorithm was built to understand the patterning dynamics of the reaction-diffusion systems in these different biofilm shapes as well as growing domains.
 This algorithm is flexible enough that the PDE system can be solved in any mask provided.
 Additionally, for complex shapes, image recognition can be used to produce this mask as seen in Fig.~\ref{shmoo}.
-The shape highly affects the resulting Turing patterns obtained when masking the PDE solver with a specific shape.
-Throughout this exploration, we saw that Turing patterns tend to form concentric lines following the shape of the biofilm.
-This can be an example of how shape conveys morphological robustness to patterning in biology.
-As well as shape, domain growth had to be included as colonies grow over time.
-To encode domain growth into the algorithm, stochastic cellular automaton was used to produce a growing mask which replicates bacterial colony growth.
+However, static domains are not the best assumption for growing colonies, as growth may play an important part in tissue dynamics as seen in Chapter~\ref{Chapter 1}.
+To encode domain growth into the algorithm, a stochastic cellular automaton was used to produce a growing mask which replicates bacterial colony growth.
 
 One of the caveats of this algorithm is that growth only occur in the edges and there is no cell death.
 In bacterial colonies, although growth is more prominent in the edge, some growth and death also occur in the center.
 Dilution effects are also not taken into account in this algorithm, however, they can be accounted for in the linear degradation terms of the PDE model.
 Another issue with the model is that a 2D space is assumed.
-Although confocal microscopy only shows a 2D space domain, \textit{E.~coli} colonies have a dome shape~\parencite{wimpenny1979growth}.
+Although confocal microscopy only shows a 2D space domain, \textit{E.~coli} colonies have a 3D dome shape~\parencite{wimpenny1979growth}.
 Therefore, a 2D snapshot of a 3D model would be more accurate to capture the RD dynamics of the gene circuit.
 However, a 2D PDE model is used as it is less computationally expensive.
-Finally, the last shortcoming of the model is the spatial resolution. 
+
+The PDE model used for these simulation is the six-equation non-dimensional model.
+This non-dimensional form of the model makes time and space less intuitive, as these variables have been transformed to non-dimensional.
+However, by understanding the parameters of our system we can retransform space and time to their original units: hour and mm.
+This transformation is more complicated for space as it is dependent on $D_{U}$, which is sampled from a range.
+
+In terms of spatial resolution, the system was pushed to the smallest $dx$ possible in terms of computational resources.
+A pixel of the simulation grid will contain around 52-5200~\textit{E.~coli} cells, meaning the system is not discrete at the cell level.
+However, we can assume that neighbouring cells will have similar dynamics, specially for Turing patterns with larger wavelengths.
+Although it is unusual to have spatial resolution which varies with diffusion rates, the pattern resolution is scaled in the same manner.
+A low spatial resolution (e.i. 5200~\textit{E.~coli} per pixel) will occur for large diffusion constants, however this will also be the case for the pattern wavelength which will be larger with higher diffusion constants.
+
+Overall, this masking method enabled the investigation of Turing patterns in shaped domains.
+It was observed that the shape highly affects the resulting Turing patterns obtained when masking the PDE solver with a specific shape.
+Throughout this exploration, we saw that Turing patterns tend to form concentric lines following the shape of the biofilm.
+This can be an example of how shape conveys morphological robustness to patterning in biology.
+
+
+\subsection{Replicating bacterial colony patterns}
+Using the PDE algorithm masked with the cellular automaton, all patterns obtained experimentally were replicated with the model.
+Having documented which types of dispersion relation lead to which types of patterns in growing colonies (see Fig.~\ref{system_class_simulations}), we used linear stability analysis to understand the potential mechanisms behind each pattern obtained.
+The common red-edge and green-centre pattern (Fig.~\ref{small colony experiment vs model}) could result from any type of dispersion relation, meaning this was a simple boundary effect.
+This pattern occurs when diffusers at the edge of the colony get depleted as they leak out onto the agar.
+By looking at the circuit (Fig.~\ref{fig:synthetic circuit_chapter2}), we can observe that diffusors are direct GFP activators and mCherry inhibitors.
+Therefore, as they get depleted, red is produced and green decays.
+
+Other more complex patterns such as the rings and spots, only appear in Turing I, Turing I-Hopf and Hopf instabilities (see Fig.~\ref{system_class_simulations}).
+More specifically, interior ring growth can be explained with Hopf instabilities while outer ring addition can be explained with Turing I and Turing I-Hopf instabilities.
+This coincides with experimental work on Turing patterns in radially growing domains~\parencite{Konow2019}.
+In this study, they observe that outer ring addition is the most common Turing pattern growth mode, while interior ring growth in Turing patterns only occurs for extremely slow growth rates.
+Labyrinths, which were found in numerical solutions, were not found experimentally.
+
+Another feature of the system which was replicated by the model was the pattern variability or lack of reproducibility.
+By searching around the vicinity of a parameter set, many Turing patterns with different shapes could be found.
+This could explain why in experiments, the same conditions lead to different pattern outcomes. %TODO find such examples.
+
+Although the outer ring addition and spots obtained can be explained with a Turing mechanism, the robustness of such is extremely low.
+Other effects could be increasing the Turing robustness, making this outcome more likely.
+For example, colony induced patterns were observed (see Fig.~\ref{fig:colony_induced_turing}), where the dispersion relation showed no instability but the numerical solution showed periodic spots.
+This could be due to the effects of growth, the absorbing boundary conditions or the stochasticity in cell division.
+Additionally, it was found that the robustness around a Turing parameter set was extremely high (33.5\% with 1\% uncertainty) compared to the gene ral robustness (0.0025\%) as seen in Fig.~\ref{fig:turing_fit_noise_robustness}A.
+Therefore, if by chance the system is explored in experimental conditions that lead to observing a Turing pattern, it is likely to observe another Turing pattern when repeating the experiment under the same conditions.
+
+\subsection{Elucidating mechanisms by modelling experimental controls}
+Looking at how different aspects of the pattern compare in the model and in the experiment, can help us elucidate the mechanisms of patterning.
+In particular, we aimed to elucidate the mechanism behind the outer ring addition patterns observed in the time-series of Fig.~\ref{fig:outer_ring_addition_modelvsexperiment} top.
+The first mechanism that comes to mind is a Turing mechanism, as this produces outer ring addition in our model.
+More specifically, a Turing parameter set obtained from the fitted distributions, closely replicates the time-series data of the outer ring addition patterns (See Fig.~\ref{fig:outer_ring_addition_modelvsexperiment} bottom).
+This means that parameters which are obtained from fitting to liquid-culture experimental data can produce a Turing pattern which resembles our periodic ring patterns.
+It is key to mention that the diffusion ratio of this parameter set is the same as the measured diffusion constants in~\cite{tica_diffusers}.
+The Turing hypothesis is further strenghtened if a Turing parameter set with an experimental diffusion ratio can produce the same experimental rings.
+
+Additionally, several model perturbations applied to this Turing parameter set coincided with the experimental perturbations.
+In experiments, faster growing regions of the colony produced more rings, which was replicated with the irregular growth in the cellular automata algorithm.
+Furthermore, more rings were produced in small plates which was replicated by the model using reflecting boundaries as opposed to absorbing boundaries.
+This result is reminiscent of~\cite{Krause2020}, where a thick agar layer that absorbed diffusors disrupted Turing patterning.
+If perturbations to a Turing model generate the same behaviour in the model as in the experiment, it is likely that a Turing mechanism is behind such system.
+
+Another perturbation produced was the deletion of nodes, which generated similae concentric as seen in Fig.~\ref{fig:experimental_node_dele}.
+Linear stability analysis and numerical simulations determined that such circuits could not produce Turing instabilities.
+This suggested rings could be produced by another mechanism such as cold shock effects.
+The cold shock hypothesis was tested and indeed it was found that by imaging the colony every day, periodic rings could be form as a result of the periodic cold shocking.
+The cold shock hypothesis was further proved by the fact that the stripes consistently coincided with the outline of the colony at the previous timepoint (Fig.~\ref{fig:outer_ring_addition_modelvsexperiment}). If the edges of the colony are more transcriptionally active and the node B promoter or degradation machinery is temperature dependent, a cold shock will induce a temporal overexpression of GFP in the edge of the colony.
+If the cells are shocked periodically, a periodic pattern will appear which independent of the reaction-diffusion system.
+
+However, time-series experiments and cold shocking at different frequencies of the full circuit showed that periodic rings could still appear without periodic shocking.
+This periodic patterning without periodic shocking was not possible using the circuit deletions (see Appendix X). %TODO add appendix
+This suggests that the reaction-diffusion architecture of the gene circuit \#1754 is responsible for the periodic patterning.
+However, a pre-pattern seeded by the first cold shock is required for the periodic pattern to occur.
+Interestingly, this points to a hybrid Turing and Positional Information mechanism where a pre-pattern provides Turing with an increased robustness to produce periodic patterns.
+Future directions involve modelling the \#1754 gene circuit with a pre-pattern to understand whether the robustness for periodic pattern formation increases as this positional information is introduced.
+
+A final proof of these patterns being a result of Turing patterns, would be to obtain non-symmetrical patterns such as regular spots or labyrinths.
+However, this is less likely as rings are the most common type of Turing pattern in radially growing domains~\parencite{Konow2019}.
+Spots were obtained in Fig.~\ref{comparison_colonies_model_vs_experiment}, which are proof of a patterning mechanism beyond cold shocking, as they are non symmetrical.
+Further proof would be to obtain labyrinths, however, only rings and spots have been found when sampling in the fitted parameter distributions.
+
+%TODO dispersion optimisation for labyrinth
+%TODO not growing domains for labyrinth
 
 
 
@@ -522,27 +603,18 @@ Finally, the last shortcoming of the model is the spatial resolution.
 
 
 
-As opposed to the work in Chapter~\ref{Chapter 1}, numerical solutions were defined in 2D.
 
-
-
-
-
-
-
-
-\begin{itemize}
-    \item Rings are produced by circuit
-    \item Model can replicate all patterns using Turing params
-    \item Using parametrised, we can also replicate rings
-    \item Wide variety of patterns can be produce in small vicinity
-    \item circuit extremely senstivite not only to params but also to growth rates.
-    \item Growth induced patterns
-    \item some controls point that model is correct such as boundary controls or irregular growth
-    \item however deletion controls contradict model, making Turing not clear
-    \item temperature shocks can produce patterns but periodic patterns can be obtained with single temperature shock ... prepatterns add robustness?
-
-\end{itemize}
+%
+%    \item Model can replicate all patterns using Turing params
+%    \item Using parametrised, we can also replicate rings
+%    \item Wide variety of patterns can be produce in small vicinity
+%    \item circuit extremely senstivite not only to params but also to growth rates.
+%    \item Growth induced patterns
+%    \item some controls point that model is correct such as boundary controls or irregular growth
+%    \item however deletion controls contradict model, making Turing not clear
+%    \item temperature shocks can produce patterns but periodic patterns can be obtained with single temperature shock ... prepatterns add robustness?
+%
+%\end{itemize}
 %%TODO summary chapter2
 %%TODO commdent on diffusion constant matching between experiment and model
 
@@ -550,7 +622,7 @@ As opposed to the work in Chapter~\ref{Chapter 1}, numerical solutions were defi
 
 %It is important to add that Turing I Hopf solutions seem to produce patterns more robustly in this chapter than in chapter 1. %TODO add maybe in discussion and remove from text
 
-
+%TODO comment Interestingly, the stripes consistently coincided with the outline of the colony at the previous timepoint (Fig.~\ref{fig:experimental_node_dele}).
 %\section{Modelling bacterial colonies}
 %\subsection{openboundary circle shape growth noise}
 %\section{Explore patterning potential}
