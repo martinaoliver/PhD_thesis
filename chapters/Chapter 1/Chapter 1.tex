@@ -243,119 +243,161 @@ The diffusion will be introduced through the partial derivative term $D_{X}\nabl
 
 
 
-%\paragraph{Definition of finite system and no-flux boundary conditions}
-%A function X(x), which represents concentration of molecule X in space x, is defined in a finite-domain [0,L] with no-flux boundary conditions.
-%No-flux boundary conditions imply that the derivative of the function at the boundaries is zero:
-%
-%\begin{equation}
-%    \frac{\partial A}{\partial x}\Bigg|_{x=0} = \frac{\partial X}{\partial x}\Bigg|_{x=L} = 0
-%\end{equation}
-%
-%
-%A general Fourier series representation of X(x) under these conditions can be:
-%
-%\begin{equation}
-%    X(x) = \sum_{n=0}^{\infty} \left( A_n \cos\left(\frac{n \pi x}{L}\right) + B_n \sin\left(\frac{n \pi x}{L}\right) \right)
-%\end{equation}
-%
-%However, because the derivative at the boundary is zero, the cosine series is used instead.
-%This is because the derivative of $\cos(0)$ or $\cos(n\pi])$ is zero.
-%
+\paragraph{Definition of a function in a finite system with no-flux boundary conditions:}
+A function X(x), which represents concentration of molecule X in space x, is defined in a finite-domain [0,L] with no-flux boundary conditions.
+No-flux boundary conditions imply that the derivative of the function at the boundaries is zero:
 
-
-
-\paragraph{Reduction of PDE term to ODE through Fourier transformations in infinite domain}
-The second order partial derivative term will be reduced to an ODE simpler term through Fourier transforms.
-Given infinite x-domain, the following Fourier transform definitions are used:
-\begin{subequations}
-    \begin{equation}
-        F(k) = \mathcal{F}(f(x)) = \int_{-\infty}^{\infty} f(x)e^{-ikx} dx
-    \end{equation}
-    \begin{equation}
-        f(x) = \mathcal{F}^{-1}(F(k)) = \frac{1}{2\pi}\int_{-\infty}^{\infty} F(k)e^{ikx} dk
-        \label{eq:inverse fourier}
-    \end{equation}
-\end{subequations}
-First, using the inverse Fourier transform (Eq.~\ref{eq:inverse fourier}), the first order partial derivative will be reduced to an ODE form:
 \begin{equation}
-    \begin{split}
-        \pdv{[X(x,t)]}{x}) = \mathcal{F}^{-1}\left(\pdv{[X(k,t)]}{x}\right) = \frac{\partial}{\partial x}\left[\frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk\right] =  \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)\frac{d}{dx}e^{ikx} dk\\\\ =\frac{1}{2\pi}\int_{-\infty}^{\infty} ik X(k,t)e^{ikx} dk = ik \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk = ik X(x,t)
-    \end{split}
+    \frac{\partial X}{\partial x}\Bigg|_{x=0} = \frac{\partial X}{\partial x}\Bigg|_{x=L} = 0
 \end{equation}
-giving $\pdv{[X(x,t)]}{x}) =  ik X(x,t)$.
-Using this expression, the inverse Fourier transform and the fact that $\pdvn{2}{X(x,t)}{x} =\left(\pdv{X(x,t)}{x}\right)^2$, the following expression is obtained:
+
+
+A general Fourier series representation of X(x) under these conditions can be:
+
 \begin{equation}
-    \begin{split}
-        \pdvn{2}{[X(x,t)]}{x}) = \left(\pdv{X(x,t)}{x}\right)^2 = \mathcal{F}^{-1}\left[\pdv{[ikX(k,t)]}{x}\right] = \frac{\partial}{\partial x}\left[\frac{1}{2\pi}\int_{-\infty}^{\infty} ikX(k,t)e^{ikx} dk\right] \\\\=  \frac{1}{2\pi}\int_{-\infty}^{\infty} ikX(k,t)\frac{d}{dx}e^{ikx} dk =\frac{1}{2\pi}\int_{-\infty}^{\infty} (ik)^2 X(k,t)e^{ikx} dk = -k^2 \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk = -k^2 X(x,t)
-    \end{split}
-    \label{eq:fourier of our system}
+    X(x) = \sum_{n=0}^{\infty} \left( A_n \cos\left(\frac{n \pi x}{L}\right) + B_n \sin\left(\frac{n \pi x}{L}\right) \right)
 \end{equation}
-%TODO robert comment "looks complicated - you could just plug in inverse FT in second derivative, and pull integral in front of second derivative, and as integral in every term, remove"
-giving
-\begin{subequations}
-    \begin{equation}
-        \pdvn{2}{A(x,t)}{x} = -k^2\cdot A
+
+However, because the derivative at the boundary is zero, the cosine series is used instead.
+This is because the derivative of $\cos(0)$ or $\cos(n\pi)$ is zero.
+Therefore, the Fourier cosine series used is
+%TODO add cos_boundary_conditions.pdf
+
+\begin{equation}
+    X(x) = \sum_{n=0}^{\infty}  C_n \cos\left(\frac{n \pi x}{L}\right)
+    \label{cosine_series}
+\end{equation}
+
+This way, if the function X(x) is expressed in terms of cosines, the derivatives of this function for x=0 and x=L are zero:
+\begin{equation}
+    \frac{\partial \left(cos(0)\right)}{\partial x} = 0 ; \quad \frac{\partial \left(cos(\frac{n \pi L}{L})\right)}{\partial x} = 0
     \end{equation}
-    \begin{equation}
-        \pdvn{2}{I(x,t)}{x} = -k^2\cdot I
-    \end{equation}
+
+\paragraph{Derivative of function in space:}
+The Laplacian Operator $\nabla^2$ is applied to X(x) to represent the diffusion terms
+\begin{equation}
+    \nabla^2 X(x) = \frac{\partial^2}{\partial x^2} \left(\sum_{n=0}^{\infty}  C_n \cos\left(\frac{n \pi x}{L}\right) \right)  = - \sum_{n=0}^{\infty}  C_n \left(\frac{n \pi }{L}\right)^2 \cos\left(\frac{n \pi x}{L}\right)
+\end{equation}
+
+If we replace the original cosine series expressing X(x) (Eg.~\ref{cosine_series}) into this equation, we obtain
+\begin{equation}
+    \nabla^2 X(x) = -\left(\frac{n \pi }{L}\right)^2 X(x)
+\end{equation}
+
+
+\paragraph{Wavenumber definition:}
+The wavenumber $k$, is the spatial frequency of the wave, measured in cycles or radians per unit distance.
+In this case, the wave X(x) is expressed in cosine form.
+As previously explained, to satisfy the no-flux boundary conditions, the derivative of this cosine must be zero at the boundaries $x=[0,L]$.
+Therefore, $k_{n}$ must be
+\begin{equation}
+    k_{n}=\frac{n \pi}{L}
+\end{equation}
+
+Once $k_{n}$ is defined for our boundary conditions, the expression for the Laplacian becomes
+
+\begin{equation}
+    \nabla^2 X(x) = - k_{n}^2  X(x)
     \label{eq: simplified fourier diffusion}
-\end{subequations}
-This way, the second order partial derivative terms, are reduced to simpler ODE systems to be used in LSA at the expense of an extra parameter, the wavenumber.
-\paragraph{Definition of boundary conditions}
-The system is defined within some boundaries, meaning x goes from 0 to L. In this case, no molecules can leave the system, so the boundary condition applied is a zero-flux boundary condition. At the boundaries, the partial derivative is zero, defined below as Neumann Boundary conditions:
-\begin{equation}
-    \pdvn{2}{X(x=0,t)}{x}=0  \hspace{0.5cm}\And  \hspace{0.5cm}\pdvn{2}{X(x=L,t)}{x}=0
 \end{equation}
-This can be visualised as a fish tank, of length L, filled with water: water diffuses freely within the tank, but cannot diffuse outside the boundaries. In addition, the levels of water at the boundaries are not fixed. For the spatial derivatives to be zero at the boundaries, some restrictions will need to be applied. The expression from Eq.~\ref{eq:fourier of our system} will be used to apply our boundary conditions.
-\begin{equation}
-    \begin{split}
-        \pdvn{2}{[X(x,t)]}{x}) =  -k^2 \frac{1}{2\pi}\int_{0}^{L} X(k,t)e^{ikx} dk =  -k^2 \frac{1}{2\pi}\int_{0}^{L} X(k,t)(cos(kx)+isin(kx))dk\\\\
-        =\frac{-k^2}{2\pi}\left(\int_{0}^{L} X(k,t)cos(kx)dk + i\int_{0}^{L} X(k,t)sin(kx)dk\right)
-    \end{split}
-\end{equation}
-The first integral is integrated by parts to express the equation in terms of $\sin(kx)$:
-\begin{equation}
-    \begin{split}
-        \pdvn{2}{[X(x,t)]}{x}) = \frac{-k^2}{2\pi}\left(\left[\frac{sin(kx)}{k}X(k,t)\right]^L_{0} - \int_{0}^{L} \frac{sin(kx)}{k}\pdv{A(k,t)}{k}dk + i\int_{0}^{L} X(k,t)sin(kx)dk\right)
-    \end{split}
-\end{equation}
-As defined with the boundary conditions (Equation 31), the partial derivative must be 0 at $x=0$ and  $x=L$.
-Therefore, at $x=0$ and  $x=L$, $\sin(kx)=0$.
-For the two boundary conditions:
-\begin{itemize}
-    \item When $x=0$: $\sin(k\cdot0)=\sin(0)=0$.
-    \item Therefore for $x=0,\pdvn{2}{X(0,t)}{x}=0$.
-    \item When $x=L$: $\sin(k\cdot L)$ must be zero.
-    \item If $ k=\frac{n\pi}{L}$, $\sin(kL) = \sin(n\pi) = 0$.
-    Therefore, for $x=L$ , $\pdvn{2}{X(L,t)}{x}=0 \hspace{0.5cm} \forall n \in \{0, \mathbb{N}\} $
-\end{itemize}
-Following these calculations, the zero-flux boundary condition is applied if the following condition is met: $k=\frac{n\pi}{L} \hspace{0.1cm}\forall n \in \{0, \mathbb{N}\} $
+
+
+
+
+%
+%
+%\paragraph{Reduction of PDE term to ODE through Fourier transformations in infinite domain}
+%The second order partial derivative term will be reduced to an ODE simpler term through Fourier transforms.
+%Given infinite x-domain, the following Fourier transform definitions are used:
+%\begin{subequations}
+%    \begin{equation}
+%        F(k) = \mathcal{F}(f(x)) = \int_{-\infty}^{\infty} f(x)e^{-ikx} dx
+%    \end{equation}
+%    \begin{equation}
+%        f(x) = \mathcal{F}^{-1}(F(k)) = \frac{1}{2\pi}\int_{-\infty}^{\infty} F(k)e^{ikx} dk
+%        \label{eq:inverse fourier}
+%    \end{equation}
+%\end{subequations}
+%First, using the inverse Fourier transform (Eq.~\ref{eq:inverse fourier}), the first order partial derivative will be reduced to an ODE form:
+%\begin{equation}
+%    \begin{split}
+%        \pdv{[X(x,t)]}{x}) = \mathcal{F}^{-1}\left(\pdv{[X(k,t)]}{x}\right) = \frac{\partial}{\partial x}\left[\frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk\right] =  \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)\frac{d}{dx}e^{ikx} dk\\\\ =\frac{1}{2\pi}\int_{-\infty}^{\infty} ik X(k,t)e^{ikx} dk = ik \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk = ik X(x,t)
+%    \end{split}
+%\end{equation}
+%giving $\pdv{[X(x,t)]}{x}) =  ik X(x,t)$.
+%Using this expression, the inverse Fourier transform and the fact that $\pdvn{2}{X(x,t)}{x} =\left(\pdv{X(x,t)}{x}\right)^2$, the following expression is obtained:
+%\begin{equation}
+%    \begin{split}
+%        \pdvn{2}{[X(x,t)]}{x}) = \left(\pdv{X(x,t)}{x}\right)^2 = \mathcal{F}^{-1}\left[\pdv{[ikX(k,t)]}{x}\right] = \frac{\partial}{\partial x}\left[\frac{1}{2\pi}\int_{-\infty}^{\infty} ikX(k,t)e^{ikx} dk\right] \\\\=  \frac{1}{2\pi}\int_{-\infty}^{\infty} ikX(k,t)\frac{d}{dx}e^{ikx} dk =\frac{1}{2\pi}\int_{-\infty}^{\infty} (ik)^2 X(k,t)e^{ikx} dk = -k^2 \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk = -k^2 X(x,t)
+%    \end{split}
+%    \label{eq:fourier of our system}
+%\end{equation}
+%%TODO robert comment "looks complicated - you could just plug in inverse FT in second derivative, and pull integral in front of second derivative, and as integral in every term, remove"
+%giving
+%\begin{subequations}
+%    \begin{equation}
+%        \pdvn{2}{A(x,t)}{x} = -k^2\cdot A
+%    \end{equation}
+%    \begin{equation}
+%        \pdvn{2}{I(x,t)}{x} = -k^2\cdot I
+%    \end{equation}
+%    \label{eq: simplified fourier diffusion}
+%\end{subequations}
+%This way, the second order partial derivative terms, are reduced to simpler ODE systems to be used in LSA at the expense of an extra parameter, the wavenumber.
+%\paragraph{Definition of boundary conditions}
+%The system is defined within some boundaries, meaning x goes from 0 to L. In this case, no molecules can leave the system, so the boundary condition applied is a zero-flux boundary condition. At the boundaries, the partial derivative is zero, defined below as Neumann Boundary conditions:
+%\begin{equation}
+%    \pdvn{2}{X(x=0,t)}{x}=0  \hspace{0.5cm}\And  \hspace{0.5cm}\pdvn{2}{X(x=L,t)}{x}=0
+%\end{equation}
+%This can be visualised as a fish tank, of length L, filled with water: water diffuses freely within the tank, but cannot diffuse outside the boundaries. In addition, the levels of water at the boundaries are not fixed. For the spatial derivatives to be zero at the boundaries, some restrictions will need to be applied. The expression from Eq.~\ref{eq:fourier of our system} will be used to apply our boundary conditions.
+%\begin{equation}
+%    \begin{split}
+%        \pdvn{2}{[X(x,t)]}{x}) =  -k^2 \frac{1}{2\pi}\int_{0}^{L} X(k,t)e^{ikx} dk =  -k^2 \frac{1}{2\pi}\int_{0}^{L} X(k,t)(cos(kx)+isin(kx))dk\\\\
+%        =\frac{-k^2}{2\pi}\left(\int_{0}^{L} X(k,t)cos(kx)dk + i\int_{0}^{L} X(k,t)sin(kx)dk\right)
+%    \end{split}
+%\end{equation}
+%The first integral is integrated by parts to express the equation in terms of $\sin(kx)$:
+%\begin{equation}
+%    \begin{split}
+%        \pdvn{2}{[X(x,t)]}{x}) = \frac{-k^2}{2\pi}\left(\left[\frac{sin(kx)}{k}X(k,t)\right]^L_{0} - \int_{0}^{L} \frac{sin(kx)}{k}\pdv{A(k,t)}{k}dk + i\int_{0}^{L} X(k,t)sin(kx)dk\right)
+%    \end{split}
+%\end{equation}
+%As defined with the boundary conditions (Equation 31), the partial derivative must be 0 at $x=0$ and  $x=L$.
+%Therefore, at $x=0$ and  $x=L$, $\sin(kx)=0$.
+%For the two boundary conditions:
+%\begin{itemize}
+%    \item When $x=0$: $\sin(k\cdot0)=\sin(0)=0$.
+%    \item Therefore for $x=0,\pdvn{2}{X(0,t)}{x}=0$.
+%    \item When $x=L$: $\sin(k\cdot L)$ must be zero.
+%    \item If $ k=\frac{n\pi}{L}$, $\sin(kL) = \sin(n\pi) = 0$.
+%    Therefore, for $x=L$ , $\pdvn{2}{X(L,t)}{x}=0 \hspace{0.5cm} \forall n \in \{0, \mathbb{N}\} $
+%\end{itemize}
+%Following these calculations, the zero-flux boundary condition is applied if the following condition is met: $k=\frac{n\pi}{L} \hspace{0.1cm}\forall n \in \{0, \mathbb{N}\} $
 
 \paragraph{Linear stability analysis  of steady state with diffusion effects}
 Now that the PDE diffusion term has been reduced to an ODE term, and the zero-flux boundary conditions introduced, the stability of the steady state when introducing diffusion can be studied.
-As shown in Eqs.~\ref{eq: simplified fourier diffusion}, the diffusion term $D_{X}\pdvn{2}{X}{x} $ can be expressed as $-k^2X$, therefore the reaction-diffusion PDE equations are reduced to:
+As shown in Eqs.~\ref{eq: simplified fourier diffusion}, the diffusion term $\nabla^2 X(x)$ can be expressed as $- k_{n}^2  X(x)$, therefore the linearised reaction-diffusion PDE equations can be written as
 \begin{subequations}
     \begin{equation}
-        \pdv{A}{t} = f_{A}(A,I)  -D_{A}k^2A
+        \pdv{A}{t} = f_{A}(A^*+\delta A, I^*+\delta I)  -D_{A}k_{n}^2A
     \end{equation}
     \begin{equation}
-        \pdv{I}{t} = f_{I}(A,I) -D_{I}k^2I
+        \pdv{I}{t} = f_I(A^*+\delta A, I^*+\delta I) -D_{I}k_{n}^2I
     \end{equation}
 \end{subequations}
-where $k=\frac{n\pi}{L} \hspace{0.1cm}\forall n \in \{0, \mathbb{N}\} $.
+where $k_{n}=\frac{n\pi}{L} \hspace{0.1cm}\forall n \in \{0, \mathbb{N}\} $.
 
 In the previous section, LSA was carried around the steady state with a perturbation $\delta X$, without including diffusion.
 This resulted in the expression shown in Eq.~\ref{eq: linearised terms around steady state}, which describes the linearized reaction terms around the steady state.
-By adding diffusion in the Fourier domain from Eq.~\ref{eq: simplified fourier diffusion} we obtain the following expression for the linearized reaction-diffusion system, where A and I are now a function of $k$ and $t$:
+By adding diffusion in the Fourier domain from Eq.~\ref{eq: simplified fourier diffusion} we obtain the following expression for the linearized reaction-diffusion system, where A and I are now a function of $k_{n}$ and $t$:
 
 %TODO add hat?
 \begin{subequations}
     \begin{equation}
-        \pdv{\delta A}{t} = \pdv{f_{A}(A^*,I^*)}{A}\delta A + \pdv{f_{A}(A^*,I^*)}{I}\delta I  -D_{A}k^2\delta A
+        \pdv{\delta A}{t} = \pdv{f_{A}(A^*,I^*)}{A}\delta A + \pdv{f_{A}(A^*,I^*)}{I}\delta I  -D_{A}k_{n}^2\delta A
     \end{equation}
     \begin{equation}
-        \pdv{\delta I}{t} =  \pdv{f_{I}(A^*,I^*)}{A}\delta A + \pdv{f_{I}(A^*,I^*)}{I}\delta I  -D_{I}k^2\delta I
+        \pdv{\delta I}{t} =  \pdv{f_{I}(A^*,I^*)}{A}\delta A + \pdv{f_{I}(A^*,I^*)}{I}\delta I  -D_{I}k_{n}^2\delta I
     \end{equation}
     \label{eq:linearised RD}
 \end{subequations}
@@ -364,14 +406,14 @@ We wish to find a general solution of the form:
 
 \begin{subequations}
     \begin{equation}
-        \delta A = A_{0}e^{\sigma t}\cdot e^{ikx}
+        \delta A = A_{0}e^{\sigma t}\cdot e^{ik_{n}x}
     \end{equation}
     \begin{equation}
-        \delta I = I_{0}e^{\sigma t}\cdot e^{ikx}
+        \delta I = I_{0}e^{\sigma t}\cdot e^{ik_{n}x}
     \end{equation}
     \label{eq: exponential form RD}
 \end{subequations}
-where $X_{0}e^{\sigma t}$ represents the amplitude of the perturbations and $e^{ikx}$ represents the spatial oscillations (with $k$ as the wavenumber).
+where $X_{0}e^{\sigma t}$ represents the amplitude of the perturbations and $e^{ik_{n}x}$ represents the spatial oscillations (with $k_{n}$ as the wavenumber).
 In this case, we are interested on the growth or decay of the perturbations over time.
 Therefore, to observe the stability of the steady state, we will study the amplitude term ($X_{0}e^{\sigma t}$):
 \begin{itemize}
@@ -383,20 +425,20 @@ Therefore, to observe the stability of the steady state, we will study the ampli
 If Eqs.~\ref{eq: exponential form RD} are substituted into Eqs.~\ref{eq:linearised RD}, the following equations are obtained:
 \begin{subequations}
     \begin{equation}
-        \sigma \delta A_{0} = \pdv{f_{A}(A^*,I^*)}{A} \delta  A_{0}  + \pdv{f_{A}(A^*,I^*)}{I}\delta  I_{0} -D_{A}k^2\delta  A_{0}
+        \sigma \delta A_{0} = \pdv{f_{A}(A^*,I^*)}{A} \delta  A_{0}  + \pdv{f_{A}(A^*,I^*)}{I}\delta  I_{0} -D_{A}k_{n}^2\delta  A_{0}
     \end{equation}
     \begin{equation}
-        \sigma \delta I_{0}= \pdv{f_{I}(A^*,I^*)}{A} \delta  A_{0}  + \pdv{f_{I}(A^*,I^*)}{I}\delta  I_{0}  -D_{I}k^2\delta A
+        \sigma \delta I_{0}= \pdv{f_{I}(A^*,I^*)}{A} \delta  A_{0}  + \pdv{f_{I}(A^*,I^*)}{I}\delta  I_{0}  -D_{I}k_{n}^2\delta A
     \end{equation}
 
 \end{subequations}
 If the Jacobian J of this system is
 \begin{equation}
     J = \begin{bmatrix}
-            \pdv{f_{A}}{A} - D_{A}k^2 &
+            \pdv{f_{A}}{A} - D_{A}k_{n}^2 &
             \pdv{f_{A}}{I}  \\
             \pdv{f_{I}}{A} &
-            \pdv{f_{I}}{I} - D_{I}k^2
+            \pdv{f_{I}}{I} - D_{I}k_{n}^2
     \end{bmatrix}
     \label{jacobian_diffusion}
 \end{equation}
@@ -412,15 +454,15 @@ where $\sigma$ can be obtained by solving the characteristic polynomial:
     \label{eq: characteristic polynomial RD}
 \end{equation}
 In summary, to understand if perturbations around the steady state decay or grow when diffusion is introduced, Eq.~\ref{eq: characteristic polynomial RD} must be solved to obtain $\sigma$.
-This characteristic polynomial is solved for a range of k's, being $k=\frac{n\pi}{L} \hspace{0.1cm}\forall n \in \{0, \mathbb{N}\} $.
-The sign of $\sigma$ is studied for every k, resulting in the dispersion relation (Fig.~\ref{fig:turing_vs_noturing}).
+This characteristic polynomial is solved for a range of k's, being $k_{n}=\frac{n\pi}{L} \hspace{0.1cm}\forall n \in \{0, \mathbb{N}\} $.
+The sign of $\sigma$ is studied for every $k_{n}$, resulting in the dispersion relation (Fig.~\ref{fig:turing_vs_noturing}).
 If $\sigma > 0$, perturbations grow around the steady state and the system is unstable.
 On the contrary, if  $\sigma < 0$, the system is stable and perturbations decay around the steady state.
 More detail on LSA can be found in~\cite{J.DMurray2002} or~\cite{Glendinning1994}.
 
 \subsubsection{Linear stability analysis implementation}
 LSA is carried out with and without diffusion for all steady states of the system found using Newton-Raphson method (see Section~\ref{newton_raphson}).
-The analysis is done for all $k=\frac{n\pi}{L} \hspace{0.1cm}\forall \{n \in \mathbb{N} : n \leq 5000\} $, meaning 5000 k's are sampled using linear stability analysis.
+The analysis is done for all $k_{n}=\frac{n\pi}{L} \hspace{0.1cm}\forall \{n \in \mathbb{N} : n \leq 5000\} $, meaning 5000 k's are sampled using linear stability analysis.
 L is defined as 100mm which is based on the maximum length of our experimental system, described in Chapter~\ref{chapter3}.
 LSA for a single steady state takes approximately approximately 0.5s.
 
@@ -453,7 +495,7 @@ More information on sampling and distributions can be found in Section~\ref{samp
 All results are stored in a PostgreSQL database created from scratch for this project.
 This database includes a interconnected tables for model parameters, numerical parameters, analytical results, numerical solutions and pattern classification outputs.
 More details on the database schema can be seen in Section~\ref{PostgreSql database}.
-The creation of this PostgreSQL database was necessary to explore large parameter spaces and compare between analytical and numerical results in an efficient way. %TODO add details of schema in methods
+The creation of this PostgreSQL database was necessary to explore large parameter spaces and compare between analytical and numerical results in an efficient way.
 %
 %, to ensure from various parameter distributions to cover a wide variety of dynamical behaviours. Latin
 %$V$ parameter is sampled using a The parameters used are x. The distribution used are x. latin hypercube. database. numerical solver.
@@ -496,15 +538,16 @@ For a Turing instability to occur, at $k=0$, $Re(\sigma)$ must be negative, mean
 As diffusion is introduced and $k>0$, the system becomes unstable with $Re(\sigma)>0$.
 For $k \rightarrow \inf$, the system must be stable again and the eigenvalue negative.
 This is because otherwise a Turing II instability will occur where the dominant mode has infinitesimally large wavenumber meaning an infinitesimally small wavenumber.
-The relationship between wavenumber $(k)$ and wavelength $(\lambda)$ is
+The relationship between wavenumber $(k_{n})$ and wavelength $(\lambda)$ is
 \begin{equation}
     \lambda_n = \frac{2 \pi}{k_n}
     \label{eq:wavelength_wavenumber}
 \end{equation}
+%TODO replace k with kn
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 1/turing_vs_noturing} % The name of your image file; assumes it is in the same directory as your .tex file
-    \caption{\textbf{The dispersion relation of reaction-diffusion systems.} \textbf{(A)} Dispersion relation of a system without Turing instability (left). Eigenvalues are computed for every wavenumber k. The dominant mode is stable, having an eigenvalue below zero. Numerical solution of system for molecule A without Turing instability (right), shows homogeneity in space (x-axis) and time (y-axis).  \textbf{(B)} Dispersion relation of a system with Turing instability (left). The dominant mode is unstable, having an eigenvalue above zero. Numerical solution of system for molecule A (right), shows a periodic in space (x-axis) which is stationary in time (y-axis). Colorbar reflects molecular species concentration.}
+    \caption{\textbf{The dispersion relation of reaction-diffusion systems.} \textbf{(A)} Dispersion relation of a system without Turing instability (left). Eigenvalues are computed for every wavenumber $k_{n}$. The dominant mode is stable, having an eigenvalue below zero. Numerical solution of system for molecule A without Turing instability (right), shows homogeneity in space (x-axis) and time (y-axis).  \textbf{(B)} Dispersion relation of a system with Turing instability (left). The dominant mode is unstable, having an eigenvalue above zero. Numerical solution of system for molecule A (right), shows a periodic in space (x-axis) which is stationary in time (y-axis). Colorbar reflects molecular species concentration.}
     \label{fig:turing_vs_noturing} % A label for referencing this figure later in the document
 \end{figure}
 An example of a classical Turing instability with a positive dispersion peak is shown in Fig.~\ref{fig:intro_to_Turing_patterns}B, along with the corresponding stationary spatial pattern.
@@ -678,7 +721,7 @@ This is because for $k \rightarrow \inf$, all eigenvalues $\sigma$ must be negat
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 1/dispersions} % The name of your image file; assumes it is in the same directory as your .tex file
-    \caption{\textbf{Different types of dispersion relation.} Dispersion relation shows the eigenvalue as a function of wavenumber. Continous line represents real part, while dotted line represents imaginary part. \textbf{(A) Stable:} all eigenvalues are below zero. \textbf{(B) Unstable:} eigenvalues at k=0 are positive meaning the system is unstable without diffusion. \textbf{(C) Hopf:}~unstable type, with hopf bifurcation for parameter wavenumber $k$. For a certain k, system flips from unstable to stable, crossing the zero eigenvalue line. At the crossing, there is a pair of complex conjugate eigenvalues. \textbf{(D) Turing I:} the dispersion shows a diffusion driven instability. At k=0, the system is stable has negative eigenvalues. As diffusion is introduced, k>0, the system becomes unstable and stable again for high $k$ values. \textbf{(E) Turing I-Hopf:} a combination of Turing I and Hopf, meaning the system starts as a Hopf with a positive eigenvalue at k=0, then the system transitions to stable with a pair of complex conjugates. Finally, there is a dispersion peak characteristic of Turing that drops for high values of $k$.}
+    \caption{\textbf{Different types of dispersion relation.} Dispersion relation shows the eigenvalue as a function of wavenumber. Continous line represents real part, while dotted line represents imaginary part. \textbf{(A) Stable:} all eigenvalues are below zero. \textbf{(B) Unstable:} eigenvalues at $k_{n}$=0 are positive meaning the system is unstable without diffusion. \textbf{(C) Hopf:}~unstable type, with hopf bifurcation for parameter wavenumber $k_{n}$. For a certain $k_{n}$, system flips from unstable to stable, crossing the zero eigenvalue line. At the crossing, there is a pair of complex conjugate eigenvalues. \textbf{(D) Turing I:} the dispersion shows a diffusion driven instability. At $k_{n}$=0, the system is stable has negative eigenvalues. As diffusion is introduced, $k_{n}$>0, the system becomes unstable and stable again for high $k$ values. \textbf{(E) Turing I-Hopf:} a combination of Turing I and Hopf, meaning the system starts as a Hopf with a positive eigenvalue at $k_{n}$=0, then the system transitions to stable with a pair of complex conjugates. Finally, there is a dispersion peak characteristic of Turing that drops for high values of $k$.}
     \label{fig:dispersions} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -754,7 +797,7 @@ This particular direction was inspired in experiments described in the next sect
 
 The absorbing boundaries are introduced by using a Dirilichet boundary condition where the concentration at the boundary is zero $u=0$, as opposed to the previously used Neumann boundaries where the derivative at the boundary is zero.
 This particular boundary is chosen as the boundary of the colony acts as an absorbing boundary due to the lack of morphogen production in the agar.
-More details on the encoding of boundaries can be found in Fig.~\ref{fig:boundaries} or Section~\ref{methods_boundary_conditions}. %TODO add boundaries to methods
+More details on the encoding of boundaries in Crank Nicolson can be found in Fig.~\ref{fig:boundaries} or Section~\ref{methods_boundary_conditions_CN}.
 
 Growth is introduced as apical isotropic linear growth, where cells are added to both boundaries with a linear growth rate.
 More information on the different types of growth can be found in Fig.~\ref{fig:growth}.

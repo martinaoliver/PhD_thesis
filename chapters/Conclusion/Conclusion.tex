@@ -1,8 +1,85 @@
 \chapter{Discussion and Conclussion}
 
-%summary chapter 1
-%summary chapter 2
-%summary chapter 3
+%introduction
+Engineering biological Turing patterns, a mechanism that can explain many patterns in biology, has long been one of the holy grails in synthetic biology.
+This thesis is dedicated to developing a modelling approach that will assist in the experimental design of robust patterning experiments using Turing synthetic gene networks.
+Initially, it adopts a theoretical perspective, investigating analytical and numerical methods for studying such patterns.
+Furthermore, it aims to theoretically understand how biological factors, such as multistability, boundaries, growth, and domain shape, influence patterning.
+Once this foundational knowledge is acquired, a model for the synthetic experiment is constructed, enabling the identification of robust parameter spaces conducive to Turing patterning.
+Additionally, by employing numerical solvers tailored to our experimental setup, we seek to determine whether the observed patterns are exclusively Turing patterns or a result of a combination of various mechanisms.
+
+In the first results chapter, our findings using numerical methods revealed instances where the assumption that only Turing instabilities can produce periodic patterns is not accurate.
+For instance, we observed that multistability can lead to pattern formation in non-Turing steady states and can also result in transient patterns that disrupt Turing steady states.
+Additionally, periodic patterns were noted in both Turing-Hopf and unstable steady states.
+These discoveries suggest that high-throughput methods testing Turing pattern robustness may need to revise their underlying assumptions in future research.
+Furthermore, these numerical methods allowed for an in-depth exploration of realistic biological effects, such as the influence of boundaries and growth on pattern formation and disruption.
+Future research should focus on developing more refined classification methods and investigating various types of growth, similar to those observed in our colonies.
+Lastly, this chapter also highlights how pattern wavelength, temporal scales, and shape can be tuned using insights from dispersion relation analysis and optimization methods.
+Future research could focus on applying such optimizations to our experimental system.
+This would enhance our understanding of how to adjust parameters to achieve varying wavelengths and time-scales, as well as to transition from spot patterns to labyrinths.
+
+In the second chapter, a reaction-diffusion model based on an synthetic gene circuit is introduced.
+This synthetic RD circuit, engineeered in~\cite{Tica2020}, is based on the architecture of the Turing topology \#1754 from~\cite{Scholes2019}.
+The six equation PDE model accounts for inducer-dependent gene expression, degradation, and diffusion.
+Utilizing insights from the first chapter, an extensive high-throughput sampling of the parameter space for this model is conducted.
+It is observed that the gene circuit can form Turing patterns, including Turing I and Turing I-Hopf instabilities.
+Additionally, regions within the parameter space with an increased likelihood of patterning are identified.
+These regions can be experimentally attained through several methods, including matching dose-response curves and adding aTc or DAPG.
+However, the robustness of the system in these optimised regions is still relatively low.
+Extended work is required to enhance further the likelihood of Turing pattern formation and achieve robust patterning experiments.
+This may involve more than parameter tuning, as other effects such as growth, boundaries or noise could be key in explaining the robustness of patterns observed in nature.
+
+Additionally, the large parameter space of the model is constrained by parameterising the system using liquid-culture data.
+A new method for model parameterisation is introduced, involving the non-dimensionalisation of the PDE system to allow comparisons of protein concentrations with relative fluorescent units.
+This method goes beyond pattern formation studies, as it could be useful to parametrise other ODE and PDE models in synthetic biology involving gene circuits.
+Once the parameters are constrained, we look for Turing instabilities in the fits and find some.
+Once the parameters are constrained, Turing instabilities in the fitted distributions are identified.
+These Turing instabilities are theoretically the closest Turing parameter sets in parameter space to the experimental system.
+Future work should focus on producing more accurate fits using RT-qPCR data, where dose-response curves for every molecular species in the circuit are developed.
+Additionally, alternative methods such as Approximate Bayesian Computation could be explored, which allows for the incorporation of prior knowledge and the exploration of non-linear relationships between parameters.
+
+The genetic circuit engineered is explored both in the second and the third chapter.
+While the second chapter focuses on high-throughput searches to explore the parameter space using linear stability analysis, the third chapter focuses on relating the patterns obtained \textit{in-vitro} and \textit{in-silico} using numerical methods.
+Using the insights on how to optimise robustness in the second chapter, periodic rings are obtained in growing colonies under high aTc conditions with matched dose-response curves.
+A masked PDE solver is developed to capture the shape and growth of these biofilms as well as the dynamics of the RD gene circuit.
+Image recognition on the microscopy images was used to model static domains, and a cellular automaton to model colony growth.
+To model growing domains with particular shapes, future work could involve merging the two techniques and using domain obtained from image recognition as an initial condition for the cellular-automaton algorithm.
+Further experiments were carried out by collaborators, yielding a diverse array of patterns obtained in the colonies.
+All patterns could be replicated with the masked PDE solver, including rings spots and labyrinths which were not found experimentally.
+Stationary regular patterns could be modelled with Turing I instability and Turing I-Hopf instability models, in particular outer ring addition dynamics.
+Non-stationary patterns could be modelled with Hopf instability models, which generate mostly interior ring growth dynamics.
+To test the circuit in colonies further, we studied in detail the outer ring addition dynamics generated by the Turing parameter set from the fitted distribution.
+This parameter sets is explored more in detail as its Turing behaviour should be the closes to a Turing mechanism in our experimental circuit.
+
+
+
+
+%%summary chapter 3
+%chapter three spatial numerical solvers. as opposed to chapter 2 main focus here is numerical. because in chapter 1 we did relationship between numerical and analytical we can explore assumptions from chapter 2 with more insights.
+%additionally chapter 1 was useful to understand how boundaries and growth have big effects and deviate from lsa.
+%using robustness analysis of chapter2, I grew colonies in high atc. they had also been balanced further increasing robustness. periodic rings appeared which seem to be hopf
+
+%solver developed to model shape and colony growth. image recognition for static domains and cellular automata for growing domains. image recognition could be done and cellular automata applied.
+
+%all patterns replicated with this model.
+%focus on rings and replicated with parametrised model. future see if we can replicate the rest but it looks like it as big variablity of patterns around turing.
+%this variability corresponds to experimental variability.
+%robustness low but around turing high.
+%as opposed to chapter 1, we did find growth induced. this might be due to different growth rates, 2D, stochasticity in celllular automaton.
+%is this turing? time series matches, irregular growth matches, boundaries matches.
+%however node deletions did not match which made us realise cold shocks produce patterns. we need to be careful with cold shocks. (temperature constant, microscopy timeseries or transfer cells in warm container)
+% there is still hope as spots were seen which are independent of cold shock as non symmetric. labyrinths would be further prove. additionally there is still hope as 1 cold shock makes rings
+%this made us see prepattern can confer robustness and potentially explain lack of robustness of lsa
+
+%model first cold shock and see if robustness can be increased. better classifications to quantify numerical patterns.
+
+
+
+
+
+
+
+
 
 %with links between the three summaries
 

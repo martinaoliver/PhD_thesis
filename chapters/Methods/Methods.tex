@@ -44,11 +44,24 @@ Log-normal distributions are commonly used for modelling in biology, however due
 When we some level of certainty about a parameter, a Gaussian distribution is used.
 Finally, if we are completely sure, a fixed distribution is used.
 \section{PostgreSql database}\label{PostgreSql database}
-%TODO add details of schema in methods
+A PostgreSQL was created from scratch to store and organise all the linear stability analysis and numerical results.
+This schema is composed of 5 tables as seen in Fig.~\ref{psql_schema}.
+Model parameters and Simulation parameters have information on the kinetic parameters of the model and the simulation parameters of the numerical solver.
+A set of model parameters or simulation parameters is encoded with a primary key for each table: model\_param\_id and sim\_param\_id.
+LSA output contains information on the linear stability analysis output for a specific model\_param\_id.
+This information involves, the type of dispersion relation, the highest eigenvalue, the LSA estimated wacelength...etc.
+Simulation output contains information on the 1D or 2D timeseries data obtained from the simulation. Each set of data has a model\_param\_id and a sim\_param\_id associated to it.
+Finally, the Pattern type table has information on the type of pattern of a specific numerical output.
+This is based on the defined classifications (e.i convergence, spatial homogeneity and number of peaks).
+As with the Simulation output table, each data point has a model\_param\_id and a sim\_param\_id associated to it.
+
+This method enables the understanding of relationships between numerical and analytical outputs and between different types of solutions.
+Additionally, it creates a safe and documented way to store all results in an organised manner.
+
 \begin{figure}[H]
 
     \includegraphics[width=1\textwidth]{chapters/Methods/psql_schema}
-    \caption{fill}
+    \caption{\textbf{PostgreSQL database schema}}
     \label{psql_schema}
 \end{figure}
 
@@ -137,9 +150,9 @@ The methods chosen to solve this system of equations are \acrfull{CN} for 1 dime
 
 
 \subsection{Crank Nicolson Method}\label{cranknicolson}
-Consider a reaction diffusion system with one space dimension and boundary conditions
+Consider a reaction diffusion system with one space dimension
 \begin{equation}
-    \frac{\delta u}{\delta t} =  f(u) + D\pdvn{2}{u}{x},   \quad \quad \quad \quad \quad \quad \pdv{u}{x}\biggr\rvert_{x=0,L}=0
+    \frac{\delta u}{\delta t} =  f(u) + D\pdvn{2}{u}{x}
 \end{equation}
 The spatial part of the equation can be approximated to
 \begin{equation}
@@ -150,6 +163,7 @@ Applying \acrshort{CN} stencil to the grid point (i,j), the reaction-diffusion s
 
 \begin{equation}
     \frac{U^{n+1}_{j} - U^{n}_{j}}{\Delta t} = \frac{D}{2\Delta x^{2}}\left( U^{n}_{j+1} -  2U^{n}_{j} + U^{n}_{j-1} + U^{n+1}_{j+1} - 2U^{n+1}_{j} + U^{n+1}_{j-1}\right) +  f( U^{n}_{j})
+    \label{CN_stencil}
 \end{equation}
 By reordering this approximation into a linear equation, the resulting problem is defined by a simple linear equation containing matrices A and B. Where $\textbf{U}^{n+1} = [U^{n}_{0}, \ldots , U^{n}_{J-1}]$, the simplified system can be expressed as:
 \begin{equation}
@@ -157,12 +171,39 @@ By reordering this approximation into a linear equation, the resulting problem i
 \end{equation}
 This method simplifies the complex system into a linear system that can be solved numerically. The solution given will be a 1 dimensional in space solution of the reaction-diffusion system. Although the method is  unconditionally stable, the solution can contain oscillations if $ \frac{\Delta t}{\Delta x^{2}} >\frac{1}{2} $ \parencite{trefethen1996finite}. Therefore, the ratio will be kept below $\frac{1}{2}$ to avoid errors.
 
-\subsection{Introducing Dirilichet or absorbing boundary conditions}\label{methods_boundary_conditions}
-CN method can also have an implementation with Dirilichet boundary conditions, where
+\subsubsection{Introducing Dirilichet or absorbing boundary conditions}\label{methods_boundary_conditions_CN}
+CN method can be implemented with Neumann no-flux boundary conditions or Dirilichet absorbing boundary conditions.
+For Neumann no-flux boundary conditions:
+\begin{equation}
+    \frac{\delta u}{\delta t} =  f(u) + D\pdvn{2}{u}{x},   \quad \quad \quad \quad \quad \quad \pdv{u}{x}\biggr\rvert_{x=0,L}=0
+\end{equation}
+
+the values of $U_{j}$ at $j=0$ and $j=J-1$ are
+
+\begin{equation}
+    U_{j=0} = U_{j=-1}  \quad \quad \&  \quad \quad  U_{j=J-1} = U_{j=J}
+\end{equation}
+
+These value of $U_{j=0}$ and  $U_{j=J-1}$ is replaced into the CN stencil shown in Eq.~\ref{CN_stencil}.
+These values are chosen to ensure the derivative at the boundary is zero.
+
+Similarly, Dirilichet absorbing boundary conditions represented by the following system
+
 \begin{equation}
     \frac{\delta u}{\delta t} =  f(u) + D\pdvn{2}{u}{x},   \quad \quad \quad \quad \quad \quad U\biggr\rvert_{x=0,L}=0
 \end{equation}
-%TODO finish boundary conditions
+
+and have values of $U_{j}$ at $j=-1$ and $j=J$ such as
+
+\begin{equation}
+    U_{j=-1} = 0  \quad \quad \&  \quad \quad  U_{j=J} = 0
+\end{equation}
+
+These values of $U_{j=0}$ and  $U_{j=J-1}$ is replaced into the CN stencil shown in Eq.~\ref{CN_stencil}.
+These values are chosen to ensure the value at the boundary is zero.
+
+
+
 \subsection{Alternating Direction Implicit Method}\label{ADI}
 As done in the \acrshort{CN} scheme, a reaction diffusion system and its boundary conditions will be consider. However, in this case two spatial dimensions will be introduced.
 
@@ -192,11 +233,19 @@ In the first half time step (Equation 46a), the $x$ derivative is taken implicit
     \end{equation}
 \end{subequations}
 Again, this method also simplifies a complex system into a linear system that can be solved numerically, as in \acrshort{CN}. However, this method allows for the introduction of a new spatial dimension and therefore produces a 2D spatial solution. The workings of this method can be better understood with the \acrshort{ADI} stencil (See Fig.~\ref{fig:stencils}b). \acrshort{ADI} will be used to visualise patterns in 2D.
-\subsubsection{Analysis of numerical solution}
+
+
+\subsubsection{Introducing Dirilichet or absorbing boundary conditions}\label{methods_boundary_conditions_ADI}
+As with the CN method, ADI can also be implemented with Neumann no-flux boundary conditions or Dirilichet absorbing boundary conditions.
+The implementation is the same as in CN (See Section~\ref{methods_boundary_conditions_CN}).
+However, in this case boundaries are considered for both $i$ and $j$, both in steps $U^n$ and $U^{n+1/2}$.
+
+\subsection{Analysis of numerical solution}
 Speed of pattern formation and pattern wavelength are identified by performing additional analysis on the 1D numerical data.  \\\\
-\textbf{Time for pattern formation}
-The development of the pattern follows a certain behaviour: The molecule concentrations are initially homogeneous; then a pattern gets formed progressively; and finally, the pattern is in its final state and the solution remains constant.  The time for pattern formation is measured by comparing the solution (one point in space) at every time point to the solution at the final time point. If the difference if smaller than a tolerance value of $10^{-4}$ that time point is taken as the convergence time point were the pattern has finished to  develop. \\\\
-\textbf{Wavelength prediction from numerical Solution}
+\subsubsection{Time for pattern convergence}
+The development of the pattern follows a certain behaviour: The molecule concentrations are initially homogeneous; then a pattern gets formed progressively; and finally, the pattern is in its final state and the solution remains constant.
+The time for pattern convergence is measured by comparing the solution (one point in space) at every time point to the solution at the final time point. If the difference if smaller than a tolerance value of $10^{-4}$ that time point is taken as the convergence time point were the pattern has finished to  develop. \\\\
+\subsubsection{Wavelength prediction from numerical solution}
 The findpeaks package is used from the \textit{scipy.signal} Python library. All peaks in the final time point of the 1D simulation are found through the findpeaks package. The average distance between peaks is taken and that distance is averaged throughout the 6 species.
 
 \section{Image recognition and modelling for confocal microscopy data}
