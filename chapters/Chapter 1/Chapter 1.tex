@@ -937,56 +937,56 @@ However some flows go downwards, meaning absorbing boundaries and growth might c
 
 \section{Discussion}
 This chapter reflects all the fundamental work needed prior to investigating Turing patterns in the experimentally built genetic circuit.
-Theoretical insights are obtained, that will later be applied in the following chapters.
+Theoretical insights were obtained, that will later be applied in the following chapters.
 For this reason, the basic Turing activator-inhibitor two node topology was chosen, which is easier to interpret and faster to compute results.
-However, for results to be translatable to the experimental gene circuits, non-linear Hill terms are used to describe real genetic interactions between the two nodes.
+However, for results to be translatable to the experimental gene circuits, non-linear Hill terms were used to describe real genetic interactions between the two nodes.
 
 \subsection*{Information in the dispersion relation}
-We first start by understanding what information we can obtain by LSA about the patterns formed.
+We first started by understanding what information we could obtain by LSA about the patterns formed.
 Current state of the art merely uses the dispersion relation to see if there is a diffusion-driven instability or not.
-We go beyond this to derive relationships between the dispersion relation and the numerical wavelength, convergence time and pattern shape.
+We went beyond this to derive relationships between the dispersion relation and the numerical wavelength, convergence time and pattern shape.
 In the wavelength case, it seems like numerical patterns have a slightly bigger wavelength than the predicted wavelength from dispersion relation.
-Unexpectadly, this relationship was not $y=x$, but $y=1.46x$.
+Unexpectedly, this relationship is not $y=x$, but $y=1.46x$.
 Non-linearities might drive the system to choose lower slighly lower wavenumber modes which yield higher wavelengths numerically.
 However a linear correlation holds, meaning we can still use LSA to predict pattern wavelength.
 More cases with higher wavelengths would need to be investigated to understand if this correlation is generally maintained.
 
 A negative correlation between dispersion height and convergence time to stationary patterns was found.
-This can be explained, as a high eigenvalue will lead to a faster exponential increase of the amplitude of the perturbations as seen in Eqs~\ref{eq: exponential form RD}, and therefore faster time-scales.
-However, this correlation is less clear than in the wavelength study and only works well when studying related neighbouring patterns where a decaying exponential function is seen (Fig~\ref{fig:dispersion_peak_optimisation}B).
-In non-neighbouring patterns (Fig~\ref{fig:dispersion_to_wavelength_convergence}B), this relationship does not capture the behaviour of patterns with low eigenvalues or low convergence time.
-Therefore, higher dispersion peaks can point towards faster forming patterns, but this should be double checked with numerics if comparing patterns from different regions of the parameter space.
+This can be explained, as a high eigenvalue leads to a faster exponential increase of the amplitude of the perturbations as seen in Eqs~\ref{eq: exponential form RD}, and therefore faster time-scales.
+However, this correlation was less clear than in the wavelength study and only works well when studying related neighbouring patterns where a decaying exponential function is seen (Fig~\ref{fig:dispersion_peak_optimisation}B).
+In non-neighbouring patterns (Fig~\ref{fig:dispersion_to_wavelength_convergence}B), this relationship did not capture the behaviour of patterns with low eigenvalues or low convergence time.
+Overall, higher dispersion peaks point towards faster forming patterns, but this should be double checked with numerics if comparing patterns from different regions of the parameter space.
 
 Finally, dispersion peak height also seemed to be an indicator of pattern shape in neighbouring regions of the parameter space.
-Higher dispersion peaks lead to spot-like patterns, while lower dispersion peaks lead to labyrinthian patterns.
+Higher dispersion peaks led to spot-like patterns, while lower dispersion peaks led to labyrinthian patterns.
 A potential explanation of this is that numerical patterns with lower dispersion peaks have not fully converged as their time-scales are slower, although patterns seemed to have qualitatively converged when the time-series were observed.
 Future work should involve testing those simulations for larger times to ensure the hypothesis is correct.
 
 
 \subsection*{Breaking linear stability analysis predictions}
-Experimental work to engineer Turing patterns could benefit from faster-forming patterns as this would result in less stressed cellular tissues by avoiding nutrient depletion, cell death~\ldots etc.
+Experimental work to engineer Turing patterns could benefit from faster-forming patterns as this would result in less stressed cellular tissues by avoiding nutrient depletion, accumulation of toxic molecules or cell death.
 By looking at which parameters changed during the optimisation, we could tune the experimental circuit to modify those parameters and therefore tune our pattern time-scales.
 Additionally, tuning pattern shape or wavelength could turn useful if different biotechnology applications require different morphologies or scales.
 Although we have only shown optimisation for the case of dispersion peak height, the same optimisation could be carried out to choose a particular pattern wavelength.
 
 As seen above, LSA can produce information on whether a system produces periodic stationary patterns and about the features of these patterns.
 However, we have shown as well that these predictions are not as reliable as we might think, and numerical methods are therefore needed.
-We have focused on how multistability might break these predictions, and how systems with other types of dispersion relations profiles can generate other stationary and non-stationary patterns.
+In this chapter we focused on how multistability might break these predictions, and how systems with other types of dispersion relations profiles can generate other stationary and non-stationary patterns.
 
 Current literature does not explore multistability in Turing in detail.
 High-throughput studies either do not mention multistability, or mention it but do not address it by discarding such cases ~\parencite{Scholes2019, Marcon, Zheng2016}.
-Here we explore different cases of multistability and display the different potential outcomes of how the various states interact.
-We show the mechanism of how unstable systems can gain Turing pattern dynamics through multistability, as well as Turing states lose their patterning.
-Additionally, we document ephemeral patterns which are transient patterns occurring through as the system jumps from Turing to stable states.
+Here we explored different cases of multistability and displayed the different potential outcomes of how the various states interact.
+We showed the mechanism of how unstable systems can gain Turing pattern dynamics through multistability, as well as Turing states lose their patterning.
+Additionally, we documented ephemeral patterns which are transient patterns occurring through as the system jumps from Turing to stable states.
 These ephemeral patterns could still be interesting for developmental biology as the pattern can serve to temporarily activate the necessary genes to produce a non-transient phenotype (e.g. digit formation only needs periodic pattern at a specific time when the growth hormone is being produced to generate fingers~\parencite{Raspopovic1}.
 Understanding how the interaction between different steady states affects pattern formation is key as multistability is extremely present and plays an important role in biological systems~\parencite{laurent1999multistability}.
 
 In addition to multistability, current robustness studies do not explore alternative dispersion relations.
-Here we show how certain systems with unstable or Hopf dispersion relations can generate Turing-like stationary periodic patterns (Fig.~\ref{fig:interesting_cases_nogrowth}).
+Here we showed how certain systems with unstable or Turing I-Hopf dispersion relations can generate Turing-like stationary periodic patterns (Fig.~\ref{fig:interesting_cases_nogrowth}).
 Even though the robustness of these systems for periodic pattern formation is limited (Fig.~\ref{fig:lsa_numerical_confusion}), in certain regions of the parameter space Hopf and unstable systems robustly led to patterns in 100\% of the cases.
 Therefore, systems with such dispersion relations should not be completely ruled out when studying pattern formation.
 Considering them might increase the robustness slightly, however not enough to explain the difference between the robust mechanisms of nature and the non-robust Turing patterns.
-Systems with a Hopf dispersion relation can also interestingly create non-stationary patterns.
+Additionally, some systems with a Hopf dispersion relation produced interesting non-stationary periodic patterns.
 These non-stationary patterns could be of great interest in the field of developmental and synthetic biology as gene expression arrest could turn them into periodic stationary patterns.
 Additionally, these non-stationary patterns could serve as a periodic pre-pattern for the initial symmetry breaking.
 Overall, when considering symmetric breaking events and periodicity in developmental biology, we should think beyond classical Turing dispersion relations and consider Hopf, Turing Hopf and simple unstable systems that might also explain periodic patterning in biology.
@@ -1002,7 +1002,7 @@ Our bacterial colonies grow in a linearly manner ~\cite{Tica2023}, where growth 
 For this reason we generated this type of linear edge growth.
 In terms of boundaries, empty agar absorbs the diffusors at the edge so we introduced absorbing boundary conditions.
 However, the numerical parameters (length, growth rate, time) were not specifically those of our system as they had to be fined tuned to attain convergence, display enough peaks, and be computationally feasible.
-Future work can focus on matching the numerical parameters to be more similar to our experimental system.
+Future work should focus on matching the numerical parameters to be more similar to our experimental system.
 
 Overall, adding absorbing boundary conditions improved patterning more than adding growth.
 Boundaries could induce robustness by generating non-stationary regular patterns or increasing speed of pattern formation.
@@ -1011,7 +1011,7 @@ As previously mentioned, non-stationary regular patterns might be extremely inte
 Additionally, increasing the speed of pattern formation could be favourable to detect the patterns within the time duration of the experiment.
 
 On the other hand, the growth used did not seem to improve robustness for pattern formation as more cases ended up in the bottom of the diagonal in the confusion matrix (Fig.~\ref{fig:openboundary_edgegrowth2_confusion_variant0}).
-This goes against papers describing growth induced Turing patterns ~\parencite{gaffney2010}).
+This goes against the literature which describes growth induced Turing patterns ~\parencite{gaffney2010}).
 This might be because growth rates and types of growth (exponential or logistic) produce different results.
 The growth rate used here was slower than the experimental growth rate as long times were initially simulated to reach convergence in the non-growing reflective boundaries case.
 Future work should focus on testing robustness for the specific growth rates of our system.
@@ -1027,29 +1027,3 @@ This can be solved by simulating larger fields, however this is computationally 
 Additionally, the peak number classification used for the solutions with absorbing boundary conditions and growing domains relied only on final snapshots.
 This was mainly a problem when classifying non-stationary patterns as the number of peaks in these solutions increases and decreases over time, which might lead to misclassification.
 A potential way forward could be to analyse image datasets with deep learning methods to classify resulting patterns without relying on manually set rules or thresholds.
-
-%Another challenge was exploring the effects of growth and absorbing boundaries on a limited distribution of parameter sets, including parameters of the model and of the simulation.
-
-
-%Overall, there were two caveats in this part of the study. The first one is the classification was not adequate because:
-%\begin{itemize}
-%    \item we were comparing outputs from two classification methods
-%    \item large wavelength patterns were classified as weak patterns because of the few peaks
-%    \item non-stationary patterns did not have a regular number of peaks
-%    \item some of the peaks were not detected because of the general thresholds used.
-%
-%\end{itemize}
-%This could be improved by increasing the size of the field solved numerically, tuning the thresholds better, or developing a new classification method which is more general and encompasses the three types of simulations (non-growing reflective, non-growing absorbing and growing-absorbing).
-%Another caveat was exploring such effects on a limited distribution of parameter sets (numerical and kinetic).
-%Different parameters might have led to different behaviors as asorbing boundaries or growth might be benefitial in other parameter regimes.
-%Overall, it is extremely complicated to get general insigths from numerical studies.
-%%TODO comment on outer ring addition.
-%
-%
-%
-%
-%
-%
-%
-%Non-stationary patterns could also be of great interest in the field of developmental and synthetic biology as gene expression arrest could turn them into periodic stationary patterns.
-%Additionally, these non-stationary patterns could serve as a periodic pre-pattern for the initial symmetry breaking.
