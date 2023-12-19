@@ -187,7 +187,6 @@
 %----------------------------------------------------------------------------------------
 
 \RequirePackage{babel} % Required for automatically changing names of document elements to languages besides english
-%\hyphenpenalty=100
 \RequirePackage{scrbase} % Required for handling language-dependent names of sections/document elements
 
 \RequirePackage{scrhack} % Loads fixes for various packages

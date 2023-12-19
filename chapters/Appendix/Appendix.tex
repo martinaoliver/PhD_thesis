@@ -1,1 +1,56 @@
-\chapter*{Appendix}
+\appendix
+\chapter{Model parameters}
+
+\begin{table}[H]
+    \centering
+    \caption{\textbf{Variant 1}}
+    \label{tab:variant_1}
+    \renewcommand{\arraystretch}{1.3} % Adjust vertical padding
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Parameter} & \textbf{Distribution} & \textbf{Value}\\
+        \hline
+        $V_{m}$ & Loguniform & (10,1000)\\
+        \hline
+        $K_{m}$ & Loguniform & (0.1,250)\\
+        \hline
+        $\mu_{m}$ & Loguniform & (0.001,50)\\
+        \hline
+        $D_{B}$ & Loguniform & (0.001, 10)\\
+        \hline
+        $D_{A}$ & Fixed & 1\\
+        \hline
+        $b$ & Fixed & 0.01\\
+        \hline
+        $n$ & Fixed & 2\\
+        \hline
+    \end{tabular}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \caption{\textbf{Variant 1 or 2}}
+    \label{tab:variant_2}
+    \renewcommand{\arraystretch}{1.3} % Adjust vertical padding
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Parameter} & \textbf{Distribution} & \textbf{Value}\\
+        \hline
+        $V_{m}$ & Loguniform & (10,10000)\\
+        \hline
+        $K_{m}$ & Loguniform & (0.1,100)\\
+        \hline
+        $\mu_{m}$ & Loguniform & (1,100)\\
+        \hline
+        $D_{B}$ & Fixed & (0.01 or 10\\
+        \hline
+        $D_{A}$ & Fixed & (10 or 0.01)\\
+        \hline
+        $b$ & Loguniform & (10,10000)\\
+        \hline
+        $n$ & Loguniform & (2,4)\\
+        \hline
+    \end{tabular}
+\end{table}
+

@@ -25,14 +25,14 @@ The three sampling regimes are shown in Fig.~\ref{fig:distributions}A.
 In LHS, a distribution and a number of desired samples is given as an input.
 The algorithm then divides the space sections according to the distribution given (e.g in a normal distribution, more sections will appear near the mean value).
 Then, one sample is positioned randomly somewhere in each section.
-For a 2 dimensional parameter space, no samples can be in the same column or row.
+For a 2-dimensional parameter space, no samples can be in the same column or row.
 This can be scaled up to high multidimensional spaces.
 The LHS scheme is shown in Fig.~\ref{fig:distributions}B.
 %TODO add chess towers to lhs
 \begin{figure}[H]
 
     \includegraphics[width=1\textwidth]{chapters/Methods/distributions}
-    \caption{\textbf{Sampling method for high dimensional spaces}. \textbf{(A)} Types of potential sampling methods. \textbf{(B)} Latin-Hypercube sampling with uniform distribution for a 2 dimensional parameter space. Space is separated in 5 sections for each parameter, leading to 5 samples (red dot). No sample is present in the same row or column. \textbf{(C)} Parameter distributions used for Latin-hypersube sampling. The 4 different types of parameters have different distributions depending on the ranges defined. All of them are uniform distributions in log-scale.}
+    \caption{\textbf{Sampling method for high dimensional spaces}. \textbf{(A)} Types of potential sampling methods. \textbf{(B)} Latin-Hypercube sampling with uniform distribution for a 2 dimensional parameter space. Space is separated in 5 sections for each parameter, leading to 5 samples (red dot). No sample is present in the same row or column. \textbf{(C)} Parameter distributions used for Latin-hypersube sampling. The four different types of parameters have different distributions depending on the ranges defined. All of them are uniform distributions in log-scale.}
     \label{fig:distributions}
 \end{figure}
 The distribution given as an input to the LHS algorithm, will be the resulting distribution of your samples.
@@ -43,6 +43,7 @@ The logarithmic component is used to make sure parameters from all scales are re
 Log-normal distributions are commonly used for modelling in biology, however due to the nonexistent prior knowledge on our parameter values, the log-uniform is used instead.
 When we some level of certainty about a parameter, a Gaussian distribution is used.
 Finally, if we are completely sure, a fixed distribution is used.
+
 \section{PostgreSql database}\label{PostgreSql database}
 A PostgreSQL was created from scratch to store and organise all the linear stability analysis and numerical results.
 This schema is composed of 5 tables as seen in Fig.~\ref{psql_schema}.
@@ -171,8 +172,8 @@ By reordering this approximation into a linear equation, the resulting problem i
 \end{equation}
 This method simplifies the complex system into a linear system that can be solved numerically. The solution given will be a 1 dimensional in space solution of the reaction-diffusion system. Although the method is  unconditionally stable, the solution can contain oscillations if $ \frac{\Delta t}{\Delta x^{2}} >\frac{1}{2} $ \parencite{trefethen1996finite}. Therefore, the ratio will be kept below $\frac{1}{2}$ to avoid errors.
 
-\subsubsection{Introducing Dirilichet or absorbing boundary conditions}\label{methods_boundary_conditions_CN}
-CN method can be implemented with Neumann no-flux boundary conditions or Dirilichet absorbing boundary conditions.
+\subsubsection{Introducing Dirichlet or absorbing boundary conditions}\label{methods_boundary_conditions_CN}
+CN method can be implemented with Neumann no-flux boundary conditions or Dirichlet absorbing boundary conditions.
 For Neumann no-flux boundary conditions:
 \begin{equation}
     \frac{\delta u}{\delta t} =  f(u) + D\pdvn{2}{u}{x},   \quad \quad \quad \quad \quad \quad \pdv{u}{x}\biggr\rvert_{x=0,L}=0
@@ -187,7 +188,7 @@ the values of $U_{j}$ at $j=0$ and $j=J-1$ are
 These value of $U_{j=0}$ and  $U_{j=J-1}$ is replaced into the CN stencil shown in Eq.~\ref{CN_stencil}.
 These values are chosen to ensure the derivative at the boundary is zero.
 
-Similarly, Dirilichet absorbing boundary conditions represented by the following system
+Similarly, Dirichlet absorbing boundary conditions represented by the following system
 
 \begin{equation}
     \frac{\delta u}{\delta t} =  f(u) + D\pdvn{2}{u}{x},   \quad \quad \quad \quad \quad \quad U\biggr\rvert_{x=0,L}=0
@@ -235,8 +236,8 @@ In the first half time step (Equation 46a), the $x$ derivative is taken implicit
 Again, this method also simplifies a complex system into a linear system that can be solved numerically, as in \acrshort{CN}. However, this method allows for the introduction of a new spatial dimension and therefore produces a 2D spatial solution. The workings of this method can be better understood with the \acrshort{ADI} stencil (See Fig.~\ref{fig:stencils}b). \acrshort{ADI} will be used to visualise patterns in 2D.
 
 
-\subsubsection{Introducing Dirilichet or absorbing boundary conditions}\label{methods_boundary_conditions_ADI}
-As with the CN method, ADI can also be implemented with Neumann no-flux boundary conditions or Dirilichet absorbing boundary conditions.
+\subsubsection{Introducing Dirichlet or absorbing boundary conditions}\label{methods_boundary_conditions_ADI}
+As with the CN method, ADI can also be implemented with Neumann no-flux boundary conditions or Dirichlet absorbing boundary conditions.
 The implementation is the same as in CN (See Section~\ref{methods_boundary_conditions_CN}).
 However, in this case boundaries are considered for both $i$ and $j$, both in steps $U^n$ and $U^{n+1/2}$.
 

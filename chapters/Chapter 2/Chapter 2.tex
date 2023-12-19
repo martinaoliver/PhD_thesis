@@ -1,5 +1,4 @@
 % Chapter Template
-
 \chapter{Gene circuit design and parametrisation} \label{chapter2}
 Up to now, Turing circuits that give rise to regular patterns, have only been engineered in chemical systems.
 Using synthetic biology, we aimed to engineer Turing patterns in biological systems using gene circuits that exhibit reaction-diffusion (RD).
@@ -18,6 +17,7 @@ Additionally, we explore the parameter space based on literature informed ranges
 Finally, to obtain a model which is more closely linked to our experimental system and yields more accurate predictions,
 we parametrise it using liquid culture data.
 
+Work in this chapter and in the following Chapter~\ref{chapter3} has been published in the preprint~\cite{Tica2023}.
 \section{Building model describing synthetic gene circuit}
 In this section, I present a model which describes the synthetic gene circuit engineered in~\cite{Tica2020}.
 The circuit can be seen in Fig.~\ref{fig:synthetic circuit_chapter2}, which was already presented in the Chapter~\ref{introduction} but is repeated here to facilitate access to the reader.
@@ -51,6 +51,7 @@ Additionally, extra detail is added on the tuning molecules and receptor cassett
 A partial differential equation (PDE) system is used to describe the reaction and diffusion terms of this synthetic gene circuit (Fig.~\ref{fig:synthetic circuit_chapter2}).
 This system of equations describes the concentration of molecules which are the dependent variables, in time and space which are the independent variables.
 The molecules modelled are the six regulator genes and two diffusor molecules.
+Diffusor molecules act as morphogens in this RD circuit.
 This model includes:
 \begin{itemize}
     \item Constant background production due to promoter leakiness
@@ -1168,50 +1169,41 @@ This K*da parameter, which is captured in Subcircuit \#3 (see Eq.~\ref{Subcircui
 \end{figure}
 
 \section{Discussion}
-\begin{itemize}
-    \item Gene circuit can produce Turing patterns
-    \item Some parameter regions are more robust, which can be tuned experimentally
-    \item Model can be parametrised using liquid culture data
-\end{itemize}
-
-
-\section{Discussion}
 A synthetic gene circuit was built with the aim of engineering periodic pattern formation in synthetic \textit{E.~coli} biofilms (Fig.~\ref{fig:synthetic circuit_chapter2}).
-This chapter describes the model built to understand the spatio-temporal dynamics of this synthetic gene circuit.
-The parameter space is explored to show the circuit can produce Turing patterns, and in certain regions the likelihood of finding these patterns is higher.
-Finally, the model is parametrised using liquid culture data to constraint the model parameters to experimentally realistic values.
+This chapter described the model built to understand the spatio-temporal dynamics of this synthetic gene circuit.
+The parameter space was explored to show the circuit can produce Turing patterns, and in certain regions the likelihood of finding these patterns is higher.
+Finally, the model was parametrised using liquid culture data to constraint the model parameters to experimentally realistic values.
 
 \subsection{Model of synthetic gene circuit \#1754}
-The model presented is a PDE system which describes the concentrations of the six proteins in space and time.
+The model presented was a PDE system which describes the concentrations of the six proteins in space and time.
 This model gives us insights into how protein concentrations change over time and in space and whether any spatio-temporal patterns form.
-Because the experimental circuit is the largest RD gene circuit ever built, the model also results in a complex model with many variables and parameters.
+Because the experimental circuit is the largest RD gene circuit ever built, the model is highly complex with many variables and parameters.
 This results in computationally expensive numerical simulations and a high-dimensional parameter space with over 20 dimensions, which is complicated to sample.
 
-To simplify the model, many assumptions are taken.
-For example, quasi-steady states are assumed for mRNA production, protein-promoter binding, receptor-diffusor binding and diffusor synthesis.
+To simplify the model, many assumptions were taken.
+For example, quasi-steady states were assumed for mRNA production, protein-promoter binding, receptor-diffusor binding and diffusor synthesis.
 Although these processes exist in a quasi-steady state equilibrium, they might produce delays which are not taken into account in this model.
 Investigating these delays would be necessary in the future to understand whether they disrupt pattern formation as shown in~\cite{Maini2012}.
-Additionally, degradation is assumed to be linear, which might not be accurate in some cases.
+Additionally, degradation was assumed to be linear, which might not be accurate in some cases.
 High levels of proteins, burden or age-dependent effects might collapse the degradation machinery~\parencite{kintaka2020genetic} leading to non-linear dynamics which are not currently captured.
-Additionally, diffusor precursors as well as diffusor receptors are assumed to be in excess to avoid extra equations and parameters.
-The parameters of the model are also assumed to be constant over time, which might not be realistic due to cell burden, nutrient depletion or other effects in the biofilm.
+Additionally, diffusor precursors as well as diffusor receptors were assumed to be in excess to avoid extra equations and parameters.
+The parameters of the model were also assumed to be constant over time, which might not be realistic due to cell burden, nutrient depletion or other effects in the biofilm.
 Future work in this direction would involve exploring experimentally the relationship between these effects and the model parameters.
 An interesting example of this would be to define a time-dependent nutrient equation which kinetic parameters are dependent on.
-Finally, this model assumes fluorescent protein concentration is linearly correlated with fluorescence.
+Finally, this model assumed fluorescent protein concentration is linearly correlated with fluorescence.
 Although this assumption is often correct~\parencite{soboleski2005green, csibra2022absolute}, several factors can disrupt the linearity.
 For example, low concentrations of fluorescent protein might not be detected by the instruments, leading to a non-linear relationship.
 pH and temperature can also affect fluorescent values~\parencite{ward1982spectral}.
 When using LacI and cI* to model GFP and RFP fluorescence respectively, we need to take into account these assumptions on linearity and understand when they might break.
 
 \subsection{Finding Turing instabilities and optimising Turing robustness}
-
-Regardless of all the assumptions, the model is extremely useful in giving us insights into the system.
+Regardless of all the assumptions, the model was extremely useful in giving us insights into the system.
 Firstly, the model parameter space was searched using LSA to find Turing I instabilities.
 Turing I-Hopf instabilities were also searched for, as they have been shown to produce stationary periodic patterns in many cases as seen in Section~\ref{nogrowth}.
-The model does produce Turing I and Turing I-Hopf instabilities, meaning periodic stationary patterns as the ones observed in Fig.~\ref{fig:square_turing} could occur experimentally.
+The model did produce Turing I and Turing I-Hopf instabilities, meaning periodic stationary patterns as the ones observed in Fig.~\ref{fig:square_turing} could occur experimentally.
 When the gene circuit was built inspired from the original \#1754 topology,
 more nodes and connections had to be implemented to replicate the original functions.
-Therefore, it was not sure if these changes would remove the capabilities of patterning.
+Therefore, it unclear whether these changes would remove the capabilities of patterning.
 Proving the genetic implementation of this topology could produce patterning was necessary prior to searching for Turing patterns experimentally.
 
 The model also helped understand parameter regimes in which the gene circuit was more likely to produce Turing instabilities, including both Turing and Turing I-Hopf.
@@ -1220,8 +1212,7 @@ This robustness could be further increased by tuning specific parameters such as
 Different levels of aTc were explored in a system with matched dose response curves.
 It was seen that robustness could be increased from 0 to 0.025 by increasing $K_{ce}$, which is equivalent to adding exogenous aTc to the experiment.
 
-
-These results can help experimentalist to guide the fine-tuning of the circuit by matching dose response curves, or adding exogenous aTc and DAPG.
+These results guided the experimental fine-tuning of the circuit by matching dose response curves, and adding exogenous aTc and DAPG.
 Decreasing $D_{r}$ is harder, as there is no current good method for controlling diffusion of quorum sensing molecules.
 A potential route of decreasing the diffusion rate of a quorum sensing molecule is through receptor sequestering:
 When the number of receptors is much larger than the number of quorum sensing ligands,
@@ -1231,7 +1222,7 @@ we can slow down diffusion of $OC_{14}$ by increasing the expression of the CinR
 This can be done by tuning the RBS for higher expression.
 
 Overall, this model enabled us to design experimental strategies for tuning the robustness of the system so Turing patterns could be obtained experimentally.
-However, it is important to note that although they have been optimised, the robustness levels obtained are extremely low.
+However, it is important to note that although they have been optimised, the robustness levels obtained are still extremely low.
 Further investigation to understand how to further increase the percentage of Turing solutions in parameter space is needed.
 In this thesis, robustness optimisation was carried by tuning model parameters.
 However, it is worth investigating whether growth, boundary conditions or even a pre-pattern could increase the probability of obtaining Turing patterns with this circuit.
@@ -1252,12 +1243,10 @@ Parameters might vary slightly for cells growing in colonies on agar surfaces, s
 Dose response curves in agar could be produced in the future.
 This would allow us not only to understand parameters of cells growing in agar dishes, but also have different fits for old cells in the middle and new cells at the edge of the colony.
 
-
 By fitting the dose response models to the experimental liquid culture data, we aimed to obtain a distribution of model parameters that replicated the experimental data with a certain level of uncertainty.
-
 A distribution is preferred over a single fit as biological systems exhibit noise and there is a certain level of uncertainty in the fixed parameters of the model.
 This distribution could be obtained by using a Bayesian approach or a multivariate Gaussian optimisation approach.
-In the Bayesian optimisation approach, a prior is given which is updated by sampling the parameter space to obtain a posterior distribution that fits the data.
+With Approximate Bayesian Computation, a prior is given which is updated by sampling the parameter space to obtain a posterior distribution that fits the data.
 This Bayesian approach works well if prior knowledge needs to be incorporated into the model and if non-linear relationships between parameters are present.
 However, it is more computationally expensive.
 On the other hand, multivariate Gaussian optimisation is a much more computationally efficient algorithm based on a simple least squares minimisation to produce a mean value and a covariance matrix.

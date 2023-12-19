@@ -261,17 +261,23 @@ A general Fourier series representation of X(x) under these conditions can be:
 However, because the derivative at the boundary is zero, the cosine series is used instead.
 This is because the derivative of $\cos(0)$ or $\cos(n\pi)$ is zero.
 Therefore, the Fourier cosine series used is
-%TODO add cos_boundary_conditions.pdf
 
 \begin{equation}
     X(x) = \sum_{n=0}^{\infty}  C_n \cos\left(\frac{n \pi x}{L}\right)
     \label{cosine_series}
 \end{equation}
 
-This way, if the function X(x) is expressed in terms of cosines, the derivatives of this function for x=0 and x=L are zero:
+This way, if the function X(x) is expressed in terms of cosines (see Fig.~\ref{fig:cos_boundary_conditions}), the derivatives of this function for x=0 and x=L are zero:
 \begin{equation}
     \frac{\partial \left(cos(0)\right)}{\partial x} = 0 ; \quad \frac{\partial \left(cos(\frac{n \pi L}{L})\right)}{\partial x} = 0
     \end{equation}
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \includegraphics[width=0.8\textwidth]{chapters/Chapter 1/cos_boundary_conditions} % The name of your image file; assumes it is in the same directory as your .tex file
+    \caption{\textbf{No-flux boundary conditions represented with cosine wave}}
+    \label{fig:cos_boundary_conditions} % A label for referencing this figure later in the document
+\end{figure}
 
 \paragraph{Derivative of function in space:}
 The Laplacian Operator $\nabla^2$ is applied to X(x) to represent the diffusion terms
@@ -303,78 +309,7 @@ Once $k_{n}$ is defined for our boundary conditions, the expression for the Lapl
 
 
 
-
-%
-%
-%\paragraph{Reduction of PDE term to ODE through Fourier transformations in infinite domain}
-%The second order partial derivative term will be reduced to an ODE simpler term through Fourier transforms.
-%Given infinite x-domain, the following Fourier transform definitions are used:
-%\begin{subequations}
-%    \begin{equation}
-%        F(k) = \mathcal{F}(f(x)) = \int_{-\infty}^{\infty} f(x)e^{-ikx} dx
-%    \end{equation}
-%    \begin{equation}
-%        f(x) = \mathcal{F}^{-1}(F(k)) = \frac{1}{2\pi}\int_{-\infty}^{\infty} F(k)e^{ikx} dk
-%        \label{eq:inverse fourier}
-%    \end{equation}
-%\end{subequations}
-%First, using the inverse Fourier transform (Eq.~\ref{eq:inverse fourier}), the first order partial derivative will be reduced to an ODE form:
-%\begin{equation}
-%    \begin{split}
-%        \pdv{[X(x,t)]}{x}) = \mathcal{F}^{-1}\left(\pdv{[X(k,t)]}{x}\right) = \frac{\partial}{\partial x}\left[\frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk\right] =  \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)\frac{d}{dx}e^{ikx} dk\\\\ =\frac{1}{2\pi}\int_{-\infty}^{\infty} ik X(k,t)e^{ikx} dk = ik \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk = ik X(x,t)
-%    \end{split}
-%\end{equation}
-%giving $\pdv{[X(x,t)]}{x}) =  ik X(x,t)$.
-%Using this expression, the inverse Fourier transform and the fact that $\pdvn{2}{X(x,t)}{x} =\left(\pdv{X(x,t)}{x}\right)^2$, the following expression is obtained:
-%\begin{equation}
-%    \begin{split}
-%        \pdvn{2}{[X(x,t)]}{x}) = \left(\pdv{X(x,t)}{x}\right)^2 = \mathcal{F}^{-1}\left[\pdv{[ikX(k,t)]}{x}\right] = \frac{\partial}{\partial x}\left[\frac{1}{2\pi}\int_{-\infty}^{\infty} ikX(k,t)e^{ikx} dk\right] \\\\=  \frac{1}{2\pi}\int_{-\infty}^{\infty} ikX(k,t)\frac{d}{dx}e^{ikx} dk =\frac{1}{2\pi}\int_{-\infty}^{\infty} (ik)^2 X(k,t)e^{ikx} dk = -k^2 \frac{1}{2\pi}\int_{-\infty}^{\infty} X(k,t)e^{ikx} dk = -k^2 X(x,t)
-%    \end{split}
-%    \label{eq:fourier of our system}
-%\end{equation}
-%%TODO robert comment "looks complicated - you could just plug in inverse FT in second derivative, and pull integral in front of second derivative, and as integral in every term, remove"
-%giving
-%\begin{subequations}
-%    \begin{equation}
-%        \pdvn{2}{A(x,t)}{x} = -k^2\cdot A
-%    \end{equation}
-%    \begin{equation}
-%        \pdvn{2}{I(x,t)}{x} = -k^2\cdot I
-%    \end{equation}
-%    \label{eq: simplified fourier diffusion}
-%\end{subequations}
-%This way, the second order partial derivative terms, are reduced to simpler ODE systems to be used in LSA at the expense of an extra parameter, the wavenumber.
-%\paragraph{Definition of boundary conditions}
-%The system is defined within some boundaries, meaning x goes from 0 to L. In this case, no molecules can leave the system, so the boundary condition applied is a zero-flux boundary condition. At the boundaries, the partial derivative is zero, defined below as Neumann Boundary conditions:
-%\begin{equation}
-%    \pdvn{2}{X(x=0,t)}{x}=0  \hspace{0.5cm}\And  \hspace{0.5cm}\pdvn{2}{X(x=L,t)}{x}=0
-%\end{equation}
-%This can be visualised as a fish tank, of length L, filled with water: water diffuses freely within the tank, but cannot diffuse outside the boundaries. In addition, the levels of water at the boundaries are not fixed. For the spatial derivatives to be zero at the boundaries, some restrictions will need to be applied. The expression from Eq.~\ref{eq:fourier of our system} will be used to apply our boundary conditions.
-%\begin{equation}
-%    \begin{split}
-%        \pdvn{2}{[X(x,t)]}{x}) =  -k^2 \frac{1}{2\pi}\int_{0}^{L} X(k,t)e^{ikx} dk =  -k^2 \frac{1}{2\pi}\int_{0}^{L} X(k,t)(cos(kx)+isin(kx))dk\\\\
-%        =\frac{-k^2}{2\pi}\left(\int_{0}^{L} X(k,t)cos(kx)dk + i\int_{0}^{L} X(k,t)sin(kx)dk\right)
-%    \end{split}
-%\end{equation}
-%The first integral is integrated by parts to express the equation in terms of $\sin(kx)$:
-%\begin{equation}
-%    \begin{split}
-%        \pdvn{2}{[X(x,t)]}{x}) = \frac{-k^2}{2\pi}\left(\left[\frac{sin(kx)}{k}X(k,t)\right]^L_{0} - \int_{0}^{L} \frac{sin(kx)}{k}\pdv{A(k,t)}{k}dk + i\int_{0}^{L} X(k,t)sin(kx)dk\right)
-%    \end{split}
-%\end{equation}
-%As defined with the boundary conditions (Equation 31), the partial derivative must be 0 at $x=0$ and  $x=L$.
-%Therefore, at $x=0$ and  $x=L$, $\sin(kx)=0$.
-%For the two boundary conditions:
-%\begin{itemize}
-%    \item When $x=0$: $\sin(k\cdot0)=\sin(0)=0$.
-%    \item Therefore for $x=0,\pdvn{2}{X(0,t)}{x}=0$.
-%    \item When $x=L$: $\sin(k\cdot L)$ must be zero.
-%    \item If $ k=\frac{n\pi}{L}$, $\sin(kL) = \sin(n\pi) = 0$.
-%    Therefore, for $x=L$ , $\pdvn{2}{X(L,t)}{x}=0 \hspace{0.5cm} \forall n \in \{0, \mathbb{N}\} $
-%\end{itemize}
-%Following these calculations, the zero-flux boundary condition is applied if the following condition is met: $k=\frac{n\pi}{L} \hspace{0.1cm}\forall n \in \{0, \mathbb{N}\} $
-
-\paragraph{Linear stability analysis  of steady state with diffusion effects}
+\paragraph{Linear stability analysis of steady state with diffusion effects:}
 Now that the PDE diffusion term has been reduced to an ODE term, and the zero-flux boundary conditions introduced, the stability of the steady state when introducing diffusion can be studied.
 As shown in Eqs.~\ref{eq: simplified fourier diffusion}, the diffusion term $\nabla^2 X(x)$ can be expressed as $- k_{n}^2  X(x)$, therefore the linearised reaction-diffusion PDE equations can be written as
 \begin{subequations}
@@ -391,7 +326,6 @@ In the previous section, LSA was carried around the steady state with a perturba
 This resulted in the expression shown in Eq.~\ref{eq: linearised terms around steady state}, which describes the linearized reaction terms around the steady state.
 By adding diffusion in the Fourier domain from Eq.~\ref{eq: simplified fourier diffusion} we obtain the following expression for the linearized reaction-diffusion system, where A and I are now a function of $k_{n}$ and $t$:
 
-%TODO add hat?
 \begin{subequations}
     \begin{equation}
         \pdv{\delta A}{t} = \pdv{f_{A}(A^*,I^*)}{A}\delta A + \pdv{f_{A}(A^*,I^*)}{I}\delta I  -D_{A}k_{n}^2\delta A
@@ -490,70 +424,38 @@ More information how these Hill terms represent gene expression regulations can 
 To study this system, the parameter space is scanned using LSA and numerical methods.
 The parameter space is sampled using Latin hypercube sampling (LHS) (see Fig.~\ref{fig:distributions}A) drawn from loguniform distributions (see Fig.~\ref{fig:distributions}C).
 The LHS method is designed to cover the parameter space more efficiently with less samples than grid or uniform sampling~\parencite{Chrisman2014, Iman2014}.
-More information on sampling and distributions can be found in Section~\ref{sampling method}, as well as the literature ranges chosen to sample from these distributions.
+More information on sampling and distributions used can be found in Section~\ref{sampling method}.
+Ranges and values used for these distributions are shown in Tables~\ref{tab:variant_1} and~\ref{tab:variant_2}.
 
 All results are stored in a PostgreSQL database created from scratch for this project.
 This database includes a interconnected tables for model parameters, numerical parameters, analytical results, numerical solutions and pattern classification outputs.
 More details on the database schema can be seen in Section~\ref{PostgreSql database}.
 The creation of this PostgreSQL database was necessary to explore large parameter spaces and compare between analytical and numerical results in an efficient way.
-%
-%, to ensure from various parameter distributions to cover a wide variety of dynamical behaviours. Latin
-%$V$ parameter is sampled using a The parameters used are x. The distribution used are x. latin hypercube. database. numerical solver.
-
-%TODO complete param definitions
-%variant0 (turinghill):
-%- Vm_range = (10, 1000) loguniform
-%- km_range = (0.1, 250)loguniform
-%- mu_range = (0.001, 50)loguniform
-%- d_B_range = (0.001, 10) loguniform
-%- dA = 1 fixed
-%- b = 0.01 fixed
-%- n = 2 fixed
-
-%variant11
-%b_range = (10,10000) loguniform
-%Vm_range = (10,10000) loguniform
-%km_range = (0.1,100) loguniform
-%mu_range = (1,100) loguniform
-%n_range=(2,4) loguniform
-%d_A = np.full((numbercombinations, 1), 0.01) fixed
-%d_B= np.full((numbercombinations, 1), 10)fixed
-
-
-%variant11
-%b_range = (10,10000) loguniform
-%Vm_range = (10,10000) loguniform
-%km_range = (0.1,100) loguniform
-%mu_range = (1,100) loguniform
-%n_range=(2,4) loguniform
-%d_A = np.full((numbercombinations, 1), 10) fixed
-%d_B= np.full((numbercombinations, 1), 0.01) fixed
-
-
 
 \subsection{Diffusion-driven instabilities in the dispersion relation}
 Classical Turing patterns, also called diffusion-driven instabilities (DDI) or Turing instabilities, can be detected using LSA as described above.
-In linear stability analysis, the dispersion relation is studied, which shows the dependency of the eigenvalues $\sigma$ on the wavenumber $k$ as seen in Eq.~\ref{eq: jacobian RD}.
-For a Turing instability to occur, at $k=0$, $Re(\sigma)$ must be negative, meaning the system is stable without diffusion.
-As diffusion is introduced and $k>0$, the system becomes unstable with $Re(\sigma)>0$.
-For $k \rightarrow \inf$, the system must be stable again and the eigenvalue negative.
+In linear stability analysis, the dispersion relation is studied, which shows the dependency of the eigenvalues $\sigma$ on the wavenumber $k_{n}$ as seen in Eq.~\ref{eq: jacobian RD}.
+For a Turing instability to occur, at $k_{0}=0$, $Re(\sigma)$ must be negative, meaning the system is stable without diffusion.
+As diffusion is introduced and $k_n>0$, the system becomes unstable with $Re(\sigma)>0$.
+For $k_n \rightarrow \inf$, the system must be stable again and the eigenvalue negative.
 This is because otherwise a Turing II instability will occur where the dominant mode has infinitesimally large wavenumber meaning an infinitesimally small wavenumber.
 The relationship between wavenumber $(k_{n})$ and wavelength $(\lambda)$ is
 \begin{equation}
     \lambda_n = \frac{2 \pi}{k_n}
     \label{eq:wavelength_wavenumber}
 \end{equation}
-%TODO replace k with kn
-\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
-    \centering
-    \includegraphics[width=1\textwidth]{chapters/Chapter 1/turing_vs_noturing} % The name of your image file; assumes it is in the same directory as your .tex file
-    \caption{\textbf{The dispersion relation of reaction-diffusion systems.} \textbf{(A)} Dispersion relation of a system without Turing instability (left). Eigenvalues are computed for every wavenumber $k_{n}$. The dominant mode is stable, having an eigenvalue below zero. Numerical solution of system for molecule A without Turing instability (right), shows homogeneity in space (x-axis) and time (y-axis).  \textbf{(B)} Dispersion relation of a system with Turing instability (left). The dominant mode is unstable, having an eigenvalue above zero. Numerical solution of system for molecule A (right), shows a periodic in space (x-axis) which is stationary in time (y-axis). Colorbar reflects molecular species concentration.}
-    \label{fig:turing_vs_noturing} % A label for referencing this figure later in the document
-\end{figure}
+
 An example of a classical Turing instability with a positive dispersion peak is shown in Fig.~\ref{fig:intro_to_Turing_patterns}B, along with the corresponding stationary spatial pattern.
 Alternatively, Fig.~\ref{fig:turing_vs_noturing}A shows a spatially homogeneous solution which results from a stable system that does not exhibit a diffusion driven instability.
 These 1D numerical results were produced using the \acrfull{CN} numerical scheme described in~\ref{cranknicolson}, programmed using \textit{numpy} in Python from first math principles.
 The boundary conditions used here are Neumann boundary conditions where the derivative at the boundary is zero ($\pdv{U}{x}=0$) for both molecular species, A and I.
+
+\begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
+    \centering
+    \includegraphics[width=01\textwidth]{chapters/Chapter 1/turing_vs_noturing} % The name of your image file; assumes it is in the same directory as your .tex file
+    \caption{\textbf{The dispersion relation of reaction-diffusion systems.} \textbf{(A)} Dispersion relation of a system without Turing instability (left). Eigenvalues are computed for every wavenumber $k_{n}$. The dominant mode is stable, having an eigenvalue below zero. Numerical solution of system for molecule A without Turing instability (right), shows homogeneity in space (x-axis) and time (y-axis).  \textbf{(B)} Dispersion relation of a system with Turing instability (left). The dominant mode is unstable, having an eigenvalue above zero. Numerical solution of system for molecule A (right), shows a periodic in space (x-axis) which is stationary in time (y-axis). Colorbar reflects molecular species concentration.}
+    \label{fig:turing_vs_noturing} % A label for referencing this figure later in the document
+\end{figure}
 
 \section{Correlating linear stability analysis and numerical solutions}
 \subsection{Infering wavelength and convergence time from dispersion relation}
@@ -612,12 +514,10 @@ This suggests that a higher dispersion peak can lead to a preference for spots o
 Although Turing instabilities are an indicator of pattern formation, these instabilities are neither sufficient nor necessary for stationary periodic patterns to occur.
 Current state-of-the-art literature analyses robustness for Turing pattern formation using LSA to determine the Turing patterning parameter space~\parencite{Scholes2019, Zheng2016, Marcon}.
 With this type of analysis, you have a binary output which determines whether a parameter leads to a classical Turing instability or not as seen in Fig.~\ref{fig:lsa_numerical_confusion_literature}.
-However, the assumptions depicted in this confusion matrix do not always hold true.
+However, the assumptions depicted in this confusion matrix might not always hold true.
 This is because the results from LSA give insights only into the local dynamics around a steady state.
 Once the system moves away from the steady state and non-linearities are introduced, the system might behave differently and the local pattern dynamics might not be maintained.
-For example, patterning instabilities that are not predicted by LSA might arise due to a subcritical bifurcation~\parencite{villar, champneys}.
-This is an example of a self-organising pattern where the classical Turing instability conditions are not necessary.
-.%TODO read on this
+
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
@@ -649,11 +549,9 @@ This trajectory is depicted in the phase diagram (Fig.~\ref{fig:multistability1}
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 1/multistability1} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Stationary Patterns in multistability.} \textbf{(A)} No diffusion phase diagram illustrating three distinct steady states where the derivative is zero: stable, unstable, and stable (Turing). These steady states are represented within a parameter space defined by two axes: concentrations of A and I. The vector field, indicated by light green arrows, shows the direction of the derivatives of the system at various points in the parameter space. A hand-drawn trajectory is also shown (dark green arrow), demonstrating how the unstable state may evolve over time into the Turing state. \textbf{(B)} Numerical solutions of the three steady states, where unstable state unexpectedly produces a Turing-like stationary pattern. \textbf{(C)} Dispersion relation showing each type of states.}
+    \caption{\textbf{Stationary Patterns in multistability.} \textbf{(A)} Phase diagram without diffusion illustrating three distinct steady states where the derivative is zero: stable, unstable, and stable (Turing). These steady states are represented within a parameter space defined by two axes: concentrations of A and I. The vector field, indicated by light green arrows, shows the direction of the derivatives of the system at various points in the parameter space. A hand-drawn trajectory is also shown (dark green arrow), demonstrating how the unstable state may evolve over time into the Turing state. \textbf{(B)} Dispersion relation showing each type of states. \textbf{(C)} Numerical solutions of the three steady states with diffusion, where unstable state unexpectedly produces a Turing-like stationary pattern. }
     \label{fig:multistability1} % A label for referencing this figure later in the document
 \end{figure}
-%TODO add stable(Turing) to text and images
-%TODO clarify phase diagram is without diffusion
 Then, we present a case where LSA incorrectly predicts stationary pattern formation.
 Fig.~\ref{fig:multistability2} shows an ephemeral or transient pattern that occurs in the unstable and Turing regimes.
 The TP initially develops in the vicinity of the Turing steady state.
@@ -665,11 +563,11 @@ This type of transient pattern behaviour has also been recently reported in~\cit
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 1/multistability2} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Ephemeral patterns in multistability.} \textbf{(A)} No diffusion phase diagram with stable, unstable and Turing states. The hand-drawn trajectory (dark green arrow) shows unstable state evolving into stable (Turing), and stable (Turing) evolving into stable. \textbf{(B)} Numerical solutions. Unstable and Turing produce temporary periodic stationary patterns, that then dissapear and become spatially homogeneous solutions. \textbf{(C)} Dispersion relation showing each type of state.}
+    \caption{\textbf{Ephemeral patterns in multistability.} \textbf{(A)} Phase diagram without diffusion illustrating three distinct steady states where the derivative is zero. The hand-drawn trajectory (dark green arrow) shows unstable state evolving into stable (Turing), and stable (Turing) evolving into stable. \textbf{(B)} Dispersion relation showing each type of state. \textbf{(C)} Numerical solutions of three steady states with diffusion. Unstable and Turing produce temporary periodic stationary patterns, that then dissapear and become spatially homogeneous solutions.}
     \label{fig:multistability2} % A label for referencing this figure later in the document
 \end{figure}
 
-Other interesting examples can also be found, for example, where an unstable state is sourrounded by two Turing states, this unstable state will robustly lead to a Turing pattern (Fig.~\ref{fig:multistability_leftover}A).
+Other interesting examples can also be found, for example, where an unstable state is surrounded by two Turing states, this unstable state will robustly lead to a Turing pattern (Fig.~\ref{fig:multistability_leftover}A).
 Additionally, in some cases the unstable system settles into Turing, but the Turing system gets pulled by the stable attractor (Fig.~\ref{fig:multistability_leftover}B). Additionally, some systems it is even exhibit a transient pattern and the three solutions are homogeneous in time and space (Fig.~\ref{fig:multistability_leftover}C).
 In this case, it would be worth investigating earlier timepoints with more resolution, as a pattern might appear then.
 Interesting interactions similarly occur with multistability involving Turing I-Hopf solutions which will be mentioned in following sections (Fig.~\ref{fig:multistability_leftover}D).
@@ -684,7 +582,6 @@ Interesting interactions similarly occur with multistability involving Turing I-
     \label{fig:multistability_leftover} % A label for referencing this figure later in the document
 \end{figure}
 
-%TODO corrected up to here
 
 \subsection{Analytical to numerical: Other types of dispersion relations, and other types of patterns} \label{nogrowth}
 Multi-stable systems are not the only case where the classical Turing instability fails to predict pattern formation.
@@ -697,16 +594,16 @@ The new confusion matrix will show more types of dispersion relation and more pa
 
 First, we classify the different dispersion relations obtained from LSA into 5 types:
 \begin{itemize}
-    \item Stable dispersion relations (Fig~\ref{fig:dispersions}A) have all eigenvalues $\sigma$ below zero for any wavenumber $k$.
-    \item Unstable dispersion relations (Fig~\ref{fig:dispersions}B) have a positive eigenvalue at $k=0$ which eventually drops below zero as diffusion is introduced (i.e. $k>0$).
+    \item Stable dispersion relations (Fig~\ref{fig:dispersions}A) have all eigenvalues $\sigma$ below zero for any wavenumber $k_{n}$.
+    \item Unstable dispersion relations (Fig~\ref{fig:dispersions}B) have a positive eigenvalue at $k_{0}=0$ which eventually drops below zero as diffusion is introduced (i.e. $k_{n}>0$).
     \item Hopf-type dispersion relations, as with any unstable dispersion relation, shows an instability without diffusion ($\sigma>0$ for $k=0$) which eventually drops below zero for positive wavenumbers.
 However, in the case of the Hopf-type dispersion relation, when the eigenvalues cross the zero line, there is a pair of complex conjugate eigenvalues (Fig~\ref{fig:dispersions}C).
-A Hopf-like dispersion relation is different to a Hopf bifurcation: a bifurcation displays a shift in stability as a model parameter changes, while the Hopf-like dispersion is a change in stability as a function of the wavenumber $k$.
+A Hopf-like dispersion relation is different to a Hopf bifurcation: a bifurcation displays a shift in stability as a model parameter changes, while the Hopf-like dispersion is a change in stability as a function of the wavenumber $k_{n}$.
 %In this case, the bifurcation parameter would be $k$, making the system go from unstable to stable by changing this parameter.
 \item Turing I dispersion relations, as previously mentioned, are stable without diffusion and have an instability for a positive wavenumber and finally stable again for very large wavenumbers (Fig~\ref{fig:dispersions}D).
     \item Turing I-Hopf dispersion relations, are a combination of Turing I and Hopf-type dispersion relations.
 As the Hopf-type dispersion, they are unstable without diffusion.
-Then, as $k$ is increase, the system becomes stable with a pair of complex conjugates as the eigenvalues cross the zero line.
+Then, as $k_{n}$ is increase, the system becomes stable with a pair of complex conjugates as the eigenvalues cross the zero line.
 Finally, a Turing I type behaviour arises getting a peak above zero and decaying again for large wavenumbers (Fig~\ref{fig:dispersions}E).
 \end{itemize}
 Other types of dispersion relation exist which are not displayed here such as Turing II, where the eigenvalues do not become stable again for very large wavenumbers.
@@ -795,7 +692,7 @@ Here, we look deeper into how other aspects linking the theory closer to the bio
 In particular, we will look at how adding an absorbing boundary condition and growth to a reaction-diffusion system might induce or break patterning.
 This particular direction was inspired in experiments described in the next sections where growing bacterial colonies in agar are used as a platform to engineer Turing patterns using synthetic gene circuits.
 
-The absorbing boundaries are introduced by using a Dirilichet boundary condition where the concentration at the boundary is zero $u=0$, as opposed to the previously used Neumann boundaries where the derivative at the boundary is zero.
+The absorbing boundaries are introduced by using a Dirichlet boundary condition where the concentration at the boundary is zero $u=0$, as opposed to the previously used Neumann boundaries where the derivative at the boundary is zero.
 This particular boundary is chosen as the boundary of the colony acts as an absorbing boundary due to the lack of morphogen production in the agar.
 More details on the encoding of boundaries in Crank Nicolson can be found in Fig.~\ref{fig:boundaries} or Section~\ref{methods_boundary_conditions_CN}.
 
