@@ -118,7 +118,7 @@ This whole phenomenon, called diffusion-driven instability, is the essence of Al
 \begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Introduction/intro_to_Turing_patterns}
-    \caption{\textbf{Introduction to Turing mechanism of pattern formation}. \textbf{(A)} Two-node network based on Turing's original paper. Slow diffusing activator in green and fast diffusor inhibitor in pink. \textbf{(B)} Linear PDE equations for a two-node Turing system. \textbf{(C)} 2D simulation of equations in (B). \textbf{(D)} Here we display the mechanism of pattern formation with an activator-inhibitor system for an in-phase pattern. The system starts with an apparent homogeneous distribution of activator and inhibitor which displays fluctuations at the molecular scale (Time 1). Where the activator prevails over the inhibitor in these fluctuations, local activation occurs by self-activation of the activator (green) and activation of the inhibitor (pink). This is known as short-range activation (Time 2). Finally, the inhibitor diffuses further away producing long-range inhibition where the inhibitor represses activator concentration in the vicinity of the local peak (Time 3). As a result, inhibitor concentration also drops, meaning that the levels of inhibitor are not enough to repress the activator which generates another local peak. This leads to an organised system of periodic peaks and troughs of molecule concentration which dynamically settles into a stationary pattern. (Time 4). }
+    \caption{\textbf{Introduction to Turing mechanism of pattern formation}. \textbf{(A)} Two-node network based on Turing's original paper. Slow diffusing activator in green and fast diffusor inhibitor in pink. \textbf{(B)} Linear PDE equations for a two-node Turing system. \textbf{(C)} 2D simulation of equations in (B). \textbf{(D)} Here we display the mechanism of pattern formation with an activator-inhibitor system for an in-phase pattern. The system starts with an apparent homogeneous distribution of activator and inhibitor which displays fluctuations at the molecular scale (Time 1). Where the activator prevails over the inhibitor in these fluctuations, local activation occurs by self-activation of the activator (green) and activation of the inhibitor (pink). This is known as short-range activation (Time 2). Finally, the inhibitor diffuses further away producing long-range inhibition where the inhibitor represses activator concentration in the vicinity of the local peak (Time 3). As a result, inhibitor concentration also drops, meaning that the levels of inhibitor are not enough to repress the activator which generates another local peak. This leads to an organised system of periodic peaks and troughs of molecule concentration which dynamically settles into a stationary pattern (Time 4). }
     \label{fig:intro_to_Turing_patterns}
 \end{figure}
 %\frac{\partial A}{\partial t} = 5A - 6I + 1 - D_{A}\nabla^2 A
@@ -193,7 +193,7 @@ If this constraint in parameters is not met, the robustness for pattern formatio
 Achieving this differential diffusivity experimentally is sometimes biologically unlikely, as many of the morphogens have similar diffusion rates due to their similarities in molecular size~\parencite{oliverhuidobro}.
 
 The robustness issue was explored in detail in~\cite{Scholes2019} using an atlas approach, where the parameter space of all 2-node and 3-node networks was studied using LSA to check for Turing patterning.
-The atlas study involves constructing all possible networks using adjacency matrices, where a -1 represents an inhibition edge from one node to another, 0 represents no interaction and +1 represents an activation.
+The atlas study involves constructing all possible networks using adjacency matrices, where a $-1$ represents an inhibition edge from one node to another, $0$ represents no interaction and $+1$ represents an activation.
 All 2x2 and 3x3 adjacency matrices are created and network symmetries are checked to remove homologous networks.
 By carrying out LSA on the resulting networks, it was found that although 61\% of the networks can produce Turing patterns, only 0.1\% of the parameter space is within Turing space.
 Similar results were obtained in~\cite{Zheng2016} and~\cite{Marcon}.
@@ -249,7 +249,7 @@ Transcription factors are multimeric, meaning they form complexes of various sub
 Cooperativity describes how the binding of a subunit to a DNA binding site can affect the binding affinity of other subunits to other binding sites.
 For example, cI which is a highly cooperative repressor protein used in this thesis, forms dimers to bind to a cIO operator sequence in DNA.
 This binding increases the affinity of other cI dimers to bind other operator sites through DNA looping.
-Finally, up to 12 subunits can bind to the 6 operator sites present.
+Finally, up to twelve subunits can bind to the six operator sites present.
 This means that with small concentrations of cI, a dimer will bind the DNA and induce the binding of other dimers resulting in a complete shutdown of gene expression.
 Therefore the response is relatively binary which can be modelled with a high cooperativity factor ($n$), resulting in a steep Hill function.
 
@@ -260,7 +260,7 @@ In a way, this makes sense as very steep curves turn genetic circuits into somet
  \subsubsection{Growth}\label{growth_intro}
 Fixed domains are often commonly assumed in developmental biology, as pattern-forming processes (e.g.~reaction-diffusion of chemical species) occur at much faster timescales than tissue growth.
 However, models of pattern formation in growing domains have shown growth to be extremely important in the development and morphology of the pattern.
-Biological examples include angelﬁsh \textit{Pomacanthus imperator} where uniform growth (Fig.~\ref{fig:growth}A.i) induces the addition of new stripes in a branching point, while a constant wavelength~\parencite{Kondo1995}.
+Biological examples include angelﬁsh \textit{Pomacanthus imperator} where uniform growth (Fig.~\ref{fig:growth}C.i) induces the addition of new stripes in a branching point, while a constant wavelength~\parencite{Kondo1995}.
 In synthetic systems, the importance of growth can also be observed using a chemical reaction-diffusion system that grows over time~\parencite{Konow2019}.
 Slow growth rates were likely to produce rings added on the inside of the disk as it grew (inner ring addition), while fast growth rates produced rings on the outside (outer ring addition).
 Intermediate growth rates formed labyrinthine structures.
@@ -315,7 +315,7 @@ Additionally, these boundary conditions can also be replicated using experimenta
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Introduction/boundaries}
-    \caption{\textbf{Boundary conditions.} \textbf{(A)} $\Omega$ represents the region governed by the differential equations and $\partial\Omega$ represents the boundary curve where the boundary conditions apply. \textbf{(B)} Neumann boundary conditions (top) are used to define reflective boundaries where the derivative is zero at the boundary. Dirichlet boundary conditions (bottom) are used to define absorbing boundary conditions where the value at the boundary is zero. \textbf{(C)} Mixed boundary conditions have a different boundary definition in different regions of the curve ($\partial\Omega_1$) and $\partial\Omega_2$)  }
+    \caption{\textbf{Boundary conditions.} \textbf{(A)} $\Omega$ represents the region governed by the differential equations and $\partial\Omega$ represents the boundary curve where the boundary conditions apply. \textbf{(B)} Neumann boundary conditions (top) are used to define reflective boundaries or no-flux where the derivative is zero at the boundary. Dirichlet boundary conditions (bottom) are used to define absorbing boundary conditions where the value at the boundary is zero. \textbf{(C)} Mixed boundary conditions have a different boundary definition in different regions of the curve ($\partial\Omega_1$) and $\partial\Omega_2$).  }
     \label{fig:boundaries}
 \end{figure}
 
@@ -337,7 +337,7 @@ Stochastic Turing patterns were studied by adding intrinsic noise in the product
 In certain non-Turing parameter regimes, it was found noise could drive diffusion-driven instabilities.
 If there is a stable mode with eigenvalues slightly below zero, noise can destabilise this mode leading to a noise-induced instability and therefore the emergence of a pattern.
 More specifically, it was found that the requirements for large differential diffusivity between activator and inhibitor were relaxed.
-This showed noise might be a source of parametric robustness, producing patterns where deterministic systems do not predict one.
+This showed that noise might be a source of parametric robustness, producing patterns where deterministic systems do not predict one.
 However, the resulting patterns are not as ordered as deterministic Turing patterns~\parencite{Karig2018}.
 
 Morphological robustness was also studied using intrinsic noise, which
@@ -361,10 +361,7 @@ Furthermore, in some cases, these biological phenomena could increase robustness
 
 \section{Engineering biological reaction-diffusion patterns}
 Engineering Turing patterns involves building systems from first principles, based on Turing's reaction-diffusion mechanism, which can replicate natural periodic patterns.
-To engineer biological Turing patterns specifically, cells and genetic components must be used to create the reaction-diffusion network.
-
-
-There are various reasons to justify the engineering of Turing patterns in biology.
+To engineer biological Turing patterns specifically, cells and genetic components must be used to create the reaction-diffusion network. There are various reasons to justify the engineering of Turing patterns in biology.
 These justifications span from enhancing our fundamental understanding of how patterns develop in living organisms to the potential advancements these synthetic structures could contribute to biotechnology.
 
 To begin with, there is a wealth of biological patterning that is associated with Turing-like gene networks, as indicated by numerous studies referenced in Section~\ref{Turing patterns in nature}.
@@ -384,14 +381,6 @@ This has involved creating simpler biological patterns, as well as chemical Turi
 In synthetic biology, a wide variety of pattern generators have been engineered ranging in different complexities and pattern outcomes.
 To systematically categorise these synthetic patterning systems, we can group them into four levels based on design characteristics as described below and seen in Fig.~\ref{fig:engineered_patterns}~\parencite{oliverhuidobro}:
 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\textwidth]{chapters/Introduction/spatial_components}
-    \caption{\textbf{Engineered spatial patterns in synthetic biology.} This figure is adapted from our published review on synthetic spatial patterning~\parencite{oliverhuidobro}. Four levels of regulatory complexity in engineered spatial patterning systems. Each level is divided into an example circuit and the resulting pattern upon implementation. Diffusing components of the circuit are labelled with a “D”, non-diffusing nodes are unlabelled. The colour of each node corresponds to the colour of the reporter in the respective implementation. Level 0: synchronized repressilator circuit implemented in a growing bacterial colony \parencite{Potvin-Trottier2016}. The plot shows the circuit oscillations in single cells or stirred liquid culture. Level 1: incoherent feedforward circuit, where the diffusor-producing sender cells (cyan) are placed in the middle of a bacterial lawn~\parencite{Basu2005}. The plot shows the concentration gradient of the diffusor away from the centre of the lawn. Level 2: self-activation and feedback inhibition circuit with one dynamically regulated diffusor creates spatial propagating waves and spatially synchronised oscillations (not shown)~\parencite{Danino2010}. The plot shows the oscillations of the circuit in single cells, or in a cell population. Level 3: self-activation and lateral-inhibition circuit with two dynamically regulated diffusors creates stationary Turing patterns in the TuIS chemical system~\parencite{Horvath}. The plot shows the localized, self-activating positive feedback of the slow-diffusing species D1 (blue curve) and the lateral inhibition of the fast-diffusing species D2 (yellow curve).}
-    \label{fig:engineered_patterns}
-\end{figure}
-
 Level 0 circuits lack synthetic signals that diffuse through normal Fickian diffusion, where the molar flux due to diffusion is proportional to the concentration gradient.
 Instead, spatial structures emerge from other processes like cellular growth and gene expression freezing.
 Examples include synchronised oscillator circuits in bacterial colonies producing periodic concentric ring patterns without diffusing signals~\parencite{Potvin-Trottier2016, Riglar2019} (See Fig.~\ref{fig:engineered_patterns} Level 0).
@@ -406,13 +395,20 @@ Level 2 circuits do incorporate dynamically regulated diffusors; however, only o
 In contrast with level 1 systems, no pre-patterns are required to generate interesting behaviours.
 Starting from a spatially homogeneous regime, these systems can produce robust spatial oscillators such as~\parencite{Danino2010} or simple single ring patterns~\parencite{Cao2016, Payne2013} (see Fig. \ref{fig:engineered_patterns} Level 2).
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{chapters/Introduction/spatial_components}
+    \caption{\textbf{Engineered spatial patterns in synthetic biology.} This figure is adapted from our published review on synthetic spatial patterning~\parencite{oliverhuidobro}. Four levels of regulatory complexity in engineered spatial patterning systems. Each level is divided into an example circuit and the resulting pattern upon implementation. Diffusing components of the circuit are labelled with a “D”, non-diffusing nodes are unlabelled. The colour of each node corresponds to the colour of the reporter in the respective implementation. Level 0: synchronized repressilator circuit implemented in a growing bacterial colony \parencite{Potvin-Trottier2016}. The plot shows the circuit oscillations in single cells or stirred liquid culture. Level 1: incoherent feedforward circuit, where the diffusor-producing sender cells (cyan) are placed in the middle of a bacterial lawn~\parencite{Basu2005}. The plot shows the concentration gradient of the diffusor away from the centre of the lawn. Level 2: self-activation and feedback inhibition circuit with one dynamically regulated diffusor creates spatial propagating waves and spatially synchronised oscillations (not shown)~\parencite{Danino2010}. The plot shows the oscillations of the circuit in single cells, or in a cell population. Level 3: self-activation and lateral-inhibition circuit with two dynamically regulated diffusors creates stationary Turing patterns in the TuIS chemical system~\parencite{Horvath}. The plot shows the localized, self-activating positive feedback of the slow-diffusing species D1 (blue curve) and the lateral inhibition of the fast-diffusing species D2 (yellow curve).}
+    \label{fig:engineered_patterns}
+\end{figure}
+
 Finally, level 3 circuits use multiple dynamically regulated diffusible components (see Fig.\ref{fig:engineered_patterns} Level 3).
 Turing patterns are the most prominent example of Level 3 systems as they as formed by reaction-diffusion circuits of at least two diffusors.
 While numerous robust systems have been engineered in Level 0,1 and 2 circuits, Level 3 or Turing pattern engineering are still in its infancy.
 Stochastic Turing patterns were recently engineered in \textit{E.~coli} with a circuit implemented according to the self-activation and lateral inhibition topology, with two diffusible quorum-sensing signals~\parencite{Karig2018}.
 Additionally, solitary patterns have also been engineered in a refactored Nodal–Lefty system in HEK cells~\parencite{Sekine2018}.
-While easier to engineer due to their relaxed fine-tuning requirements, stochastic Turing patterns and solitary display more irregularity in their periodic spatial structure~\parencite{Butler2011, Karig2018,Sekine2018}.
-x
+While easier to engineer due to their relaxed fine-tuning requirements, stochastic Turing patterns and solitary patterns display more irregularity in their periodic spatial structure~\parencite{Butler2011, Karig2018,Sekine2018}.
+
 While elusive in synthetic biology, regular-repeat Turing patterns have been engineered in chemical reaction systems.
 They were first observed in the 1990's in the chlorite-iodide malonic acid (CIMA) reaction~\parencite{Castets, Lengyel1992} and later in the thiourea-iodate-sulfite (TuIS) reaction~\parencite{Horvath} (see Fig. \ref{fig:engineered_patterns} Level 3).
 Unlike biological systems, chemical reactions are reliably described by the simpler laws of mass action, and system parameters can often be identified~\parencite{turanyi1994, kugler2009, Pusnik2019, Yeoh2019}.
@@ -422,10 +418,8 @@ Lastly, chemical systems are isolated from external interacting components, unli
 
 Although chemical systems have helped understand pattern formation and could prove key to tissue engineering applications, mechanisms in biology seem to go beyond chemical systems.
 Examples of patterns have been closely linked to gene expression patterns as shown in \textit{in-situ} hybridization studies~\parencite{Jing2006}.
-For this reason, it is key to explore this avenue and build genetically based reaction-diffusion systems that generate robust periodic patterns in biofilms.
+For this reason, it is key to explore this avenue and build genetically based Level 3 systems that generate robust periodic patterns in biofilms.
 
-
-% patterns are linked to gene expression because Modern experimental interrogations of suspected mor-phogen-based pattern formation systems, such as Nodal and Lefty zebraﬁsh mesendodermal induction,use in situ hybridization [24–26]. This explicitly highlights local concentrations of speciﬁc mRNA tran- scripts and thus provides an indication of the rates of transcription of target genes, and emphasizes the role of gene expression in morphogenesis. Chen, Y. & Schier, A. F. 2002 Lefty proteins are long-
 
 \subsection{Engineering Turing patterns in bacterial biofilms using exogenous circuit}
 Even though they have been successfully engineered in chemical systems, the complexity of biology means that Turing patterns have never been engineered in a genetic context.
@@ -486,7 +480,7 @@ Model selection from those experiments is practically impossible as it has been 
 In this bottom-up approach, the model used is derived from a known synthetic gene circuit that has been artificially introduced into cells.
 This process constrains the model to provide more insightful results.
 If this network can produce self-assembling periodic stationary patterns both~\textit{in-silico} and~\textit{in-vitro}, it would prove that a known reaction-diffusion system supported by genetic interactions can produce Turing patterns, therefore validating this mechanism.
-Secondly, having a model would allow us to inform the experimentalists on how to tune the system to obtain more robust desired patterns or different shapes for tissue engineering in biotechnology applications.
+Secondly, having a model would allow us to inform the experimental design and how to fine-tune the system to obtain more robust desired patterns or different shapes for tissue engineering in biotechnology applications.
 
 
 \section{Thesis overview}
@@ -495,7 +489,7 @@ This thesis explores Turing patterning within synthetic biology and tissue engin
 The novelty of this thesis lies in its modelling aspects, although it also includes some experimental results.
 
 The first chapter adopts a theoretical perspective, delving into the relationship between linear stability analysis and numerical solutions.
-Key aspects include estimating wavelength, convergence time, and, in some cases, predicting pattern shapes from the dispersion relation.
+Key aspects include estimating wavelength, convergence time, and, in some cases, predicting pattern shapes from linear stability analysis.
 It also examines various instabilities capable of producing stationary spatial patterns beyond classical Turing instabilities.
 This theoretical framework sets the stage for addressing realistic biological phenomena in pattern formation, such as varying boundary conditions and growth, crucial for understanding and engineering synthetic gene circuits for pattern formation.
 
