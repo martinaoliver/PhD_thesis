@@ -16,18 +16,18 @@ From an applied standpoint, such insights have the potential to drive advancemen
 \begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Introduction/pattern_examples}
-    \caption{\textbf{Examples of periodic patterns in biology.} Patterns observed during the course of this PhD study in molluscs, corals, mammals, plants, fungi, insects and fish. A wide variety of patterns including stripes, labyrinths and spots are displayed. Some organisms even display multiple patterns (e.g. pattern surrounding fish eye shows labyrinths, spots and stripes (Fish, top row, blue)}
+    \caption{\textbf{Examples of periodic patterns in biology.} Patterns observed during the course of this PhD study in molluscs, corals, mammals, plants, fungi, insects and fish. A wide variety of patterns including stripes, labyrinths and spots are displayed. Some organisms even display multiple patterns (e.g. pattern surrounding the fish eye shows labyrinths, spots and stripes (Fish, top row, blue)}
     \label{fig:pattern_examples}
 \end{figure}
 This evolution from simplicity to complexity often plays a pivotal role in the functioning of multicellular beings.
 More specifically, these patterns can have strategic advantages.
 Fractal-shaped bacterial colonies, for instance, maximise nutrient absorption~\parencite{Matsushita1990}.
-Furthermore, distinct colorations, such as the zebra's stripes or the mesmerising eye-spots on butterfly wings~\parencite{Blest}, serve to disorient predators; either by disrupting the prey's silhouette or suggesting the prey is part of a larger entity~\parencite{Stevens2006}.
+Furthermore, distinct colourations, such as the zebra's stripes or the mesmerising eye-spots on butterfly wings~\parencite{Blest}, serve to disorient predators; either by disrupting the prey's silhouette or suggesting the prey is part of a larger entity~\parencite{Stevens2006}.
 The spirals observed in phyllotaxis offer plants a way to optimise sunlight capture, enhancing photosynthesis~\parencite{Strauss2020}.
 
 The evolutionary advantage conveyed by this level of spatial organisation hints towards genetic networks being potentially responsible for such patterning mechanisms~\parencite{caro2005adaptive}.
 It's conceivable that evolution, through a process of random variation and natural selection, could stumble upon a pattern-forming solution.
-If such a pattern proves to be evolutionarily advantageous, the genetic networks driving these spatial arrangements would likely be favored and selected over time.
+If such a pattern proves to be evolutionarily advantageous, the genetic networks driving these spatial arrangements would likely be favoured and selected over time.
 Comprehending these networks and the dynamics that lead to these spatial designs is essential.
 This area of research not only tries to understand which genetic networks and mechanisms are behind patterning.
 It also seeks to uncover how on a molecular scale these mechanisms can operate reliably and accurately in the inherently noisy and variable biological environment..
@@ -111,14 +111,14 @@ The resulting patterns, called Turing patterns (TPs), can have different shapes 
 The concept of Turing patterns was first introduced from a mathematical perspective and was modelled using space and time-dependent partial differential equations (PDE). In the case of Turing’s seminal paper, the set of PDEs describes a two-node network (Fig.~\ref{fig:intro_to_Turing_patterns}A) which has activation and inhibition terms, degradation terms and diffusion terms (Fig.~\ref{fig:intro_to_Turing_patterns}B).
 The key feature of this system is that it can exhibit diffusion-driven instabilities: Initially, the tissue has a homogeneous concentration of morphogen under which no diffusion occurs, and under these circumstances, the system is stable and converges into an equilibrium state.
 When biological noise is introduced, the heterogeneity of the system leads to morphogen diffusion.
-Consequently, the diffusion leads to changes in the reaction rates and the system is pushed out of steady-state leading to an unstable system.
+Consequently, the diffusion leads to changes in the reaction rates and the system is pushed out of steady state leading to an unstable system.
 This unstable system converges into a stable stationary periodic pattern which is a Turing pattern (Fig.~\ref{fig:intro_to_Turing_patterns}C).
 This whole phenomenon, called diffusion-driven instability, is the essence of Alan Turing’s paper and one of the most used mechanisms to explain morphogenesis.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Introduction/intro_to_Turing_patterns}
-    \caption{\textbf{Introduction to Turing mechanism of pattern formation}. \textbf{(A)} Two-node network based on Turing's original paper. Slow diffusing activator in green and fast diffusor inhibitor in pink. \textbf{(B)} Linear PDE equations for a two-node Turing system. \textbf{(C)} 2D simulation of equations in (B). \textbf{(D)} Here we display the mechanism of pattern formation with an activator-inhibitor system for an in-phase pattern. The system starts with an apparent homogeneous distribution of activator and inhibitor which displays fluctuations at the molecular scale (Time 1). Where activator prevails over inhibitor in these fluctuations, local activation occurs by self-activation of the activator (green) and activation of the inhibitor (pink). This is known as short-range activation (Time 2). Finally, the inhibitor diffuses further away producing long-range inhibition where the inhibitor represses activator concentration in the vicinity of the local peak (Time 3). As a result, inhibitor concentration also drops, meaning that the levels of inhibitor are not enough to repress the activator which generates another local peak. This leads to an organised system of periodic peaks and troughs of molecule concentration which dynamically settles into a stationary pattern. (Time 4). }
+    \caption{\textbf{Introduction to Turing mechanism of pattern formation}. \textbf{(A)} Two-node network based on Turing's original paper. Slow diffusing activator in green and fast diffusor inhibitor in pink. \textbf{(B)} Linear PDE equations for a two-node Turing system. \textbf{(C)} 2D simulation of equations in (B). \textbf{(D)} Here we display the mechanism of pattern formation with an activator-inhibitor system for an in-phase pattern. The system starts with an apparent homogeneous distribution of activator and inhibitor which displays fluctuations at the molecular scale (Time 1). Where the activator prevails over the inhibitor in these fluctuations, local activation occurs by self-activation of the activator (green) and activation of the inhibitor (pink). This is known as short-range activation (Time 2). Finally, the inhibitor diffuses further away producing long-range inhibition where the inhibitor represses activator concentration in the vicinity of the local peak (Time 3). As a result, inhibitor concentration also drops, meaning that the levels of inhibitor are not enough to repress the activator which generates another local peak. This leads to an organised system of periodic peaks and troughs of molecule concentration which dynamically settles into a stationary pattern. (Time 4). }
     \label{fig:intro_to_Turing_patterns}
 \end{figure}
 %\frac{\partial A}{\partial t} = 5A - 6I + 1 - D_{A}\nabla^2 A
@@ -174,7 +174,7 @@ LSA provides information on how the stability of the system evolves as we go fro
 For RD systems to produce Turing patterns, they must be stable without diffusion and become unstable as diffusion is turned on~\parencite{J.DMurray2002}.
 This stability profile gives rise to the name \acrfull{DDI} which is an alternative name for Turing patterns.
 In principle, this method can tell us whether a system is a pattern generator but does not provide a solution of the pattern in space and time. Additionally, because the system is linearised around the steady state, non-linear terms or multistability might alter the final outcome.
-More information on how LSA is used to understand patterning and DDI's is found on Section~\ref{lsa} in the following chapter.
+More information on how LSA is used to understand patterning and DDI's is found in Section~\ref{lsa} in the following chapter.
 
 Alternatively, numerical methods are used to calculate the concentration of species in the RD system at every time and space point~\parencite{Ramos1983}.
 A visual solution is obtained which provides information on the shape, wavelength, evolution and amplitude of the pattern.
@@ -449,7 +449,7 @@ Additionally, in~\cite{oliverhuidobro} we compiled a list of small molecule regu
 These could be investigated in the future to use as additional morphogens to build more complex systems with more diffusible molecules.
 
 Finally,~\cite{Tica2020} engineered the \#1754 topology using the components from~\cite{Meyer2019} and~\cite{Du2020}, to explore a Turing gene circuit for pattern formation (see Fig.~\ref{fig:synthetic circuit} bottom).
-Due to the lack of specific biological parts such as an inhibitor quorum sensing molecule or a dual inhibitor/activator molecule, the biological implementation of \#1754 resulted in a six molecular species circuit instead of the original 3-node network.
+Due to the lack of specific biological parts such as an inhibitor quorum sensing molecule or a dual inhibitor/activator molecule, the biological implementation of \#1754 resulted in a six-molecular species circuit instead of the original 3-node network.
 
 \begin{figure}[H]
     \centering
@@ -458,20 +458,20 @@ Due to the lack of specific biological parts such as an inhibitor quorum sensing
     engineered by Dr.~Jure Tica and Tong Zhu is a genetic abstraction of the \#1754 topology in \cite{Scholes2019}.
     This circuit is transformed so every \textit{E.~coli} cell in the biofilm has a copy inside.
     The original topology (left, grey inset) has only three nodes, while the synthetic circuit (right) has six nodes.
-    The six gene circuit architecture, shown in standard notation, can be clustered into the three original nodes
-    as seen by the blue,green,red bubbles.
+    The six-gene circuit architecture, shown in standard notation, can be clustered into the three original nodes
+    as seen by the blue, green and red bubbles.
     Diffusor synthesis enzymes, in blue, produce quorum sensing molecules $pC$ and $OC_{14}$.
     Non-diffusible transcription
-    factors (in red), also called repressor proteins, are lacI, cI, cI* and tetR .
+    factors (in red), also called repressor proteins, are lacI, cI, cI* and tetR.
     Fluorescent proteins GFP and mCherry are in white.
     The circuit can be regulated by small molecules aTc, IPTG and DAPG shown in white bubbles.
-    DAPG activates the control cassette produces regulated degradation of small quorum sensing molecules.
-    The bottom cassette (orange), contains the neccesary regulators:
+    DAPG activates the control cassette and produces regulated degradation of small quorum sensing molecules.
+    The bottom cassette (orange), contains the necessary regulators:
     rpaR is the pC receptor (Node A diffusor), cinR is the OC14 receptor (Node B diffusor),
         and phlF is the DAPG receptor (used to tune inducible diffusor degradation).
-        The other three receptors pcaU, nahR and vanR are for the protocatechuate, salicylate and vanillin inducers,
+    The other three receptors pcaU, nahR and vanR are for the protocatechuate, salicylate and vanillin inducers,
         which are not used in the present circuit, but were tested in other versions of the system.
-        These three systems can be used to introduce additional regulatory components to the system.}
+    These three systems can be used to introduce additional regulatory components to the system.}
     \label{fig:synthetic circuit}
 \end{figure}
 

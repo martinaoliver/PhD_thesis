@@ -1,4 +1,4 @@
-\chapter{Discussion and Conclussion}
+\chapter{Discussion and Conclusion}
 
 %introduction
 Engineering biological Turing patterns, a mechanism that can explain many patterns in biology, has long been one of the holy grails in synthetic biology.
@@ -16,11 +16,11 @@ Furthermore, these numerical methods allowed for an in-depth exploration of real
 Future research should focus on developing more refined classification methods and investigating various types of growth, similar to those observed in our colonies.
 Lastly, this chapter also highlights how pattern wavelength, temporal scales, and shape can be tuned using insights from dispersion relation analysis and optimization methods.
 Future research could focus on applying such optimizations to our experimental system.
-This would enhance our understanding of how to adjust parameters to achieve varying wavelengths and time-scales, as well as to transition from spot patterns to labyrinths.
+This would enhance our understanding of how to adjust parameters to achieve varying wavelengths and time scales, as well as to transition from spot patterns to labyrinths.
 
-In the second chapter, a reaction-diffusion model based on an synthetic gene circuit is introduced.
-This synthetic RD circuit, engineeered in~\cite{Tica2020}, is based on the architecture of the Turing topology \#1754 from~\cite{Scholes2019}.
-The six equation PDE model accounts for inducer-dependent gene expression, degradation, and diffusion.
+In the second chapter, a reaction-diffusion model based on a synthetic gene circuit is introduced.
+This synthetic RD circuit, engineered in~\cite{Tica2020}, is based on the architecture of the Turing topology \#1754 from~\cite{Scholes2019}.
+The six-equation PDE model accounts for inducer-dependent gene expression, degradation, and diffusion.
 Utilizing insights from the first chapter, an extensive high-throughput sampling of the parameter space for this model is conducted.
 It is observed that the gene circuit can form Turing patterns, including Turing I and Turing I-Hopf instabilities.
 Additionally, regions within the parameter space with an increased likelihood of patterning are identified.
@@ -46,9 +46,9 @@ Image recognition was applied to microscopy images to model static domains, and 
 Future work could merge these techniques, using domains from image recognition as initial conditions for the cellular-automaton algorithm.
 
 Further experiments were carried out by collaborators, yielding a diverse array of patterns in the colonies.
-All patterns could be replicated with the masked PDE solver, including rings spots and even labyrinths which were not found experimentally.
+All patterns could be replicated with the masked PDE solver, including rings, spots and even labyrinths which were not found experimentally.
 Stationary regular patterns could be modelled with Turing I instability and Turing I-Hopf instability models, in particular outer ring addition dynamics.
-Non-stationary patternsd could be modelled with Hopf instability models, which generated mostly interior ring growth dynamics.
+Non-stationary patterns could be modelled with Hopf instability models, which generated mostly interior ring growth dynamics.
 Linear stability analysis searches revealed high robustness for Hopf instabilities but extremely low for Turing instabilities, making experimental observation of the latter theoretically impossible.
 However, in the vicinity of a Turing parameter set, the robustness was much higher, indicating the possibility of repeatable pattern observation.
 Future work to develop more sophisticated classification methods for numerical patterns could clarify if robustness in growing colonies exceeds predictions from linear stability analysis.
@@ -64,13 +64,13 @@ While the time-series data, irregular growth controls and plate size controls al
 Periodic cold shocks appeared to induce outer ring addition patterns.
 However, a single initial cold shock followed by constant temperature also resulted in periodic patterns.
 This suggests the explanation is related to a hybrid of theories: a positional information mechanism where a prepattern is seeded by the cold shock, combined with a Turing pattern in which periodic rings self-assemble.
-Spots, as non-symmetrical patterns independent of radial shape, challenged the necessity of a cold shock pre-pattern for periodic pattern to occur
+Spots, as non-symmetrical patterns independent of radial shape, challenged the necessity of a cold shock pre-pattern for periodic patterns to occur
 The observation of labyrinths, which are also asymmetrical, would further disprove this hypothesis.
 In any case, further research should investigate this hybrid prepattern-Turing mechanism by integrating the effects of cold shock into the reaction-diffusion dynamics.
-The cold shock could be modelled in two ways: either by modifying the model parameters at a specific time point $t$, or by starting the simulation with the initial condition being the first stripe generated by the cold shock.
+The cold shock could be modelled in two ways: either by modifying the model parameters at a specific time point $t$ or by starting the simulation with the initial condition being the first stripe generated by the cold shock.
 This pre-pattern could be generated using image recognition from microscopy images.
 Implementing such a model could reveal whether pattern formation is more robust with the inclusion of this pre-pattern, thus indicating that robust morphogenesis is likely the result of a combination of multiple mechanisms.
-Interestingly, although Alan Turing's work was based on a homogeneous starting condition, he recognized the biological unreality of this assumption as he stated: "most of an organism, most of the time is developing from one pattern to another, rather than from homogeneity into a pattern" ~\parencite{Turing1952}.
+Interestingly, although Alan Turing's work was based on a homogeneous starting condition, he recognized the biological unreality of this assumption as he stated: "Most of an organism, most of the time is developing from one pattern to another, rather than from homogeneity into a pattern" ~\parencite{Turing1952}.
 
 
 This work has significantly contributed to the engineering of reaction-diffusion patterns in synthetic biofilms through the use of predictive models.
