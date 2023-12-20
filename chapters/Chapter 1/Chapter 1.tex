@@ -1,13 +1,8 @@
 \chapter{Beyond classical Turing patterns}\label{Chapter 1}
 \section{Synopsis}
-The Turing instability is a well-known mechanism for pattern formation.
-Turing instabilities are defined and studied using linear stability analysis, but can also be further explored with numerical methods.
-Linear stability analysis (LSA) predicts whether a pattern will occur through the dispersion relation, where the real part of eigenvalues determines the stability of the system as a function of a wavenumber parameter.
-Although faster, this method provides less insight into the pattern that emerges, as it relies on the linearisation around the steady state.
-On the other hand numerical methods, which are more computationally expensive, provide a detailed result of the developing pattern as the concentration of species in time and space.
-Numerical results also allow us to visualize the resulting Turing pattern shape, which in 2D can consist of spots, stripes or labyrinths.
+TThe Turing instability is a well-known mechanism for pattern formation. Turing instabilities are defined and studied using linear stability analysis (LSA), but they can also be further explored with numerical methods. LSA predicts whether a pattern will occur through the dispersion relation, where the real part of eigenvalues determines the system's stability as a function of a wavenumber parameter. Although fast, this method provides limited insight into the emerging pattern, as it relies on linearization around the steady state. On the other hand, numerical methods, while more computationally intensive, offer detailed results of the developing pattern, including the concentration of species over time and space. Numerical results also enable visualization of the resulting Turing pattern shape, which in 2D can consist of spots, stripes, or labyrinths
 
-To effectively conduct a high-throughput study exploring the \#1754 synthetic Turing gene circuit, it's essential to leverage LSA.
+To effectively conduct a high-throughput study exploring the \#1754 synthetic Turing gene circuit built in~\cite{Tica2020}, it's essential to leverage LSA.
 LSA offers a much quicker alternative compared to numerical methods for understanding the patterning capabilities of the experimental circuit.
 However, LSA, which relies on linearization around the steady state, sometimes fails to predict pattern formation accurately.
 Understanding what information can be obtained from LSA before resorting to numerical methods, and when LSA predictions break will enable us to efficiently gather extensive insights into both the patterning potential and the robustness of the system.
@@ -424,12 +419,12 @@ More information on how these Hill terms represent gene expression regulations c
 To study this system, the parameter space is scanned using LSA and numerical methods.
 The parameter space is sampled using Latin hypercube sampling (LHS) (see Fig.~\ref{fig:distributions}A) drawn from loguniform distributions (see Fig.~\ref{fig:distributions}C).
 The LHS method is designed to cover the parameter space more efficiently with fewer samples than grid or uniform sampling~\parencite{Chrisman2014, Iman2014}.
-More information on sampling and distributions used can be found in Section~\ref{sampling method}.
-Ranges and values used for these distributions are shown in Tables~\ref{tab:variant_1} and~\ref{tab:variant_2}.
+More information on sampling and distributions used can be found in the Methods Section~\ref{sampling method}.
+Ranges and values used for these distributions are shown in the Appendix Tables~\ref{tab:variant_1} and~\ref{tab:variant_2}.
 
 All results are stored in a PostgreSQL database created from scratch for this project.
 This database includes interconnected tables for model parameters, numerical parameters, analytical results, numerical solutions and pattern classification outputs.
-More details on the database schema can be seen in Section~\ref{PostgreSql database}.
+More details on the database schema can be seen in the Section~\ref{PostgreSql database}.
 The creation of this PostgreSQL database was necessary to explore large parameter spaces and compare between analytical and numerical results in an efficient way.
 
 \subsection{Diffusion-driven instabilities in the dispersion relation}
@@ -460,12 +455,13 @@ The boundary conditions used here are Neumann boundary conditions where the deri
 \section{Correlating linear stability analysis and numerical solutions}
 \subsection{Infering wavelength and convergence time from dispersion relation}
 Although LSA cannot be used to predict the final pattern, some information can be obtained from the dispersion relation.
-Using the circuit defined in Eq.~\ref{eq:turinghill}, 500 parameter sets were simulated with Turing instabilities as the one seen in Fig.~\ref{fig:turing_vs_noturing}B. Subsequently, the numerical convergence time and wavelength for these patterns were measured using the algorithms described in Section~\ref{Wavelength and convergence time from numerical data}.
+Using the two-node circuit defined in Eq.~\ref{eq:turinghill}, 500 parameter sets were simulated with Turing instabilities as the one seen in Fig.~\ref{fig:turing_vs_noturing}B. Subsequently, the numerical convergence time and wavelength for these patterns were measured using the algorithms described in Section~\ref{Wavelength and convergence time from numerical data}.
 The predicted LSA wavelength $\lambda$ was obtained from the wavelength-wavenumber relationship (Eq.~\ref{eq:wavelength_wavenumber}) using the wavenumber $k_{n}$ which has the highest eigenvalue.
 
 A linear relationship was found between the wavelength in the numerical pattern and the wavelength inferred from the dominant mode of the dispersion relation as seen in Fig.~\ref{fig:dispersion_to_wavelength_convergence}A. However, the slope of the regression fitted to the data is 1.46, meaning the numerical patterns obtained have a wavelength 1.46 times higher than the predicted LSA wavelength.
+
 In terms of the convergence time, a non-linear correlation is observed between the highest eigenvalue $(\sigma)$ and the time for convergence.
-Although some values do not correlate, we can overall state that systems with high eigenvalues converge faster than those with lower eigenvalues Fig.~\ref{fig:dispersion_to_wavelength_convergence}B.
+Although some values do not correlate, we can overall state that systems with high eigenvalues converge faster than those with lower eigenvalues (Fig.~\ref{fig:dispersion_to_wavelength_convergence}B).
 However, there is a lot of noise in low eigenvalues or low convergence times.
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
@@ -532,6 +528,7 @@ In this section, we demonstrate how linear stability analysis is not sufficient 
 In particular, we study in detail the dynamical behaviour of multi-stable systems during pattern formation, which will lead to the creation or breaking of the pattern.
 The motivation behind this arises from the high degree of multistability exhibited by biological systems, where cell-fate decisions have to be taken within this landscape ~\parencite{huang2000shape, moris2016transition}.
 Multistability is especially common in systems with non-linearities and feedback loops, as the ones in biology or in our models~\parencite{pham2020complexity, leite2009multistability}.
+
 Using the two-node non-linear Turing topology (Eq. \ref{eq:turinghill}), multi-stable solutions were found and studied to understand how the patterning dynamics get affected when multiple steady-state solutions are found.
 First, LSA is carried out on particular parameter sets to find multiple steady states of different stability (e.g.~stable, unstable, Turing I, Turing I-Hopf).
 Then numerical simulations are computed where the initial condition is a random uniform distribution around a particular steady state.
@@ -543,6 +540,7 @@ Fig.~\ref{fig:multistability1} shows a case where diffusion-driven instability c
 The unstable state, having a dispersion relation with a peak below zero (Fig.~\ref{fig:multistability1}C), managed to get into a TP regime as it is attracted by the Turing steady state.
 It therefore produces a stationary pattern (Fig.~\ref{fig:multistability1}B), even though its dispersion relation does not predict so.
 This trajectory is depicted in the phase diagram (Fig.~\ref{fig:multistability1}A) which shows the steady states along with the vector field to understand the potential trajectories of the system.
+The phase diagram does not fully capture the dynamics as it describes the system without diffusion, while the dispersion relation and the numerical solution do consider diffusion.
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
@@ -567,8 +565,8 @@ This type of transient pattern behaviour has also been recently reported in~\cit
     \label{fig:multistability2} % A label for referencing this figure later in the document
 \end{figure}
 
-Other interesting examples can also be found, for example, where an unstable state is surrounded by two Turing states, this unstable state will robustly lead to a Turing pattern (Fig.~\ref{fig:multistability_leftover}A).
-Additionally, in some cases, the unstable system settles into Turing, but the Turing system gets pulled by the stable attractor (Fig.~\ref{fig:multistability_leftover}B). Additionally, some systems it is even exhibit a transient pattern and the three solutions are homogeneous in time and space (Fig.~\ref{fig:multistability_leftover}C).
+Other interesting examples can be found, for example, where an unstable state is surrounded by two Turing states, this unstable state will robustly lead to a Turing pattern (Fig.~\ref{fig:multistability_leftover}A).
+Additionally, in some cases, the unstable system settles into Turing, but the Turing system gets pulled by the stable attractor (Fig.~\ref{fig:multistability_leftover}B). Additionally, some systems even exhibit a transient pattern and the three solutions are homogeneous in time and space (Fig.~\ref{fig:multistability_leftover}C).
 In this case, it would be worth investigating earlier time points with more resolution, as a pattern might appear then.
 Interesting interactions similarly occur with multistability involving Turing I-Hopf solutions which will be mentioned in the following sections (Fig.~\ref{fig:multistability_leftover}D).
 
@@ -588,7 +586,7 @@ Multi-stable systems are not the only case where the classical Turing instabilit
 Other types of dispersion relations beyond classical Turing instabilities can produce stationary patterns and non-stationary regular patterns that might be of interest in developmental biology.
 This section aims to document what type of dispersion relations in mono-stable systems can be linked to what type of patterns, to gain insights into predicting pattern formation from linear stability analysis.
 We will first present a classification for the different types of dispersion relations.
-Subsequently, we will show the classification for the different types of pattern outcomes, where the system is a non-growing domain with reflective boundary conditions (Neumann, where the derivative is zero at the boundary).
+Subsequently, we will show the classification for the different types of pattern outcomes, where the system is defined in a non-growing domain with reflective boundary conditions (Neumann, where the derivative is zero at the boundary).
 Finally, we will reconstruct the 2x2 confusion matrix (Fig.~\ref{fig:lsa_numerical_confusion_literature}) currently used as an assumption in the literature, to show a more complete view on how to interpret dispersion relations.
 The new confusion matrix will show more types of dispersion relation and more pattern outcomes leading to a 5x4 confusion matrix.
 
@@ -596,11 +594,11 @@ First, we classify the different dispersion relations obtained from LSA into 5 t
 \begin{itemize}
     \item Stable dispersion relations (Fig~\ref{fig:dispersions}A) have all eigenvalues $\sigma$ below zero for any wavenumber $k_{n}$.
     \item Unstable dispersion relations (Fig~\ref{fig:dispersions}B) have a positive eigenvalue at $k_{0}=0$ which eventually drops below zero as diffusion is introduced (i.e. $k_{n}>0$).
-    \item Hopf-type dispersion relations, as with any unstable dispersion relation, shows an instability without diffusion ($\sigma>0$ for $k=0$) which eventually drops below zero for positive wavenumbers.
+    \item Hopf-type dispersion relations, as with any unstable dispersion relation, shows an instability without diffusion ($\sigma>0$ for $k_{0}=0$) which eventually drops below zero for positive wavenumbers.
 However, in the case of the Hopf-type dispersion relation, when the eigenvalues cross the zero line, there is a pair of complex conjugate eigenvalues (Fig~\ref{fig:dispersions}C).
 A Hopf-like dispersion relation is different to a Hopf bifurcation: a bifurcation displays a shift in stability as a model parameter changes, while the Hopf-like dispersion is a change in stability as a function of the wavenumber $k_{n}$.
 %In this case, the bifurcation parameter would be $k$, making the system go from unstable to stable by changing this parameter.
-\item Turing I dispersion relations, as previously mentioned, are stable without diffusion and have an instability for a positive wavenumber and finally stable again for very large wavenumbers (Fig~\ref{fig:dispersions}D).
+\item Turing I dispersion relations, as previously mentioned, are stable without diffusion, have an instability for a positive wavenumber, and finally become stable again for very large wavenumbers (Fig~\ref{fig:dispersions}D).
     \item Turing I-Hopf dispersion relations, are a combination of Turing I and Hopf-type dispersion relations.
 As the Hopf-type dispersion, they are unstable without diffusion.
 Then, as $k_{n}$ is increased, the system becomes stable with a pair of complex conjugates as the eigenvalues cross the zero line.
@@ -610,7 +608,7 @@ Other types of dispersion relation exist which are not displayed here such as Tu
 Therefore, this system displays an instability at very large wavenumbers which results in infinitesimally small wavelength patterns.
 These are considered to produce homogeneous solutions, except in the case of space discretization where they can produce small wavelength patterns~\parencite{Wang2022}.
 However, Turing II solutions are not possible in systems such as this one where all nodes are diffusing.
-This is because for $k \rightarrow \inf$, all eigenvalues $\sigma$ must be negative (see Eq.~\ref{jacobian_diffusion}).
+This is because for $k_n \rightarrow \inf$, all eigenvalues $\sigma$ must be negative (see Eq.~\ref{jacobian_diffusion}).
 
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
@@ -668,7 +666,8 @@ The two types of classifications described above are applied, and a new 5x4 conf
 
 It is worth pointing out some interesting examples obtained from this confusion matrix.
 For example, Turing I-Hopf seems to lead to stationary patterns often (see Fig.~\ref{fig:interesting_cases_nogrowth}A), meaning they would need to be included in high-throughput robustness studies.
-Some unstable dispersion relations lead to both stationary (see Fig.~\ref{fig:interesting_cases_nogrowth}B) and non-stationary patterns.
+The production of periodic patterns by Turing I-Hopf instabilities has been already documented in the literature~\cite{Liu2007}.
+Some unstable dispersion relations can also lead to stationary (see Fig.~\ref{fig:interesting_cases_nogrowth}B).
 Additionally, Hopf solutions also display interesting non-stationary patterns (see Fig.~\ref{fig:interesting_cases_nogrowth}C).
 Unfortunately, some Hopf solutions are misclassified as Stationary patterns (see Fig.~\ref{fig:interesting_cases_nogrowth}D) due to an inadequate threshold of the convergence classification.
 In this specific case, a higher window than 30 should be taken when considering convergence and a higher threshold for homogeneity.
