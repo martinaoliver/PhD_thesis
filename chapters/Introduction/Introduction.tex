@@ -5,7 +5,7 @@
 \subsection{Morphogenesis in nature, examples and function}
 
 Periodic spatial structures in biology emerge when a tissue of cells develops heterogeneity and complexity in the spatial domain, leading to the formation of regular patterns.
-These spatial structures are widely observed in nature, both in  \acrfull{2D} spaces, such as the angelfish's striped skin, and in \acrfull{3D} like the labyrinthine brain cortex.
+These spatial structures are widely observed in nature, both in \acrfull{2D} spaces, such as the angelfish's striped skin, and in \acrfull{3D} like the labyrinthine brain cortex.
 Fig.~\ref{fig:pattern_examples} displays a diverse array of spatially periodic patterns encountered during my PhD thesis, highlighting the prevalence of these intriguing patterns across various organisms and natural environments.
 Although these patterns are extremely common, a comprehensive mechanism to explain their robust assembly remains elusive to the scientific community.
 This topic garners interest from both fundamental and applied scientific perspectives.
@@ -108,7 +108,7 @@ In this article, he argues that pattern formation can be obtained when two morph
 velocities across a tissue.
 If these morphogens can activate the production of growth hormones or skin pigments, biological patterns leading to a phenotype can arise.
 The resulting patterns, called Turing patterns (TPs), can have different shapes such as stripes, labyrinths, and spots; which can be widely observed in natural systems.
-The concept of Turing patterns was first introduced from a mathematical perspective and was modelled using space and time-dependent partial differential equations (PDE). In the case of Turing’s seminal paper, the set of PDEs describes a two-node network (Fig.~\ref{fig:intro_to_Turing_patterns}A) which has activation and inhibition terms, degradation terms and diffusion terms (Fig.~\ref{fig:intro_to_Turing_patterns}B).
+The concept of Turing patterns was first introduced from a mathematical perspective and was modelled using space and time-dependent \acrfull{PDE}. In the case of Turing’s seminal paper, the set of PDEs describes a two-node network (Fig.~\ref{fig:intro_to_Turing_patterns}A) which has activation and inhibition terms, degradation terms and diffusion terms (Fig.~\ref{fig:intro_to_Turing_patterns}B).
 The key feature of this system is that it can exhibit diffusion-driven instabilities: Initially, the tissue has a homogeneous concentration of morphogen under which no diffusion occurs, and under these circumstances, the system is stable and converges into an equilibrium state.
 When biological noise is introduced, the heterogeneity of the system leads to morphogen diffusion.
 Consequently, the diffusion leads to changes in the reaction rates and the system is pushed out of steady state leading to an unstable system.
@@ -131,7 +131,7 @@ Although Turing’s work was of key importance in the field of developmental bio
 Firstly, the mathematical complexity behind it made it non-intuitive for many scientists in the field and hard to explore due to the lack of computers.
 Furthermore, the network proposed, although it can generate patterns, is too simple to describe the complexity in biological systems and produces some unrealistic results such as the presence of negative concentrations due to the lack of non-linearities~\parencite{Kondo2010a}.
 To solve these two issues, Gierer and Meinhardt proposed a generalised version of Turing’s diffusion-driven-instabilities~\parencite{Gierer1972}.
-This alternative theory proposes that patterns can be obtained as long as short-range activation and long-range inhibition (SALI) are present.
+This alternative theory proposes that patterns can be obtained as long as \acrfull{SALI} are present.
 This implies that we can go away from Turing’s equations and extend the theory to networks with different numbers of nodes, different network interactions and even different signal transduction mechanisms~\parencite{Murray1983, Rauch2004, Swindale1980}.
 This step was necessary to be able to attribute patterning phenomena to more complex cellular and molecular interactions described by non-linear terms and larger networks with more nodes involved.
 Examples of the first systems developed with non-linear terms are the typical Gierer-Meinhardt model~\parencite{Gierer1972}, Schnakenberg model~\parencite{Schnakenberg1979}, as well as the Thomas model~\parencite{thomas1976analysis}.
@@ -179,7 +179,7 @@ More information on how LSA is used to understand patterning and DDI's is found 
 Alternatively, numerical methods are used to calculate the concentration of species in the RD system at every time and space point~\parencite{Ramos1983}.
 A visual solution is obtained which provides information on the shape, wavelength, evolution and amplitude of the pattern.
 While numerical methods provide more information than LSA, they are more computationally expensive and can lead to numerical errors~\parencite{J.DMurray2002}.
-Various numerical solvers exist for this purpose, but after much research,~\acrfull{CN} for~\acrshort{1D} space and~\acrfull{ADI} for~\acrshort{2D} space were considered the most adequate in terms of speed and accuracy for this project (See Section~\ref{numerical_methods}).
+Various numerical solvers exist for this purpose, but after much research,~\acrfull{CN} for~\acrfull{1D} space and~\acrfull{ADI} for~\acrshort{2D} space were considered the most adequate in terms of speed and accuracy for this project (See Section~\ref{numerical_methods}).
 To explore and get intuition on the numerical solutions of a system, recently developed online tools such as VisualPDE can be used before studying the problem in detail with other solvers~\parencite{Walker2023}.
 Both numerical and analytical tools have their advantages and disadvantages and must be used in combination for an optimal study of RD systems and patterning.
 

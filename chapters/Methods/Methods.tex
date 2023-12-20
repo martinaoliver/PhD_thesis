@@ -47,9 +47,9 @@ A PostgreSQL was created from scratch to store and organise all the linear stabi
 This schema is composed of 5 tables as seen in Fig.~\ref{psql_schema}.
 Model parameters and Simulation parameters have information on the kinetic parameters of the model and the simulation parameters of the numerical solver.
 A set of model parameters or simulation parameters is encoded with a primary key for each table: model\_param\_id and sim\_param\_id.
-LSA output contains information on the linear stability analysis output for a specific model\_param\_id.
+Linea stability analysis output contains information on the linear stability analysis output for a specific model\_param\_id.
 This information involves the type of dispersion relation, the highest eigenvalue, the LSA estimated wavelength...etc.
-Simulation output contains information on the 1D or 2D time-series data obtained from the simulation. Each set of data has a model\_param\_id and a sim\_param\_id associated to it.
+Simulation output contains information on the \acrfull{1D} or \acrfull{2D} time-series data obtained from the simulation. Each set of data has a model\_param\_id and a sim\_param\_id associated to it.
 Finally, the Pattern type table has information on the type of pattern of a specific numerical output.
 This is based on the defined classifications (e.g. convergence, spatial homogeneity and number of peaks).
 As with the Simulation output table, each data point has a model\_param\_id and a sim\_param\_id associated to it.

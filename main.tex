@@ -21,7 +21,7 @@ parskip, % Uncomment to add space between paragraphs
 \usepackage{mathpazo}
 %\usepackage[style=authoryear-icomp, bibstyle=numeric, maxbibnames=9,maxcitenames=2,uniquelist=false,backend=bibtex]{biblatex}
 
-\usepackage[bibstyle=numeric,style=authoryear-icomp,maxbibnames=9,maxcitenames=2,uniquelist=false, backend=bibtex,]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
+\usepackage[bibstyle=numeric,style=authoryear-icomp,maxbibnames=9,maxcitenames=2,uniquelist=false, backend=bibtex,url=false]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 %\usepackage[bibstyle=numeric,style=authoryear-icomp,maxbibnames=9,maxcitenames=2,uniquelist=false, backend=biber,]{biblatex} % Use the bibtex backend with the authoryear citation style (which resembles APA)
 
 %
@@ -37,7 +37,7 @@ parskip, % Uncomment to add space between paragraphs
 
 \usepackage[acronym]{glossaries}
 \makeglossaries
-\newacronym{TP}{TP}{Turing patterns}
+%\newacronym{TP}{TP}{Turing patterns}
 \newacronym{CN}{CN}{Crank-Nicolson}
 \newacronym{ADI}{ADI}{Alternating Direction Implicit Method}
 \newacronym{1D}{1D}{one-dimensional}
@@ -47,6 +47,7 @@ parskip, % Uncomment to add space between paragraphs
 \newacronym{RD}{RD}{reaction-diffusion}
 \newacronym{LSA}{LSA}{linear stability analysis}
 \newacronym{DDI}{DDI}{diffusion-driven instability}
+\newacronym{SALI}{SALI}{short-range activation and long-range inhibition}
 
 
 
@@ -139,9 +140,18 @@ parskip, % Uncomment to add space between paragraphs
             \begin{minipage}[t]{0.4\textwidth}
                 \begin{flushright}
                     \large
+%                    \vspace{0.5cm}
                     \emph{Supervisors:} \\
 
-                    \href{https://rgendres3.wixsite.com/biologicalphysics}{\supname}
+                    \href{https://rgendres3.wixsite.com/biologicalphysics}{\supname}\\
+
+
+                \end{flushright}
+                \begin{flushright}
+                    \large
+
+                    \emph{Examiners:}\\
+                    \examname
                 \end{flushright}
             \end{minipage}\\[3cm]
 %TODO remove blue
