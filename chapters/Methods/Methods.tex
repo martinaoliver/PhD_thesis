@@ -12,7 +12,7 @@ where $f(x)$ is the function and $f'(x)$ its derivative.
 This algorithm was implemented in Python using a tolerance value of $10^{-6}$ and a maximum of 15 iterations after which the algorithm stopped searching for a root.
 Because the system had the potential for multi-stability, several initial conditions need to be searched to obtain all steady states.
 In total 100 initial conditions were analysed by the Newton-Raphson to obtain all the roots of the system.
-The 100 conditions were chosen performing Latin-hypercube sampling of a $n$ dimensional space ($n$ being the number of species), from a uniform distribution with a range from $10^{-3}$ and $10^3$ .
+The 100 conditions were chosen performing Latin-hypercube sampling of a $n$ dimensional space ($n$ being the number of species), from a uniform distribution with a range from $10^{-3}$ and $10^3$.
 %Approximately, the root finding for a single parameter set takes around 2 seconds.
 \section{Sampling method}\label{sampling method}
 If no parameters from a system are known, sampling of the whole parameter space must be done to understand the system's behaviour.
@@ -28,7 +28,6 @@ Then, one sample is positioned randomly somewhere in each section.
 For a 2-dimensional parameter space, no samples can be in the same column or row.
 This can be scaled up to high multidimensional spaces.
 The LHS scheme is shown in Fig.~\ref{fig:distributions}B.
-%TODO add chess towers to lhs
 \begin{figure}[H]
 
     \includegraphics[width=1\textwidth]{chapters/Methods/distributions}

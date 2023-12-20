@@ -46,7 +46,6 @@ Additionally, extra detail is added on the tuning molecules and receptor cassett
     These three systems can be used to introduce additional regulatory components to the system.}
     \label{fig:synthetic circuit_chapter2}
 \end{figure}
-%TODO update legend in introduction.
 
 A partial differential equation (PDE) system is used to describe the reaction and diffusion terms of this synthetic gene circuit (Fig.~\ref{fig:synthetic circuit_chapter2}).
 This system of equations describes the concentration of molecules which are the dependent variables, in time and space which are the independent variables.
@@ -787,7 +786,6 @@ by replacing $\theta$ by 0 or 1 and finding the steady state where the derivativ
 \end{equation}
 
 
-%TODO create figure
 In the dimensionless model,
 both $[X^*]$ an $K^*_{XY}$ are unitless (Table~\ref{tab:Dimensionless_params}) and can therefore be compared.
 The transfer-function of A1 to X is said
@@ -822,7 +820,7 @@ the robustness can be go up by 20-fold which is a significant increase
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{chapters/Chapter 2/balancing_robustness}
+    \includegraphics[width=0.6\textwidth]{chapters/Chapter 2/balancing_robustness}
     \caption{\textbf{Turing robustness as percentage of parameter space with respect to matching of dose-response curves.} Turing instabilities include Turing I and Turing I-Hopf. Robustness from matched to unmatched increases 20-fold.}
     \label{fig:balancing_robustness}
 \end{figure}
@@ -920,7 +918,6 @@ Subcircuit \#2 shows how the circuit is responsive to aTc which means aTc can be
     On the left, the three subcircuits Sub1, Sub2 and Sub3 are shown, which test interactions of the circuit. On the right, the dose-response curves corresponding to each subcircuit produced by Dr.~Jure Tica and Dr.~Georg Wachter. Each curve shows liquid culture fluorescence in RFU units (y axis) 18 hours after induction with different levels of inducer (x axis).
     GFP on left and mCherry on right axis (unit AU/A600, mean ± SEM, n = 3). We can see all dose-response curves are matched as the in Sub1 and Sub3, red responds to the green and in Sub2 green responds to the red.}
     \label{fig:dose_response_experimental} % A label for referencing this figure later in the document
-    %TODO add details of each subcircuit from supplementary paper.
 \end{figure}
 \section{Constrained parametrised distributions:
 fitting to liquid culture data of gene subcircuits}\label{Constrained parametrised distributions: fitting to liquid culture data of gene subcircuits}
@@ -940,7 +937,7 @@ This transformation can be seen in Fig.~\ref{fig:dose_response_transforms}, righ
 For the experimental data to match the model,
 it is divided by the smallest fluorescence value within each experiment and is expressed in relative fold-change units
 (Fig.~\ref{fig:dose_response_transforms}, left).
-Fold-change units can take values from 1 to $F_{max}/F_{min}$
+Fold-change units can take values from 1 to $F_{\max}/F_{\min}$
 (maximal and minimal fluorescence levels in the original, untransformed dataset, respectively).
 Because the dose-response curves of subcircuit \#1 and subcircuit \#3 are OC14-dependent, the experimental OC14 units (µM) are also non-dimensionalised using the transform
 \begin{equation}
@@ -1002,7 +999,7 @@ And for Subcircuit \#3 we obtain the following steady-state expressions:
 \subsection{Fitting process and the resulting best fit distributions.} \label{Fitting process and the resulting best fit distributions.}
 In addition to scaling and nondimensionalising, the lowest GFP data points were excluded,
 because fluorescence readings were insufficiently sensitive
-to measure concentration at these points (Fig.~\ref{fig:dose_response_experimental}).  %TODO ref figure fits(Fig. S20).
+to measure concentration at these points (Fig.~\ref{fig:dose_response_experimental}).
 The fits were constrained to the maximal fold-change of the regulation, and to the sensitivity of the regulation
 (location of half-maximal response).
 This improved the quality of the fit and allowed us to identify a broader range of suitable solutions.
@@ -1029,7 +1026,7 @@ The minimisation algorithm generates a vector of best fit parameters $k$
         9.95 & 6.50 & 1.99 & 7.8 & 3.64 & 18.94 & 2.26 & 67.92 & 3.47 \\
         \hline
     \end{tabular}
-    \caption{aa}
+    \caption{Vector of best fit parameters $k$}
     \label{table:bestfit table}
 \end{table}
 
@@ -1044,10 +1041,9 @@ These parameters are used to generate the following dose-response curves (Fig.~\
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 2/dose_responses_bestfit} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Best fit for processed data set} Processed dataset is fitted using (A) Eq.~\ref{Subcircuit 1 equations} for subcircuit \#1 and (B) Eq.~\ref{Subcircuit 3 equations} for subcircuit \#3.}
-    .
+    \caption{\textbf{Best fit for processed data set.} Processed dataset is fitted using \textbf{(A)} Eq.~\ref{Subcircuit 1 equations} for subcircuit \#1 and \textbf{(B)} Eq.~\ref{Subcircuit 3 equations} for subcircuit \#3.}
+
     \label{fig:dose_responses_bestfit} % A label for referencing this figure later in the document
-        %TODO add details of each subcircuit from supplementary paper.
 \end{figure}
 
 
@@ -1094,14 +1090,14 @@ producing a circular distribution (Fig.~\ref{fig:multivariate_gaussians}, center
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 2/multivariate_gaussians} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Multivariate Gaussian distributions.} X and Y parameter distributions with (left) negative covariance, (center) zero covariance and (right) positive covariance.
+    \caption{\textbf{Multivariate Gaussian distributions.} Pairplots of X and Y parameter distributions with (left) negative covariance, (center) zero covariance and (right) positive covariance.
     The colour represents the distance to the mean, or in other words to the best fit parameter ($k$).
     Blue is the parameter ($k$) with minimal loss and yellow are neighbouring parameters with bigger loss.}
     \label{fig:multivariate_gaussians} % A label for referencing this figure later in the document
-        %TODO add details of each subcircuit from supplementary paper.
 \end{figure}
 
-Positive, negative or no correlations were observed in the multivariate Gaussian distributions shown in Fig.~\ref{fig:multivariate_from_fit}.
+The multivariate Gaussian distribution generated from the vector of best fit parameters $k$ and the covariance matrix $C_{k}$ can be seen as a pairplot in Fig.~\ref{fig:multivariate_from_fit}.
+Positive, negative and no correlations were observed in these distributions.
 This figure shows how certain parameters have positive covariance such as $V^*_c$ and $K^*_{ce}$.
 A high $V^*_c$ indicates a strong production of TetR, while a high $K^*_{ce}$ indicates a higher concentration of TetR to have the same inhibition effects.
 Therefore, if both are increased together, the behaviour of the system should remain the same and the dose-response fit should be unaltered.
@@ -1116,11 +1112,11 @@ Others are independent like $V^*_{d}$ and $K^*_{f}$ which determine the producti
         \includegraphics[width=1\textwidth]{chapters/Chapter 2/multivariate_from_fit} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
     \caption{\textbf{Multivariate Gaussian distributions for fitted parameters.}
-    Distributions resulting from fitting subcircuit \#1 and \#3, using $q=10$.
+    Pairplot of distribution resulting from fitting subcircuit \#1 and \#3, using $q=10$.
     This distribution has a probability density function $p(x;k,10\cdot C_{k})$
         where $k$ is the best fit parameter vector and $C_{k}$ is the covariance matrix.
     Diagonals represent the univariate distributions.
-    The non-diagonals represent the multivariate distributions of parameter pairs, where we can observe positive and negative correlations as well as independent pairs of parameters.}
+    The non-diagonals represent the multivariate distributions of parameter pairs, where we can observe positive and negative correlations as well as independent pairs of parameters. Negative parameters are removed from the distribution as these are biologically not possible.}
     \label{fig:multivariate_from_fit} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -1165,7 +1161,6 @@ This K*da parameter, which is captured in Subcircuit \#3 (see Eq.~\ref{Subcircui
     Green vertical lines correspond to the 3 Turing parameter sets
     found in grey distribution using linear stability analysis. Parameters which generate non-matched dose-response curves are removed.}
     \label{fig:1d_distributions} % A label for referencing this figure later in the document
-        %TODO legend make opaque
 \end{figure}
 
 \section{Discussion}
@@ -1227,8 +1222,6 @@ Further investigation to understand how to further increase the percentage of Tu
 In this thesis, robustness optimisation was carried by tuning model parameters.
 However, it is worth investigating whether growth, boundary conditions or even a pre-pattern could increase the probability of obtaining Turing patterns with this circuit.
 
-
-
 \subsection{Model parametrisation}
 Working with large parameter spaces based on literature parameters is useful to understand the overall potential of the circuit architecture.
 However, once the system is fine-tuned by matching dose-response curves and adding exogenous aTc, it is important to constraint the parameter space to that of the fine-tune circuit, so more accurate results are produced.
@@ -1273,20 +1266,3 @@ mRNA counts of every one of the six genes would be measured for different induce
 Additionally, because fluorescence levels are sometimes not an accurate predictor of protein levels as previously discussed, using mRNA counts would improve issues such as the low fluorescent values not being detected.
 Overall, this parametrisation method goes beyond studying pattern formation, and could be useful to parametrise any genetic circuit model in synthetic biology.
 
-
-%TODO comment on the imporance of these results: Turing parameter sets exist in the fit distribution
-
-
-
-%- assumption fluorescence linear not true. loqw gfp fluorescence not detected, remove thersholds. curves not matching. fit constrained incorrectly.
-%TODO comment on -negative params removed.
-
-%TODO discuss calbiration of machines. method for synbio parametrisation which does not involve calibration of machines and is universal.
-
-
-
-
-
-%TODO comment robustness is lower than scholes but multidimensional spaces are hard to compare
-
-%fluorescent proteins are linearly correlated with transcription factors in the same operon, and concentration of fluorescence

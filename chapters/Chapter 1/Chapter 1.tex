@@ -611,9 +611,7 @@ Therefore, this system displays an instability at very large wavenumbers which r
 These are considered to produce homogeneous solutions, except in the case of space discretization where they can produce small wavelength patterns~\parencite{Wang2022}.
 However, Turing II solutions are not possible in systems such as this one where all nodes are diffusing.
 This is because for $k \rightarrow \inf$, all eigenvalues $\sigma$ must be negative (see Eq.~\ref{jacobian_diffusion}).
-%TODO . They also identify examples of non-stationary spatial patterns, when the eigenvalue corresponding to a critical wave number has non-zero imaginary part.Deutsch, A., Dormann, S., et al., 2005. Cellular automaton modeling of biological pattern formation. Springer.
 
-%TODO look at pitchfork and transcritical
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
@@ -685,7 +683,6 @@ This is because of the difficulty of setting common thresholds for a wide variet
     \caption{\textbf{Examples of numerical solutions and their respective dispersion relations.} Dispersion relation produced with LSA (left), numerical-time series (center) and final time numerical snapshot (right) produced with Crank-Nicolson. \textbf{(A)} Turing I-Hopf solution produces stationary periodic patterns. \textbf{(B)} Unstable solution produces stationary periodic patterns. \textbf{(C)} Hopf solution produces non-stationary regular patterns. \textbf{(C)} Hopf solution produces Temporal Oscillator which is misclassified as a Stationary pattern.}
     \label{fig:interesting_cases_nogrowth} % A label for referencing this figure later in the document
 \end{figure}
-%TODO comment mark: methods?
 \section{Introducing biological features: Absorbing boundaries and growth}
 As seen in the previous section, both multistability effects and numerical solutions can break the hypothesis that only classical Turing I systems can produce stationary periodic patterns.
 Here, we look deeper into how other aspects linking the theory closer to the biological reality can also break this hypothesis.
@@ -730,7 +727,6 @@ Again, the thresholds for the peak finding algorithm need to be fine-tuned and d
     \caption{\textbf{Classification based on peaks for solutions with absorbing boundary conditions and growth.} Different numerical solutions in non-growing domains with absorbing boundary conditions classified on the basis of number of peaks. The solutions are a snapshot in time showing the concentration of A and I (shown as U and V here) in the left and right Y axis respectively. X axis designates space in mm.}
     \label{fig:peaks_classification} % A label for referencing this figure later in the document
 \end{figure}
-%TODO marks comment: too brief. refer to methods
 The peak classification shown in Fig.~\ref{fig:peaks_classification}, retrieves information on whether there is a pattern at all and whether this pattern is only a pattern at the boundary or is a periodic pattern that would scale up with tissue length as Turing patterns do.
 The 5 different types of patterns are:
 \begin{itemize}
@@ -789,7 +785,7 @@ In this case, both non-growing and growing domains have absorbing boundary condi
 The confusion matrix in Fig.~\ref{fig:openboundary_edgegrowth2_confusion_variant0} shows the correlation between non-growing and growing systems for 9,087 parameter sets.
 Overall, we can see a strong diagonal, more populated in the bottom of the diagonal.
 This suggests that growth often does not affect pattern formation, and when it does its more likely to destroy patterning.
-Again, this result might be affected by the system of equations and the parameters used such as model parameters or numerical parameters (e.g.~length of the system or growth rate). %TODO discussion different growth rates might lead to increase or decrease robustness and to inner and outer growth formation.
+Again, this result might be affected by the system of equations and the parameters used such as model parameters or numerical parameters (e.g.~length of the system or growth rate).
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
@@ -813,10 +809,9 @@ Finally, we observe that in growing domains, we generally observe outer ring add
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 1/interesting_cases_edgegrowth2} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Examples of pattern transitions from non-growing domains to linearly growing domains}. Three cases are shown. For each case we show both growing and non growing solutions, as well as final snapshot (i) and time-series (ii). Simulations were carried out with CN solver.}
+    \caption{\textbf{Examples of pattern transitions from non-growing domains to linearly growing domains}. Three cases are shown (A,B,C). For each case we show both growing and non growing solutions, as well as final snapshot (i) and time-series (ii). Peaks can be well observed in the final snapshot (i), while the pattern trajectory can be observed in the time-series (ii). Simulations were carried out with CN solver in 1D.}
     \label{fig:interesting_cases_edgegrowth2}
 \end{figure}
-%TODO remove top and bottom?
 Finally, in Fig.~\ref{fig:3layer_sankey}, we can see a Sankey diagram which represents the flows from one type of pattern to another as absorbing boundaries and growth are added.
 Pattern classes are ranked top-to-bottom from less patterned to more.
 Overall, we can see a flow upwards towards less patterned outcomes as these effects are introduced.
@@ -910,10 +905,10 @@ Additionally, increasing the speed of pattern formation could be favourable to d
 On the other hand, the growth used did not seem to improve robustness for pattern formation as more cases ended up in the bottom of the diagonal in the confusion matrix (Fig.~\ref{fig:openboundary_edgegrowth2_confusion_variant0}).
 This goes against the literature which describes growth induced Turing patterns ~\parencite{gaffney2010}).
 This might be because growth rates and types of growth (exponential or logistic) produce different results.
+Using different growth rates might lead to an increase in robustness or to a different type of pattern such as interior stripe growth rather than outer stripe addition shown in Fig.~\ref{fig:growing_pattern}.
 The growth rate used here was slower than the experimental growth rate as long times were initially simulated to reach convergence in the non-growing reflective boundaries case.
 Future work should focus on testing robustness for the specific growth rates of our system.
 Alternatively, insights into which growth rates promote pattern formation the most could be useful to tune experiments accordingly.
-
 The main unresolved challenge of this chapter was optimising the classification methods to correctly classify patterns.
 Firstly, two different classification methods were used which made comparing results harder.
 Additionally, many patterns were misclassified, which meant the results were not necessarily statistically significant.
