@@ -7,7 +7,7 @@
 %nolistspacing, % If the document is onehalfspacing or doublespacing, uncomment this to set spacing in lists to single
 %liststotoc, % Uncomment to add the list of figures/tables/etc to the table of contents
 %toctotoc, % Uncomment to add the main table of contents to the table of contents
-parskip, % Uncomment to add space between paragraphs
+    parskip, % Uncomment to add space between paragraphs
 %nohyperref, % Uncomment to not load the hyperref package
 %    headsepline, % Uncomment to get a line under the header
 %chapterinoneline, % Uncomment to place the chapter title next to the number on one line
@@ -89,8 +89,8 @@ parskip, % Uncomment to add space between paragraphs
 }
 
 \thesistitle{Data-driven modelling of robust Turing patterns in synthetic biofilms} % print with \ttitle
-\supervisor{Prof. Robert G Endres and Prof. Mark Isalan } % print with \supname
-\examiner{Prof. Eamonn A Gaffney and Dr. Jose Jimenez Zarco} % TODO print with \examname
+\supervisor{Prof. Robert G. Endres \\ Prof. Mark Isalan } % print with \supname
+\examiner{Prof. Eamonn A. Gaffney \\ Dr. Jose Jimenez Zarco} % TODO print with \examname
 \degree{PhD} % print with \degreename
 \author{Martina Oliver Huidobro} % print with \authorname
 %\addresses{a} % print with \addressname
@@ -129,26 +129,41 @@ parskip, % Uncomment to add space between paragraphs
             \HRule \\[0.4cm]
             {\huge \bfseries \ttitle\par}\vspace{0.4cm} % Thesis title
             \HRule \\[1.5cm]
+%            \begin{minipage}[t]{0.4\textwidth}
+            \begin{centering}
+                \large
+                \emph{by}\\
+                \href{}{\authorname}
+            \end{centering}
+
+
+            \vspace{0.4cm}
+
+%            \end{minipage}\vspace{0.4cm}
+
 
             \begin{minipage}[t]{0.4\textwidth}
                 \begin{flushleft}
-                    \large
-                    \emph{Author:}\\
-                    \href{}{\authorname}
+                \large
+                \emph{Supervisors:} \\
+
+                \href{https://rgendres3.wixsite.com/biologicalphysics}{\supname}\\
                 \end{flushleft}
+
+%                \vspace{0.4cm}
             \end{minipage}
+%            \vspace{0.4cm}
+%            \begin{minipage}[t]{0.4\textwidth}
+%                \begin{flushleft}
+%                    \large
+%                    \emph{Author:}\\
+%                    \href{}{\authorname}
+%                \end{flushleft}
+%            \end{minipage}
             \begin{minipage}[t]{0.4\textwidth}
+
                 \begin{flushright}
                     \large
-                    \emph{Supervisors:} \\
-
-                    \href{https://rgendres3.wixsite.com/biologicalphysics}{\supname}\\
-
-
-                \end{flushright}
-                \begin{flushright}
-                    \large
-                    \vspace{0.5cm}
                     \emph{Examiners:}\\
                     \examname
                 \end{flushright}
@@ -176,7 +191,7 @@ parskip, % Uncomment to add space between paragraphs
 
     \vspace*{0.2\textheight}
 
-    \noindent\enquote{\itshape We can only see a short distance ahead, but we can see plenty that needs to be done }\bigbreak
+    \noindent\enquote{\itshape We can only see a short distance ahead, but we can see plenty there that needs to be done }\bigbreak
 
     \hfill Alan M. Turing
 
@@ -195,19 +210,18 @@ parskip, % Uncomment to add space between paragraphs
     % \end{declaration}
     \begin{abstract}
         \addchaptertocentry{\abstractname} % Add the abstract to the table of contents
-        The generation of robust spatial patterns in biological systems remains a significant yet largely unresolved question. Beyond fundamental science, answering this question would lead to ground-breaking advances in the generation of synthetic tissues, organoids, and new biomaterials. Among various hypotheses, Alan Turing proposed a model to explain pattern formation based on reaction-diffusion networks. These networks are formed of components which travel throughout space and react with each other, leading to spatial periodic patterns. However, this model is far from biological complexity and requires fine-tuning of the parameters to produce such patterns.  Furthermore, natural relevant phenomena such as non-linearities, large network sizes, growth and different boundary conditions are often not addressed in Turing models. In this mathematical study, our primary objective is to investigate the characteristics of Turing patterns when these realistic phenomena are introduced. We also aim to enhance the Turing robustness of an engineered reaction-diffusion circuit to guide experimental design. Our final aim is to replicate and scrutinise experimental results where patterning occurs in bacterial tissues with synthetic reaction-diffusion gene circuits. Using high-throughput analytical and numerical methods, we examine how predictions from linear stability analysis are affected by multi-stability, absorbing boundary conditions, and growth. Subsequently, by modelling the synthetic reaction-diffusion circuit, we identify strategies to increase Turing robustness. This enhanced robustness is then experimentally tested to observe periodic patterns. Furthermore, we model these experiments by integrating a colony growth model with a PDE solver for non-linear reaction-diffusion models. To align our mathematical model more closely with experimental data, we employ machine learning techniques for parameter estimation. Our model successfully replicates experimental results, shedding light on the path forward to engineer robust patterns for downstream biotechnology applications.
-
+        The generation of robust spatial patterns in biological systems remains a significant yet largely unresolved question. Beyond fundamental science, answering this question would lead to ground-breaking advances in the generation of synthetic tissues, organoids, and new biomaterials. Among various hypotheses, Alan Turing proposed a model to explain pattern formation based on reaction-diffusion networks. These networks are formed of components which travel throughout space and react with each other, leading to spatial periodic patterns. However, this model is far from biological complexity and requires fine-tuning of the parameters to produce such patterns. Furthermore, natural relevant phenomena such as non-linearities, large network sizes, growth and different boundary conditions are often not addressed in Turing models. In this mathematical study, our primary objective is to investigate the characteristics of Turing patterns when these realistic phenomena are introduced. We also aim to enhance the Turing robustness of an engineered reaction-diffusion circuit to guide experimental design. Our final aim is to replicate and scrutinise experimental results where patterning occurs in bacterial tissues with synthetic reaction-diffusion gene circuits. Using high-throughput analytical and numerical methods, we examine how predictions from linear stability analysis are affected by multi-stability, absorbing boundary conditions, and growth. Subsequently, by modelling the synthetic reaction-diffusion circuit, we identify strategies to increase Turing robustness. This enhanced robustness is then experimentally tested to observe periodic patterns. Furthermore, we model these experiments by integrating a colony growth model with a PDE solver for non-linear reaction-diffusion models. To align our mathematical model more closely with experimental data, we employ machine learning techniques for parameter estimation. Our model successfully replicates experimental results, shedding light on the path forward to engineer robust patterns for downstream biotechnology applications.
 
 
     \end{abstract}
 
     \chapter*{Declaration of Authorship}
-\addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
+    \addchaptertocentry{\authorshipname} % Add the declaration to the table of contents
 
     \noindent I, \authorname, declare that this thesis titled, \enquote{\ttitle}and the work presented in it are my own.
-        Where information has been derived from other sources or work done in collaboration with others,
-        I confirm that this has been indicated appropriately.
-        
+    Where information has been derived from other sources or work done in collaboration with others,
+    I confirm that this has been indicated appropriately.
+
     \chapter*{Copyright declaration}
     \addchaptertocentry{\copyrightname} % Add the declaration to the table of contents
 
@@ -222,34 +236,34 @@ parskip, % Uncomment to add space between paragraphs
 %----------------------------------------------------------------------------------------
 
 
-   \chapter*{Acknowledgements}
-       \addchaptertocentry{\acknowledgementname}
-       Although I have declared this thesis is entirely my work, it would not have been possible without the unconditional support of a group of people with whom I have shared this journey.
+    \chapter*{Acknowledgements}
+    \addchaptertocentry{\acknowledgementname}
+    Although I have declared this thesis is entirely my work, it would not have been possible without the unconditional support of a group of people with whom I have shared this journey.
 
-       First off, I must express my gratitude to my supervisors, Mark and Robert, for enabling this exciting collaborative work.
-       Robert, you've taught me since my undergraduate studies all the fascinating ways in which mathematics can be applied to biology.
-       I will forever be thankful for your trust and support in this learning journey.
-       Mark, your enthusiasm for synthetic biology has been contagious.
-       Thank you for showing me how big we can dream when modifying these tiny cells.
-       I wish you a very labyrinthian future!
-       Both of you have played crucial roles in steering me towards an exciting future career where I get to combine two of the most current exciting fields: mathematics and biology.
+    First off, I must express my gratitude to my supervisors, Mark and Robert, for enabling this exciting collaborative work.
+    Robert, you've taught me since my undergraduate studies all the fascinating ways in which mathematics can be applied to biology.
+    I will forever be thankful for your trust and support in this learning journey.
+    Mark, your enthusiasm for synthetic biology has been contagious.
+    Thank you for showing me how big we can dream when modifying these tiny cells.
+    I wish you a very labyrinthian future!
+    Both of you have played crucial roles in steering me towards an exciting future career where I get to combine two of the most current exciting fields: mathematics and biology.
 
-        I would also like to mention all my colleagues who've now become dear friends and have contributed significantly to the warm memories of this journey.
-       Thanks to Antonio and Roozbeh from Robert's group, as well as the rest of my friends in the biomath community at Imperial for all the exciting exchange of ideas and fun conferences and socials.
-       I would also like to thank my colleagues in Mark's group, including Jure, Emily, Tong and in particular Georg with whom I no doubt will cross paths in the future. I am also grateful to the CDT of BioDesign Engineering for their funding and support.
-       The CDT cohort has been a source of inspiration and friendships, and I look forward to maintaining these connections.
+    I would also like to mention all my colleagues who've now become dear friends and have contributed significantly to the warm memories of this journey.
+    Thanks to Antonio and Roozbeh from Robert's group, as well as the rest of my friends in the biomath community at Imperial for all the exciting exchange of ideas and fun conferences and socials.
+    I would also like to thank my colleagues in Mark's group, including Jure, Emily, Tong and in particular Georg with whom I no doubt will cross paths in the future. I am also grateful to the CDT of BioDesign Engineering for their funding and support.
+    The CDT cohort has been a source of inspiration and friendships, and I look forward to maintaining these connections.
 
-       I also want to acknowledge my friends in London who have been like a second family.
-       Many of them are also pursuing PhDs, sharing in both the challenges and joys of this journey.
-       A big thanks especially to Nico, who has been there for me through the best and the worst, making my days in London – and not in London – always exciting.
+    I also want to acknowledge my friends in London who have been like a second family.
+    Many of them are also pursuing PhDs, sharing in both the challenges and joys of this journey.
+    A big thanks especially to Nico, who has been there for me through the best and the worst, making my days in London – and not in London – always exciting.
 
 
-Finally, I would like to greatly thank my family for their invaluable support.
-       Special thanks to my Mum for always pushing us to have the best education, while giving us all the love and support.
-       No doubt we would not achieve these things without you.
-       Big thanks to my Dad as well, who has given us the creativity and passion which are needed to enter this research journey.
-       To Carmen and Jaime, my mathematician siblings, thank you for all the nerdy talks and adventurous times.
-       Finally, big thanks to the rest of the family and in particular my grandparents who have created the tight bonds that are now the roots for me.
+    Finally, I would like to greatly thank my family for their invaluable support.
+    Special thanks to my Mum for always pushing us to have the best education, while giving us all the love and support.
+    No doubt we would not achieve these things without you.
+    Big thanks to my Dad as well, who has given us the creativity and passion which are needed to enter this research journey.
+    To Carmen and Jaime, my mathematician siblings, thank you for all the nerdy talks and adventurous times.
+    Finally, big thanks to the rest of the family and in particular my grandparents who have created the tight bonds that are now the roots for me.
 
 
 
