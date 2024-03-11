@@ -1,11 +1,11 @@
 \chapter{Beyond classical Turing patterns}\label{Chapter 1}
 \section{Synopsis}
-TThe Turing instability is a well-known mechanism for pattern formation. Turing instabilities are defined and studied using \acrfull{LSA}, but they can also be further explored with numerical methods. LSA predicts whether a pattern will occur through the dispersion relation, where the real part of eigenvalues determines the system's stability as a function of a wavenumber parameter. Although fast, this method provides limited insight into the emerging pattern, as it relies on linearization around the steady state. On the other hand, numerical methods, while more computationally intensive, offer detailed results of the developing pattern, including the concentration of species over time and space. Numerical results also enable visualization of the resulting Turing pattern shape, which in 2D can consist of spots, stripes, or labyrinths
+The Turing instability is a well-known mechanism for pattern formation. Turing instabilities are defined and studied using \acrfull{LSA}, but they can also be further explored with numerical methods. LSA predicts whether a pattern will occur through the dispersion relation, where the real part of eigenvalues determines the system's stability as a function of a wavenumber parameter. Although fast, this method provides limited insight into the emerging pattern, as it relies on linearization around the steady state. On the other hand, numerical methods, while more computationally intensive, offer detailed results of the developing pattern, including the concentration of species over time and space. Numerical results also enable visualization of the resulting Turing pattern shape, which in 2D can consist of spots, stripes, or labyrinths
 
-To effectively conduct a high-throughput study exploring the \#1754 synthetic Turing gene circuit built in~\cite{Tica2020}, it's essential to leverage LSA.
+To effectively conduct a high-throughput study exploring the \#1754 synthetic Turing gene circuit built in~\cite{Tica2020}, it is essential to leverage LSA.
 LSA offers a much quicker alternative compared to numerical methods for understanding the patterning capabilities of the experimental circuit.
 However, LSA, which relies on linearization around the steady state, sometimes fails to predict pattern formation accurately.
-Understanding what information can be obtained from LSA before resorting to numerical methods, and when LSA predictions break will enable us to efficiently gather extensive insights into both the patterning potential and the robustness of the system.
+Understanding what information can be obtained from LSA before resorting to numerical methods, and when LSA predictions break, will enable us to efficiently gather extensive insights into both the patterning potential and the robustness of the system.
 
 In this chapter, we first study the relationship between the analytical dispersion relation and the numerical results in Turing patterns.
 This includes understanding how to predict wavelength,
@@ -23,7 +23,7 @@ Finally, we explore numerically how these patterns behave when realistic biologi
 
 The following section describes how LSA is carried out for the steady states in a reaction-diffusion system.
 This analysis aims to find out if the steady state exhibits a Turing instability which is also called a diffusion-driven instability.
-When it does, the system is capable of forming spatial patterns at least transiently.
+When it does, the system is capable of forming spatial patterns.
 As the name describes, diffusion-driven instabilities arise in these systems when a homogeneous steady state is stable to small perturbations in the absence of diffusion, and becomes unstable in the presence of diffusion~\parencite{Glendinning1994, J.DMurray2002}.
 To check for Turing instabilities, the stability of the equilibrium state will be studied without and with diffusion.
 The method of LSA will be explained for the two morphogen reaction-diffusion system, shown below:
@@ -64,10 +64,10 @@ LSA is carried by adding an infinitesimally small perturbation $\delta X$ to the
  The perturbation needs to be almost insignificant as Taylor expansion is carried out to linearise the system around the steady state. Therefore, the morphogen concentration can be expressed as:
 \begin{subequations}
     \begin{equation}
-        A(t) = A^* + \delta A(t),\hspace{1.5cm} |\delta A| <<A^*
+        A(t) = A^* + \delta A(t),\hspace{1.5cm} |\delta A| \ll A^*
     \end{equation}
     \begin{equation}
-        I(t) = I^* + \delta I(t), \hspace{1.5cm} |\delta I| <<I^*
+        I(t) = I^* + \delta I(t), \hspace{1.5cm} |\delta I| \ll I^*
     \end{equation}
     \label{eq: steady states}
 \end{subequations}
@@ -98,8 +98,10 @@ This is done to have a simpler set of equations, that represent the system aroun
 
 
 
-If $\delta A$ and $\delta I$ are small enough, higher order terms can be ignored as $\delta (A,I)^n$  becomes infinitesimally small.
-Furthermore, it can be assumed that $f(A^*,I^*) = 0$, therefore the following expression is obtained, where $f$ corresponds to either $f_{A}$ or $f_{I}$  :
+If $\delta A$ and $\delta I$ are small enough, higher order terms in the Taylor expansion can be neglected as $\delta (A,I)^n$  becomes infinitesimally small.
+This simplification is justified under the Hartman-Grobman theorem, which states that the behavior of a dynamical system near a hyperbolic equilibrium point (i.e where no eigenvalue of the linearized system's Jacobian has its real part equal to zero) is qualitatively the same as the behavior of its linear approximation.
+Therefore, as long as the system's equilibrium point meets this hyperbolic condition, the linearized model provides a valid approximation for understanding the system's local dynamics.
+Furthermore, by construction $f(A^*,I^*) = 0$, therefore the following expression is obtained, where $f$ corresponds to either $f_{A}$ or $f_{I}$  :
 \begin{equation}
     f(A^*+\delta A, I^*+\delta I) =  \pdv{f(A^*,I^*)}{A}\delta A + \pdv{f(A^*,I^*)}{I}\delta I
 \end{equation}
@@ -114,8 +116,8 @@ Finally, because $\pdv{X}{t} =  \pdv{\delta X}{t}$  at steady state (Eqs. \ref{e
     \label{eq: linearised terms around steady state}
 \end{subequations}
 
-
-The general solution can be expressed as an exponential, where $\sigma$ determines the growth rate of the perturbation, and whether it grows (unstable steady state) or decays (stable steady state):
+The existence and uniqueness of the solution are guaranteed by Picard's theorem.
+Here, the solution can be explicitly expressed in terms of exponential functions, where  $\sigma$ determines the growth rate of the perturbation, and whether it grows (unstable steady state) or decays (stable steady state):
 \begin{subequations}
     \begin{equation}
         \delta A = A_{0}e^{\sigma t}
@@ -159,76 +161,8 @@ The real part of $\sigma$ corresponds to the growth rate of the perturbation.
 $Im(\sigma)$ corresponds to the oscillations.
 If all $Re(\sigma) < 0 $, the steady state will be stable to perturbations, which means the system will go back to the steady state after a small perturbation is applied.
 If at least one $Re(\sigma) > 0 $, the steady state will be unstable to perturbations, and the system will go away from the equilibrium point after being slightly perturbed.
-The first requirement for a Turing instability is that the system without diffusion is stable, therefore all eigenvalues must be negative.
-%
-%-------------------
-%
-%This can also be written in terms of
-%
-%\begin{subequations}
-%    \begin{equation}
-%        \pdv{\delta A}{t} = a_{11}\delta A + a_{12}\delta I
-%    \end{equation}
-%    \begin{equation}
-%        \pdv{\delta I}{t} =  a_{21}\delta A +  a_{22}\delta I
-%    \end{equation}
-%\end{subequations}
-%
-%where
-%
-%\begin{subequations}
-%    \begin{equation}
-%        a_{11} = \pdv{f_{A}(A^*,I^*)}{A} \hspace{1.5cm} a_{12} = \pdv{f_{A}(A^*,I^*)}{I}
-%    \end{equation}
-%    \begin{equation}
-%        a_{21} = \pdv{f_{I}(A^*,I^*)}{A} \hspace{1.5cm} a_{22} = \pdv{f_{I}(A^*,I^*)}{I}
-%    \end{equation}
-%
-%\end{subequations}
-%
-%It can also be expressed in terms of the jacobian J
-%
-%\begin{equation}
-%    J = \begin{bmatrix}
-%                              \pdv{f_{A}}{A} &
-%                              \pdv{f_{A}}{I}  \\
-%                              \pdv{f_{I}}{A} &
-%                              \pdv{f_{I}}{I}
-%    \end{bmatrix}
-%    = \begin{bmatrix}
-%          a_{11} &
-%          a_{12} \\
-%          a_{21} &
-%          a_{22}
-%    \end{bmatrix}
-%\end{equation}
-%
-%For a vector U
-%
-%
-%\begin{subequations}
-%    \begin{equation}
-%        U = \begin{bmatrix}
-%                \delta A  \\
-%                \delta I
-%        \end{bmatrix},   \hspace{0.5cm}  \pdv{U}{t} = J \cdot U
-%    \end{equation}
-%\end{subequations}
-%
-%
-%
-%
-%Diagonalisation can be applied to obtain an exponential solution for the perturbations $\delta A$ and $\delta B$ in terms of the eigenvalues $\sigma_{1}$ and $\sigma_{2}$ where $c_{1}, c_{2}, c_{3}, c_{4}$ are constants
-%
-%\begin{subequations}
-%    \begin{equation}
-%    \delta A(t) = c_{1}e^{\sigma_{1}t} + c_{2}e^{\sigma_{2}t}
-%    \end{equation}
-%
-%    \begin{equation}
-%        \delta I(t) = c_{3}e^{\sigma_{1}t} + c_{4}e^{\sigma_{2}t}
-%    \end{equation}
-%\end{subequations}
+The first requirement for a Turing instability is that the system without diffusion is stable, therefore all eigenvalues must have a negative real part.
+
 
 
 \subsubsection{Stability of steady state with diffusion}
@@ -262,7 +196,7 @@ Therefore, the Fourier cosine series used is
     \label{cosine_series}
 \end{equation}
 
-This way, if the function X(x) is expressed in terms of cosines (see Fig.~\ref{fig:cos_boundary_conditions}), the derivatives of this function for x=0 and x=L are zero:
+This way, if the function X(x) is expressed in terms of cosines (see Fig.~\ref{fig:cos_boundary_conditions}), the derivatives of this function for $x=0$ and $x=L$ are zero:
 \begin{equation}
     \frac{\partial \left(cos(0)\right)}{\partial x} = 0 ; \quad \frac{\partial \left(cos(\frac{n \pi L}{L})\right)}{\partial x} = 0
     \end{equation}
@@ -433,14 +367,14 @@ In linear stability analysis, the dispersion relation is studied, which shows th
 For a Turing instability to occur, at $k_{0}=0$, $Re(\sigma)$ must be negative, meaning the system is stable without diffusion.
 As diffusion is introduced and $k_n>0$, the system becomes unstable with $Re(\sigma)>0$.
 For $k_n \rightarrow \inf$, the system must be stable again and the eigenvalue negative.
-This is because otherwise, a Turing II instability will occur where the dominant mode has an infinitesimally large wavenumber meaning an infinitesimally small wavenumber.
+This is because otherwise, a Turing II instability will occur where the dominant mode has an infinitesimally large wavenumber meaning an infinitesimally small wavelength.
 The relationship between wavenumber $(k_{n})$ and wavelength $(\lambda)$ is
 \begin{equation}
     \lambda_n = \frac{2 \pi}{k_n}
     \label{eq:wavelength_wavenumber}
 \end{equation}
 
-An example of a classical Turing instability with a positive dispersion peak is shown in Fig.~\ref{fig:intro_to_Turing_patterns}B, along with the corresponding stationary spatial pattern.
+An example of a classical Turing instability with a positive dispersion peak is shown in Fig.~\ref{fig:turing_vs_noturing}B, along with the corresponding stationary spatial pattern.
 Alternatively, Fig.~\ref{fig:turing_vs_noturing}A shows a spatially homogeneous solution which results from a stable system that does not exhibit a diffusion-driven instability.
 These ~\acrfull{1D} numerical results were produced using the \acrfull{CN} numerical scheme described in~\ref{cranknicolson}, programmed using \textit{numpy} in Python from first math principles.
 The boundary conditions used here are Neumann boundary conditions where the derivative at the boundary is zero ($\pdv{U}{x}=0$) for both molecular species, A and I.
@@ -494,13 +428,15 @@ The resulting numerical patterns from the optimisation are then simulated and th
 
 This optimisation was carried out for three different initial Turing parameter sets. In Fig.~\ref{fig:dispersion_peak_optimisation}C we can observe the pattern for the initial Turing pattern and the Turing pattern after optimisation (with the highest dispersion peak).
 While the lower dispersion peaks present labyrinthian type of patterns, the patterns post-optimisation present dot-like morphologies.
-This suggests that a higher dispersion peak can lead to a preference for spots over labyrinths.
-
+This suggests that a higher dispersion peak could lead to a preference for spots over labyrinths.
+However, it is important to note that work in~\cite{ermentrout1991stripes} determined that the selection of stripes versus spots is shown to depend on the nonlinear terms and cannot be discerned from the linearized model.
+This contradiction may be explained by the fact that patterns that are evolving into spots, might transiently pass through labyrinths.
+Therefore patterns with low dispersion peaks might not have yet converged into the final spot like pattern and will therefore display a labyrinth   .
 
 \begin{figure}[H] % h! is a placement specifier; it tries to place the image here.
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 1/dispersion_peak_optimisation} % The name of your image file; assumes it is in the same directory as your .tex file
-    \caption{\textbf{Effects of dispersion peak optimisation on convergence time and pattern shape}. \textbf{(A)} Path of the dispersion peak optimisation using the Markov-Chain Monte Carlo with Metropolis algorithm. \textbf{(B)} Numerical convergence time with respect to highest eigenvalue from the dispersion relation. Each sample computed numerically and analytically is a black dot. \textbf{(C)} Effect of dispersion peak height on pattern shape. The top figures are non-optimised parameter sets (lowest dispersion peak height). The bottom figures represent parameter sets originating from the top parameter sets, that have been optimised for dispersion peak height (highest dispersion peak height). The six panels of every parameter set represent the 6 molecular species of the model.}
+    \caption{\textbf{Effects of dispersion peak optimisation on convergence time and pattern shape}. \textbf{(A)} Path of the dispersion peak optimisation using the Markov-Chain Monte Carlo with Metropolis algorithm. \textbf{(B)} Time for pattern convergence with respect to highest eigenvalue from the dispersion relation. Each sample computed numerically and analytically is a black dot. \textbf{(C)} Effect of dispersion peak height on pattern shape. The top figures are non-optimised parameter sets (lowest dispersion peak height). The bottom figures represent parameter sets originating from the top parameter sets, that have been optimised for dispersion peak height (highest dispersion peak height). The six panels of every parameter set represent the 6 molecular species of the model.}
     \label{fig:dispersion_peak_optimisation} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -524,20 +460,20 @@ Once the system moves away from the steady state and non-linearities are introdu
 
 
 \subsection{Multistability in Turing}
-In this section, we demonstrate how linear stability analysis is not sufficient or necessary to predict TPs in multi-stable systems.
+In this section, we demonstrate how linear stability analysis is not sufficient or necessary to predict Turing patterns (TPs) in multi-stable systems.
 In particular, we study in detail the dynamical behaviour of multi-stable systems during pattern formation, which will lead to the creation or breaking of the pattern.
 The motivation behind this arises from the high degree of multistability exhibited by biological systems, where cell-fate decisions have to be taken within this landscape ~\parencite{huang2000shape, moris2016transition}.
 Multistability is especially common in systems with non-linearities and feedback loops, as the ones in biology or in our models~\parencite{pham2020complexity, leite2009multistability}.
 
 Using the two-node non-linear Turing topology (Eq. \ref{eq:turinghill}), multi-stable solutions were found and studied to understand how the patterning dynamics get affected when multiple steady-state solutions are found.
-First, LSA is carried out on particular parameter sets to find multiple steady states of different stability (e.g.~stable, unstable, Turing I, Turing I-Hopf).
+First, LSA is carried out on particular parameter sets to find multiple steady states with different stability nature (e.g.~stable, unstable, Turing I, Turing I-Hopf).
 Then numerical simulations are computed where the initial condition is a random uniform distribution around a particular steady state.
 Different pattern outcomes result depending on where in the phase diagram the initial condition is.
 Following the classical hypothesis used in the Turing robustness literature, we would expect stable and unstable systems to not produce patterns and Turing to produce patterns.
 Here, we present various examples of how this hypothesis can break under multistability conditions.
 
 Fig.~\ref{fig:multistability1} shows a case where diffusion-driven instability conditions are not required for Turing pattern formation.
-The unstable state, having a dispersion relation with a peak below zero (Fig.~\ref{fig:multistability1}C), managed to get into a Turing pattern regime as it is attracted by the Turing steady state.
+The unstable state, having a dispersion relation with a peak below zero (Fig.~\ref{fig:multistability1}C), managed to get into a Turing pattern regime as it is attracted by the neighbouring Turing steady state.
 It therefore produces a stationary pattern (Fig.~\ref{fig:multistability1}B), even though its dispersion relation does not predict so.
 This trajectory is depicted in the phase diagram (Fig.~\ref{fig:multistability1}A) which shows the steady states along with the vector field to understand the potential trajectories of the system.
 The phase diagram does not fully capture the dynamics as it describes the system without diffusion, while the dispersion relation and the numerical solution do consider diffusion.
@@ -566,7 +502,7 @@ This type of transient pattern behaviour has also been recently reported in~\cit
 \end{figure}
 
 Other interesting examples can be found, for example, where an unstable state is surrounded by two Turing states, this unstable state will robustly lead to a Turing pattern (Fig.~\ref{fig:multistability_leftover}A).
-Additionally, in some cases, the unstable system settles into Turing, but the Turing system gets pulled by the stable attractor (Fig.~\ref{fig:multistability_leftover}B). Additionally, some systems even exhibit a transient pattern and the three solutions are homogeneous in time and space (Fig.~\ref{fig:multistability_leftover}C).
+Additionally, in some cases, the unstable system settles into Turing, but the Turing system gets pulled by the stable attractor (Fig.~\ref{fig:multistability_leftover}B). Additionally, some systems even exhibit three solutions which are homogeneous in time and space (Fig.~\ref{fig:multistability_leftover}C).
 In this case, it would be worth investigating earlier time points with more resolution, as a pattern might appear then.
 Interesting interactions similarly occur with multistability involving Turing I-Hopf solutions which will be mentioned in the following sections (Fig.~\ref{fig:multistability_leftover}D).
 
@@ -582,7 +518,7 @@ Interesting interactions similarly occur with multistability involving Turing I-
 
 
 \subsection{Analytical to numerical: Other types of dispersion relations, and other types of patterns} \label{nogrowth}
-Multi-stable systems are not the only case where the classical Turing instability fails to predict pattern formation.
+Multi-stable systems are not the only case where the classical Turing instability theory fails to predict pattern formation.
 Other types of dispersion relations beyond classical Turing instabilities can produce stationary patterns and non-stationary regular patterns that might be of interest in developmental biology.
 This section aims to document what type of dispersion relations in mono-stable systems can be linked to what type of patterns, to gain insights into predicting pattern formation from linear stability analysis.
 We will first present a classification for the different types of dispersion relations.
@@ -665,7 +601,7 @@ The two types of classifications described above are applied, and a new 5x4 conf
 \end{figure}
 
 It is worth pointing out some interesting examples obtained from this confusion matrix.
-For example, Turing I-Hopf seems to lead to stationary patterns often (see Fig.~\ref{fig:interesting_cases_nogrowth}A), meaning they would need to be included in high-throughput robustness studies.
+For example, Turing I-Hopf seems to lead to stationary patterns often (see Fig.~\ref{fig:interesting_cases_nogrowth}A), meaning they would need to be investigated in high-throughput robustness studies.
 The production of periodic patterns by Turing I-Hopf instabilities has been already documented in the literature~\cite{Liu2007}.
 Some unstable dispersion relations can also lead to stationary patterns (see Fig.~\ref{fig:interesting_cases_nogrowth}B).
 Additionally, Hopf solutions display interesting non-stationary patterns (see Fig.~\ref{fig:interesting_cases_nogrowth}C).
@@ -757,7 +693,6 @@ However, some exceptions are present which are further studied in Fig.~\ref{fig:
         \includegraphics[width=1\textwidth]{chapters/Chapter 1/nogrowth_openboundary_confusion_variant0-11-12} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
     \caption{\textbf{Confusion matrix linking system outcome with reflective boundary and absorbing boundary.} Numbers show the percentage of solutions across the rows with reflective boundary output.}
-    \caption{Effects of absorbing boundary conditions on patterning}
     \label{fig:nogrowth_openboundary_confusion_variant0} % A label for referencing this figure later in the document
 \end{figure}
 
@@ -775,7 +710,7 @@ However, other effects might occur when using other systems including model para
     \begin{adjustbox}{center}
         \includegraphics[width=1\textwidth]{chapters/Chapter 1/interesting_cases_openboundary} % The name of your image file; assumes it is in the same directory as your .tex file
     \end{adjustbox}
-    \caption{\textbf{Examples of pattern transitions from reflecting boundaries to absorbing boundaries}. The system is simulated numerically in a non-growing domain using reflecting boundaries (top) and absorbing boundaries (bottom). Time-series numerical solutions of A are shown for each case.}
+    \caption{\textbf{Examples of pattern transitions from reflecting boundaries to absorbing boundaries}. The system is simulated numerically in a non-growing domain using reflecting boundaries (top) and absorbing boundaries (bottom). Time-series numerical solutions of A are shown for each case where x-axis is space, y-axis is time and colorbar is concentration of morphogen A.}
     \label{fig:interesting_cases_openboundary}
 \end{figure}
 
@@ -858,10 +793,13 @@ Future work should involve testing those simulations for larger times to ensure 
 %Additionally, a high dispersion peak height seemed to be linked to faster growing patterns and labyrinths.
 %This example showed how by using optimisation methods on the dispersion relation, we can control features of the patterns.
 %Understanding how parameters evolve during this optimisation could be key to guide experimental design to obtain larger wavelengths, faster timescales or different pattern shapes in synthetic tissues.
+
 Experimental work to engineer Turing patterns could benefit from faster-forming patterns as this would result in less stressed cellular tissues by avoiding nutrient depletion, accumulation of toxic molecules or cell death.
 By looking at which parameters changed during the optimisation, we could tune the experimental circuit to modify those parameters and therefore tune our pattern time scales.
 Additionally, tuning pattern shape or wavelength could be useful if different biotechnology applications require different morphologies or scales.
 Although we have only shown optimisation for the case of dispersion peak height, the same optimisation could be carried out to choose a particular pattern wavelength.
+
+Additionally, understanding wavelength and convergence times from the dispersion relation is key to choose our numerical parameters without having to run a numerical search.
 
 
 \subsection*{Breaking linear stability analysis predictions}
@@ -874,7 +812,7 @@ High-throughput studies either do not mention multistability or mention it but d
 Here we explored different cases of multistability and displayed the different potential outcomes of how the various states interact.
 We showed the mechanism of how unstable systems can gain Turing pattern dynamics through multistability, as well as Turing states lose their patterning.
 Additionally, we documented ephemeral patterns which are transient patterns occurring as the system jumps from Turing to stable states.
-These ephemeral patterns could still be interesting for developmental biology as the pattern can serve to temporarily activate the necessary genes to produce a non-transient phenotype (e.g. digit formation only needs periodic pattern at a specific time when the growth hormone is being produced to generate fingers~\parencite{Raspopovic1}.
+These ephemeral patterns could still be interesting for developmental biology as the pattern can serve to temporarily activate the necessary genes to produce a non-transient phenotype (e.g.~digit formation only needs periodic pattern at a specific time when the growth hormone is being produced to generate fingers~\parencite{Raspopovic1}).
 Understanding how the interaction between different steady states affects pattern formation is key as multistability is extremely present and plays an important role in biological systems~\parencite{laurent1999multistability}.
 
 In addition to multistability, current robustness studies do not explore alternative dispersion relations.
@@ -885,6 +823,7 @@ Considering them might increase the robustness slightly, however not enough to e
 Additionally, some systems with a Hopf dispersion relation produced interesting non-stationary periodic patterns.
 These non-stationary patterns could be of great interest in the field of developmental and synthetic biology as gene expression arrest could turn them into periodic stationary patterns.
 Additionally, these non-stationary patterns could serve as a periodic pre-pattern for the initial symmetry breaking.
+
 Overall, when considering symmetric breaking events and periodicity in developmental biology, we should think beyond classical Turing dispersion relations and consider Hopf, Turing I-Hopf and simple unstable systems that might also explain periodic patterning in biology.
 
 \subsection*{Introducing realistic biological phenomena: Absorbing boundaries and growth}
@@ -893,6 +832,7 @@ The motivation behind this was our experimental setup which involves Turing gene
 Many studies have focused on understanding how growth or boundaries might affect pattern formation as seen in Section~\ref{growth_intro}.
 However, these studies are extremely theoretical and hard to derive any assumptions for our experimental system.
 Additionally, they are often based on complex analytical methods, yielding results which are hard to interpret.
+
 For this reason, we performed a high-throughput numerical study to understand the effects that the type of growth and boundaries of our system have on patterning.
 Our bacterial colonies grow in a linear manner, where growth occurs mainly at the edges.
 For this reason, we generated this type of linear edge growth.
@@ -924,3 +864,8 @@ This can be solved by simulating larger fields, however this is computationally 
 Additionally, the peak number classification used for the solutions with absorbing boundary conditions and growing domains relied only on final snapshots.
 This was mainly a problem when classifying non-stationary patterns as the number of peaks in these solutions increases and decreases over time, which might lead to misclassification.
 A potential way forward could be to analyse image datasets with deep learning methods to classify resulting patterns without relying on manually set rules or thresholds.
+
+In conclusion, our exploration of Turing patterns through analytical and numerical methods has not only reinforced the intricate relationship between these two approaches but also expanded our understanding of pattern formation.
+By delving beyond traditional linear stability analysis to include considerations of multistability, non-Turing dispersion relations, and the effects of growth and boundary conditions, we have uncovered nuances that challenge and refine our understanding of pattern dynamics.
+These findings underscore, amongst other things, the importance of a numerical approach to the study of biological patterning.
+The insights gained in this chapter provide a valuable framework for addressing the more applied problem of patterning in synthetic systems, which will be tackled in the subsequent chapters

@@ -1,10 +1,11 @@
 \chapter{Patterning in Synthetic Bacterial Colonies} \label{chapter3}
-Using the insights obtained in the previous chapter, a wide range of microscopy experiments were carried out in optimal Turing conditions to obtain patterning in \textit{E.~coli} biofilms.
+Using the insights obtained in the previous chapter, a wide range of microscopy experiments were carried out by me and collaborators at the Isalan Lab in optimal Turing conditions to obtain patterning in \textit{E.~coli} biofilms.
 The aim is to observe fluorescent periodic patterns when these biofilms are observed under the microscope.
 The model is key to elucidate which mechanisms are behind the patterns formed, and specifically to investigate if periodic patterns obtained are a result of Turing's mechanism.
 
 In this section, experimental results produced in this thesis are shown.
-Further microscopy results done by researchers at the Isalan Lab are also presented.
+My experimental results are patterns in small bacterial colonies shown in Fig.~\ref{atcwalk_timeseries_confocal}.
+Further microscopy results done by researchers at the Isalan Lab are also presented. This refers to the rest of the experimental results shown.
 A framework to numerically solve reaction-diffusion systems in shaped and growing biofilms is developed to compare model outputs and experimental results.
 Finally, perturbation experiments are carried out computationally, to predict experimental perturbations and elucidate the mechanisms behind pattern formation.
 
@@ -168,7 +169,7 @@ As seen in the previous chapter, time and space are dimensionless and dependent 
 
 When sampling the parameter space, the parameters related to time and space transformations are fixed, so $\mu_a = 0.3 \,h^{-1}, \,k_1 = 0.0183 \,h^{-1},\, \mu_u = 0.0225\, h^{-1}$.
 The diffusion rate $D_U$ is the only one not fixed and it ranges from $0.1-10 \,mm^2h^{-1}$.
-Using Eq.~\ref{time_space_transform}, time is transformed so that $t^*=3.3\cdot t$.
+Using Eq.~\ref{time_space_transform}, time is transformed so that $t^*=0.3\cdot t$.
 Space is also transformed but is dependent on $D_U$, which is sampled from a range.
 Therefore, for $D_U = [0.1, 10] \,mm^2 h^{-1}$, $x^* =[1.92 - 0.192] \cdot x$.
 Using realistic experiment time and space, the following dimensionless values are obtained:
@@ -257,7 +258,7 @@ Although Case \#1 seems to have similar rings to the ones we are looking to repl
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{chapters/Chapter 3/best_fit_colony_turing}
-    \caption{Growing colony simulations of Turing solutions with fitted parameters. Parameters for these simulations can be found in Tables~\ref{tab:model_param1},~\ref{tab:model_param2},~\ref{tab:numerical_param_table}.}
+    \caption{\textbf{Growing colony simulations of Turing solutions with fitted parameters.} Parameters for these simulations can be found in Tables~\ref{tab:model_param1},~\ref{tab:model_param2},~\ref{tab:numerical_param_table}.}
     \label{best_fit_colony_turing}
 \end{figure} %
 
@@ -308,7 +309,7 @@ Assuming that the enzymatic production and degradation rates of the two diffuser
 \end{figure}
 
 Other interesting solutions are found such as the colony-induced Turing pattern (Fig~\ref{fig:turing_fit_noise_robustness}C Case \#5).
-In Fig.~\ref{fig:colony_induced_turing} we see an example of an instability induced by stochasticity in cell division or growth: the dispersion relation doesn’t show any unstable modes; however, the simulation shows a clear periodic heterogeneity.
+In Fig.~\ref{fig:colony_induced_turing} we see an example of an instability induced by stochasticity in cell division or growth: the dispersion relation does not show any unstable modes; however, the simulation shows a clear periodic heterogeneity.
 The dominant mode of this dispersion relation (Fig.~\ref{fig:colony_induced_turing}A) has a wavenumber of 1.8, which corresponds to a wavelength of $2\pi/1.8=3.49$.
 This approximately corresponds to the wavelength of the produced pattern (Fig.~\ref{fig:colony_induced_turing}B), meaning this stable mode has been excited to unstable and resulted in a Turing pattern.
 
@@ -372,6 +373,11 @@ Experimental colonies behave according to model predictions, displaying fewer ri
     \label{fig:boundary_conditions_colony}
 \end{figure}
 
+The assumption that the agar plate size is›› modelled through the boundary condition and not by modelling an empty agar space is taken to reduce the computational power.
+In a small plate, the diffusers will quickly reach the boundary and be reflected, therefore a Neumann boundary condition is used.
+In a larger plate (20mm), the diffusers will not build up the boundary and be reflected. This can be modelled by assuming a closer boundary than the size of the plate which has absorbing conditions.
+This is justified as the diffuser travels relatively slowly ($~1mm^2/h$), meaning newly produced diffuser would take 20h to reach the boundary and therefore build up would not be possible.
+
 \subsection{Node deletions}
 Another important perturbation is deleting nodes of the circuit to study how patterning is affected.
 Deletions of each node described in Fig.~\ref{fig:deletion_circuits} were studied using analytical and numerical methods, by re-sampling the parameter space with the literature-based distribution.
@@ -432,7 +438,7 @@ This proved that periodic cold shocking helps, but it is not required for period
     \label{fig:cold_shock_experiments}
 \end{figure}
 
-To further prove that no periodic cold shocks were needed for periodic patterning, we sought to obtain a time series of the colony while keeping the cells at a constant temperature.
+To further prove that no periodic cold shocks were needed for periodic patterning, an experimental time series of the colony was produced while keeping the cells at a constant temperature.
 Colonies were grown for a day and then transferred to the microscope, where the first and only cold shock occurred.
 The cells were kept at 37°C with a stage-top incubator, and images were taken every hour.
 Consistent with the cold shock hypothesis, the first stripe formed soon after the start of the imaging.
@@ -523,7 +529,7 @@ This shows how Turing I-Hopf instabilities generate patterns more robustly in ce
 
 Another feature of the system which was replicated by the model was the pattern variability or lack of reproducibility.
 By searching around the vicinity of a parameter set, many Turing patterns with different shapes could be found.
-This could explain why in \textit{in-vitro}, the same experimental conditions led to different pattern outcomes.
+This could explain why in \textit{in-vitro}, similar experimental conditions led to different pattern outcomes.
 
 Although the outer ring addition and spots obtained can be explained with a Turing mechanism, the robustness of such is extremely low.
 Other effects could be increasing the Turing robustness, making this outcome more likely.
@@ -547,7 +553,7 @@ Furthermore, more rings were produced in small plates which was replicated by th
 This result is reminiscent of~\cite{Krause2020}, where a thick agar layer that absorbed diffusors disrupted Turing patterning.
 If perturbations to a Turing model generate the same behaviour in the model as in the experiment, a Turing mechanism is likely behind such a system.
 
-Another perturbation produced was the deletion of nodes, which generated similar concentric as seen in Fig.~\ref{fig:experimental_node_dele}.
+Another perturbation produced was the deletion of nodes, which generated similar concentric rings as seen in Fig.~\ref{fig:experimental_node_dele}.
 Linear stability analysis and numerical simulations determined that such circuits could not produce Turing instabilities.
 This suggested rings could be produced by another mechanism such as cold shock effects.
 The cold shock hypothesis was tested and indeed it was found that by imaging the colony every day, periodic rings could form as a result of the periodic cold shocks.
@@ -568,3 +574,6 @@ The spots observed in Fig.~\ref{comparison_colonies_model_vs_experiment} suggest
 While labyrinths would provide further proof, so far, only rings and spots have been observed in the sampled fitted parameter distributions and in the experiments.
 
 
+Ultimately, the interplay between theoretical modeling and empirical observations in this chapter does not only advance our capability to engineer patterns in biofilms; it pushes the field of synthetic biology into a new realm where the predictability of complex biological systems is increasingly attainable.
+The successful engineering of the \#1754 topology to produce periodic patterns in \textit{E. coli} colonies using a predictable model sheds light into potential mechanisms involved with pattern formation in living systems.
+By elucidating the mechanisms behind pattern formation and demonstrating the ability to replicate these processes in the laboratory, this work paves the way for innovations in tissue engineering, biomaterials design, and beyond.

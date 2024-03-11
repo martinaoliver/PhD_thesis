@@ -48,7 +48,7 @@ This schema is composed of 5 tables as seen in Fig.~\ref{psql_schema}.
 Model parameters and Simulation parameters have information on the kinetic parameters of the model and the simulation parameters of the numerical solver.
 A set of model parameters or simulation parameters is encoded with a primary key for each table: model\_param\_id and sim\_param\_id.
 Linea stability analysis output contains information on the linear stability analysis output for a specific model\_param\_id.
-This information involves the type of dispersion relation, the highest eigenvalue, the LSA estimated wavelength...etc.
+This information involves the type of dispersion relation, the highest eigenvalue or the LSA estimated wavelength.
 Simulation output contains information on the \acrfull{1D} or \acrfull{2D} time-series data obtained from the simulation. Each set of data has a model\_param\_id and a sim\_param\_id associated to it.
 Finally, the Pattern type table has information on the type of pattern of a specific numerical output.
 This is based on the defined classifications (e.g. convergence, spatial homogeneity and number of peaks).
@@ -76,6 +76,7 @@ A pattern will be considered converged if the last 30 time points for any of the
     \frac{max(U[-30:]) - min(U[-30:])}{max(U[-30:])} \leq 0.05
 \end{equation}
 
+where U is an array with the concentrations of the morphogen in time and space.
 \section{Dispersion peak height optimisation: Adapted random walk Metropolis}\label{dispersion_peak_optimisation}
 In this section, the optimisation of the dispersion peak height using an adapted random walk-metropolis (RWM) algorithm will be explained.
 The RWM algorithm is a common type of Markov Chain Monte Carlo (MCMC) method that uses a Metropolis Algorithm.
@@ -96,7 +97,6 @@ The starting point of the algorithm is to propose a Turing parameter set which w
 From that parameter set, a new parameter set is proposed where all parameters are varied slightly.
 The variation is chosen randomly from a uniform distribution around the parameter value.
 The uniform distribution is defined as $U(X_{0} - X_{0}T, X_{0} + X_{0}T)$, where $X_{0}$ is the initial parameter to be varied and T is a temperature constant that will define the amount of variation to be applied.
-In this case, $T=0.1$.
 In this case, $T=0.1$.
 So if $X_{0}=100$, the uniform distribution is U(90,110).
 This step is done for all parameters of the parameter set at every iteration, producing a new parameter set $X_{1}$.
@@ -134,7 +134,7 @@ The aim is to derive a numerical solution that approximates the unknown analytic
 
 When working with a numerical solver, the solver can perturb the system behaviour due to the effects of the time-step, the integration method or the computer arithmetic.
 When choosing a scheme to numerically solve a PDE, three different characteristics of the scheme need to be considered: Consistency, stability and convergence.
-Firstly, for a scheme to be consistent, the truncation error must be reduced as $\Delta t \rightarrow 0$ or/and if $\Delta x \rightarrow 0$.
+Firstly, for a scheme to be consistent, the truncation error must be reduced as $\Delta t \rightarrow 0$ or/and as $\Delta x \rightarrow 0$.
 The truncation error results from using a simple approximation to represent an exact mathematical formula.
 Secondly, the numerical method is said to be stable if the error (truncation or round-off) is not magnified as the number of time steps tends to infinity.
 Finally, as the Lax equivalence theorem states, the scheme is said to be convergent if both consistency and stability are fulfilled.
@@ -168,10 +168,10 @@ By reordering this approximation into a linear equation, the resulting problem i
 \begin{equation}
     \textbf{U}^{n+1} = A^{-1}(B\textbf{U}^{n} + f^{n})
 \end{equation}
-This method simplifies the complex system into a linear system that can be solved numerically. The solution given will be a 1D space solution of the reaction-diffusion system. Although the method is unconditionally stable, the solution can contain oscillations if $ \frac{\Delta t}{\Delta x^{2}} >\frac{1}{2} $ \parencite{trefethen1996finite}. Therefore, the ratio will be kept below $\frac{1}{2}$ to avoid errors.
+This method simplifies the complex system into a linear system that can be solved numerically. The solution given will be a 1D space solution of the reaction-diffusion system. Although the method is unconditionally stable, the solution can contain oscillations if $ \frac{D\Delta t}{\Delta x^{2}} >\frac{1}{2} $ \parencite{trefethen1996finite}. Therefore, the ratio will be kept below $\frac{1}{2}$ to avoid errors.
 
 \subsubsection{Introducing Dirichlet or absorbing boundary conditions}\label{methods_boundary_conditions_CN}
-CN method can be implemented with Neumann no-flux boundary conditions or Dirichlet absorbing boundary conditions.
+The CN method can be implemented with Neumann no-flux boundary conditions or Dirichlet absorbing boundary conditions.
 For Neumann no-flux boundary conditions:
 \begin{equation}
     \frac{\delta u}{\delta t} =  f(u) + D\pdvn{2}{u}{x},   \quad \quad \quad \quad \quad \quad \pdv{u}{x}\biggr\rvert_{x=0,L}=0
@@ -307,13 +307,13 @@ Finally, 100$\mu l$ of the culture was plated and grown in LB agar plates with t
         \textbf{pCC1} & CA 10 & Regulator cassette & Single copy 22 \\
         \bottomrule
     \end{tabular}
-    \caption{Circuit plasmids built by Dr. Jure Tica and Tong Zhu. Each circuit node is encoded in a different cassette.}
+    \caption{Circuit plasmids built by Dr. Jure Tica and Tong Zhu. Each circuit node is encoded in a different plasmid.}
     \label{tab:plasmid table}
 \end{table}
 
 
 \subsection{Microscopy}\label{microscopy}
-After electroporation, transformed cells were grown in 2xYT medium (Sigma-Aldrich Y1003) with the required antibiotics to an OD600 of 1.5. They were then diluted in fresh 2xYT by a factor of $10^4$.
+After electroporation, succesfully transformed cells grew colonies. These colonies were picked and grown in 2xYT medium (Sigma-Aldrich Y1003) with the required antibiotics to an OD600 of 1.5. They were then diluted in fresh 2xYT by a factor of $10^4$.
 6 well MatTek plates with glass coverslips on the bottom were used for imaging.
 1.4\% (w/v) agar (Sigma-Aldrich A5306) was plated in the 5 wells containing the desired antibiotics and inducers on top of the coverslip.
 The diluted cells were then added on the agar and spread with beads (Novagen 71013).
@@ -324,7 +324,7 @@ Colonies grew over time in the wells of the MatTek plates as shown in Fig.~\ref{
 \begin{figure}[H]
 
     \includegraphics[width=1\textwidth]{chapters/Methods/matek}
-    \caption{Bacterial colonies with synthetic gene circuit grown on 6-well MatTek plates.}
+    \caption{\textbf{Bacterial colonies with synthetic gene circuit grown on 6-well MatTek plates}.}
     \label{matek}
 \end{figure}
 
